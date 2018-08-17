@@ -251,6 +251,14 @@ function delMemout(idx){
           <td>test</td>
           <td>2016-05-24</td>
           <td><button type="button" class="h18 t3 color small round red_s" onclick="delMemout('5351');">삭제</button></td>
+        </tr> 
+        <tr>
+          <td>224</td>
+          <td>테스트 (test)</td>
+          <td>asdf</td>
+          <td>test</td>
+          <td>2016-05-24</td>
+          <td><button type="button" class="h18 t3 color small round red_s" onclick="delMemout('5351');">삭제</button></td>
         </tr>
      	        <tr>
           <td>1</td>
