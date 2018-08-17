@@ -5,9 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TITLE</title>
-<link rel="stylesheet"
-	href="../common/bootstrap3.3.7/css/bootstrap.min.css" />
-<script src="../common/bootstrap3.3.7/jquery/jquery-3.2.1.min.js"></script>
 <link href="../wiz_style.css" rel="stylesheet" type="text/css">
 </head>
 <body topmargin="0" leftmargin="0">
