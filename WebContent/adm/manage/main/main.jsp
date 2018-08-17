@@ -43,12 +43,6 @@
 							</tr>
 
 							<tr>
-								<td><a href="../bbs/list8073.html?code=movieBasic">[동영상]
-										동영상 게시판 입니다.</a></td>
-								<td align="right" class="date">2016-06-14</td>
-							</tr>
-
-							<tr>
 								<td><a href="../bbs/lista09c.html?code=bbsAgree">[약관동의]
 										약관동의 게시판 입니다.</a></td>
 								<td align="right" class="date">2016-06-14</td>

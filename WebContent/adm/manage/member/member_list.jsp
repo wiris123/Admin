@@ -679,7 +679,22 @@ function setMail(no) {
 			<button type="button" class="h18 t3 color small round red_s" onclick="location.href='input8afe.html?mode=update&amp;idx=100&amp;page=1&amp;sdate=&amp;edate=&amp;slevel=&amp;searchopt=&amp;searchkey='">보기</button>
 		  </td>
         </tr>
-        
+           <tr>
+          <td height="30" align="center"><input type="checkbox" name="select_checkbox"></td>
+          <td align="center">1</td>
+          <td align="center">테스트3</td>
+          <td align="center">test3</td>
+          <td align="center"><a href=javascript:sendSms('010-0000-0000');>010-0000-0000</a></td>
+          <td align="center">
+          	<!--a href="javascript:sendMail('테스트3:test@test.com', 'test3:8ad8757baa8564dc136c1e07507f4a98')">test@test.com</a//-->
+          	<a href="javascript:setMail('1')">test@test.com</a>
+          </td>
+          <td align="center">11</td>
+          <td align="center">2016-04-12 &nbsp;</td>
+          <td align="center">
+			<button type="button" class="h18 t3 color small round red_s" onclick="location.href='input8afe.html?mode=update&amp;idx=100&amp;page=1&amp;sdate=&amp;edate=&amp;slevel=&amp;searchopt=&amp;searchkey='">보기</button>
+		  </td>
+        </tr>
         </form>
       	  </tbody> 
       </table>
