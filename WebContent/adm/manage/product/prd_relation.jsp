@@ -10,7 +10,7 @@
 <body topmargin="0" leftmargin="0">
 <form name="frm" action="http://demohome.anywiz.co.kr/adm/manage/product/prd_save.php" onSubmit="return inputCheck(this)" method="post">
 <input type="hidden" name="mode" value="reldel">
-<input type="hidden" name="prdcode" value="1605270003">
+<input type="hidden" name="prdcode" value="1605270003"> 
 <table border="0">
 	<tr>
 		<td width="50">
