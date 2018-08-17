@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<!-- Mirrored from demohome.anywiz.co.kr/adm/manage/main/main.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:03:53 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>홈페이지 관리자</title>
+<link rel="stylesheet" href="../../css/jquery-ui.css">
+<script src="../../js/jquery-1.10.2.js"></script>
+<script src="../../js/jquery-ui.js"></script>
+<script src="../../js/jquery.highchartTable.js"></script>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/jquery.bpopup.min.js"></script>
+<script src="../../js/jquery.cookie.js"></script>
+<link href="../wiz_style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="../../js/default.js"></script>
+<script language="JavaScript" src="../../js/lib.js"></script>
+<style>
+.ui-datepicker {
+	width: 242px;
+	font-size: 90%;
+}
+
+.ui-datepicker-calendar>tbody td:first-child a {
+	COLOR: #f00;
+}
+
+.ui-datepicker-calendar>tbody td:last-child a {
+	COLOR: blue;
+}
+</style>
+<script>
+	$(document).ready(function() {
+
+		if ($.cookie("left_quick") == "close") {
+			$('#Container_wrap').addClass('left_close');
+		} else {
+			$('#Container_wrap').removeClass('left_close');
+		}
+	});
+
+	function leftBtn() {
+		$('#Container_wrap').toggleClass('left_close');
+		if ($('#Container_wrap').hasClass('left_close')) {
+			$.cookie('left_quick', 'close', {
+				expires : 1,
+				path : '/',
+				domain : 'demohome.anywiz.co.kr',
+				secure : false
+			});
+		} else {
+			$.cookie('left_quick', 'open', {
+				expires : 1,
+				path : '/',
+				domain : 'demohome.anywiz.co.kr',
+				secure : false
+			});
+		}
+	}
+</script>
+</head>
+<body class="home_body">
+	
+
+
+
+
+	<div id="Container_wrap" class="right_close">
+		<!--
+    class="left_close" 좌측만 닫힘
+    class="right_close" 우측만 닫힘
+    class="left_close right_close" 양쪽 닫힘
+    -->
+		<div class="nav_handle_left">
+			<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
+		</div>
+
+		<div id="left_area">
+
+			<script type="text/javascript">
+				function go_popup() {
+
+					$('#popup').bPopup({
+						speed : 650,
+						transition : 'slideIn',
+						transitionClose : 'slideBack'
+					});
+
+				};
+
+				$(document).ready(function() {
+
+					$(":checkbox").click(function() {
+						var len = $(":checkbox:checked").length;
+
+						var max = 10;
+						if (len > max) {
+							alert(max + " 개 이상 등록할 수 없습니다");
+							$(this).attr("checked", false);
+							return;
+						}
+
+					});
+					/*
+						$(".quick_btn").click(function(){
+							var $chk = $(":checkbox:checked");
+							var max = 5;
+							var quick;
+							
+							if($chk.length < 1)
+							{
+								alert("Quick Link에 등록할 메뉴를 하나이상 선택하세요");
+								return;
+							}
+							else if( $chk.length > max )
+							{
+								alert(max + " 개 이상 등록할 수 없습니다");
+								return;
+							}
+
+							quick = $chk.serialize();
+
+							$.post("./quick_link.act.php",{quick:quick},function(data){
+								alert("Quick Link 등록 완료");
+								location.reload();
+							});
+						});
+					 */
+				});
+				function addurl() {
+
+					var frm = document.frm;
+					var tbl = document.getElementById('quick');
+					var row = tbl.insertRow(-1);
+					var t = 1;
+					for (i = 0; i < tbl.rows[0].cells.length; i++) {
+						cell = row.insertCell(0);
+						cell.innerHTML = "링크명 : <input type=\"text\" size='15' class=\"input\" name=\"url[]\">";
+						cell.innerHTML += " Url : <input type=\"text\" size=\"50\" class=\"input\" name=\"urlname[]\">";
+						cell.innerHTML += " 사용여부 : <input id='c"
+								+ (tbl.rows.length - 1)
+								+ "' type=\"checkbox\" onclick=used('c"
+								+ (tbl.rows.length - 1) + "','t"
+								+ (tbl.rows.length - 1) + "'); checked>";
+						cell.innerHTML += " <input id='t"
+								+ (tbl.rows.length - 1)
+								+ "' type=\"hidden\" value='' name=\"used[]\">";
+
+					}
+				}
+
+				function delurl() {
+
+					var tbl = document.getElementById('quick');
+					if (tbl.rows.length > 1)
+						tbl.deleteRow(-1);
+				}
+
+				function used(idx, uid) {
+					if (document.getElementById(idx).checked == true) {
+						document.getElementById(uid).value = 'Y';
+					} else {
+						document.getElementById(uid).value = 'N';
+					}
+
+				}
+			</script>
+			<style type="text/css">
+.Pstyle {
+	opacity: 0;
+	display: none;
+	position: relative;
+	width: 700px;
+	border: 5px solid #fff;
+	padding: 20px;
+	background-color: #fff;
+}
+
+.b-close {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	padding: 5px;
+	display: inline-block;
+	cursor: pointer;
+}
+</style>
+
+			<div id="popup" class="Pstyle">
+				<span class="b-close">X</span>
+				<div class="content" style="height: auto; width: 700px;">
+					<table width="100%" border="0" cellspacing="0" cellpadding="2">
+						<tr>
+							<td><h3
+									style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px;">퀵링크
+									메뉴관리</h3></td>
+						</tr>
+					</table>
+					<br />
+					<form name="frm"
+						action="http://demohome.anywiz.co.kr/adm/manage/menu_save.php"
+						method="post">
+						<table width="100%" class="table_basic">
+							<tr>
+								<td>
+									<table width="100%" border="0" cellspacing="5" cellpadding="0"
+										id="quick">
+										<tr>
+											<td>
+												<button type="button"
+													class="h18 t3 color small round black_s" onClick="addurl()">추가</button>
+												<button type="button" class="h18 t3 color small round red_s"
+													onClick="delurl()">삭제</button>
+											</td>
+										</tr>
+										<tr>
+											<td>링크명 : <input type="text" size="15" class="input"
+												name="url[]" value="회원관리"> Url : <input type="text"
+												size="50" class="input" name="urlname[]"
+												value="../member/member_list.html"> 사용여부 : <input
+												id="c1" checked type="checkbox" onclick="used('c1','t1');">
+												<input id="t1" type="hidden" class="input" name="used[]"
+												value="Y">
+											</td>
+										</tr>
+										<tr>
+											<td>링크명 : <input type="text" size="15" class="input"
+												name="url[]" value="게시판관리"> Url : <input type="text"
+												size="50" class="input" name="urlname[]"
+												value="../bbs/bbs_list.html"> 사용여부 : <input id="c2"
+												checked type="checkbox" onclick="used('c2','t2');">
+												<input id="t2" type="hidden" class="input" name="used[]"
+												value="Y">
+											</td>
+										</tr>
+										<tr>
+											<td>링크명 : <input type="text" size="15" class="input"
+												name="url[]" value="접속통계"> Url : <input type="text"
+												size="50" class="input" name="urlname[]"
+												value="../connect/connect_list.html"> 사용여부 : <input
+												id="c3" checked type="checkbox" onclick="used('c3','t3');">
+												<input id="t3" type="hidden" class="input" name="used[]"
+												value="Y">
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<div align="center">
+							<button type="submit" style="margin-top: 5px"
+								class="b h28 t5 color blue_big">저장</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+
+
+
+			<div class="main_left">
+				<!-- 메인일때 좌, 우측 여백 -->
+				<div class="License">
+					<p class="tit type1">라이센스</p>
+					<ul class="cont">
+						<li><span>솔루션</span><br />Wizhome Plus</li>
+						<li><span>라이센스</span></br> e664847a106df596667576f9b 23bf4f8</li>
+						<li><span>설치일</span><br />2014-12-29 10:57:00</li>
+						<li><span>도메인</span></br>demohome.anywiz.co.kr</li>
+					</ul>
+				</div>
+				<!-- //M_license// -->
+				<script>
+					function openMenu() {
+						window
+								.open(
+										'../menu_config.html',
+										'cm',
+										'width=850,height=700,menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100');
+
+					}
+				</script>
+				<div class="Quicklink top15">
+					<p class="tit type2">
+						<span>퀵</span> 링크
+					</p>
+					<ul class="cont">
+						<li><a href="../member/member_list.html">회원관리</a></li>
+						<li><a href="../bbs/bbs_list.html">게시판관리</a></li>
+						<li><a href="../connect/connect_list.html">접속통계</a></li>
+					</ul>
+					<a href="javascript:go_popup();void(0);" onFocus="this.blur();"
+						class="more">메뉴관리</a>
+				</div>
+				<!-- //M_quicklink// -->
+
+
+
+				<!-- //M_cs// -->
+			</div>
+			<!-- //main_left// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+		<!-- //left_area// -->
+
+		
+
+		<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+</body>
+
+<!-- Mirrored from demohome.anywiz.co.kr/adm/manage/main/main.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:05:17 GMT -->
+</html>
+

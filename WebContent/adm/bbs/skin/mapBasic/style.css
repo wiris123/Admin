@@ -1,0 +1,61 @@
+@charset "euc-kr";
+/*CSS Document*/
+@import url(../../../wiz_reset.css);
+
+
+.select {color:#666; border:1px solid #ccc; background-color:#fff;}
+.input {padding:2px; border:1px solid #dfdfdf; background-color:#f7f7f7;}
+.input_idpw {color:#545454; border:1px solid #dfdfdf; background-color:#fff;}
+.search_input {color: #847f74; border: #cfcfcf 1px solid; background-color: #fff;}
+.Paging_Num td { padding-left:3px; }
+.category_pd { padding-bottom:5px; }
+
+.Map_Wrap { text-align:left; padding:10px 0; margin:50px 0 20px; }
+.Map_contents { padding:20px; border:1px solid #ddd; position:relative; }
+.Map_txt { font-size:24px; font-weight:bold; color:#333; padding:10px 0; letter-spacing:-0.05em;  }
+
+
+
+/***************************************************** 리스트 *****************************************************/
+/* 게시판 하단 검색------------------------------------------*/
+.AWbbs_h_search{border-top:1px solid #999; border-bottom:1px solid #ddd; background:#f7f7f7; padding:20px 0;}
+.AWbbs_h_search select{border:1px solid #ccc; padding:4px 4px 5px; }
+.AWbbs_h_search input{width:150px; height:20px; line-height:20px; background:#fff; border:1px solid #ccc; margin:0 5px; padding:3px 4px 3px;}
+.AWbbs_h_search button{}
+
+
+/***************************************************** 인풋 *****************************************************/
+/* 게시판 input ------------------------------------------*/
+.AWbbs_input_table{border-top:1px solid #333;}
+.AWbbs_input_table th, .AWbbs_input_table td{text-align:left; padding-left:15px; border-bottom:1px solid #ddd;}
+.AWbbs_input_table th{height:38px; background:#f7f7f7;}
+.AWbbs_input_table td{}
+	/* 체크박스 (HTML 비밀글 공지글) */
+	.AW_bbs_input_checkbox{margin:0 0 10px;}
+	.AW_bbs_input_checkbox input{vertical-align:middle;}
+	.AW_bbs_input_checkbox label{vertical-align:middle; margin:0 10px 0 2px;}
+
+
+
+
+
+/***************************************************** 상세 *****************************************************/
+/* 게시판 view ------------------------------------------*/
+.AWbbs_view_table{}
+.AWbbs_view_table.border{border-top:1px solid #333;}
+.AWbbs_view_table th, .AWbbs_view_table td{text-align:left; padding-left:15px; border-bottom:1px solid #ddd;}
+.AWbbs_view_table th{height:40px; background:#f7f7f7;}
+.AWbbs_view_table td{ padding:10px 0 10px 15px; }
+	/* 테이블 안에 테이블 리셋 */
+	.AWbbs_view_table table{border:0 none;}
+	.AWbbs_view_table table th, .AWbbs_view_table table td{height:auto; padding:0; border:0 none; background:none;}
+
+	/* 코멘트 */
+	.AWbbs_comment_id{text-align:center; background:#f7f7f7; line-height:1.4;}
+	.AWbbs_comment_id p{font-weight:bold;}
+	.AWbbs_comment_id span{display:block; color:#999; font-size:10px;}
+	
+	/* 코멘트쓰기 */
+	.AWbbs_comment_input_info{}
+	.AWbbs_comment_input_info .input{background:#fff;}
+

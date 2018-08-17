@@ -1,0 +1,133 @@
+
+<html>
+
+<!-- Mirrored from demohome.anywiz.co.kr/adm/manage/bbs/pop_view.php?code= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:27:49 GMT -->
+<head>
+<title>:: 게시글 ::</title>
+<link href="../style.html" rel="stylesheet" type="text/css">
+<script language="JavaScript" src="../../../js/valueCheck.html"></script>
+<script language="JavaScript" src="../../js/lib.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+function viewImg(img){
+  var url = "view_img15e6.html?code=&amp;img=" + img;
+  window.open(url,"viewImg","width=300,height=300,scrollbars=yes");
+}
+function delConfirm(idx){
+   if(confirm('선택한 글을 삭제하시겠습니까?')){
+     document.location = "save8d1a.html?code=&amp;mode=delete&amp;idx=" + idx + "&";
+   }
+}
+
+function commentCheck(frm){
+  if(frm.name.value == ""){
+    alert("이름을 입력하세요");
+    frm.name.focus();
+    return false;
+  }
+  if(frm.passwd.value == ""){
+    alert("비밀번호를 입력하세요");
+    frm.passwd.focus();
+    return false;
+  }
+  if(frm.content.value == ""){
+    alert("내용을 입력하세요");
+    frm.content.focus();
+    return false;
+  }
+}
+
+function delComment(idx){
+	if(confirm("해당 댓글을 삭제하시겠습니까?")){
+		document.location = "save7697.html?mode=delcomment&amp;code=&amp;cidx=&amp;idx=" + idx;
+	}
+}
+
+function checkBbs() {
+	var bidx = "";
+	if(bidx == "") {
+		alert("존재하지 않는 게시물입니다.");
+		self.close();
+	}
+}
+
+//-->
+</script>
+</head>
+<body onLoad="checkBbs()">
+<table width=100% border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="padding:10px">
+      <form action="http://demohome.anywiz.co.kr/adm/manage/bbs/list.php" method="post">
+	  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="80"><b>선택게시판 :</b></td>
+          <td></td>
+        </tr>
+        <tr><td height="3"></td></tr>
+      </table>
+	  </form>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="1" cellpadding="6" class="t_style">
+              <tr>
+                <td width="150" height="10" align="left" class="t_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름</td>
+                <td class="t_value" colspan="3"></td>
+              </tr>
+              <tr>
+                <td width="150" height="10" align="left" class="t_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일</td>
+                <td class="t_value" colspan="3"></td>
+              </tr>
+              <tr>
+                <td width="150" height="10" align="left" class="t_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성일</td>
+                <td width="220" class="t_value"></td>
+                <td width="150" height="10" align="left" class="t_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;파일첨부</td>
+                <td width="220" class="t_value">           </td>
+              </tr>
+              <tr>
+                <td width="150" height="10" align="left" class="t_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제목</td>
+                <td class="t_value" colspan="3"></td>
+              </tr>
+              <tr>
+                <td width="150" height="80" align="left" class="t_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내용</td>
+                <td class="t_value" colspan="3" valign="top">
+                                      					                <table border=0 cellspacing=0 cellpadding=0 width= height=1>
+							<col width=100%></col>
+							<tr>
+								<td>
+									<img src='#' border='0' width='100%' height='1' name='wiz_get_table_width'><br>
+									<img src='#' border='0' name='wiz_target_resize' width='1' height='1'>
+								</td>
+							</tr>
+						</table>
+						<table border=0 cellspacing=0 cellpadding=0 width=100%>
+							<col width=100%></col>
+							<tr><td valign=top></td></tr>
+						</table>                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <table><tr><td></td></tr></table>
+
+      
+      <table width="100%" height="10" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td></td>
+        </tr>
+      </table>
+
+      <table width="100%" height="10" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td align=right><input type="button" value="닫 기" onClick="self.close();" class="sbtn"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+
+<!-- Mirrored from demohome.anywiz.co.kr/adm/manage/bbs/pop_view.php?code= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:27:49 GMT -->
+</html>

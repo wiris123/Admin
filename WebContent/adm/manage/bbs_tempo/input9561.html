@@ -1,0 +1,603 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<!-- Mirrored from demohome.anywiz.co.kr/adm/manage/bbs/input.php?code= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:35:56 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>홈페이지 관리자</title>
+<link rel="stylesheet" href="../../css/jquery-ui.css">
+<script src="../../js/jquery-1.10.2.js"></script>
+<script src="../../js/jquery-ui.js"></script>
+<script src="../../js/jquery.highchartTable.js"></script>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/jquery.bpopup.min.js"></script>
+<script src="../../js/jquery.cookie.js"></script>
+<link href="../wiz_style.css" rel="stylesheet" type="text/css"/>
+<script language="JavaScript" src="../../js/default.js"></script>
+<script language="JavaScript" src="../../js/lib.js"></script>
+<style>
+	.ui-datepicker { width: 242px; font-size:90%;}
+	.ui-datepicker-calendar > tbody td:first-child a { 
+	COLOR: #f00; 
+	}
+	.ui-datepicker-calendar > tbody td:last-child a { 
+		COLOR: blue; 
+	}
+</style>
+<script>
+	$(function() {
+		$( "#datepicker1" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+				//yearSuffix: '년',
+				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+				monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+				changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+				changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+				showMonthAfterYear: true // 년월 셀렉트 박스 위치 변경
+				//altField: "#date", // 타겟 필드
+				//minDate: '-0d', // 오늘 이전 날짜는 선택 못함
+				
+		});
+	});
+	$(function() {
+		$( "#datepicker2" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+				//yearSuffix: '년',
+				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+				monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+				changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+				changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+				showMonthAfterYear: true // 년월 셀렉트 박스 위치 변경
+				//altField: "#date", // 타겟 필드
+				//minDate: '-0d', // 오늘 이전 날짜는 선택 못함
+				
+		});
+	});
+
+	$(document).ready(function(){
+
+	 if($.cookie("left_quick") == "close"){
+		$('#Container_wrap').addClass('left_close'); 
+	 }else{
+		$('#Container_wrap').removeClass('left_close'); 
+
+	 }
+
+
+	});
+
+	function leftBtn() {
+		$('#Container_wrap').toggleClass('left_close');   
+		if ($('#Container_wrap').hasClass('left_close')) {
+			$.cookie('left_quick', 'close', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });
+		}
+		else {
+			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
+		}
+	}
+
+	
+</script>
+</head>
+<body class="home_body">
+<div id="Header">
+	<h1><a href="../main/main.html" onFocus="this.blur();"><img src="../image/header/logo.png" /></a></h1>
+    <ul id="gnb">
+    	<li class="first"><a target="_blank" href="http://demohome.anywiz.co.kr/" onFocus="this.blur();">내홈페이지</a></li>
+    	<li><a href="../main/main.html" onFocus="this.blur();">관리자홈</a></li>
+    	<li><a href="../../logout.html" onFocus="this.blur();" class="logbtn"><img src="../image/header/logout.gif" /></a></li>
+    </ul>
+    <div id="navi">
+    	<li class="design">
+			          
+		</li>
+						<li>
+			<a href="../basic/site_info.html" onFocus="this.blur();"><span>기본설정</span></a>
+        	<ul class="category">
+				<li>
+					<a href="../basic/site_info.html">사이트정보</a>
+				</li>
+				<li>
+					<a href="../basic/admin_list.html">관리자설정</a>
+				</li>
+				<li>
+					<a href="../basic/popup_list.html">팝업관리</a>
+				</li>
+								<li>
+					<a href="../basic/sms_fill.html">SMS관리</a>
+				</li>
+							</ul>
+		</li>
+                  
+
+				<li>
+			<a href="bbs_list.html" onFocus="this.blur();"><span>게시판관리</span></a>          	
+        	<ul class="category">
+        		<li>
+					<a href="bbs_list.html">게시판관리</a>
+				</li>
+				<li>
+					<a href="bbs_manage_list.html">게시물통합관리</a>
+				</li>
+				<li>
+					<a href="bbs_manage_comment.html">코멘트통합관리</a>
+				</li>
+				<li>
+					<a href="bbs_connect.html">게시판통계</a>
+				</li>
+			</ul>
+		</li>
+    	
+				<li>
+			<a href="../member/member_list.html" onFocus="this.blur();"><span>회원관리</span></a>
+			<ul class="category">
+				<li>
+					<a href="../member/member_list.html">회원목록</a>
+				</li>
+
+				<li>
+					<a href="../member/level_list.html">회원등급</a>
+				</li>
+
+				<li>
+					<a href="../member/out_list.html">탈퇴회원</a>
+				</li>
+
+				<li>
+					<a href="../member/mail_list.html">메일,SMS설정</a>
+				</li>
+				<li>
+					<a href="../member/mail_test.html">메일발송테스트</a>
+				</li>
+				<li>
+					<a href="../member/mail_send.html">단체메일발송</a>
+				</li>
+
+								<li>
+					<a href="../member/sms_send.html">단체SMS발송</a>
+				</li>
+								<li>
+					<a href="../member/member_analy.html">회원통계</a>
+				</li>
+				<li>
+					<a href="../member/member_config.html">가입약관, 개인정보보호정책</a>
+				</li>
+											</ul>
+		</li>    
+		
+       			<li>
+			<a href="../form/form_list.html" onFocus="this.blur();"><span>폼메일관리</span></a>
+        	<ul class="category">
+				<li>
+					<a href="../form/form_list.html">폼메일관리</a>
+				</li>
+				<li class="depth"><a href="#" onFocus="this.blur();">폼메일목록</a>
+					<ul class="category_2depth">
+												<li><a href="../form/form_listc257.html?code=formBasic">폼메일</a></li>
+												<li><a href="../form/form_list4213.html?code=MformBasic">모바일_폼메일</a></li>
+											</ul>
+				</li>
+			</ul>
+		</li>
+        
+	    		<li>
+			<a href="../poll/pollinfo_list.html"><span>설문관리</span></a>
+			<ul class="category">
+				<li>
+					<a href="../poll/pollinfo_list.html">설문관리</a>
+				</li>
+				<li class="depth"><a href="#" onFocus="this.blur();">설문목록</a>
+					<ul class="category_2depth">
+													<li><a href="../poll/poll_list12b9.html?code=poll">설문조사</a></li>
+											</ul>
+				</li>
+
+			</ul>		
+		</li>
+        		
+		        <li>		    
+			<a href="../schedule/sch_list.html"><span>스케쥴관리</span></a>        
+			<ul class="category">
+				<li>
+					<a href="../schedule/sch_list.html">스케쥴관리</a>
+				</li>
+				<li class="depth"><a href="#" onFocus="this.blur();">스케쥴목록</a>
+					<ul class="category_2depth">
+													<li><a href="../schedule/list6b41.html?code=schedule">스케쥴</a></li>
+											</ul>
+				</li>
+
+			</ul>				
+		</li>
+        	
+
+				<li>
+		    
+			<a href="../page/page_list.html"><span>페이지관리</span></a>
+			<ul class="category">
+				<li>
+					<a href="../page/page_list.html">페이지관리</a>
+				</li>
+				<li class="depth"><a href="#" onFocus="this.blur();">페이지목록</a>
+					<ul class="category_2depth">
+									<li><a href="../page/page_input8312.html?mode=update&amp;idx=25">회사소개</a></li>
+									<li><a href="../page/page_input5b7c.html?mode=update&amp;idx=26">인사말</a></li>
+									<li><a href="../page/page_inputac2f.html?mode=update&amp;idx=27">이용약관</a></li>
+									<li><a href="../page/page_input2bac.html?mode=update&amp;idx=28">개인정보취급방침</a></li>
+									</ul>
+				</li>
+			</ul>	
+            
+		</li>
+		
+				<li>    
+			<a href="../banner/banner_list.html"><span>배너관리</span></a></td>
+			<ul class="category">
+				<li>
+					<a href="../banner/banner_list.html">배너관리</a>
+				</li>
+				<li class="depth"><a href="#" onFocus="this.blur();">배너목록</a>
+					<ul class="category_2depth">
+									<li><a href="../banner/liste65e.html?code=customer">고객센터</a></li>
+									</ul>
+				</li>
+			</ul>
+		</li>
+				
+		
+				<li>           
+			<a href="../connect/connect_list.html" onFocus="this.blur();"><span>접속통계</span></a>
+        	<ul class="category">
+				<li>
+					<a href="../connect/connect_list.html">접속자분석</a>
+				</li>
+
+				<li>
+					<a href="../connect/connect_refer.html">접속경로분석</a>
+				</li>
+
+				<li>
+					<a href="../connect/connect_keyword.html">검색키워드분석</a>
+				</li>
+				<li>
+					<a href="../connect/connect_osbrowser.html">OS/브라우저</a>
+				</li>
+			</ul>
+		</li>
+    	
+		<li>           
+			<a href="../product/prd_list.html" onFocus="this.blur();"><span>상품관리</span></a>
+        	<ul class="category">
+				<li>
+					<a href="../product/prd_list.html">상품목록</a>
+				</li>
+
+				<li>
+					<a href="../product/prd_input.html">상품등록</a>
+				</li>
+
+				<li>
+					<a href="../product/prd_cat.html">상품분류</a>
+				</li>
+				
+			</ul>
+		</li>
+    		
+    	
+
+    </div>
+</div>
+
+
+
+
+<div id="Container_wrap" class="right_close">
+    <!--
+    class="left_close" 좌측만 닫힘
+    class="right_close" 우측만 닫힘
+    class="left_close right_close" 양쪽 닫힘
+    -->
+    <div class="nav_handle_left">
+		<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
+	</div>
+
+    <div id="left_area">
+		
+
+
+
+<h2><img src="../image/header/icon3.png" alt=""> 게시판 관리</h2>
+	<ul id="Lnb">
+		<li class="on"><a href="bbs_manage_list.html" onFocus="this.blur();">게시판 관리</a>
+			<ul>
+				<li>
+					<a href="bbs_list.html">게시판관리</a>
+				</li>
+				<li>
+					<a href="bbs_manage_list.html">게시물통합관리</a>
+				</li>
+				<li>
+					<a href="bbs_manage_comment.html">코멘트통합관리</a>
+				</li>
+				<li>
+					<a href="bbs_connect.html">게시판통계</a>
+				</li>
+			</ul>
+		</li>
+		<li class="on">
+			<a href="#">게시판목록</a>
+		</li>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr><td height="10"></td></tr>
+				<tr>
+					<td height="20" style="padding-left:15px"><b>커뮤니티</b></td>
+				</tr>
+								<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list9fe0.html?code=bbsBasic">자유게시판</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list8073.html?code=movieBasic">동영상</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list6c2f.html?code=mapBasic">대리점안내</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="listd064.html?code=guestBasic">방명록</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="lista452.html?code=medicBasic">병원상담</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list7b41.html?code=photoBasic2">갤러리2</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="listce5a.html?code=photoList">갤러리3</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="liste460.html?code=photoList2">갤러리4</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list520c.html?code=reserveBasic">예약게시판</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="liste0d5.html?code=thumbBasic">썸네일1</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list4370.html?code=thumbBasic2">썸네일2</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="listf834.html?code=thumbBasic3">썸네일3</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list589b.html?code=photoBasic">갤러리1</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list42fc.html?code=answerBasic">응답게시판</a></td>
+				</tr>
+		  				<tr><td height="10"></td></tr>
+				<tr>
+					<td height="20" style="padding-left:15px"><b>고객지원</b></td>
+				</tr>
+								<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list7211.html?code=qna">질문답변</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="liste6ef.html?code=faq">자주묻는질문</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list5a72.html?code=myBasic">1:1상담</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="listd910.html?code=notice">공지사항</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list5ddc.html?code=bbsEng">영문게시판</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="lista09c.html?code=bbsAgree">약관동의</a></td>
+				</tr>
+		  				<tr><td height="10"></td></tr>
+				<tr>
+					<td height="20" style="padding-left:15px"><b>제품소개</b></td>
+				</tr>
+								<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list701f.html?code=prdBasic">제품소개</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list237d.html?code=prdBasic2">제품소개2</a></td>
+				</tr>
+		  				<tr>
+					<td height="20" style="padding: 7px 0 0 22px;color: #777777;"><img src="../image/left_s_arrow.gif" align="absmiddle"><a href="list183c.html?code=prdBasic3">제품소개3</a></td>
+				</tr>
+		  
+		</table>
+	</ul>
+
+
+
+
+
+
+
+
+
+	</div><!-- //left_area// -->
+
+	<div id="Container">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <script language="JavaScript" type="text/javascript">
+      <!--
+        function inputCheck(frm){
+
+        if(frm.name.value == ""){
+          alert("이름을 입력하세요.");
+          frm.name.focus();
+          return false;
+        }
+        if(frm.subject.value == ""){
+          alert("제목을 입력하세요.");
+          frm.subject.focus();
+          return false;
+        }
+				try{ content.outputBodyHTML(); } catch(e){ }
+				if(frm.content.value == ""){
+					alert("내용을 입력하세요.");
+					return false;
+				}
+        if(frm.passwd.value == ""){
+          alert("비밀번호를 입력하세요.");
+          frm.passwd.focus();
+          return false;
+        }
+
+      }
+
+      //-->
+      </script>
+
+ <div id="location">HOME > 게시판관리</div>
+<div id="S_contents">
+<h3>게시물관리<span>게시판의 게시물을 관리합니다.</span></h3>	  
+
+      <br> <br>
+      <form action="http://demohome.anywiz.co.kr/adm/manage/bbs/list.php" method="post">
+	  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+		  <td><h3></h3></td>
+        </tr>
+        <tr><td height="3"></td></tr>
+      </table>
+	  </form>
+
+      <form name="frm" action="http://demohome.anywiz.co.kr/adm/manage/bbs/save.php" method="post" enctype="multipart/form-data" onSubmit="return inputCheck(this)">
+      <input type="hidden" name="code" value="">
+      <input type="hidden" name="mode" value="insert">
+      <input type="hidden" name="idx" value="">
+      <input type="hidden" name="page" value="">
+      <input type="hidden" name="ctype" value="">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="1" cellpadding="6" class="table_basic">
+              <tr>
+                <th width="15%">작성자</th>
+                <td width="35%"><input name="name" type="text" value="deleted" class="input"></td>
+                <th width="15%">이메일</th>
+                <td width="35%"><input name="email" type="text" value="deleted" size="30" class="input"></td>
+              </tr>
+              <tr>
+                <th>작성일</th>
+                <td><input name="wdate" type="text" value="2018-08-08 18:35:06" class="input"></td>
+                <th>조회수</th>
+                <td><input name="count" type="text" value="0" class="input"></td>
+              </tr>
+              <tr>
+                <th>제목</th>
+                <td colspan="3">
+								
+                <input type="checkbox" name="notice" value="Y" >공지글
+                <input type="checkbox" name="privacy" value="Y" >비밀글
+                <input type="checkbox" name="ctype" value="H" >HTML사용<br>
+                <input type="text" name="subject"  value="" size="70" class="input" style="word-break:break-all;">
+                </td>
+              </tr>
+              <tr>
+                <th>내용</th>
+                <td colspan="3">
+                                  <textarea name="content" rows="16" cols="80" class="textarea" style="width:100%;word-break:break-all;"></textarea>
+												    		</td>
+              </tr>
+              <tr>
+                <th>비밀번호</th>
+                <td width="275" colspan="3"><input name="passwd" type="text" value="3506" class="input"></td>
+              </tr>
+  <!--  <tr>
+    <th align="center"height="30" bgcolor="#f9f9f9" style="padding-left:10px; border-right:1px solid #d7d7d7;"><strong>첨부파일1</strong></th>
+    <td align="left" colspan="3" style="padding-left:10px;"><input type="file" name="upfile1" size="20" class="input" /> </td>
+  </tr>
+
+  --><!--  <tr>
+    <th align="center"height="30" bgcolor="#f9f9f9" style="padding-left:10px; border-right:1px solid #d7d7d7;"><strong>첨부파일2</strong></th>
+    <td align="left" colspan="3" style="padding-left:10px;"><input type="file" name="upfile2" size="20" class="input" /> </td>
+  </tr>
+
+  --><!--  <tr>
+    <th align="center"height="30" bgcolor="#f9f9f9" style="padding-left:10px; border-right:1px solid #d7d7d7;"><strong>첨부파일3</strong></th>
+    <td align="left" colspan="3" style="padding-left:10px;"><input type="file" name="upfile3" size="20" class="input" /> </td>
+  </tr>
+
+  --><!--  <tr>
+    <th align="center"height="30" bgcolor="#f9f9f9" style="padding-left:10px; border-right:1px solid #d7d7d7;"><strong>첨부파일4</strong></th>
+    <td align="left" colspan="3" style="padding-left:10px;"><input type="file" name="upfile4" size="20" class="input" /> </td>
+  </tr>
+
+  --><!--  <tr>
+    <th align="center"height="30" bgcolor="#f9f9f9" style="padding-left:10px; border-right:1px solid #d7d7d7;"><strong>첨부파일5</strong></th>
+    <td align="left" colspan="3" style="padding-left:10px;"><input type="file" name="upfile5" size="20" class="input" /> </td>
+  </tr>
+
+  -->
+  <!--  <tr>
+    <th align="center"height="30" bgcolor="#f9f9f9" style="padding-left:10px; border-right:1px solid #d7d7d7;"><strong>동영상1</strong></th>
+    <td align="left" colspan="3" style="padding-left:10px;"><input type="file" name="movie1" size="20" class="input" /> </td>
+  </tr>
+
+  --><!--  <tr>
+    <th align="center"height="30" bgcolor="#f9f9f9" style="padding-left:10px; border-right:1px solid #d7d7d7;"><strong>동영상2</strong></th>
+    <td align="left" colspan="3" style="padding-left:10px;"><input type="text" name="movie2" size="20" class="input" /> </td>
+  </tr>
+
+  --><!--  <tr>
+    <th align="center"height="30" bgcolor="#f9f9f9" style="padding-left:10px; border-right:1px solid #d7d7d7;"><strong>동영상3</strong></th>
+    <td align="left" colspan="3" style="padding-left:10px;"><input type="text" name="movie3" size="20" class="input" /> </td>
+  </tr>
+
+  -->
+            </table>
+          </td>
+        </tr>
+      </table>
+
+			<br>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center">
+			<button type="submit" class="b h28 t5 color blue_big">확인</button>
+			<button type="button" class="b h28 t5 color gray_big" onClick="document.location='bbs_manage_list4fbc.html?code=&amp;page=&amp;category=&amp;searchopt=&amp;searchkey=';">목록</button>
+          </td>
+        </tr>
+      </table>
+	  </form>
+
+</div>
+</div><!-- //Container// -->
+</div><!-- //Container_wrap// -->
+
+<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+</body>
+
+<!-- Mirrored from demohome.anywiz.co.kr/adm/manage/bbs/input.php?code= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:35:56 GMT -->
+</html>
+

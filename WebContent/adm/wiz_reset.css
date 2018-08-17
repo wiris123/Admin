@@ -1,0 +1,170 @@
+@charset "euc-kr";
+/*CSS Document*/
+
+/* Font */
+@import url(../../fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/*
+@font-face{
+  font-family: 'NanumGothic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/css/fonts/NanumGothic.eot'); 
+  src: local('Æ'), url('/css/fonts/NanumGothic.woff') format('woff'), url('/css/fonts/NanumGothic.ttf') format('truetype'); 
+}
+
+@font-face{
+  font-family: 'NanumGothic';
+  font-style: normal;
+  font-weight: bold;
+  src: url('/css/fonts/NanumGothicBold.eot');     
+  src: local('Æ'), url('/css/fonts/NanumGothicBold.woff') format('woff'), url('/css/fonts/NanumGothicBold.ttf') format('truetype'); 
+}
+*/
+
+/*Reset*/
+body{margin:0; padding:0; background-color:#fff;}
+html{overflow-y:scroll;}
+body, table, th, td, input, select, textarea, div, button{font-family:"나눔고딕",'NanumGothic','Nanum Gothic', /*'돋움', 'Dotum' ,*/Helvetica; font-size:13px; color:#333; /*line-height:1.6;*/}
+td, select{font-size:13px; color:#666;} 
+h1, h2, h3, h4, h5, h6, ol, ul, li, form, fieldset, input, textarea, hr, p, dl, dt, dd{margin:0; padding:0;}
+img, fieldset{border:0 none;}
+img{vertical-align:middle;}/* 애니위즈 솔루션은 middle */
+input{vertical-align:middle;}
+ol, ul, li{list-style:none;}
+/*table{border-spacing:0; border-collapse:collapse; border:0 none;}*/
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+button{border:0 none; padding:0; margin:0; background:transparent; *overflow:visible; cursor:pointer;}
+button::-moz-focus-inner{border:0; padding:0;}
+label{cursor:pointer;}
+
+a:link{color:#666; text-decoration:none;}
+a:visited{color:#666; text-decoration:none;}
+a:hover{color:#0084dd; text-decoration:none;}
+a:active{color:#666; text-decoration:none;}
+
+
+
+/*
+body{
+	SCROLLBAR-FACE-COLOR: #CFCFCF;
+	SCROLLBAR-3DLIGHT-COLOR: #CFCFCF;
+	SCROLLBAR-ARROW-COLOR: #ffffff;
+	SCROLLBAR-DARKSHADOW-COLOR: #CFCFCF;
+	SCROLLBAR-BASE-COLOR:#CFCFCF
+	}
+*/
+
+
+/* pad */
+.bpad_5 {padding-bottom:5px;}
+.bpad_10 {padding-bottom:10px;}
+.bpad_15 {padding-bottom:15px;}
+.bpad_20 {padding-bottom:20px;}
+.bpad_30 {padding-bottom:30px;}
+.bpad_40 {padding-bottom:40px;}
+.bpad_50 {padding-bottom:50px;}
+
+.rpad_3  {padding-right:3px;}
+.rpad_5  {padding-right:5px;}
+.rpad_10 {padding-right:10px;}
+.rpad_15 {padding-right:15px;}
+.rpad_20 {padding-right:20px;}
+.rpad_30 {padding-right:30px;}
+
+
+
+
+/* 마진
+------------------------------------------------------------------------------------------------------------*/
+.top3{margin-top:3px;}
+.top5{margin-top:5px;}
+.top10{margin-top:10px;}
+.top15{margin-top:15px;}
+.top20{margin-top:20px;}
+.top25{margin-top:25px;}
+.top30{margin-top:30px;}
+.top35{margin-top:35px;}
+.top40{margin-top:40px;}
+.top45{margin-top:45px;}
+.top50{margin-top:50px;}
+.top55{margin-top:55px;}
+.top60{margin-top:60px;}
+.top65{margin-top:65px;}
+.top70{margin-top:70px;}
+.top75{margin-top:75px;}
+.top80{margin-top:80px;}
+.top85{margin-top:85px;}
+.top90{margin-top:90px;}
+.top95{margin-top:95px;}
+.top100{margin-top:100px;}
+
+.bottom10{margin-bottom:10px;}
+.bottom15{margin-bottom:15px;}
+.bottom20{margin-bottom:20px;}
+
+.left5{margin-left:5px;}
+.left10{margin-left:10px;}
+.left15{margin-left:15px;}
+.left20{margin-left:20px;}
+.left25{margin-left:25px;}
+.left30{margin-left:30px;}
+.left35{margin-left:35px;}
+.left40{margin-left:40px;}
+.left50{margin-left:50px;}
+.left60{margin-left:60px;}
+.left70{margin-left:70px;}
+.left80{margin-left:80px;}
+.left90{margin-left:90px;}
+
+.center{text-align:center;}
+.right{text-align:right;}
+.left{text-align:left;}
+
+.clear{clear:both;}
+
+/* 가로사이즈
+------------------------------------------------------------------------------------------------------------*/
+.w10{width:10px;}
+.w20{width:20px;}
+.w30{width:30px;}
+.w40{width:40px;}
+.w50{width:50px;}
+.w55{width:55px;}
+.w60{width:60px;}
+.w70{width:70px;}
+.w80{width:80px;}
+.w90{width:90px;}
+.w100{width:100px;}
+.w120{width:120px;}
+.w130{width:130px;}
+.w140{width:140px;}
+.w150{width:150px;}
+.w160{width:160px;}
+.w170{width:170px;}
+.w180{width:180px;}
+.w190{width:190px;}
+.w200{width:200px;}
+.w210{width:210px;}
+.w220{width:220px;}
+.w250{width:250px;}
+.w290{width:290px;}
+.w300{width:300px;}
+.w310{width:310px;}
+.w320{width:320px;}
+.w350{width:350px;}
+.w360{width:360px;}
+.w400{width:400px;}
+.w410{width:410px;}
+.w420{width:420px;}
+.w400{width:450px;}
+.w500{width:500px;}
+.w550{width:550px;}
+.w590{width:590px;}
+.w600{width:600px;}
+.w650{width:650px;}
+.w700{width:700px;}
+.w750{width:750px;}
+.w800{width:800px;}
+.w850{width:850px;}
+.w900{width:900px;}
+.w950{width:950px;}
