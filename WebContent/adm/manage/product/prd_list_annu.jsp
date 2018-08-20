@@ -15,12 +15,6 @@
 <link href="../wiz_style.css" rel="stylesheet" type="text/css"/>
 <script language="JavaScript" src="../../js/default.js"></script>
 <script language="JavaScript" src="../../js/lib.js"></script>
-<%
-
-
-
-
-%>
 <style>
 	.ui-datepicker { width: 242px; font-size:90%;}
 	.ui-datepicker-calendar > tbody td:first-child a { 
