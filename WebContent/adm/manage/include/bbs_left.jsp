@@ -19,7 +19,6 @@
 				<li class="on"><a href="bbs_manage_list.jsp"
 					onFocus="this.blur();">게시판 관리</a>
 					<ul>
-						<li><a href="bbs_list.jsp">게시판관리</a></li>
 						<li><a href="bbs_manage_list.jsp">게시물통합관리</a></li>
 						<li><a href="bbs_manage_comment.jsp">코멘트통합관리</a></li>
 						<li><a href="bbs_connect.jsp">게시판통계</a></li>
