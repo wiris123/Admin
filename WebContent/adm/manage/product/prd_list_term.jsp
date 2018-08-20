@@ -332,7 +332,7 @@ function copyPrd(){
         <tr>
           <td>총 상품수 : <b>1</b> , 검색 상품수 : <b>1</b></td>
           <td align="right">
-				<button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_input2e57.jsp?mode=insert';"><span class="icon_plus"></span>상품등록</button>
+				<button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_input_term.jsp';"><span class="icon_plus"></span>상품등록</button>
           </td>
         </tr>
        

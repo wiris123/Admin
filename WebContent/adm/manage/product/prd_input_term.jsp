@@ -319,12 +319,12 @@ function prdFocus(){
 <div id="S_contents">
 	
 	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
-
-	<form name="frm" action="http://demohome.anywiz.co.kr/adm/manage/product/prd_save.php?page=&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey=" method="post" enctype="multipart/form-data" onSubmit="return inputCheck(this);">
-	<input type="hidden" name="tmp">
+<!--  enctype="multipart/form-data" return inputCheck(this);-->
+	<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="">
+<!-- 	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
-	<input type="hidden" name="relidx" value="">
-	<input type="hidden" name="prdcode" value="">
+	<input type="hidden" name="relidx" value=""> -->
+	<input type="hidden" name="instype" value="2"> 
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 	<tr>
 		<th>상품명</th>
@@ -355,7 +355,7 @@ function prdFocus(){
 			<table border="0" cellspacing="5" cellpadding="0">
 			<tr>
 				<td colspan="2">
-					<select name="paytime" id="">
+					<select name="instime" id="">
 						<option value="10">10년만기</option>
 						<option value="20">20년만기</option>
 						<option value="60">60세까지</option>
@@ -416,11 +416,11 @@ function prdFocus(){
 		<th>사망보험금</th>
 		<td colspan="3">
 			<select name="deathben" id="">
-			<option value="15000000">1억5천</option>
-			<option value="10000000">1억</option>
-			<option value="5000000">5천</option>
+				<option value="15000000">1억5천</option>
+				<option value="10000000">1억</option>
+				<option value="5000000">5천</option>
 			</select>
-	</td>
+		</td>
 	</tr>
 	<tr>
 		<th>월 납입액</th>

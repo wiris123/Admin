@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <!-- ---------------------------------- -->
+    <!-- write process에서 request - > multipart 작업 필요 -->
+    <!-- ---------------------------------- -->
 <!DOCTYPE html>
 <html>
 <head>
