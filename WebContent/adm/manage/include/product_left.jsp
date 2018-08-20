@@ -45,9 +45,14 @@
     <li class="on"><a href="prd_list.jsp" onFocus="this.blur();">상품관리</a>
         <ul>
 			<li class="">
-				<a href="prd_list.jsp">상품목록</a>
+				<a href="prd_list_term.jsp">정기보험 목록</a>
 			</li>
-
+			<li class="">
+				<a href="prd_list_annu.jsp">연금보험 목록</a>
+			</li>
+			<li class="">
+				<a href="prd_list_prop.jsp">실손보험 목록</a>
+			</li>
 			<li>
 				<a href="prd_input.jsp">상품등록</a>
 			</li>

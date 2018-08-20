@@ -318,7 +318,7 @@ function prdFocus(){
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
 	
-	<h3>상품관리<span>상품 검색/추가/수정/삭제 관리합니다.</span></h3>
+	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
 
 	<form name="frm" action="http://demohome.anywiz.co.kr/adm/manage/product/prd_save.php?page=&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey=" method="post" enctype="multipart/form-data" onSubmit="return inputCheck(this);">
 	<input type="hidden" name="tmp">
@@ -329,32 +329,41 @@ function prdFocus(){
 	<tr>
 		<th>상품명</th>
 		<td colspan="3">
-			<input name="prdname" type="text" value="" size="60" class="input">&nbsp;
-			<input type="checkbox" name="recom" value="Y" >추천상품
+			<input name="term_name" type="text" value="" size="60" class="input">&nbsp;
 		</td>
 	</tr>
 	<tr>
-		<th>상품코드</th>
+		<th>보험종류</th>
 		<td colspan="3">
 			<input name="prdnum" type="text" value="" size="30" class="input">
 		</td>
 	</tr>
 	<tr>
-		<th>상품가격</th>
+		<th>납입기간</th>
 		<td colspan="3">
-			<input name="prdprice" type="text" value="" size="30" class="input">
+			<select name="paytime" id="">
+				<option value="10">10년납</option>
+				<option value="20">20년납</option>
+				<option value="60">60세납</option>
+				<option value="65">65세납</option>
+			</select>
 		</td>
 	</tr>
 	<tr>
-		<th>상품정보</th>
+		<th>보험기간</th>
 		<td colspan="3">
 			<table border="0" cellspacing="5" cellpadding="0">
 			<tr>
-				<td></td>
-				<th>상품가격</th>
-				<td>1,000원 (예시)</td>
+				<td colspan="2">
+					<select name="paytime" id="">
+						<option value="10">10년만기</option>
+						<option value="20">20년만기</option>
+						<option value="60">60세까지</option>
+						<option value="70">70세까지</option>
+					</select>
+				</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>1.</td>
 				<td><input name="info_name1" type="text" value="" size="15" class="input"></td>
 				<td><input name="info_value1" type="text" value="" size="20" class="input"></td>
@@ -393,74 +402,42 @@ function prdFocus(){
 				<td align="right">10.</td>
 				<td><input name="info_name10" type="text" value="" size="15" class="input"></td>
 				<td><input name="info_value10" type="text" value="" size="20" class="input"></td>
-			</tr>
+			</tr> -->
 			</table>
 		</td>
 	</tr>
 	<tr>
-		<th>상품사진</th>
+		<th>위험할증률</th>
 		<td colspan="3">
-			<table width="100%" border="0" cellspacing="2" cellpadding="0">
-<tr>
-	<td>원본이미지를 등록하면 나머지 이미지가 자동생성 됩니다.</td>
-</tr>
-<tr>
-	<td>
-				<input type="checkbox" name="prdlay_check2" onClick="if(this.checked==true) prdlay2.style.display=''; else prdlay2.style.display='none';"> <font color="red">이미지추가2</font>
-				<input type="checkbox" name="prdlay_check3" onClick="if(this.checked==true) prdlay3.style.display=''; else prdlay3.style.display='none';"> <font color="red">이미지추가3</font>
-				<input type="checkbox" name="prdlay_check4" onClick="if(this.checked==true) prdlay4.style.display=''; else prdlay4.style.display='none';"> <font color="red">이미지추가4</font>
-				<input type="checkbox" name="prdlay_check5" onClick="if(this.checked==true) prdlay5.style.display=''; else prdlay5.style.display='none';"> <font color="red">이미지추가5</font>
-				&nbsp;<button style="border:0" type="button" class="h18 t3 color small round black_s" onClick="setImgsize();">이미지사이즈설정</button>
+			<input type="text" name="rprem" placeholder="1~10까지의 정수숫자" />
 	</td>
-</tr>
-</table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr>
-	<td width="75%">
+	</tr>
+	<tr>
+		<th>사망보험금</th>
+		<td colspan="3">
+			<select name="deathben" id="">
+			<option value="15000000">1억5천</option>
+			<option value="10000000">1억</option>
+			<option value="5000000">5천</option>
+			</select>
+	</td>
+	</tr>
+	<tr>
+		<th>월 납입액</th>
+		<td colspan="3">
+			<input type="text" name="monthpay" placeholder="계산식" />
+	</td>
+	</tr>
+	<tr>
+		<th>첨부파일</th>
+		<td colspan="3">
+			<input type="file" name="attfile"/>
+	</td>
+	</tr>
 
-		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="inner_table left">
-		<tr>
-			<th width="150" height="25" align="left">원본 이미지</th>
-			<td width="410" colspan="3"><input type="file" name="realimg" size="12" size="12" class="input"> [GIF, JPG, PNG]</td>
-		</tr>
-		<tr>
-			<th>상품목록</th>
-			<td  colspan="3">
-				<input type="file" name="prdimg_R" size="12" size="12" class="input">
-							</td>
-		</tr>
-		<tr>
-			<th>축소</th>
-			<td  colspan="3">
-				<input type="file" name="prdimg_S1" size="12" size="12" class="input">
-							</td>
-		</tr>
-		<tr>
-			<th>제품상세</th>
-			<td  colspan="3">
-				<input type="file" name="prdimg_M1" size="12" class="input">
-							</td>
-		</tr>
-		<tr>
-			<th>확대보기</th>
-			<td  colspan="3">
-				<input type="file" name="prdimg_L1" size="12" class="input">
-							</td>
-		</tr>
-		</table>
-	</td>
-	<td width="25%" height="100%">
-		<table width="100%" height="100%" cellspacing="1" cellpadding="2" class="inner_table">
-		<tr>
-			<td align="center" bgcolor="#ffffff">
-				No Image			</td>
-		</tr>
-		</table>
-	</td>
-</tr>
 </table>
 
-<div id="prdlay2" style="display:none">
+<!-- <div id="prdlay2" style="display:none">
 	<table width="100%" height="10" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td></td>
@@ -639,69 +616,19 @@ function prdFocus(){
 		</td>
 	</tr>
 	</table>
-</div>
-		</td>
-	</tr>
-	<tr>
-		<th height="25" >첨부파일</th>
-		<td colspan="3">
-			<table border="0" cellspacing="5" cellpadding="0">
-			<tr>
-				<td>1.</td>
-				<td>
-					<input type="file" name="upfile1" class="input">
-									</td>
-			</tr>
-			<tr>
-				<td>2.</td>
-				<td>
-					<input type="file" name="upfile2" class="input">
-									</td>
-			</tr>
-			<tr>
-				<td>3.</td>
-				<td>
-					<input type="file" name="upfile3" class="input">
-									</td>
-			</tr>
-			<tr>
-				<td>4.</td>
-				<td>
-					<input type="file" name="upfile4" class="input">
-									</td>
-			</tr>
-			<tr>
-				<td>5.</td>
-				<td>
-					<input type="file" name="upfile5" class="input">
-									</td>
-			</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<th height="25" >관련상품</th>
-		<td colspan="3">
-			<table width="100%" border="0" cellspacing="1" cellpadding="2" class="t_style">
-			<tr>
-				<td width="100%">
-					<iframe width="99%" height="95" frameborder="0" src="prd_relation.jsp?mode=insert&amp;prdcode="></iframe>
-				</td>
-			</tr>
-			</table>
-		</td>
-	</tr>
+</div> -->
+	
 	<tr>
 		<th height="25" >상품간단설명</th>
 		<td colspan="3">
 			<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
 		</td>
 	</tr>
-	<tr>
+<!-- 	<tr>
 		<th height="25" >상품상세정보</th>
 		<td colspan="3">
 			
-<!--
+
 // ---------------------------------------------------------------------------------
 // outputBodyHTML 메서드를 호출하면 TEXTAREA 'fm_post' 폼 값에
 // 에디터에서 입력한 내용이 자동으로 입력됩니다.
@@ -712,11 +639,11 @@ function prdFocus(){
 // inputLength:     입력한 텍스트 문자 수를 리턴합니다.
 // contentsLength:  BODY 태그 안쪽의 HTML 태그를 포함한 모든 문자 수를 리턴합니다.
 // contentsLengthAll: HTML 문서의 모든 문자 수를 리턴합니다.
--->
+
 
 <script type="text/javascript" src="../../webedit/cheditor.js"></script>
 <textarea id="content" name="content"></textarea>
-<!-- 에디터를 화면에 출력합니다. -->
+에디터를 화면에 출력합니다.
 <script type="text/javascript">
 var content = new cheditor();             							// 에디터 개체를 생성합니다.
 content.config.editorHeight = '300px';    // 에디터 세로폭입니다.
@@ -725,14 +652,14 @@ content.inputForm = 'content';           				// textarea의 ID 이름입니다.
 content.run();                            							// 에디터를 실행합니다.
 </script>		</td>
 	</tr>
-
+ -->
 	</table>
 
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
 	<tr>
 		<td align="center">
 			<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
-			<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list13c2.jsp?page=&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey=';">목록</button>
+			<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_term.jsp';">목록</button>
 		</td>
 	</tr>
 	</table>
