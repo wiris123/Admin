@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>Admin</display-name>
+  
+  <!-- 
+  JDBC 사용을 위한 컨텍스트 초기화 파라미터 설정
+  (웹어플리케이션의 모든 JSP페이지에서 사용이 가능하다)
+   -->
+  <context-param>
+  	<param-name>JDBCDriver</param-name>
+  	<param-value>oracle.jdbc.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>ConnectionURL</param-name>
+  	<param-value>jdbc:oracle:thin:@localhost:1522:orcl</param-value>
+  </context-param>
+  
+  <!-- 
+   게시판 페이지 처리 관련 파라미터
+   PAGE_SIZE : 한 페이지에 출력할 게시물의 갯수
+   BLOCK_PAGE : 한 페이지블럭에 노출될 페이지번호의 갯수
+   -->
+  <context-param>
+  	<param-name>PAGE_SIZE</param-name>
+  	<param-value>5</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>BLOCK_PAGE</param-name>
+  	<param-value>5</param-value>
+  </context-param>
+  
+  <!-- 세션유지시간설정(분단위) : 1시간으로 설정 -->
+  <session-config>
+  	<session-timeout>60</session-timeout>
+  </session-config>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
