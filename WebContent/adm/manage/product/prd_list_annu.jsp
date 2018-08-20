@@ -90,6 +90,7 @@
     
 
 <script language="JavaScript" type="text/javascript">
+<<<<<<< HEAD
 <!--
 
 function catChange(form, idx){
@@ -300,6 +301,106 @@ function copyPrd(){
 				</tr>
 				</table>
 			</td>
+=======
+
+</script>
+
+<div id="location">HOME > 상품관리</div>
+<div id="S_contents">
+<h3>상품관리<span>상품 검색/추가/수정/삭제 관리합니다.</span></h3>	
+
+	   <form name="searchForm" action="http://demohome.anywiz.co.kr/adm/manage/product/prd_list.php" method="get">
+      <input type="hidden" name="page" value="">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
+		<tr>
+		<th width="15%">상품분류</th>
+		<td width="85%">
+			<select name="dep_code" onChange="catChange(this.form,'1');">
+			<option value=''>:: 대분류 ::
+			<option value='100'>상품분류1<option value='101'>상품분류2<option value='102'>상품분류3			</select>
+			<select name="dep2_code" onChange="catChange(this.form,'2');" class="select">
+			<option value=''> :: 중분류 ::
+						</select>
+			<select name="dep3_code" onChange="catChange(this.form,'3');" class="select">
+			<option value=''> :: 소분류 ::
+						</select>
+			<input type="checkbox" name="recom" value="Y" >추천상품
+		</td>
+		</tr>
+		<tr>
+		<th>조건검색</th>
+		<td>
+			<select name="searchopt" class="select">
+			<option value="prdnum" >상품코드
+			<option value="prdname" >상품명
+			</select>
+			<input type="text" name="searchkey" value="" class="input"> <button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
+			<script language="javascript">
+			searchopt = document.searchForm.searchopt;
+			for(ii=0; ii<searchopt.length; ii++){
+			  if(searchopt.options[ii].value == "")
+			    searchopt.options[ii].selected = true;
+			}
+			</script>
+		</td>
+		</tr>
+		</table>
+		</form>
+		      <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
+        <tr>
+          <td>총 상품수 : <b>1</b> , 검색 상품수 : <b>1</b></td>
+          <td align="right">
+				<button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_input2e57.jsp?mode=insert';"><span class="icon_plus"></span>상품등록</button>
+          </td>
+        </tr>
+      </table>
+		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
+      	<form>
+      	<thead>
+        <tr>
+        	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
+          <td width="5%">번호</td>
+          <td>상품명</td>
+          <td width="10%">상품코드</td>
+          <!-- <td width="10%">진열순서</td> -->
+          <td width="15%">기능</td>
+        </tr>
+		</thead>
+      </form>
+		<tbody>
+				<form name="frm6">
+		<input type="hidden" name="prdcode" value="1605270003">
+			
+     			<form name="frm1">
+		<input type="hidden" name="prdcode" value="1606030001">
+			<tr>
+			<td><input type="checkbox" name="select_checkbox"></td>
+			<td>1</td>
+			<td style="padding-left:20px; text-align:left">
+				<img src="../../data/product/1606030001_R.jpg" align="absmiddle" width="50" height="50">
+				<a href="prd_input4054.html?mode=update&amp;prdcode=1606030001&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey=">상품명</a>
+			</td>
+			<td>0006</td>
+			<!-- <td>
+				<table border="0" cellspacing="0" cellpadding="0" align="center">
+				<tr>
+				<td><a href="prd_save64a4.html?mode=prior&amp;posi=upup&amp;prdcode=1606030001&amp;prior=160527190456&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey="><img src="../image/upup_icon.gif" border="0" alt="10단계 위로"></a></td>
+				<td width="4"></td>
+				<td></td>
+				</tr>
+				<tr>
+				<td><a href="prd_savef9d2.html?mode=prior&amp;posi=up&amp;prdcode=1606030001&amp;prior=160527190456&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey="><img src="../image/up_icon.gif" border="0" alt="1단계 위로"></a></td>
+				<td width="4"></td>
+				<td><a href="prd_savec492.html?mode=prior&amp;posi=down&amp;prdcode=1606030001&amp;prior=160527190456&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey="><img src="../image/down_icon.gif" border="0" alt="1단계 아래로"></a></td>
+				</tr>
+				<tr>
+				<td></td>
+				<td width="4"></td>
+				<td><a href="prd_save47f7.html?mode=prior&amp;posi=downdown&amp;prdcode=1606030001&amp;prior=160527190456&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey="><img src="../image/downdown_icon.gif" border="0" alt="10단계 아래로"></a> </td>
+				</tr>
+				</table>
+			</td> -->
+>>>>>>> branch '1cha' of https://github.com/wiris123/Admin
 			<td>
 				<button type="button" class="h18 t3 color small round red_s" onclick="document.location='prd_input4054.html?mode=update&amp;prdcode=1606030001&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='">수정</button>
 				<button type="button" class="h18 t3 color small round black_s" onclick="delConfirm('1606030001');">삭제</button>

@@ -318,123 +318,102 @@ function prdFocus(){
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
 	
-	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
-<!--  enctype="multipart/form-data" return inputCheck(this);-->
-	<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="">
-<!-- 	<input type="hidden" name="tmp">
+	<h3>상품관리<span> 실손보험 관리페이지입니다.</span></h3>
+
+	<form name="frm" action="http://demohome.anywiz.co.kr/adm/manage/product/prd_save.php?page=&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey=" method="post" enctype="multipart/form-data" onSubmit="return inputCheck(this);">
+	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
-	<input type="hidden" name="relidx" value=""> -->
-	<input type="hidden" name="instype" value="2"> 
+	<input type="hidden" name="relidx" value="">
+	<input type="hidden" name="prdcode" value="">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 	<tr>
 		<th>상품명</th>
 		<td colspan="3">
-			<input name="term_name" type="text" value="" size="60" class="input">&nbsp;
+			<input name="ann_name" type="text" value="" size="60" class="input">&nbsp;
 		</td>
 	</tr>
 	<tr>
 		<th>보험종류</th>
 		<td colspan="3">
-			<input name="prdnum" type="text" value="" size="30" class="input">
-		</td>
-	</tr>
-	<tr>
-		<th>납입기간</th>
-		<td colspan="3">
-			<select name="paytime" id="">
-				<option value="10">10년납</option>
-				<option value="20">20년납</option>
-				<option value="60">60세납</option>
-				<option value="65">65세납</option>
-			</select>
+			<input name="instype" type="text" value="" size="30" class="input">
 		</td>
 	</tr>
 	<tr>
 		<th>보험기간</th>
 		<td colspan="3">
 			<table border="0" cellspacing="5" cellpadding="0">
-			<tr>
 				<td colspan="2">
-					<select name="instime" id="">
+					<select name="paytime" id="">
 						<option value="10">10년만기</option>
 						<option value="20">20년만기</option>
 						<option value="60">60세까지</option>
 						<option value="70">70세까지</option>
 					</select>
-				</td>
-			</tr>
-			<!-- <tr>
-				<td>1.</td>
-				<td><input name="info_name1" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value1" type="text" value="" size="20" class="input"></td>
-				<td width="60" align="right">6.</td>
-				<td><input name="info_name6" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value6" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>2.</td>
-				<td><input name="info_name2" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value2" type="text" value="" size="20" class="input"></td>
-				<td align="right">7.</td>
-				<td><input name="info_name7" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value7" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>3.</td>
-				<td><input name="info_name3" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value3" type="text" value="" size="20" class="input"></td>
-				<td align="right">8.</td>
-				<td><input name="info_name8" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value8" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>4.</td>
-				<td><input name="info_name4" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value4" type="text" value="" size="20" class="input"></td>
-				<td align="right">9.</td>
-				<td><input name="info_name9" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value9" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>5.</td>
-				<td><input name="info_name5" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value5" type="text" value="" size="20" class="input"></td>
-				<td align="right">10.</td>
-				<td><input name="info_name10" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value10" type="text" value="" size="20" class="input"></td>
-			</tr> -->
-			</table>
+					</table>
 		</td>
-	</tr>
-	<tr>
-		<th>위험할증률</th>
-		<td colspan="3">
-			<input type="text" name="rprem" placeholder="1~10까지의 정수숫자" />
-	</td>
-	</tr>
-	<tr>
-		<th>사망보험금</th>
-		<td colspan="3">
-			<select name="deathben" id="">
-				<option value="15000000">1억5천</option>
-				<option value="10000000">1억</option>
-				<option value="5000000">5천</option>
-			</select>
-		</td>
+		
 	</tr>
 	<tr>
 		<th>월 납입액</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<input type="text" name="monthpay" />
 	</td>
 	</tr>
 	<tr>
+		<th>질병입원보장</th>
+		<td colspan="3">
+			<input type="text" name="monthpay"  />
+	</td>
+	</tr>
+	<tr>
+		<th>질병통원보장</th>
+		<td colspan="3">
+			<input type="text" name="monthpay" />
+	</td>
+	</tr>
+	<tr>
+		<th>상해입원보장</th>
+		<td colspan="3">
+			<input type="text" name="monthpay" />
+	</td>
+	</tr>
+	<tr>
+		<th>상해통원보장</th>
+		<td colspan="3">
+			<input type="text" name="monthpay" />
+	</td>
+	</tr>
+	<tr>
+		<th>비급여도수</th>
+		<td colspan="3">
+			<input type="text" name="monthpay"  />
+	</td>
+	</tr>
+	<tr>
+		<th>체외충격파</th>
+		<td colspan="3">
+			<input type="text" name="monthpay" />
+	</td>
+	</tr>
+	<tr>
+		<th>자기공명진단</th>
+		<td colspan="3">
+			<input type="text" name="monthpay"/>
+	</td>
+	</tr>
+	
+			<tr>
 		<th>첨부파일</th>
 		<td colspan="3">
 			<input type="file" name="attfile"/>
 	</td>
 	</tr>
-
+			
+			</table>
+		</td>
+	</tr>
+	
+	
 </table>
 
 <!-- <div id="prdlay2" style="display:none">
@@ -617,7 +596,7 @@ function prdFocus(){
 	</tr>
 	</table>
 </div> -->
-	
+	<br/>
 	<tr>
 		<th height="25" >상품간단설명</th>
 		<td colspan="3">

@@ -318,51 +318,75 @@ function prdFocus(){
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
 	
-	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
-<!--  enctype="multipart/form-data" return inputCheck(this);-->
-	<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="">
-<!-- 	<input type="hidden" name="tmp">
+	<h3>상품관리<span> 연금보험 관리페이지입니다.</span></h3>
+
+	<form name="frm" action="http://demohome.anywiz.co.kr/adm/manage/product/prd_save.php?page=&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey=" method="post" enctype="multipart/form-data" onSubmit="return inputCheck(this);">
+	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
-	<input type="hidden" name="relidx" value=""> -->
-	<input type="hidden" name="instype" value="2"> 
+	<input type="hidden" name="relidx" value="">
+	<input type="hidden" name="prdcode" value="">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 	<tr>
 		<th>상품명</th>
 		<td colspan="3">
-			<input name="term_name" type="text" value="" size="60" class="input">&nbsp;
+			<input name="ann_name" type="text" value="" size="60" class="input">&nbsp;
 		</td>
 	</tr>
 	<tr>
 		<th>보험종류</th>
 		<td colspan="3">
-			<input name="prdnum" type="text" value="" size="30" class="input">
+			<input name="instype" type="text" value="" size="30" class="input">
 		</td>
 	</tr>
 	<tr>
-		<th>납입기간</th>
+		<th>연금게시일</th>
 		<td colspan="3">
-			<select name="paytime" id="">
-				<option value="10">10년납</option>
-				<option value="20">20년납</option>
-				<option value="60">60세납</option>
-				<option value="65">65세납</option>
+			<input name="instart" type="text" value="" size="50" class="input">
+		</td>
+	</tr>
+	<tr>
+		<th>연금납부연한</th>
+		<td colspan="3">
+			<input name="paytime" type="text" value="" size="50" class="input">
+		</td>
+	</tr>
+	<tr>
+		<th>월 납입액</th>
+		<td colspan="3">
+			<input type="text" name="monthpay" placeholder="계산식" />
+	</td>
+	</tr>
+	<tr>
+		<th>위험할증률</th>
+		<td colspan="3">
+			<input type="text" name="rprem" placeholder="1~10까지의 정수숫자" />
+	</td>
+	<tr>
+		<th>보장수익률</th>
+		<td colspan="3">
+			<input type="text" name="interest" placeholder="1~10까지의 정수숫자" />
+	</td>
+	<tr>
+		<th>매월 연금수령액</th>
+		<td colspan="3">
+			<input type="text" name="monthann" value="" />
+	</td>
+	<tr>
+		<th>계약일자</th>
+		<td colspan="3">
+			<input type="text" name="regidate" value="" />
+	</td>
+	<tr>
+		<th>계약상태</th>
+		<td colspan="3">
+			<select name="submit" id="">
+				<option value="Y">Y</option>
+				<option value="N">N</option>
+				<option value="E">E</option>
 			</select>
 		</td>
 	</tr>
-	<tr>
-		<th>보험기간</th>
-		<td colspan="3">
-			<table border="0" cellspacing="5" cellpadding="0">
-			<tr>
-				<td colspan="2">
-					<select name="instime" id="">
-						<option value="10">10년만기</option>
-						<option value="20">20년만기</option>
-						<option value="60">60세까지</option>
-						<option value="70">70세까지</option>
-					</select>
-				</td>
-			</tr>
+	
 			<!-- <tr>
 				<td>1.</td>
 				<td><input name="info_name1" type="text" value="" size="15" class="input"></td>
@@ -403,38 +427,18 @@ function prdFocus(){
 				<td><input name="info_name10" type="text" value="" size="15" class="input"></td>
 				<td><input name="info_value10" type="text" value="" size="20" class="input"></td>
 			</tr> -->
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<th>위험할증률</th>
-		<td colspan="3">
-			<input type="text" name="rprem" placeholder="1~10까지의 정수숫자" />
-	</td>
-	</tr>
-	<tr>
-		<th>사망보험금</th>
-		<td colspan="3">
-			<select name="deathben" id="">
-				<option value="15000000">1억5천</option>
-				<option value="10000000">1억</option>
-				<option value="5000000">5천</option>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<th>월 납입액</th>
-		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
-	</td>
-	</tr>
-	<tr>
+			<tr>
 		<th>첨부파일</th>
 		<td colspan="3">
 			<input type="file" name="attfile"/>
 	</td>
 	</tr>
-
+			
+			</table>
+		</td>
+	</tr>
+	
+	
 </table>
 
 <!-- <div id="prdlay2" style="display:none">
@@ -617,7 +621,7 @@ function prdFocus(){
 	</tr>
 	</table>
 </div> -->
-	
+	<br/>
 	<tr>
 		<th height="25" >상품간단설명</th>
 		<td colspan="3">

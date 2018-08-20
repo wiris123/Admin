@@ -76,50 +76,77 @@ public class InsuDAO
 	}
 	
 	
-public List<TermDTO> selectList(Map<String,Object> map){
-		
-		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
-		List<TermDTO> bbs = new Vector<TermDTO>();
-		
-		//2.게시물 전체를 가져오기 위한 쿼리작성
-		String query = "select * from term_insu";		
-	
-		try {
-			//3.prepare객체생성 및 실행
-			psmt = con.prepareStatement(query);
+	public List<TermDTO> selectList(Map<String,Object> map){
 			
-			//4.쿼리실행후 결과셋 돌려받음
-			rs = psmt.executeQuery();
+			//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
+			List<TermDTO> bbs = new Vector<TermDTO>();
 			
-			//5.결과셋의 갯수만큼 반복
-			while(rs.next()) {
+			//2.게시물 전체를 가져오기 위한 쿼리작성
+			String query = "select * from term_insu";		
+		
+			try {
+				//3.prepare객체생성 및 실행
+				psmt = con.prepareStatement(query);
 				
-				//6.결과셋을 하나씩 DTO객체에 저장
-				TermDTO dto = new TermDTO();
+				//4.쿼리실행후 결과셋 돌려받음
+				rs = psmt.executeQuery();
 				
-				dto.setTerm_name(rs.getString(1));
-				dto.setInstype(rs.getString(2));
-				dto.setPaytime(rs.getString(3));
-				dto.setInstime(rs.getString(4));
-				dto.setRprem(rs.getString(5));
-				dto.setDeathben(rs.getString(6));
-				dto.setMonthpay(rs.getString(7));
-				dto.setRegidate(rs.getDate(8));
-				dto.setAttfile(rs.getString(9));
-				
-				
-				//7.DTO객체를 컬렉션에 추가
-				bbs.add(dto);
+				//5.결과셋의 갯수만큼 반복
+				while(rs.next()) {
+					
+					//6.결과셋을 하나씩 DTO객체에 저장
+					TermDTO dto = new TermDTO();
+					
+					dto.setTerm_name(rs.getString(1));
+					dto.setInstype(rs.getString(2));
+					dto.setPaytime(rs.getString(3));
+					dto.setInstime(rs.getString(4));
+					dto.setRprem(rs.getString(5));
+					dto.setDeathben(rs.getString(6));
+					dto.setMonthpay(rs.getString(7));
+					dto.setRegidate(rs.getDate(8));
+					dto.setAttfile(rs.getString(9));
+					
+					
+					//7.DTO객체를 컬렉션에 추가
+					bbs.add(dto);
+				}
 			}
+			catch(Exception e) {
+				System.out.println("Select시 예외발생");
+				e.printStackTrace();
+			}
+			
+			return bbs;
+		}
+	
+	public int insertWrite(TermDTO dto) {
+		//적용된 행의 갯수확인을 위한 변수
+		int affected = 0;
+		try {
+			String query = "INSERT INTO term_insu "
+				+ " (term_name,instype,paytime,instime,rprem,deathben,monthpay,regidate,attfile) "
+				+ " VALUES"
+				+ " (?,?,?,?,?,?,?,sysdate,?)";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getTerm_name());
+			psmt.setString(2, dto.getInstype());
+			psmt.setString(3, dto.getPaytime());
+			psmt.setString(4, dto.getInstime());
+			psmt.setString(5, dto.getRprem());
+			psmt.setString(6, dto.getDeathben());
+			psmt.setString(7, dto.getMonthpay());
+			psmt.setString(8, dto.getAttfile());
+			
+			affected = psmt.executeUpdate();
 		}
 		catch(Exception e) {
-			System.out.println("Select시 예외발생");
+			System.out.println("term_insert중 예외발생");
 			e.printStackTrace();
 		}
 		
-		return bbs;
+		return affected;
 	}
-	
 	public void close() {
 		try {
 			if(rs!=null) rs.close();
