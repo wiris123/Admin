@@ -1,4 +1,3 @@
-<%@page import="dto.AnnuDTO"%>
 <%@page import="dto.TermDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
@@ -76,11 +75,13 @@
 	순서를 보장하지 않기때문에 게시판 목록을 구현할때 문제가 
 	될수있기 때문이다.
 	*/
-	List<AnnuDTO> bbs = dao.selectList1(param);
+	List<TermDTO> bbs = dao.selectList(param);
 	
 	dao.close();
 
 %>    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,6 +157,8 @@
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
 		}
 	}
+
+	
 </script>
 </head>
 <body>
@@ -169,8 +172,119 @@
     
 
 <script language="JavaScript" type="text/javascript">
+<!--
 
+function catChange(form, idx){
+   if(idx == "1"){
+      form.dep2_code.options[0].selected = true;
+      form.dep3_code.options[0].selected = true;
+   }else if(idx == "2"){
+      form.dep3_code.options[0].selected = true;
+   }
+   	form.page.value = 1;
+   	form.submit();
+}
 
+function delConfirm(prdcode){
+	if(confirm("삭제하시겠습니까?")){
+		document.location = "prd_savee300.html?mode=delete&amp;prdcode=" + prdcode + "&dep_code=&dep2_code=&dep3_code=&searchopt=&searchkey=";
+	}
+}
+
+// 체크박스 전체선택
+function selectAll(){
+
+	var i;
+	for(i=0;i<document.forms.length;i++){
+		if(document.forms[i].prdcode != null){
+			if(document.forms[i].select_checkbox){
+				document.forms[i].select_checkbox.checked = true;
+			}
+		}
+	}
+	return;
+}
+
+// 체크박스 선택해제
+function selectCancel(){
+	var i;
+	for(i=0;i<document.forms.length;i++){
+		if(document.forms[i].select_checkbox){
+			if(document.forms[i].prdcode != null){
+				document.forms[i].select_checkbox.checked = false;
+			}
+		}
+	}
+	return;
+}
+
+// 체크박스선택 반전
+function selectReverse(form){
+
+	if(form.select_tmp.checked){
+		selectAll();
+	}else{
+		selectCancel();
+	}
+}
+
+// 체크박스 선택리스트
+function selectValue(){
+	var i;
+	var selvalue = "";
+	for(i=0;i<document.forms.length;i++){
+		if(document.forms[i].prdcode != null){
+			if(document.forms[i].select_checkbox){
+				if(document.forms[i].select_checkbox.checked)
+					selvalue = selvalue + document.forms[i].prdcode.value + "|";
+				}
+			}
+	}
+	return selvalue;
+}
+
+//선택회원 삭제
+function prdDelete(){
+
+	selvalue = selectValue();
+
+	if(selvalue == ""){
+		alert("삭제할 상품을 선택하세요.");
+		return false;
+	}else{
+		if(confirm("선택한 상품을 정말 삭제하시겠습니까?")){
+			document.location = "prd_save9d86.html?mode=delete&amp;selvalue=" + selvalue;
+		}
+	}
+
+}
+
+//상품이동
+function movePrd(){
+	selvalue = selectValue();
+
+	if(selvalue == ""){
+		alert("이동할 상품을 선택하세요.");
+		return false;
+	}else{
+		var uri = "prd_move1b1b.html?selvalue=" + selvalue;
+		window.open(uri,"movePrd","width=450,height=150");
+	}
+}
+
+// 상품복사
+function copyPrd(){
+	selvalue = selectValue();
+	if(selvalue == ""){
+		alert("복사할 상품을 선택하세요.");
+		return false;
+	}else{
+		var uri = "prd_copy1b1b.html?selvalue=" + selvalue;
+		window.open(uri,"copyPrd","width=450,height=150,resizable=yes");
+	}
+}
+
+//-->
 </script>
 
 <div id="location">HOME > 상품관리</div>
@@ -221,29 +335,24 @@
 				<button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_input2e57.jsp?mode=insert';"><span class="icon_plus"></span>상품등록</button>
           </td>
         </tr>
+       
       </table>
 		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
       	<form>
       	<thead>
-		<tr>
-
-		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
-      	<form>
-      	<thead>
-        <tr>
-        	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
-          <td width="15%">상품명</td>
-          <td width=15%>연금게시일</td>
-          <td width="10%">연금납부연한</td>
-          <td width="10%">월납입액</td>
-          <td width="10%">위험할증률</td>
-          <td width="10%">보장수익률</td>
-          <td width="15%">매월 연금수령액</td>
-        </tr>
+	       <tr>
+	        	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
+	          <td width="15%">상품명</td>
+	          <td width="5%">납입기간</td>
+	          <td width="10%">보험기간</td>
+	          <td width="10%">위험할증률</td>
+	          <td width="15%">사망보험금</td>
+	          <td width="10%">월 납입액</td>
+	        </tr>
 		</thead>
       </form>
 		<tbody>
-		<%
+				  <%
 if(bbs.isEmpty()){
 	//컬렉션에 저장된 데이터가 없는경우
 %>
@@ -261,7 +370,7 @@ else
 	int vNum = 0;
 	int countNum = 0;
 			
-	for(AnnuDTO dto : bbs)
+	for(TermDTO dto : bbs)
 	{
 		//게시물의 번호를 순서대로 출력하기위한
 		//가상번호 생성(게시물의 갯수를 기준)
@@ -270,13 +379,12 @@ else
 %>
 		  <tr>
         	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
-          <td width="15%"><%= dto.getAnn_name() %></td>
-          <td width="15%"><%= dto.getInstart() %></td>
-          <td width="10%"><%= dto.getPaytime()%></td>
-          <td width="10%"><%= dto.getPayment() %></td>
-          <td width="10%"><%= dto.getRprem()%></td>
-          <td width="10%"><%= dto.getInterest()%></td>
-          <td width="15%"><%= dto.getMonthann()%></td>
+          <td width="15%"><%= dto.getTerm_name() %></td>
+          <td width="5%"><%= dto.getPaytime() %></td>
+          <td width="10%"><%= dto.getInstime()%></td>
+          <td width="10%"><%= dto.getRprem() %></td>
+          <td width="15%"><%= dto.getDeathben()%></td>
+          <td width="10%"><%= dto.getMonthpay()%></td>
         </tr>
 
 <% 	} 

@@ -1,3 +1,4 @@
+<%@page import="dto.PropDTO"%>
 <%@page import="dto.AnnuDTO"%>
 <%@page import="dto.TermDTO"%>
 <%@page import="java.util.List"%>
@@ -76,11 +77,11 @@
 	순서를 보장하지 않기때문에 게시판 목록을 구현할때 문제가 
 	될수있기 때문이다.
 	*/
-	List<AnnuDTO> bbs = dao.selectList1(param);
+	List<PropDTO> bbs = dao.selectList2(param);
 	
 	dao.close();
 
-%>    
+%>        
 <!DOCTYPE html>
 <html>
 <head>
@@ -169,8 +170,6 @@
     
 
 <script language="JavaScript" type="text/javascript">
-
-
 </script>
 
 <div id="location">HOME > 상품관리</div>
@@ -225,20 +224,18 @@
 		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
       	<form>
       	<thead>
-		<tr>
-
-		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
-      	<form>
-      	<thead>
         <tr>
         	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
-          <td width="15%">상품명</td>
-          <td width=15%>연금게시일</td>
-          <td width="10%">연금납부연한</td>
+          <td width="10%">상품명</td>
+          <td width=10%>보험기간</td>
           <td width="10%">월납입액</td>
-          <td width="10%">위험할증률</td>
-          <td width="10%">보장수익률</td>
-          <td width="15%">매월 연금수령액</td>
+          <td width="10%">질병입원보장</td>
+          <td width="10%">질병통원보장</td>
+          <td width="10%">상해입원보장</td>
+          <td width="10%">상해통원보장</td>
+          <td width="10%">비급여도수</td>
+          <td width="10%">체외충격파</td>
+          <td width="10%">자기공명진단</td>
         </tr>
 		</thead>
       </form>
@@ -261,7 +258,7 @@ else
 	int vNum = 0;
 	int countNum = 0;
 			
-	for(AnnuDTO dto : bbs)
+	for(PropDTO dto : bbs)
 	{
 		//게시물의 번호를 순서대로 출력하기위한
 		//가상번호 생성(게시물의 갯수를 기준)
@@ -270,13 +267,16 @@ else
 %>
 		  <tr>
         	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
-          <td width="15%"><%= dto.getAnn_name() %></td>
-          <td width="15%"><%= dto.getInstart() %></td>
-          <td width="10%"><%= dto.getPaytime()%></td>
-          <td width="10%"><%= dto.getPayment() %></td>
-          <td width="10%"><%= dto.getRprem()%></td>
-          <td width="10%"><%= dto.getInterest()%></td>
-          <td width="15%"><%= dto.getMonthann()%></td>
+          <td width="10%"><%= dto.getProp_name() %></td>
+          <td width="10%"><%= dto.getInstime() %></td>
+          <td width="10%"><%= dto.getMonthpay()%></td>
+          <td width="10%"><%= dto.getHosp() %></td>
+          <td width="10%"><%= dto.getGohosp()%></td>
+          <td width="10%"><%= dto.getSanghosp()%></td>
+          <td width="10%"><%= dto.getSgohosp()%></td>
+          <td width="10%"><%= dto.getChbedosu()%></td>
+          <td width="10%"><%= dto.getChbeinje()%></td>
+          <td width="10%"><%= dto.getChbemri()%></td>
         </tr>
 
 <% 	} 
