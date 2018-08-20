@@ -41,8 +41,10 @@
 	
 
 <h2><img src="../image/header/icon3.png" alt=""> 상품관리</h2>
-<ul id="Lnb">
+<!-- <ul id="Lnb">
     <li class="on"><a href="prd_list.jsp" onFocus="this.blur();">상품관리</a>
+    <li class="on"><a href="prd_list.jsp" onFocus="this.blur();">상품목록</a>
+    <li class="on"><a href="prd_list.jsp" onFocus="this.blur();">상품등록</a>
         <ul>
 			<li class="">
 				<a href="prd_list.jsp">상품목록</a>
@@ -55,8 +57,26 @@
         </ul>
     </li>
 
+</ul> -->
+<ul id="Lnb">
+	<li class="on"><a href="form_list.html" onFocus="this.blur();">상품목록</a>
+		<ul>
+					
+			<li><a href="prd_list.jsp">정기보험</a></li>
+			<li><a href="prd_list_annu.jsp">연금보험</a></li>
+			<li><a href="">실손보험</a></li>
+		</ul>
+	</li>
+	<li class="on"><a href="form_list.html" onFocus="this.blur();">상담등록</a>
+		<ul>
+					
+			<li><a href="prd_input_term.jsp">정기보험</a></li>
+			<li><a href="prd_annu_input.jsp">연금보험</a></li>
+			<li><a href="prd_prop_input.jsp">실손보험</a></li>
+	    	
+		</ul>
+	</li>
 </ul>
-
 </body>
 
 </html>

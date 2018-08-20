@@ -349,54 +349,56 @@ function prdFocus(){
 						<option value="60">60세까지</option>
 						<option value="70">70세까지</option>
 					</select>
+					</table>
 		</td>
+		
 	</tr>
 	<tr>
 		<th>월 납입액</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<input type="text" name="monthpay" />
 	</td>
 	</tr>
 	<tr>
 		<th>질병입원보장</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<input type="text" name="monthpay"  />
 	</td>
 	</tr>
 	<tr>
 		<th>질병통원보장</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<input type="text" name="monthpay" />
 	</td>
 	</tr>
 	<tr>
 		<th>상해입원보장</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<input type="text" name="monthpay" />
 	</td>
 	</tr>
 	<tr>
 		<th>상해통원보장</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<input type="text" name="monthpay" />
 	</td>
 	</tr>
 	<tr>
 		<th>비급여도수</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<input type="text" name="monthpay"  />
 	</td>
 	</tr>
 	<tr>
 		<th>체외충격파</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<input type="text" name="monthpay" />
 	</td>
 	</tr>
 	<tr>
 		<th>자기공명진단</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<input type="text" name="monthpay"/>
 	</td>
 	</tr>
 	
