@@ -79,13 +79,10 @@
 					게시물 통합관리<span>생성된 게시판의 게시글들을 통합하여 관리합니다.</span>
 				</h3>
 
-				<form name="frm"
-					action="http://demohome.anywiz.co.kr/adm/manage/bbs/bbs_manage_list.php"
-					method="get">
+				<form name="frm" action="http://demohome.anywiz.co.kr/adm/manage/bbs/bbs_manage_list.php" method="get">
 					<input type="hidden" name="ptype" value="bbs">
 
-					<table width="100%" border="0" cellspacing="0" cellpadding="0"
-						class="table_basic">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 						<tr>
 							<th width="15%">게시판별 보기</th>
 							<td width="85%"><select name="codeopt"
@@ -98,22 +95,6 @@
 									<option value=""><b>고객지원 </b></option>
 									<option value="qna">&nbsp;&nbsp;질문답변</option>
 							</select></td>
-						</tr>
-						<tr>
-							<th>등록일</th>
-							<td><input class="input w100" type="text" id="datepicker1"
-								name="sdate" value=""> <input type="button"
-								class="btn_calendar" id="" /> ~ <input class="input w100"
-								type="text" id="datepicker2" name="edate" value=""> <input
-								type="button" class="btn_calendar" id="" />
-								<button type="button" class="h22 small t3 gray_s"
-									onclick="setPeriod('2018-08-08')">오늘</button>
-								<button type="button" class="h22 small t3 gray_s"
-									onclick="setPeriod('2018-08-07')">어제</button>
-								<button type="button" class="h22 small t3 gray_s"
-									onclick="setPeriod('2018-08-01')">1주일</button>
-								<button type="button" class="h22 small t3 gray_s"
-									onclick="setPeriod('2018-07-09')">1개월</button></td>
 						</tr>
 						<tr>
 							<th class="tdlast">키워드검색</th>
@@ -141,10 +122,6 @@
 					class="bbs_basic_list">
 					<thead>
 						<tr>
-							<td width="40"><form style='margin: 0;'>
-									<input type='checkbox' name='select_tmp'
-										onClick='selectReverseBbs(this.form)'>
-								</form></td>
 							<td width="5%">번호</td>
 							<td>글제목</td>
 							<td width="10%">작성자</td>
@@ -156,10 +133,6 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td align="center"><form style='margin: 0;'>
-									<input type='hidden' name='idx' value='5360'><input
-										type='checkbox' name='select_checkbox'>
-								</form></td>
 							<td height="30" align="center">86</td>
 							<td style="text-align: left;"><a
 								href="javascript:bbsView('5360', 'myBasic');"
@@ -174,49 +147,10 @@
 									class="h18 t3 color small round red_s"
 									onClick="deleteBbs('myBasic', '5360');">삭제</button></td>
 						</tr>
-						<tr>
-							<td align="center"><form style='margin: 0;'>
-									<input type='hidden' name='idx' value='5357'><input
-										type='checkbox' name='select_checkbox'>
-								</form></td>
-							<td height="30" align="center">83</td>
-							<td style="text-align: left;"><a
-								href="javascript:bbsView('5357', 'myBasic');"
-								style="cursor: point"><b>[1:1상담]</b> 1:1상담게시판 입니다. </a></td>
-							<td align="center">홈페이지</td>
-							<td align="center">2016-05-27 14:18:22</td>
-							<td align="center">1</td>
-							<td align="center"><a
-								onclick="bbsModify('5357', 'myBasic');"><button
-										type="button" class="h18 t3 color small round black_s">수정</button></a></td>
-							<td align="center"><button type="button"
-									class="h18 t3 color small round red_s"
-									onClick="deleteBbs('myBasic', '5357');">삭제</button></td>
-						</tr>
+						
 					</tbody>
 				</table>
-				<div class="bbs_button top10">
-					<div class="bbs_btn_left">
-						<button type='button' class='h22 t4 small icon gray'
-							name='select_tmp' onClick='selectAllBbs();'>
-							<span class='icon_check'></span>전체선택
-						</button>
-						<button type='button' class='h22 t4 small icon gray'
-							name='select_tmp' onClick='selectCancelBbs();'>
-							<span class='icon_minus'></span>전체해제
-						</button>
-						<button type='button' class='h22 t4 small icon gray'
-							onClick="delBbsNewBbs('bbs_manage_save.html', 'mode=deletebbs&idx=');">
-							<span class='icon_x'></span>선택삭제
-						</button>
-					</div>
-					<div class="bbs_btn_right">
-						<button type="button" class="h22 t4 small icon gray"
-							onClick="excelDown();">
-							<span class="icon_exel"></span>엑셀 다운로드
-						</button>
-					</div>
-				</div>
+				<!-- 페이지처리 -->
 				<div class="top5">
 					<table width='100%' border='0' cellspacing='0' cellpadding='0'>
 						<tr>
@@ -251,6 +185,7 @@
 						</tr>
 					</table>
 				</div>
+				<!-- 페이지처리 끝 -->
 				<div class="graybox top50">
 					<p class="question">궁금증 해결!</p>
 					<div class="top10 font11 line2 colorgray">
