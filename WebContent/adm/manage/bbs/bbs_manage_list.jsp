@@ -18,7 +18,6 @@
 		<%@include file="../include/bbs_left.jsp"%>
 		<div id="Container">
 			<script language="JavaScript" type="text/javascript">
-			<!--
 				function excelDown() {
 					document.location = "%b0%d4%bd%c3%b9%b0%b8%f1%b7%cf%5b20180808%5da265.xls?ptype=bbs&amp;searchopt=&amp;searchkey=&amp;codeopt=&amp;sdate=&amp;edate=";
 				}
@@ -32,21 +31,21 @@
 				}
 				function bbsView(idx, code) {
 					window
-							.open("bbse5cd.html?ptype=view&amp;idx=" + idx
+							.open("bbs.jsp?ptype=view&amp;idx=" + idx
 									+ "&code=" + code, "getBbs1",
 									"width=800,height=850,resizable=yes,scrollbars=yes, left=50, top=50");
 				}
 				function bbsModify(idx, code) {
 					window
 							.open(
-									"bbs89fb.html?ptype=input&amp;mode=modify&amp;idx="
+									"bbs.jsp?ptype=input&amp;mode=modify&amp;idx="
 											+ idx + "&code=" + code, "getBbs2",
 									"width=800,height=750,resizable=yes,scrollbars=yes, left=50, top=50");
 				}
 				function bbsReply(idx, code) {
 					window
 							.open(
-									"bbs8ce0.html?ptype=input&amp;mode=reply&amp;idx="
+									"bbs.jsp?ptype=input&amp;mode=reply&amp;idx="
 											+ idx + "&code=" + code, "getBbs3",
 									"width=800,height=750,resizable=yes,scrollbars=yes, left=50, top=50");
 				}
@@ -72,7 +71,6 @@
 
 					document.frm.submit();
 				}
-			//-->
 			</script>
 
 			<div id="location">HOME > 게시물 통합관리</div>
