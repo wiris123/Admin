@@ -51,7 +51,7 @@
 			</li> -->
 
 
-			<li><a href="../bbs/bbs_list.jsp" onFocus="this.blur();"><span>게시판관리</span></a>
+			<li><a href="../bbs/bbs_manage_list.jsp" onFocus="this.blur();"><span>게시판관리</span></a>
 				<ul class="category">
 					<li><a href="../bbs/bbs_manage_list.jsp">게시물통합관리</a></li>
 					<li><a href="../bbs/bbs_manage_comment.jsp">코멘트통합관리</a></li>
