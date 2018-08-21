@@ -1,7 +1,64 @@
+<%@page import="member1.OutMemDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="controller.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
     pageEncoding="UTF-8"%>
+<% 
+request.setCharacterEncoding("UTF-8");
 
+MemberDAO dao = new MemberDAO();
+
+Map<String,Object> param = new HashMap<String,Object>();
+
+String queryStr = "";
+
+String searchColumn = 
+request.getParameter("searchColumn");
+String searchWord = 
+request.getParameter("searchWord");
+if(searchWord!=null){
+//입력한 검색어가 있다면 맵에 추가함
+param.put("Column", searchColumn);
+param.put("Word", searchWord);
+
+//파라미터 추가
+queryStr = String.format("searchColumn=%s"
+	+"&searchWord=%s&", searchColumn,
+		searchWord);
+}
+
+int totalRecordCount = dao.getTotalRecordCount2(param); 
+
+//2.web.xml에 설정된 값 가져오기
+int pageSize = Integer.parseInt(
+	application.getInitParameter("PAGE_SIZE"));
+int blockPage = Integer.parseInt(
+	application.getInitParameter("BLOCK_PAGE"));
+
+int totalPage = 
+(int)Math.ceil((double)totalRecordCount/pageSize);
+
+//4.페이지번호가 없는경우 무조건 1로 설정
+int nowPage = 
+  request.getParameter("nowPage")==null
+  ? 1 : 
+  Integer.parseInt(request.getParameter("nowPage"));
+
+//5.가져올 레코드의 구간을 결정하기 위한 연산
+int start = (nowPage-1)*pageSize + 1;
+int end = nowPage * pageSize;
+
+//6.파라미터 전달을 위해 map에 추가
+param.put("start", start);
+param.put("end", end);
+
+List<OutMemDTO> bbs = dao.selectList2(param);
+
+dao.close();
+%>
 <!DOCTYPE html>
 
 <html lang="ko">
@@ -85,105 +142,16 @@
 </script>
 </head>
 <body class="home_body">
+
 <%@include file="../include/head.jsp"%>
 
-
-
-
 <%@include file="../include/member_left.jsp"%>
-<!-- <div id="Container_wrap" class="right_close">
-    
-    class="left_close" 좌측만 닫힘
-    class="right_close" 우측만 닫힘
-    class="left_close right_close" 양쪽 닫힘
-   
-    <div class="nav_handle_left">
-		<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
-	</div>
-
-    <div id="left_area">
-		
 
 
+</div><!-- //left_area// -->
 
-<h2><img src="../image/header/icon3.png" alt=""> 회원관리</h2>
-<ul id="Lnb">
-	<li class="on"><a href="member_list.jsp" onFocus="this.blur();">회원관리</a>
-		<ul>
-			<li class="">
-				<a href="member_list.jsp">회원목록</a>
-			</li>
-			<li>
-				<a href="level_list.html">회원등급</a>
-			</li>
-			<li>
-				<a href="out_list.jsp">탈퇴회원</a>
-			</li>
-			<li>
-				<a href="mail_list.html">이메일,SMS설정</a>
-			</li>
-			<li>
-				<a href="mail_test.html">메일발송테스트</a>
-			</li>
-			<li>
-				<a href="mail_send.html">단체메일발송</a>
-			</li>
-						<li>
-				<a href="sms_send.html">단체SMS발송</a>
-			</li>
-						<li>
-				<a href="member_analy.html">회원통계</a>
-			</li>
-			<li>
-				<a href="member_config.html">가입약관 및 개인정보 보호정책</a>
-			</li>
-		</ul>
-	</li>
-		</ul>
+<div id="Container">
 
-
-
-
-
-
-
- -->
-
-	</div><!-- //left_area// -->
-
-	<div id="Container">
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script language="JavaScript" type="text/javascript">
-<!--
-// 탈퇴회원 삭제
-function delMemout(idx){
-	if(confirm('삭제하시겠습니까?')){
-		document.location = 'member_save6e40.html?mode=memoutdel&amp;idx=' + idx;
-	}
-}
-//-->
-</script>
 </head>
 
 <div id="location">HOME > 회원관리</div>
@@ -213,62 +181,63 @@ function delMemout(idx){
         </script>
       </td>
     	</tr>
-    	<tr>
-    <th>탈퇴일</th>
-    <td>
-		<input class="input w100" type="text" id="datepicker1" name="sdate" value="" >
-		<input type="button" class="btn_calendar" id=""/> ~
-		<input class="input w100" type="text" id="datepicker2" name="edate" value="" >
-		<input type="button" class="btn_calendar" id=""/>
-    </td>
-    </tr>
+    	
 	 </table>
 	  </form>
-		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top15">
-      	<thead>
-        <tr>
-          <td width="8%">번호</td>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
+        <form>
+        <thead> 
+        <tr class="success">
+          
+          <td>번호</td>
           <td>회원명</td>
           <td>탈퇴사유</td>
-          <td>충고내용</td>
-          <td width="10%">탈퇴일</td>
-          <td width="10%">기능</td>
+          <td>탈퇴일</td>
+          <!-- <td width="10%">탈퇴일</td> -->
+          
         </tr>
-        </thead>
-		<tbody>
-		        <tr>
-          <td>3</td>
-          <td>테스트2 (test2)</td>
-          <td>test2</td>
-          <td>ttest2</td>
-          <td>2016-05-24</td>
-          <td><button type="button" class="h18 t3 color small round red_s" onclick="delMemout('5352');">삭제</button></td>
-        </tr>
-     	        <tr>
-          <td>2</td>
-          <td>테스트 (test)</td>
-          <td>asdf</td>
-          <td>test</td>
-          <td>2016-05-24</td>
-          <td><button type="button" class="h18 t3 color small round red_s" onclick="delMemout('5351');">삭제</button></td>
-        </tr> 
-        <tr>
-          <td>224</td>
-          <td>테스트 (test)</td>
-          <td>asdf</td>
-          <td>test</td>
-          <td>2016-05-24</td>
-          <td><button type="button" class="h18 t3 color small round red_s" onclick="delMemout('5351');">삭제</button></td>
-        </tr>
-     	        <tr>
-          <td>1</td>
-          <td>테스트 (test)</td>
-          <td>탈퇴</td>
-          <td>탈퇴</td>
-          <td>2016-04-18</td>
-          <td><button type="button" class="h18 t3 color small round red_s" onclick="delMemout('5308');">삭제</button></td>
-        </tr>
-     		  </tbody>
+        </thead> 
+        </form>
+		<tbody>       
+		<%
+if(bbs.isEmpty()){
+	//컬렉션에 저장된 데이터가 없는경우
+%>
+		<tr>
+			<td colspan="5" align="center">
+				등록된 게시물이 없습니다^^*
+			</td>
+		</tr>
+<%
+}
+else
+{
+	//컬렉션에 저장된 데이터가 있는경우 for-each문을통해
+	//내용 출력
+	int vNum = 0;
+	int countNum = 0;
+	for(OutMemDTO dto : bbs)
+	{
+		//게시물의 번호를 순서대로 출력하기위한
+		//가상번호 생성(게시물의 갯수를 기준)
+		vNum = totalRecordCount - 
+			(((nowPage-1)*pageSize)+countNum++);
+	
+%>
+	<!-- 리스트반복 -->
+	<tr>
+		<td class="text-center"><%=vNum %></td>
+		<td class="text-center"><%=dto.getId() %></td>
+		<td class="text-center"><%=dto.getReason() %></td>
+		<td class="text-center"><%=dto.getRegidate() %></td>
+	</tr>
+	<!-- 리스트반복 -->
+<%
+	}//for-each문 끝
+}//if문 끝
+%>  
+		       
+     	</tbody>
       </table>
 
       <div class="center">
