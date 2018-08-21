@@ -10,7 +10,7 @@
 	<script Language="JavaScript" src="../../js/lib.js"></script>
 	<link href="../../bbs/skin/bbsBasic/style.css" rel="stylesheet"
 		type="text/css">
-
+	<h3 style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px; font-family: '돋움', 'Dotum', Helvetica;">자유게시판</h3>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0"
 		style="border-top: 1px solid #333;">
 		<tr style="background: #f7f7f7;">
@@ -30,7 +30,7 @@
 		<tr style="">
 			<td align="center" height="38">2</td>
 			<td align="left" style="padding-left: 10px; word-break: break-all;"><a
-				href='freeboard.jsp?ptype=view&amp;idx=5275&amp;page=1&amp;code=bbsBasic'>[카테고리1]
+				href='bbs_contents.jsp?ptype=view&amp;idx=5275&amp;page=1&amp;code=bbsBasic'>[카테고리1]
 					게시물 테스트 입니다. 게시물 테스트 입니다. ...</a> (1)</td>
 			<td align="center">홈페이지</td>
 			<td align="center">2016/04/11</td>

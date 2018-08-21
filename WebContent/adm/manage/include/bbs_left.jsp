@@ -35,7 +35,7 @@
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="list589b.jsp?code=photoBasic">갤러리1</a></td>
+						href="list_gallery.jsp?code=photoBasic">갤러리</a></td>
 				</tr>
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img

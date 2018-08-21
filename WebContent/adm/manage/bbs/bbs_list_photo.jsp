@@ -25,7 +25,7 @@
 								</tr>
 								<tr>
 									<td>
-									<a href="bbs50a2.html?ptype=view&amp;idx=5274&amp;page=1&amp;code=photoBasic">
+									<a href="bbs_contents.jsp?ptype=view&amp;idx=5274&amp;page=1&amp;code=photoBasic">
 									<img src="../../bbs/skin/photoBasic/image/noimg.gif" width="140" height="105" border="0" style="border: 1px solid #ddd; padding: 3px; background: #fff;" /></a></td>
 								</tr>
 								<tr>

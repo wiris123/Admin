@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,9 +25,9 @@
 	
 			<div id="location">HOME > 게시판관리</div>
 			<div id="S_contents">
-
-				<%@ include file="board_list.jsp" %>
-
+			
+				<%@ include file="bbs_list_free.jsp" %>
+		
 			</div>
 		</div>
 		<!-- //Container// -->

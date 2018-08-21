@@ -93,7 +93,7 @@
 						<td></td>
 					</tr>
 				</table> 
-				<%@ include file="./board_list.jsp" %>
+				<%@ include file="./bbs_list_free.jsp" %>
 				
 
 </body>

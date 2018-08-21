@@ -47,7 +47,7 @@
 					<tr>
 					<h3 style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px; font-family: '돋움', 'Dotum', Helvetica;">갤러리</h3>
 						<td align="center">
-							<%@ include file="./photo_list.jsp" %>
+							<%@ include file="./bbs_list_photo.jsp" %>
 					</tr>
 				</table>
 
