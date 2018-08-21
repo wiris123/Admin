@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.AnnuDTO;
+import dto.PropDTO;
 import dto.TermDTO;
 
 public class InsuDAO 
@@ -159,6 +161,98 @@ public class InsuDAO
 		}
 	}
 	
-	
+	   public List<AnnuDTO> selectList1(Map<String,Object> map){
+		      
+		      //1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
+		      List<AnnuDTO> bbs = new Vector<AnnuDTO>();
+		      
+		      //2.게시물 전체를 가져오기 위한 쿼리작성
+		      String query = "select * from annu_insu";      
+		   
+		      try {
+		         //3.prepare객체생성 및 실행
+		         psmt = con.prepareStatement(query);
+		         
+		         //4.쿼리실행후 결과셋 돌려받음
+		         rs = psmt.executeQuery();
+		         
+		         //5.결과셋의 갯수만큼 반복
+		         while(rs.next()) {
+		            
+		            //6.결과셋을 하나씩 DTO객체에 저장
+		            AnnuDTO dto = new AnnuDTO();
+		            
+		            dto.setAnn_name(rs.getString(1));
+		            dto.setInstype(rs.getString(2));
+		            dto.setInstart(rs.getString(3));
+		            dto.setPaytime(rs.getString(4));
+		            dto.setPayment(rs.getString(5));
+		            dto.setRprem(rs.getString(6));
+		            dto.setInterest(rs.getString(7));
+		            dto.setMonthann(rs.getString(8));
+		            dto.setRegidate(rs.getDate(9));
+		            dto.setSubmit(rs.getString(10));
+		            dto.setAttfile(rs.getString(11));
+		            
+		            
+		            //7.DTO객체를 컬렉션에 추가
+		            bbs.add(dto);
+		         }
+		      }
+		      catch(Exception e) {
+		         System.out.println("Select시 예외발생");
+		         e.printStackTrace();
+		      }
+		      
+		      return bbs;
+		   }
+		   
+		public List<PropDTO> selectList2(Map<String,Object> map){
+		      
+		      //1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
+		      List<PropDTO> bbs = new Vector<PropDTO>();
+		      
+		      //2.게시물 전체를 가져오기 위한 쿼리작성
+		      String query = "select * from prop_insu";      
+		   
+		      try {
+		         //3.prepare객체생성 및 실행
+		         psmt = con.prepareStatement(query);
+		         
+		         //4.쿼리실행후 결과셋 돌려받음
+		         rs = psmt.executeQuery();
+		         
+		         //5.결과셋의 갯수만큼 반복
+		         while(rs.next()) {
+		            
+		            //6.결과셋을 하나씩 DTO객체에 저장
+		            PropDTO dto = new PropDTO();
+		            
+		            dto.setProp_name(rs.getString(1));
+		            dto.setInstype(rs.getString(2));
+		            dto.setInstime(rs.getString(3));
+		            dto.setMonthpay(rs.getString(4));
+		            dto.setRegidate(rs.getDate(5));
+		            dto.setHosp(rs.getString(6));
+		            dto.setGohosp(rs.getString(7));
+		            dto.setSanghosp(rs.getString(8));
+		            dto.setSgohosp(rs.getString(9));
+		            dto.setChbedosu(rs.getString(10));
+		            dto.setChbeinje(rs.getString(11));
+		            dto.setChbemri(rs.getString(12));
+		            dto.setAttfile(rs.getString(13));
+		            
+		            
+		            //7.DTO객체를 컬렉션에 추가
+		            bbs.add(dto);
+		         }
+		      }
+		      catch(Exception e) {
+		         System.out.println("Select시 예외발생");
+		         e.printStackTrace();
+		      }
+		      
+		      return bbs;
+		   }
 		
 }
