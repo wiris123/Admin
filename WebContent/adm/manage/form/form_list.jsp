@@ -20,7 +20,6 @@
 <script>
 	
 </script>
-</head>
 <body>
 	<%@include file="../include/head.jsp"%>
 	
@@ -69,17 +68,15 @@
 </form>
 
 
-<table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
+<table width="100%" border="0" cellpadding="0" cellspacing="2" class="top10">
   <tr>
     <td>총 등록수 : <b>2</b></td>
-    <td align="right"><button type="button" class="h22 t4 small icon gray" onClick="excelDown();"><span class="icon_exel"></span>엑셀파일저장</button></td>
   </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
 	<form>
 	<thead>
 	<tr>
-		<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
 		<td width="5%">번호</td>
 		<td>제목</td>
 		<td width="10%">작성자</td>
@@ -93,14 +90,13 @@
   <form>
   <input type="hidden" name="idx" value="167">
   <tr>
-  	<td><input type="checkbox" name="select_checkbox"></td>
     <td>2</td>
-    <td style="text-align:left;"><a href='form_input2f27.html?code=&amp;searchopt=&amp;searchkey=&amp;searchstatus=&amp;idx=167&amp;page=1'>[모바일_폼메일] 가 들어왔습니다.</a> </td>
+    <td style="text-align:left;"><a href='form_input.jsp?code=&amp;searchopt=&amp;searchkey=&amp;searchstatus=&amp;idx=167&amp;page=1'>[상담예약메일] 이/가 들어왔습니다.</a> </td>
     <td style="padding:2px">테스트<br>vg2001@naver.com</td>
     <td>2016-05-27 14:49:38</td>
     <td>대기중</td>
     <td>
-  		<button type="button" class="h18 t3 color small round red_s" onClick="document.location='form_input2f27.html?code=&amp;searchopt=&amp;searchkey=&amp;searchstatus=&amp;idx=167&amp;page=1';">보기</button>
+  		<button type="button" class="h18 t3 color small round red_s" onClick="document.location='form_input2f27.jsp?code=&amp;searchopt=&amp;searchkey=&amp;searchstatus=&amp;idx=167&amp;page=1';">보기</button>
   		<button type="button" class="h18 t3 color small round black_s" onClick="delConfirm('167')">삭제</button>
     </td>
   </tr>
@@ -108,14 +104,13 @@
   <form>
   <input type="hidden" name="idx" value="166">
   <tr>
-  	<td><input type="checkbox" name="select_checkbox"></td>
     <td>1</td>
-    <td style="text-align:left;"><a href='form_inputaab0.html?code=&amp;searchopt=&amp;searchkey=&amp;searchstatus=&amp;idx=166&amp;page=1'>[폼메일] 가 들어왔습니다.</a> </td>
+    <td style="text-align:left;"><a href='form_input.jsp?code=&amp;searchopt=&amp;searchkey=&amp;searchstatus=&amp;idx=166&amp;page=1'>[이메일상담] 이/가 들어왔습니다.</a> </td>
     <td style="padding:2px">테스트<br>02-1111-1111<br>test@daum.net</td>
     <td>2016-05-09 15:20:58</td>
     <td>대기중</td>
     <td>
-  		<button type="button" class="h18 t3 color small round red_s" onClick="document.location='form_inputaab0.html?code=&amp;searchopt=&amp;searchkey=&amp;searchstatus=&amp;idx=166&amp;page=1';">보기</button>
+  		<button type="button" class="h18 t3 color small round red_s" onClick="document.location='form_input.jsp?code=&amp;searchopt=&amp;searchkey=&amp;searchstatus=&amp;idx=166&amp;page=1';">보기</button>
   		<button type="button" class="h18 t3 color small round black_s" onClick="delConfirm('166')">삭제</button>
     </td>
   </tr>
@@ -126,11 +121,9 @@
 
 <table width="100%"border="0" cellpadding="0" cellspacing="0" class="top5">
   <tr>
+    <td width="33%"></td>
     <td width="33%">
-		<button type="button" class="h22 t4 small icon gray" onClick="document.location='form_list9561.html?code=';"><span class="icon_plus"></span>목록으로</button>
-		<button type="button" class="h22 t4 small icon gray" onClick="delForm();"><span class="icon_plus"></span>선택삭제</button>
-    </td>
-    <td width="33%">    <table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='form_list71bb.html?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='form_list71bb.html?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='form_list71bb.html?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='form_list71bb.html?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
+    	<table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
     <td width="33%"></td>
   </tr>
 </table>
