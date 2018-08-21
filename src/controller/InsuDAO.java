@@ -17,8 +17,8 @@ import dto.TermDTO;
 
 public class InsuDAO 
 {
-	Connection con; //�삤�씪�겢 �꽌踰꾩� �뿰寃고븷�븣 �궗�슜
-	PreparedStatement psmt;//�삤�씪�겢 �꽌踰꾩� 荑쇰━�쟾�넚 �뿭�솢
+	Connection con; //오라클 서버와 연결할때 사용
+	PreparedStatement psmt;//오라클 서버와 쿼리전송 역활
 	ResultSet rs;
 	
 	public InsuDAO() 
@@ -30,10 +30,10 @@ public class InsuDAO
 			  ctx.lookup("java:comp/env/jdbc/myoracle");
 			
 			con = source.getConnection();
-			System.out.println("DBCP�뿰寃곗꽦怨�");
+			System.out.println("DBCP연결성공");
 		}
 		catch(Exception e) {
-			System.out.println("DBCP�뿰寃곗떎�뙣");
+			System.out.println("DBCP연결실패");
 			e.printStackTrace();
 		}	
 	}
@@ -78,63 +78,21 @@ public class InsuDAO
 	}
 	
 	
-<<<<<<< HEAD
-public List<TermDTO> selectList(Map<String,Object> map){
-		
-		//1.寃곌낵 �젅肄붾뱶�뀑�쓣 �떞湲곗쐞�븳 由ъ뒪�듃怨꾩뿴 而щ젆�뀡�깮�꽦 
-		List<TermDTO> bbs = new Vector<TermDTO>();
-		
-		//2.寃뚯떆臾� �쟾泥대�� 媛��졇�삤湲� �쐞�븳 荑쇰━�옉�꽦
-		String query = "select * from term_insu";		
-	
-		try {
-			//3.prepare媛앹껜�깮�꽦 諛� �떎�뻾
-			psmt = con.prepareStatement(query);
-=======
 	public List<TermDTO> selectList(Map<String,Object> map){
->>>>>>> branch '222222222222222222' of https://github.com/wiris123/Admin
 			
-<<<<<<< HEAD
-			//4.荑쇰━�떎�뻾�썑 寃곌낵�뀑 �룎�젮諛쏆쓬
-			rs = psmt.executeQuery();
-=======
 			//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
 			List<TermDTO> bbs = new Vector<TermDTO>();
->>>>>>> branch '222222222222222222' of https://github.com/wiris123/Admin
 			
-<<<<<<< HEAD
-			//5.寃곌낵�뀑�쓽 媛��닔留뚰겮 諛섎났
-			while(rs.next()) {
-=======
 			//2.게시물 전체를 가져오기 위한 쿼리작성
 			String query = "select * from term_insu";		
 		
 			try {
 				//3.prepare객체생성 및 실행
 				psmt = con.prepareStatement(query);
->>>>>>> branch '222222222222222222' of https://github.com/wiris123/Admin
 				
-<<<<<<< HEAD
-				//6.寃곌낵�뀑�쓣 �븯�굹�뵫 DTO媛앹껜�뿉 ���옣
-				TermDTO dto = new TermDTO();
-
 				//4.쿼리실행후 결과셋 돌려받음
 				rs = psmt.executeQuery();
-
-				dto.setTerm_name(rs.getString(1));
-				dto.setInstype(rs.getString(2));
-				dto.setPaytime(rs.getString(3));
-				dto.setInstime(rs.getString(4));
-				dto.setRprem(rs.getString(5));
-				dto.setDeathben(rs.getString(6));
-				dto.setMonthpay(rs.getString(7));
-				dto.setRegidate(rs.getDate(8));
-				dto.setAttfile(rs.getString(9));
 				
-				
-				//7.DTO媛앹껜瑜� 而щ젆�뀡�뿉 異붽�
-				bbs.add(dto);
-=======
 				//5.결과셋의 갯수만큼 반복
 				while(rs.next()) {
 					
@@ -155,7 +113,6 @@ public List<TermDTO> selectList(Map<String,Object> map){
 					//7.DTO객체를 컬렉션에 추가
 					bbs.add(dto);
 				}
->>>>>>> branch '222222222222222222' of https://github.com/wiris123/Admin
 			}
 			catch(Exception e) {
 				System.out.println("Select시 예외발생");
@@ -164,6 +121,102 @@ public List<TermDTO> selectList(Map<String,Object> map){
 			
 			return bbs;
 		}
+	
+	
+	
+	public List<AnnuDTO> selectList1(Map<String,Object> map){
+		
+		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
+		List<AnnuDTO> bbs = new Vector<AnnuDTO>();
+		
+		//2.게시물 전체를 가져오기 위한 쿼리작성
+		String query = "select * from annu_insu";		
+	
+		try {
+			//3.prepare객체생성 및 실행
+			psmt = con.prepareStatement(query);
+			
+			//4.쿼리실행후 결과셋 돌려받음
+			rs = psmt.executeQuery();
+			
+			//5.결과셋의 갯수만큼 반복
+			while(rs.next()) {
+				
+				//6.결과셋을 하나씩 DTO객체에 저장
+				AnnuDTO dto = new AnnuDTO();
+				
+				dto.setAnn_name(rs.getString(1));
+				dto.setInstype(rs.getString(2));
+				dto.setInstart(rs.getString(3));
+				dto.setPaytime(rs.getString(4));
+				dto.setPayment(rs.getString(5));
+				dto.setRprem(rs.getString(6));
+				dto.setInterest(rs.getString(7));
+				dto.setMonthann(rs.getString(8));
+				dto.setRegidate(rs.getDate(9));
+				dto.setSubmit(rs.getString(10));
+				dto.setAttfile(rs.getString(11));
+				
+				
+				//7.DTO객체를 컬렉션에 추가
+				bbs.add(dto);
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Select시 예외발생");
+			e.printStackTrace();
+		}
+		
+		return bbs;
+	}
+	
+public List<PropDTO> selectList2(Map<String,Object> map){
+		
+		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
+		List<PropDTO> bbs = new Vector<PropDTO>();
+		
+		//2.게시물 전체를 가져오기 위한 쿼리작성
+		String query = "select * from prop_insu";		
+	
+		try {
+			//3.prepare객체생성 및 실행
+			psmt = con.prepareStatement(query);
+			
+			//4.쿼리실행후 결과셋 돌려받음
+			rs = psmt.executeQuery();
+			
+			//5.결과셋의 갯수만큼 반복
+			while(rs.next()) {
+				
+				//6.결과셋을 하나씩 DTO객체에 저장
+				PropDTO dto = new PropDTO();
+				
+				dto.setProp_name(rs.getString(1));
+				dto.setInstype(rs.getString(2));
+				dto.setInstime(rs.getString(3));
+				dto.setMonthpay(rs.getString(4));
+				dto.setRegidate(rs.getDate(5));
+				dto.setHosp(rs.getString(6));
+				dto.setGohosp(rs.getString(7));
+				dto.setSanghosp(rs.getString(8));
+				dto.setSgohosp(rs.getString(9));
+				dto.setChbedosu(rs.getString(10));
+				dto.setChbeinje(rs.getString(11));
+				dto.setChbemri(rs.getString(12));
+				dto.setAttfile(rs.getString(13));
+				
+				
+				//7.DTO객체를 컬렉션에 추가
+				bbs.add(dto);
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Select시 예외발생");
+			e.printStackTrace();
+		}
+		
+		return bbs;
+	}
 	
 	public int insertWrite(TermDTO dto) {
 		//적용된 행의 갯수확인을 위한 변수
@@ -186,108 +239,12 @@ public List<TermDTO> selectList(Map<String,Object> map){
 			affected = psmt.executeUpdate();
 		}
 		catch(Exception e) {
-<<<<<<< HEAD
-			System.out.println("Select�떆 �삁�쇅諛쒖깮");
-=======
 			System.out.println("term_insert중 예외발생");
->>>>>>> branch '222222222222222222' of https://github.com/wiris123/Admin
 			e.printStackTrace();
 		}
 		
 		return affected;
 	}
-<<<<<<< HEAD
-
-public List<AnnuDTO> selectList1(Map<String,Object> map){
-	
-	//1.寃곌낵 �젅肄붾뱶�뀑�쓣 �떞湲곗쐞�븳 由ъ뒪�듃怨꾩뿴 而щ젆�뀡�깮�꽦 
-	List<AnnuDTO> bbs = new Vector<AnnuDTO>();
-	
-	//2.寃뚯떆臾� �쟾泥대�� 媛��졇�삤湲� �쐞�븳 荑쇰━�옉�꽦
-	String query = "select * from annu_insu";		
-
-	try {
-		//3.prepare媛앹껜�깮�꽦 諛� �떎�뻾
-		psmt = con.prepareStatement(query);
-		
-		//4.荑쇰━�떎�뻾�썑 寃곌낵�뀑 �룎�젮諛쏆쓬
-		rs = psmt.executeQuery();
-		
-		//5.寃곌낵�뀑�쓽 媛��닔留뚰겮 諛섎났
-		while(rs.next()) {
-			
-			//6.寃곌낵�뀑�쓣 �븯�굹�뵫 DTO媛앹껜�뿉 ���옣
-			AnnuDTO dto = new AnnuDTO();
-			
-			dto.setAnn_name(rs.getString(1));
-			dto.setInstart(rs.getString(2));
-			dto.setPaytime(rs.getString(3));
-			dto.setPayment(rs.getString(4));
-			dto.setRprem(rs.getString(5));
-			dto.setInterest(rs.getString(6));
-			dto.setMonthann(rs.getString(7));
-			
-			
-			
-			//7.DTO媛앹껜瑜� 而щ젆�뀡�뿉 異붽�
-			bbs.add(dto);
-		}
-	}
-	catch(Exception e) {
-		System.out.println("Select�떆 �삁�쇅諛쒖깮");
-		e.printStackTrace();
-	}
-	
-	return bbs;
-}
-	
-public List<PropDTO> selectList2(Map<String,Object> map){
-	
-	//1.寃곌낵 �젅肄붾뱶�뀑�쓣 �떞湲곗쐞�븳 由ъ뒪�듃怨꾩뿴 而щ젆�뀡�깮�꽦 
-	List<PropDTO> bbs = new Vector<PropDTO>();
-	
-	//2.寃뚯떆臾� �쟾泥대�� 媛��졇�삤湲� �쐞�븳 荑쇰━�옉�꽦
-	String query = "select * from prop_insu";		
-
-	try {
-		//3.prepare媛앹껜�깮�꽦 諛� �떎�뻾
-		psmt = con.prepareStatement(query);
-		
-		//4.荑쇰━�떎�뻾�썑 寃곌낵�뀑 �룎�젮諛쏆쓬
-		rs = psmt.executeQuery();
-		
-		//5.寃곌낵�뀑�쓽 媛��닔留뚰겮 諛섎났
-		while(rs.next()) {
-			
-			//6.寃곌낵�뀑�쓣 �븯�굹�뵫 DTO媛앹껜�뿉 ���옣
-			PropDTO dto = new PropDTO();
-			
-			dto.setProp_name(rs.getString(1));
-			dto.setInstime(rs.getString(2));
-			dto.setMonthpay(rs.getString(3));
-			dto.setHosp(rs.getString(4));
-			dto.setGohosp(rs.getString(5));
-			dto.setSanghosp(rs.getString(6));
-			dto.setSgohosp(rs.getString(7));
-			dto.setChbedosu(rs.getString(8));
-			dto.setChbeinje(rs.getString(9));
-			dto.setChbemri(rs.getString(10));
-			
-			
-			//7.DTO媛앹껜瑜� 而щ젆�뀡�뿉 異붽�
-			bbs.add(dto);
-		}
-	}
-	catch(Exception e) {
-		System.out.println("Select�떆 �삁�쇅諛쒖깮");
-		e.printStackTrace();
-	}
-	
-	return bbs;
-}
-	
-=======
->>>>>>> branch '222222222222222222' of https://github.com/wiris123/Admin
 	public void close() {
 		try {
 			if(rs!=null) rs.close();
@@ -295,11 +252,8 @@ public List<PropDTO> selectList2(Map<String,Object> map){
 			if(con!=null) con.close();
 		}
 		catch(Exception e) {
-			System.out.println("�옄�썝諛섎궔�떆 �삁�쇅諛쒖깮");
+			System.out.println("자원반납시 예외발생");
 			e.printStackTrace();
 		}
 	}
-	
-	
-		
 }
