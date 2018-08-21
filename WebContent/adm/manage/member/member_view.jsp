@@ -1,4 +1,4 @@
-<%@page import="member1.MemberDTO"%>
+<%@page import="dto.MemberDTO"%>
 <%@page import="controller.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 

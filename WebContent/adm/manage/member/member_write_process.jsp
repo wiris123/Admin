@@ -1,6 +1,6 @@
+<%@page import="dto.MemberDTO"%>
 <%@page import="util.JavascriptUtil"%>
 <%@page import="controller.MemberDAO"%>
-<%@page import="member1.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
     pageEncoding="UTF-8"%>

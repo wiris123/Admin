@@ -1,5 +1,5 @@
+<%@page import="dto.MemberDTO"%>
 <%@page import="util.PagingUtil"%>
-<%@page import="member1.MemberDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>

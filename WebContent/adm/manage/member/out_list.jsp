@@ -1,4 +1,5 @@
-<%@page import="member1.OutMemDTO"%>
+
+<%@page import="dto.OutMemDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>

@@ -1,4 +1,4 @@
-<%@page import="member1.OutMemDTO"%>
+<%@page import="dto.OutMemDTO"%>
 <%@page import="util.JavascriptUtil"%>
 <%@page import="controller.MemberDAO"%>
 
