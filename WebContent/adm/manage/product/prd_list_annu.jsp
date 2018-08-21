@@ -226,8 +226,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
          <form>
          <thead>
-=======
-<<<<<<< HEAD
+
 <!--
 
 function catChange(form, idx){
