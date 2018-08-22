@@ -31,10 +31,8 @@ public class MemberDTO {
 		this.birth = birth;
 		this.regidate = regidate;
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch '333' of https://github.com/wiris123/Admin
+
+
 	public MemberDTO(String id, String pass, String name, String email, String mobile, String birth) {
 		super();
 		this.id = id;
