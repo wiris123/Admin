@@ -168,6 +168,131 @@ public class InsuDAO
 		
 		return affected;
 	}
+	
+	public int annu_insertWrite(AnnuDTO dto) {
+
+		//적용된 행의 갯수확인을 위한 변수
+
+		int affected = 0;
+
+		try {
+
+			String query = "INSERT INTO annu_insu "
+
+				+ " (ann_name,instype,instart,paytime,payment,rprem,interest,monthann,regidate, submit, attfile) "
+
+				+ " VALUES"
+
+				+ " (?,?,?,?,?,?,?,?,sysdate,?,?)";
+
+			psmt = con.prepareStatement(query);
+
+			psmt.setString(1, dto.getAnn_name());
+
+			psmt.setString(2, dto.getInstype());
+
+			psmt.setString(3, dto.getInstart());
+
+			psmt.setString(4, dto.getPaytime());
+
+			psmt.setString(5, dto.getPayment());
+
+			psmt.setString(6, dto.getRprem());
+
+			psmt.setString(7, dto.getInterest());
+
+			psmt.setString(8, dto.getMonthann());
+
+			psmt.setString(9, dto.getSubmit());
+
+			psmt.setString(10, dto.getAttfile());
+
+			
+
+			affected = psmt.executeUpdate();
+
+		}
+
+		catch(Exception e) {
+
+			System.out.println("annu_insert중 예외발생");
+
+			e.printStackTrace();
+
+		}
+
+		
+
+		return affected;
+
+	}
+
+	
+
+	public int prop_insertWrite(PropDTO dto) {
+
+		//적용된 행의 갯수확인을 위한 변수
+
+		int affected = 0;
+
+		try {
+
+			String query = "INSERT INTO prop_insu "
+
+				+ " (prop_name, instype, instime, monthpay, regidate, hosp, gohosp, sanghosp, sgohosp, chbedosu, chbeinje, chbemri, attfile) "
+
+				+ " VALUES"
+
+				+ " (?, ?, ?, ?, sysdate, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+			psmt = con.prepareStatement(query);
+
+			psmt.setString(1, dto.getProp_name());
+
+			psmt.setString(2, dto.getInstype());
+
+			psmt.setString(3, dto.getInstime());
+
+			psmt.setString(4, dto.getMonthpay());
+
+			psmt.setString(5, dto.getHosp());
+
+			psmt.setString(6, dto.getGohosp());
+
+			psmt.setString(7, dto.getSanghosp());
+
+			psmt.setString(8, dto.getSgohosp());
+
+			psmt.setString(9, dto.getChbedosu());
+
+			psmt.setString(10, dto.getChbeinje());
+
+			psmt.setString(11, dto.getChbemri());
+
+			psmt.setString(12, dto.getAttfile());
+
+			
+
+			
+
+			affected = psmt.executeUpdate();
+
+		}
+
+		catch(Exception e) {
+
+			System.out.println("prop_insert중 예외발생");
+
+			e.printStackTrace();
+
+		}
+
+		
+
+		return affected;
+
+	}
+	
 	public void close() {
 		try {
 			if(rs!=null) rs.close();
