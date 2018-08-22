@@ -106,7 +106,7 @@
 		COLOR: blue; 
 	}
 </style>
-<script type="text/javascript">
+<script>
 	$(function() {
 		$( "#datepicker1" ).datepicker({
 			dateFormat: 'yy-mm-dd',
@@ -158,21 +158,7 @@
 		}
 	}
 
-	// 체크박스 전체선택
-	function selectAll(obj)
-	{
-      var chkObj = document.getElementsByName("select_chkbox");
-      var rowCnt = chkObj.length-1;
-      var check = obj.checked;
-      if(check) 
-      {﻿
-          for (var i=0; i<=rowCnt; i++)
-          {
-             chkObj[i].checked = true; 
-          }
-      }
-	}
-
+	
 </script>
 </head>
 <body>
@@ -258,8 +244,7 @@ function selectValue(){
 }
 
 //선택회원 삭제
-function prdDelete()
-{
+function prdDelete(){
 
 	selvalue = selectValue();
 
@@ -352,11 +337,11 @@ function copyPrd(){
         </tr>
        
       </table>
-      <form name="listForm" method="get">
-		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">    	
+		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
+      	<form>
       	<thead>
 	       <tr>
-	          <td width="5%"><input type="checkbox" name="select_tmp" onClick="selectAll(this)"></td>
+	        	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
 	          <td width="15%">상품명</td>
 	          <td width="5%">납입기간</td>
 	          <td width="10%">보험기간</td>
@@ -365,8 +350,9 @@ function copyPrd(){
 	          <td width="10%">월 납입액</td>
 	        </tr>
 		</thead>
+      </form>
 		<tbody>
-<%
+				  <%
 if(bbs.isEmpty()){
 	//컬렉션에 저장된 데이터가 없는경우
 %>
@@ -392,7 +378,7 @@ else
 
 %>
 		  <tr>
-        	<td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getTerm_name()%>"></td>
+        	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
           <td width="15%"><%= dto.getTerm_name() %></td>
           <td width="5%"><%= dto.getPaytime() %></td>
           <td width="10%"><%= dto.getInstime()%></td>
@@ -405,6 +391,7 @@ else
 }%>
      		  </tbody>
       </table>
+
 		<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 			<tr>
 			<td width="33%">
@@ -416,7 +403,7 @@ else
 			<td width="33%" align="right"></td>
 			</tr>
 		</table>
-		</form>
+
 </div>
 </div><!-- //Container// -->
 </div><!-- //Container_wrap// -->
