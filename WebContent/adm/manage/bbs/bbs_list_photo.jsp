@@ -8,7 +8,7 @@
 
 </head>
 <body>
-	
+	<h3 style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px; font-family: '돋움', 'Dotum', Helvetica;">갤러리</h3>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
 		<tr>
 			<td style="padding: 0px 10px 10px 10px"><script
@@ -173,7 +173,7 @@
 								type="hidden" name="category" value="">
 							<tr>
 								<td style="padding-right: 10px;">Search</td>
-								<td><select name="searchopt">
+								<td><select name="searchopt" style="height: 28px;">
 										<option value="subject">제 목</option>
 										<option value="content">내 용</option>
 										<option value="subcon">제목 + 내용</option>
@@ -195,21 +195,7 @@
 							</tr>
 						</form>
 					</table>
-				</div> <!-- 검색 끝 --> <!-- 버튼 -->
-				<div style="margin: 10px 0 0;">
-					<table width="100%" border="0" cellpadding="0" cellspacing="0">
-						<tr>
-
-							<td align="right"><a
-								href='bbs432f.html?ptype=list&amp;code=photoBasic'><img
-									src='../../bbs/skin/photoBasic/image/btn_list.gif' border='0'></a>&nbsp;<a
-								href='bbscc1c.html?ptype=input&amp;mode=insert&amp;code=photoBasic'><img
-									src='../../bbs/skin/photoBasic/image/btn_write.gif' border='0'></a></td>
-						</tr>
-					</table>
-				</div> <!-- 버튼 끝 --></td>
-		</tr>
-	</table>
+				</div> <!-- 검색 끝 -->
 
 </body>
 </html>
