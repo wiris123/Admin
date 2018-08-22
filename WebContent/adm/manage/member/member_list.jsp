@@ -56,6 +56,11 @@ int end = nowPage * pageSize;
 param.put("start", start);
 param.put("end", end);
 
+String pagingImg = PagingUtil.pagingImgServlet(
+		totalRecordCount,pageSize,
+		blockPage, nowPage, 
+		"member_List.jsp?"+queryStr);
+
 List<MemberDTO> bbs = dao.selectList(param);
 
 dao.close();
@@ -72,8 +77,8 @@ dao.close();
 <link rel="stylesheet" href="../../css/jquery-ui.css">
 <script src="../../js/jquery-1.10.2.js"></script>
 <script src="../../js/jquery-ui.js"></script>
-<script src="../../js/jquery.highchartTable.js"></script>
-<script src="../../js/highcharts.js"></script>
+<!-- <script src="../../js/jquery.highchartTable.js"></script>
+<script src="../../js/highcharts.js"></script> -->
 <script src="../../js/jquery.bpopup.min.js"></script>
 <script src="../../js/jquery.cookie.js"></script>
 <link href="../wiz_style.css" rel="stylesheet" type="text/css"/>
@@ -89,63 +94,78 @@ dao.close();
 	}
 </style>
 <script>
-	$(function() {
-		$( "#datepicker1" ).datepicker({
-			dateFormat: 'yy-mm-dd',
-				//yearSuffix: '년',
-				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-				monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-				changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
-				changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
-				showMonthAfterYear: true // 년월 셀렉트 박스 위치 변경
-				//altField: "#date", // 타겟 필드
-				//minDate: '-0d', // 오늘 이전 날짜는 선택 못함
-				
-		});
-	});
-	$(function() {
-		$( "#datepicker2" ).datepicker({
-			dateFormat: 'yy-mm-dd',
-				//yearSuffix: '년',
-				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-				monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-				changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
-				changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
-				showMonthAfterYear: true // 년월 셀렉트 박스 위치 변경
-				//altField: "#date", // 타겟 필드
-				//minDate: '-0d', // 오늘 이전 날짜는 선택 못함
-				
-		});
-	});
+//체크박스 전체선택
+function selectAll(){
 
-	$(document).ready(function(){
+   var i;
+   for(i=0;i<document.forms.length;i++){
+      if(document.forms[i].prdcode != null){
+         if(document.forms[i].select_checkbox){
+            document.forms[i].select_checkbox.checked = true;
+         }
+      }
+   }
+   return;
+}
 
-	 if($.cookie("left_quick") == "close"){
-		$('#Container_wrap').addClass('left_close'); 
-	 }else{
-		$('#Container_wrap').removeClass('left_close'); 
+// 체크박스 선택해제
+function selectCancel(){
+   var i;
+   for(i=0;i<document.forms.length;i++){
+      if(document.forms[i].select_checkbox){
+         if(document.forms[i].prdcode != null){
+            document.forms[i].select_checkbox.checked = false;
+         }
+      }
+   }
+   return;
+}
 
-	 }
+// 체크박스선택 반전
+function selectReverse(form){
 
+   if(form.select_tmp.checked){
+      selectAll();
+   }else{
+      selectCancel();
+   }
+}
 
-	});
+// 체크박스 선택리스트
+function selectValue(){
+   var i;
+   var selvalue = "";
+   for(i=0;i<document.forms.length;i++){
+      if(document.forms[i].prdcode != null){
+         if(document.forms[i].select_checkbox){
+            if(document.forms[i].select_checkbox.checked)
+               selvalue = selvalue + document.forms[i].prdcode.value + "|";
+            }
+         }
+   }
+   return selvalue;
+}
 
-	function leftBtn() {
-		$('#Container_wrap').toggleClass('left_close');   
-		if ($('#Container_wrap').hasClass('left_close')) {
-			$.cookie('left_quick', 'close', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });
-		}
-		else {
-			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
-		}
-	}
+//선택회원 삭제
+function prdDelete(){
 
-	
+   selvalue = selectValue();
+
+   if(selvalue == ""){
+      alert("삭제할 상품을 선택하세요.");
+      return false;
+   }else{
+      if(confirm("선택한 상품을 정말 삭제하시겠습니까?")){
+         document.location = "prd_save9d86.html?mode=delete&amp;selvalue=" + selvalue;
+      }
+   }
+
+}
 </script>
 </head>
 <body class="home_body">
-<%@include file="../include/head.jsp"%>
 
+<%@include file="../include/head.jsp"%>
 
 <%@include file="../include/member_left.jsp"%>
 
@@ -154,156 +174,97 @@ dao.close();
 <div id="Container">
 
 <div id="location">HOME > 회원관리</div>
-<div id="S_contents">
-<h3>회원관리<span>회원을  관리합니다.</span></h3>	 
-
-	<div class="row text-right" style="margin-bottom:20px;
-		padding-right:50px;">
-<!-- 검색부분 -->
-<form class="form-inline">	
-	
-	<input type="hid den" name="nowPage" value="1" />
-	<div class="form-group">
-		<select name="searchColumn" class="form-control">
-			<option value="name">고객명</option>
-	         <option value="id">아이디</option>
-	        
-		</select>
-	</div>
-	<div class="input-group">
-		<input type="text" name="searchWord"  class="form-control"/>
-		<div class="input-group-btn">
-			<button type="submit" class="btn btn-default">
-				<i class="glyphicon glyphicon-search"></i>
-			</button>
+	<div id="S_contents">
+	<h3>회원관리<span>회원을  관리합니다.</span></h3>	 
+		<form name="form-inline">
+		<input type="hidden" name="nowPage" value="1" />
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
+				<tr>
+					<th width="15%">조건검색</th>
+					<td align="left" width="85%">
+						<select name="searchColumn" class="form-control">
+		         			<option value="name">고객명</option>
+		         			<option value="id">아이디</option>
+		     			</select>
+						<input type="text" name="searchWord" value="" class="form-control">
+							<button type="submit" style="height:22px" class="b h28 t5 color blue_big">검색</button>
+					</td>
+		       </tr>
+	       </table>
+		</form>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
+			<tr>
+				<td align="right">
+					<button type="button" class="h22 t4 small icon gray" onClick="document.location='member_write.jsp';"><span class="icon_plus"></span>회원등록</button>
+					<button type="button" class="h22 t4 small icon gray" onClick="prdDelete(this)"><span class="icon_plus"></span>회원삭제</button>
+				</td>
+			</tr>
+		</table>
+		<form>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2" >
+	        	<thead> 
+	        		<tr class="success">
+						<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this)"/></td>
+						<td width="5%">번호</td>
+						<td>아이디</td>
+						<td width="15%">패스워드</td>
+						<td width="15%">이름</td>
+						<td width="15%">이메일</td>
+						<td width="5%">전화번호</td>
+						<td width="10%">생일</td>
+						<td width="10%">가입일</td>
+					</tr>
+				</thead> 
+				<tbody> 
+					<%
+					if(bbs.isEmpty()){
+					%>
+						<tr>
+							<td colspan="5" align="center">
+								등록된 게시물이 없습니다
+							</td>
+						</tr>
+					<%
+					}
+					else
+					{
+						int vNum = 0;
+						int countNum = 0;
+						for(MemberDTO dto : bbs){
+			
+							vNum = totalRecordCount - (((nowPage-1)*pageSize)+countNum++);
+					%>
+		
+						<tr>
+							<td><input type="checkbox" name="select_tmp" value="<%=dto.getId()%>" onClick="selectReverse(this)"/></td>
+							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=vNum %></a></td>
+							<td class="text-left"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getId() %></a></td>
+							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getPass() %></a></td>
+							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getName() %></a></td>
+							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getEmail() %></a></td>
+							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getMobile() %></a></td>
+							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getBirth() %></a></td>
+							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getRegidate() %></a></td>
+						</tr>
+		
+					<%
+						}
+					}
+					%>  
+	      		</tbody> 
+			</table>
+		</form>	
+	      
+		<div class="row text-center" style="text-align:center">
+			<ul class="pagination">
+				<%=pagingImg %>
+			</ul>	
 		</div>
 	</div>
-</form>	
-</div>
-    <!--  <form name="searchForm" action="http://demohome.anywiz.co.kr/adm/manage/member/member_list.php" method="get" onSubmit="return delUser(this);">
-	  <input type="hidden" name="page" value="">
-	  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
-      <tr>
-      <th width="15%">조건검색</th>
-      <td align="left" width="85%">
-         <select name="searchopt" class="select">
-	         <option value="name">고객명</option>
-	         <option value="id">아이디</option>
-	         <option value="email">이메일</option>
-	         <option value="mobile">전화번호</option>
-	     </select>
-			<input type="text" name="searchkey" value="" class="input">
-			<button type="submit" style="height:22px" class="b h28 t5 color blue_big">검색</button>
-		</td>
-       </tr>
-       
-       </table>
-
-       
-     </td>
-     </tr>
-     </table>
-	 </form>
- -->
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
-        <tr>
-          
-          <td align="right">
-			  
-			  <button type="button" class="h22 t4 small icon gray" onClick="document.location='member_write.jsp';"><span class="icon_plus"></span>회원등록</button>
-          </td>
-        </tr>
-      </table>
-      
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
-        <form>
-        <thead> 
-        <tr class="success">
-          
-          <td width="5%">번호</td>
-          <td>아이디</td>
-          <td width="15%">패스워드</td>
-          <td width="15%">이름</td>
-          <td width="15%">이메일</td>
-          <td width="5%">전화번호</td>
-          <td width="10%">생일</td>
-          <td width="10%">가입일</td>
-        </tr>
-        </thead> 
-        </form>
-		<tbody> 
-			<%
-if(bbs.isEmpty()){
-	//컬렉션에 저장된 데이터가 없는경우
-%>
-		<tr>
-			<td colspan="5" align="center">
-				등록된 게시물이 없습니다^^*
-			</td>
-		</tr>
-<%
-}
-else
-{
-	//컬렉션에 저장된 데이터가 있는경우 for-each문을통해
-	//내용 출력
-	int vNum = 0;
-	int countNum = 0;
-	for(MemberDTO dto : bbs)
-	{
-		//게시물의 번호를 순서대로 출력하기위한
-		//가상번호 생성(게시물의 갯수를 기준)
-		vNum = totalRecordCount - 
-			(((nowPage-1)*pageSize)+countNum++);
-	
-%>
-	<!-- 리스트반복 -->
-	<tr>
-		<td class="text-center"><%=vNum %></td>
-		<td class="text-left">
-			<a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>">
-				<%=dto.getId() %>
-			</a></td>
-		<td class="text-center"><%=dto.getPass() %></td>
-		<td class="text-center"><%=dto.getName() %></td>
-		<td class="text-center"><%=dto.getEmail() %></td>
-		<td class="text-center"><%=dto.getMobile() %></td>
-		<td class="text-center"><%=dto.getBirth() %></td>
-		<td class="text-center"><%=dto.getRegidate() %></td>
-	</tr>
-	<!-- 리스트반복 -->
-<%
-	}//for-each문 끝
-}//if문 끝
-%>  
-      	      
-      	
-           
-        
-      	</tbody> 
-      </table>
-   
-
-      <table width="100%" height="10" border="0" cellpadding="0" cellspacing="0">
-      	<tr><td height="5"></td></tr>
-        
-      </table>
-
-<div class="row text-center">
-	<!-- 페이지번호 부분 -->
-	<ul class="pagination">
-		<%=PagingUtil.pagingHomepy(totalRecordCount,
-			pageSize, 
-			blockPage,
-			nowPage,
-			"member_list.jsp?"+queryStr) %>
-	</ul>	
-</div>
-</div>
 </div><!-- //Container// -->
 
 
-<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+	<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
 </body>
 
 </html>

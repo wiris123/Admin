@@ -85,16 +85,35 @@ public class MemberDAO {
 		List<MemberDTO> bbs = new Vector<MemberDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
-		String query = "SELECT * FROM member "
-				+ " ORDER BY id DESC";
+		String query = "SELECT member.*,rownum FROM member where ";
 				
-		
+		if(map.get("Word")!=null) 
+		{
+			if(map.get("Column").equals("both")) 
+			{
+				query +=""
+				  + "title LIKE '%"+ map.get("Word") +"%' "
+				  +" OR "
+				  +" content LIKE '%"+ map.get("Word") +"%' "
+			  		+ "and ";
+			}
+			else {
+				query +=""+ map.get("Column") +" "
+				  +" LIKE '%"+ map.get("Word") +"%' "
+			  		+ " and ";
+				
+			}			
+		}
+		query +="rownum BETWEEN ? AND ?"
+			    +" ORDER BY rownum desc ";
 		System.out.println("쿼리문:"+ query);			
 			
 		try {
 			//3.prepare객체생성 및 실행
 			psmt = con.prepareStatement(query);
-						
+
+			psmt.setString(1, map.get("start").toString());
+			psmt.setString(2, map.get("end").toString());
 			
 			//4.쿼리실행후 결과셋 돌려받음
 			rs = psmt.executeQuery();
@@ -106,7 +125,7 @@ public class MemberDAO {
 				MemberDTO dto = new MemberDTO();
 				dto.setName(rs.getString(3));
 				dto.setId(rs.getString(1));;
-				dto.setMobile(rs.getString(5));
+				dto.setMobile(rs.getString(5));	
 				dto.setEmail(rs.getString(4));
 				dto.setBirth(rs.getString(6));
 				dto.setRegidate(rs.getDate(7));

@@ -343,7 +343,7 @@ function copyPrd(){
       <script type="text/javascript">
 	 	// 체크박스 전체선택
 	 	function selectAll(obj)
-	 	{
+	 	{ 
 	       var chkObj = document.getElementsByName("select_chkbox");
 	       var rowCnt = chkObj.length-1;
 	       var check = obj.checked;

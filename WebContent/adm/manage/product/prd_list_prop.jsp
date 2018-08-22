@@ -1,6 +1,4 @@
 <%@page import="dto.PropDTO"%>
-<%@page import="dto.AnnuDTO"%>
-<%@page import="dto.TermDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -8,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-//한글처리
+	//한글처리
    request.setCharacterEncoding("UTF-8");
 
    //커넥션풀로 변경
@@ -223,9 +221,70 @@
       </table>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
          <form>
+         <script type="text/javascript">
+      		// 체크박스 전체선택
+	 	 	function selectAll(obj)
+	 	 	{ 
+	 	       var chkObj = document.getElementsByName("select_chkbox");
+	 	       var rowCnt = chkObj.length-1;
+	 	       var check = obj.checked;
+	 	       if(check==true) 
+	 	       {﻿
+	 	           for (var i=0; i<=rowCnt; i++)
+	 		       {
+	 		          chkObj[i].checked = true; 
+	 		       }
+	 		       
+	 	       }
+	 	       else
+	     	   {
+	 	    	   for (var i=0; i<=rowCnt; i++)
+	 		       {
+	 		          chkObj[i].checked = false; 
+	 		       }
+	     	   }	
+	 	 	}
+	 	 	
+	 	 	//선택삭제
+	 		function prdDelete()
+	 	 	{
+	 			var selvalue = document.getElementsByName("select_chkbox")
+	 			
+	 	 		if(selvalue == false)
+	 	 		{
+	 	 			alert("삭제할 상품을 선택하세요.");
+	 	 			return false;
+	 	 		}
+	 	 		else
+	 	 		{
+	 	 			if(confirm("선택한 상품을 정말 삭제하시겠습니까?"))
+	 	 			{
+	 	 				var name ="";
+	  					for(var i=0; i<=selvalue.length-1; i++)
+	 	 				{
+	 	 					if(selvalue[i].checked)
+	  						{
+	 	 						if(selvalue[i]=='undefined')
+	 	 						{
+	 		 						name = selvalue[i].value;	 						
+	 	 						}
+	 		 					else
+	 	 						{
+	 		 						name = name + '-'+selvalue[i].value;
+	 	 						}
+	 		 					
+	  						}						
+	 	 					
+	 	 				}
+	  					document.location = "./proc/prd_del_prop.jsp?prop_name="+name		
+	 	 				
+	 	 			}
+	 	 		}
+	 	 	}
+         </script>
          <thead>
         <tr>
-           <td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
+           <td width="5%"><input type="checkbox" name="select_all" onClick="selectReverse(this.form)"></td>
           <td width="10%">상품명</td>
           <td width=10%>보험기간</td>
           <td width="10%">월납입액</td>
@@ -266,7 +325,7 @@ else
 
 %>
         <tr>
-           <td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
+           <td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getProp_name()%>"></td>
           <td width="10%"><%= dto.getProp_name() %></td>
           <td width="10%"><%= dto.getInstime() %></td>
           <td width="10%"><%= dto.getMonthpay()%></td>

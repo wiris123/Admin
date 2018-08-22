@@ -22,6 +22,7 @@
 <link href="../wiz_style.css" rel="stylesheet" type="text/css"/>
 <script language="JavaScript" src="../../js/default.js"></script>
 <script language="JavaScript" src="../../js/lib.js"></script>
+
 <style>
 	.ui-datepicker { width: 242px; font-size:90%;}
 	.ui-datepicker-calendar > tbody td:first-child a { 
@@ -32,11 +33,14 @@
 	}
 </style>
 
+<<<<<<< HEAD
+=======
 </head>
 <body class="home_body">
 <%@include file="../include/head.jsp" %>
     
 <script src="../../../../dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
 <script language="javascript">
 
 function inputCheck(frm){
@@ -46,22 +50,79 @@ function inputCheck(frm){
 		frm.id.focus();
 		return false;
 	}
-			if(frm.passwd.value == ""){
-			alert("비밀번호를 입력하세요");
-			frm.passwd.focus();
-			return false;
-		}
+	if(frm.pass.value == ""){
+		alert("비밀번호를 입력하세요");
+		frm.pass.focus();
+		return false;
+	}
 		
 }
+<<<<<<< HEAD
+function email_input(em, frm){
+	//선택한 select의 값이 빈값이 아닐때만 동작
+	if(em.value!=""){
+		if(em.value=="1"){
+			//직접입력 선택한 경우
+			//readonly속성 해제
+			frm.email2.readOnly = false;
+			//도메인부분 비워주기
+			frm.email2.value = "";
+		}
+		else{
+			//도메인을 선택한 경우
+			//선택한 도메인을 입력한다.
+			frm.email2.value = em.value;
+			//readonly속성을 활성화한다.
+			frm.email2.readOnly = true;
+		}
+	}
+} 
+=======
 
 
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
 </script>
+<<<<<<< HEAD
+=======
 <div id="location">HOME > 회원관리</div>
 <div id="S_contents">
 	<h3>회원관리<span>회원을 추가합니다.</span></h3>
 <<<<<<< HEAD
 =======
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
 
+<<<<<<< HEAD
+</head>
+
+<body class="home_body">
+
+<%@include file="../include/head.jsp" %>
+	<div class="container">
+		<div id="S_contents">
+		<h3>회원관리<span>회원을 추가합니다.</span></h3>
+		
+			<form name="frm" action="member_write_process.jsp" method="post"  onSubmit="return inputCheck(this);">
+				<table width="100%" >
+					<tr>
+						<td>
+							<table class="table_basic">
+								<tr>
+									<th width="15%">아이디</th>
+									<td width="35%"><input name="id" type="text" value="" class="input" ></td>
+								</tr>
+								<tr>	
+									<th width="15%">비밀번호</th>
+									<td width="35%"><input name="pass" type="password" value="" class="input"></td>
+								</tr>
+								<tr>
+									<th>이름</th>
+									<td><input name="name" type="text" value="" class="input"></td>
+								</tr>
+								<tr>
+									<th>전화번호</th>
+									<td colspan="3">
+										<input type="text" name="mobile1" value="" size="3" class="input">-<input type="text" name="mobile2" value="" size="4" class="input">-<input type="text" name="mobile3" value="" size="4" class="input">
+=======
 	
 >>>>>>> branch '333' of https://github.com/wiris123/Admin
 	<form name="frm" action="member_write_process.jsp" method="post"  onSubmit="return inputCheck(this);">
@@ -77,7 +138,104 @@ function inputCheck(frm){
 				<td width="35%">
 					<input name="id" type="text" value="" class="input" >
 										<button type="button" class="h18 t3 color small round black_s" onCLick="idCheck()">중복체크</button>
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
 									</td>
+<<<<<<< HEAD
+								</tr>
+								<tr>
+									<th>이메일</th>
+									<td> 
+										<input type="text" name="email1"  value="" /> @ 
+										<input type="text" name="email2"  value="" readonly />
+											<select name="last_email_check2" onChange="email_input(this,this.form);" class="pass" id="last_email_check2">
+												<option selected="" value="">선택해주세요</option>
+												<option value="1" >직접입력</option>
+												<option value="dreamwiz.com" >dreamwiz.com</option>
+												<option value="empal.com" >empal.com</option>
+												<option value="empas.com" >empas.com</option>
+												<option value="freechal.com" >freechal.com</option>
+												<option value="hanafos.com" >hanafos.com</option>
+												<option value="hanmail.net" >hanmail.net</option>
+												<option value="hotmail.com" >hotmail.com</option>
+												<option value="intizen.com" >intizen.com</option>
+												<option value="korea.com" >korea.com</option>
+												<option value="kornet.net" >kornet.net</option>
+												<option value="msn.co.kr" >msn.co.kr</option>
+												<option value="nate.com" >nate.com</option>
+												<option value="naver.com" >naver.com</option>
+												<option value="netian.com" >netian.com</option>
+												<option value="orgio.co.kr" >orgio.co.kr</option>
+												<option value="paran.com" >paran.com</option>
+												<option value="sayclub.com" >sayclub.com</option>
+												<option value="yahoo.co.kr" >yahoo.co.kr</option>
+												<option value="yahoo.com" >yahoo.com</option>
+											</select>
+									</td>
+								</tr>
+								<tr>
+					    			<th>생일 </th>
+								    <td><input name="birth1" type="text">년
+									    <select name="birth2">
+										   <option value="1">1</option>
+										   <option value="2">2</option>
+										   <option value="3">3</option>
+										   <option value="4">4</option>
+										   <option value="5">5</option>
+										   <option value="6">6</option>
+										   <option value="7">7</option>
+										   <option value="8">8</option>
+									       <option value="9">9</option>
+										   <option value="10">10</option>
+										   <option value="11">11</option>
+										   <option value="12">12</option>	
+										</select>월
+										<select name="birth3">
+										   <option value="1">1</option>
+										   <option value="2">2</option>
+										   <option value="3">3</option>
+										   <option value="4">4</option>
+										   <option value="5">5</option>
+										   <option value="6">6</option>
+										   <option value="7">7</option>
+										   <option value="8">8</option>
+										   <option value="9">9</option>
+										   <option value="10">10</option>
+										   <option value="11">11</option>
+										   <option value="12">12</option>	
+										   <option value="13">13</option>
+										   <option value="14">14</option>
+										   <option value="15">15</option>
+										   <option value="16">16</option>
+										   <option value="17">17</option>
+										   <option value="18">18</option>
+										   <option value="19">19</option>
+										   <option value="20">20</option>
+										   <option value="21">21</option>
+										   <option value="22">22</option>
+										   <option value="23">23</option>
+										   <option value="24">24</option>
+										   <option value="25">25</option>
+										   <option value="26">26</option>
+										   <option value="27">27</option>
+										   <option value="28">28</option>
+										   <option value="29">29</option>
+										   <option value="30">30</option>
+										   <option value="31">31</option>
+										</select>일
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+		
+				<div class="center ">
+					<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
+					<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='member_list.jsp';">목록</button>
+				</div>
+			</form>
+		</div>
+=======
 				<th width="15%">비밀번호</th>
 				<td width="35%"><input name="pass" type="text" value="" class="input"></td>
 			</tr>
@@ -162,16 +320,11 @@ function inputCheck(frm){
 	<div class="center top10">
 		<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
 		<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='member_list.jsp';">목록</button>
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
 	</div>
-	</form>
-
-</div>
-</div><!-- //Container// -->
-</div><!-- //Container_wrap// -->
-
-<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+	
+	
+	<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
 </body>
-
-<!-- Mirrored from demohome.anywiz.co.kr/adm/manage/member/member_input.php?mode=insert by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:13:56 GMT -->
 </html>
 
