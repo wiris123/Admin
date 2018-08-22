@@ -31,6 +31,8 @@ public class MemberDTO {
 		this.birth = birth;
 		this.regidate = regidate;
 	}
+
+
 	public MemberDTO(String id, String pass, String name, String email, String mobile, String birth) {
 		super();
 		this.id = id;

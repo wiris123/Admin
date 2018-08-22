@@ -12,9 +12,9 @@ request.setCharacterEncoding("UTF-8");
 String id = request.getParameter("id");
 String pass = request.getParameter("pass");
 String name = request.getParameter("name");
-String email = request.getParameter("email");
-String mobile = request.getParameter("mobile");
-String birth = request.getParameter("birth");
+String email = request.getParameter("email1")+"@"+request.getParameter("email2") ;
+String mobile = request.getParameter("mobile1")+"-"+request.getParameter("mobile2")+"-"+request.getParameter("mobile3");
+String birth = request.getParameter("birth1")+request.getParameter("birth2")+request.getParameter("birth3");
 
 MemberDTO dto = new MemberDTO(id,pass,name,email,mobile,birth);
 
