@@ -59,7 +59,7 @@ public class MemberDAO {
 		//적용된 행의 갯수확인을 위한 변수
 		int affected = 0;
 		try {
-			String query = "INSERT INTO member ( id,pass,name,mobile,email,birth) VALUES ( ?, ?, ?, ?, ?, ? )";
+			String query = "INSERT INTO member ( id,pass,name,mobile,email,birth,regidate) VALUES ( ?, ?, ?, ?, ?, ? ,sysdate)";
 
 			psmt = con.prepareStatement(query);
 			

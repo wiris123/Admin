@@ -35,13 +35,6 @@
 </head>
 <body class="home_body">
 <%@include file="../include/head.jsp" %>
-
-
-
-	
-
-
-
     
 <script src="../../../../dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script language="javascript">
@@ -62,15 +55,11 @@ function inputCheck(frm){
 }
 
 
-
-
 </script>
 <div id="location">HOME > 회원관리</div>
 <div id="S_contents">
 	<h3>회원관리<span>회원을 추가합니다.</span></h3>
-
-	
-	<form name="frm" action="write_process.jsp" method="post"  onSubmit="return inputCheck(this);">
+	<form name="frm" action="member_write_process.jsp" method="post"  onSubmit="return inputCheck(this);">
 	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
 	<input type="hidden" name="idx" value="">
@@ -92,11 +81,7 @@ function inputCheck(frm){
 				<td><input name="name" type="text" value="" class="input"></td>
 				
 			</tr>
-			
-			
-			
-			
-			
+
 						<tr>
 				<th>전화번호</th>
 				<td colspan="3">

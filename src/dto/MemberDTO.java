@@ -19,6 +19,7 @@ public class MemberDTO {
 	}
 	
 	//인자 생성자
+	
 	public MemberDTO(String id, String pass, String name, String email, String mobile, String birth, Date regidate) {
 		super();
 		this.id = id;
@@ -29,6 +30,15 @@ public class MemberDTO {
 		this.birth = birth;
 		this.regidate = regidate;
 	}
+	public MemberDTO(String id, String pass, String name, String email, String mobile, String birth) {
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.email = email;
+		this.mobile = mobile;
+		this.birth = birth;
+	}
+
 	public String getId() {
 		return id;
 	}

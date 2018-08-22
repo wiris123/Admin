@@ -16,7 +16,7 @@ String email = request.getParameter("email");
 String mobile = request.getParameter("mobile");
 String birth = request.getParameter("birth");
 
-MemberDTO dto = new MemberDTO(id,pass,name,email,mobile,birth,null);
+MemberDTO dto = new MemberDTO(id,pass,name,email,mobile,birth);
 
 MemberDAO dao = new MemberDAO();
 int af = dao.memberRegist(dto);
