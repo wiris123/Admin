@@ -93,7 +93,6 @@ public class InsuDAO
 			e.printStackTrace();
 		}
 		System.out.println("term_name"+term_name);
-		
 		return affected;	
 	}
 	
