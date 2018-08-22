@@ -14,7 +14,8 @@ public class MemberDTO {
 	private Date regidate;
 	
 	//기본 생성자
-	public MemberDTO() {
+	public MemberDTO() 
+	{
 		super();
 	}
 	
@@ -31,6 +32,7 @@ public class MemberDTO {
 		this.regidate = regidate;
 	}
 	public MemberDTO(String id, String pass, String name, String email, String mobile, String birth) {
+		super();
 		this.id = id;
 		this.pass = pass;
 		this.name = name;
