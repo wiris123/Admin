@@ -157,7 +157,30 @@ dao.close();
 <div id="S_contents">
 <h3>회원관리<span>회원을  관리합니다.</span></h3>	 
 
-     <form name="searchForm" action="http://demohome.anywiz.co.kr/adm/manage/member/member_list.php" method="get" onSubmit="return delUser(this);">
+	<div class="row text-right" style="margin-bottom:20px;
+		padding-right:50px;">
+<!-- 검색부분 -->
+<form class="form-inline">	
+	
+	<input type="hid den" name="nowPage" value="1" />
+	<div class="form-group">
+		<select name="searchColumn" class="form-control">
+			<option value="name">고객명</option>
+	         <option value="id">아이디</option>
+	        
+		</select>
+	</div>
+	<div class="input-group">
+		<input type="text" name="searchWord"  class="form-control"/>
+		<div class="input-group-btn">
+			<button type="submit" class="btn btn-default">
+				<i class="glyphicon glyphicon-search"></i>
+			</button>
+		</div>
+	</div>
+</form>	
+</div>
+    <!--  <form name="searchForm" action="http://demohome.anywiz.co.kr/adm/manage/member/member_list.php" method="get" onSubmit="return delUser(this);">
 	  <input type="hidden" name="page" value="">
 	  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
       <tr>
@@ -181,7 +204,7 @@ dao.close();
      </tr>
      </table>
 	 </form>
-
+ -->
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
         <tr>
           

@@ -70,7 +70,7 @@ function inputCheck(frm){
 	<h3>회원관리<span>회원을 추가합니다.</span></h3>
 
 	
-	<form name="frm" action="write_process.jsp" method="post"  onSubmit="return inputCheck(this);">
+	<form name="frm" action="member_write_process.jsp" method="post"  onSubmit="return inputCheck(this);">
 	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
 	<input type="hidden" name="idx" value="">
