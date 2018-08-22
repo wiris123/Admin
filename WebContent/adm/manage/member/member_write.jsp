@@ -59,6 +59,11 @@ function inputCheck(frm){
 <div id="location">HOME > 회원관리</div>
 <div id="S_contents">
 	<h3>회원관리<span>회원을 추가합니다.</span></h3>
+<<<<<<< HEAD
+=======
+
+	
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
 	<form name="frm" action="member_write_process.jsp" method="post"  onSubmit="return inputCheck(this);">
 	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">

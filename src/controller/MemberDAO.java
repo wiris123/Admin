@@ -11,8 +11,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.sun.corba.se.impl.protocol.BootstrapServerRequestDispatcher;
-
 import dto.MemberDTO;
 import dto.OutMemDTO;
 
@@ -55,7 +53,7 @@ public class MemberDAO {
 		}
 	}
 	
-	public int memberRegist(dto.MemberDTO dto) {
+	public int memberRegist(MemberDTO dto) {
 		//적용된 행의 갯수확인을 위한 변수
 		int affected = 0;
 		try {
@@ -65,12 +63,12 @@ public class MemberDAO {
 			
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPass());
-			psmt.setString(3, dto.getName());
-			
-			psmt.setString(5, dto.getMobile());
-			psmt.setString(4, dto.getEmail());
+			psmt.setString(3, dto.getName());			
+			psmt.setString(4, dto.getMobile());
+			psmt.setString(5, dto.getEmail());
 			psmt.setString(6, dto.getBirth());
-			
+				
+			System.out.println(dto.getBirth());
 			affected = psmt.executeUpdate();
 		}
 		catch(Exception e) {
@@ -81,14 +79,13 @@ public class MemberDAO {
 		return affected;
 	}	
 	
-	public List<dto.MemberDTO> selectList(Map<String,Object> map){
+	public List<MemberDTO> selectList(Map<String,Object> map){
 		
 		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
-		List<dto.MemberDTO> bbs = new Vector<dto.MemberDTO>();
+		List<MemberDTO> bbs = new Vector<MemberDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
 		String query = "SELECT * FROM member "
-				+ " WHERE 1=1 "
 				+ " ORDER BY id DESC";
 				
 		
