@@ -154,7 +154,8 @@ public class MemberDAO {
 		return totalCount;
 	}
 	
-	public int delete(Map<String,Object> map) {
+	public int delete(Map<String,Object> map) 
+	{
 		int affected = 0;
 		try {
 			String query = "DELETE FROM member WHERE id=?";
@@ -315,7 +316,7 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 			psmt = con.prepareStatement(query);
 			
 			psmt.setString(1, dto.getId());
-			psmt.setString(2, dto.getReason());
+			psmt.setString(2, "124");
 			
 			
 			affected = psmt.executeUpdate();

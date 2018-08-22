@@ -106,7 +106,7 @@
 		COLOR: blue; 
 	}
 </style>
-<script type="text/javascript">
+<script>
 	$(function() {
 		$( "#datepicker1" ).datepicker({
 			dateFormat: 'yy-mm-dd',
@@ -157,6 +157,7 @@
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
 		}
 	}
+
 </script>
 </head>
 <body>
@@ -242,8 +243,7 @@ function selectValue(){
 }
 
 //선택회원 삭제
-function prdDelete()
-{
+function prdDelete(){
 
 	selvalue = selectValue();
 
@@ -336,6 +336,10 @@ function copyPrd(){
         </tr>
        
       </table>
+
+		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
+      	<form>
+
       <script type="text/javascript">
 	 	// 체크박스 전체선택
 	 	function selectAll(obj)
@@ -361,7 +365,7 @@ function copyPrd(){
 	 	}
 	 	
 	 	//선택삭제
-	 	function prdDelete()
+		function prdDelete()
 	 	{
 			var selvalue = document.getElementsByName("select_chkbox")
 			
@@ -397,10 +401,12 @@ function copyPrd(){
 	 		}
 	 	}
 	 	
+	 	
      
       </script>
       <form name="listForm" method="get">
 		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">    	
+
       	<thead>
 	       <tr>
 	          <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
@@ -412,8 +418,9 @@ function copyPrd(){
 	          <td width="10%">월 납입액</td>
 	        </tr>
 		</thead>
+      </form>
 		<tbody>
-<%
+				  <%
 if(bbs.isEmpty()){
 	//컬렉션에 저장된 데이터가 없는경우
 %>
@@ -452,6 +459,7 @@ else
 }%>
      		  </tbody>
       </table>
+
 		<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 			<tr>
 			<td width="33%">
@@ -463,7 +471,7 @@ else
 			<td width="33%" align="right"></td>
 			</tr>
 		</table>
-		</form>
+
 </div>
 </div><!-- //Container// -->
 </div><!-- //Container_wrap// -->

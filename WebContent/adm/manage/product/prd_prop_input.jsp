@@ -320,16 +320,16 @@ function prdFocus(){
 	
 	<h3>상품관리<span> 실손보험 관리페이지입니다.</span></h3>
 
-	<form name="frm" action="http://demohome.anywiz.co.kr/adm/manage/product/prd_save.php?page=&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey=" method="post" enctype="multipart/form-data" onSubmit="return inputCheck(this);">
-	<input type="hidden" name="tmp">
+	<form name="propfrm" action="./proc/input_prop.jsp" method="post" onSubmit="">
+	<!-- <input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
-	<input type="hidden" name="relidx" value="">
-	<input type="hidden" name="prdcode" value="">
+	<input type="hidden" name="relidx" value=""> -->
+	<input type="hidden" name="instype" value="3">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 	<tr>
 		<th>상품명</th>
 		<td colspan="3">
-			<input name="ann_name" type="text" value="" size="60" class="input">&nbsp;
+			<input name="prop_name" type="text" value="" size="60" class="input">&nbsp;
 		</td>
 	</tr>
 	<tr>
@@ -343,7 +343,7 @@ function prdFocus(){
 		<td colspan="3">
 			<table border="0" cellspacing="5" cellpadding="0">
 				<td colspan="2">
-					<select name="paytime" id="">
+					<select name="instime" id="">
 						<option value="10">10년만기</option>
 						<option value="20">20년만기</option>
 						<option value="60">60세까지</option>
@@ -362,43 +362,43 @@ function prdFocus(){
 	<tr>
 		<th>질병입원보장</th>
 		<td colspan="3">
-			<input type="text" name="monthpay"  />
+			<input type="text" name="hosp"  />
 	</td>
 	</tr>
 	<tr>
 		<th>질병통원보장</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" />
+			<input type="text" name="gohosp" />
 	</td>
 	</tr>
 	<tr>
 		<th>상해입원보장</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" />
+			<input type="text" name="sanghosp" />
 	</td>
 	</tr>
 	<tr>
 		<th>상해통원보장</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" />
+			<input type="text" name="sgohosp" />
 	</td>
 	</tr>
 	<tr>
 		<th>비급여도수</th>
 		<td colspan="3">
-			<input type="text" name="monthpay"  />
+			<input type="text" name="chbedosu"  />
 	</td>
 	</tr>
 	<tr>
 		<th>체외충격파</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" />
+			<input type="text" name="chbeinje" />
 	</td>
 	</tr>
 	<tr>
 		<th>자기공명진단</th>
 		<td colspan="3">
-			<input type="text" name="monthpay"/>
+			<input type="text" name="chbemri"/>
 	</td>
 	</tr>
 	
@@ -638,7 +638,7 @@ content.run();                            							// 에디터를 실행합니다
 	<tr>
 		<td align="center">
 			<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
-			<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_term.jsp';">목록</button>
+			<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_prop.jsp';">목록</button>
 		</td>
 	</tr>
 	</table>
