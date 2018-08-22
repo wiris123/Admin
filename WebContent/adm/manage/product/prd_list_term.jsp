@@ -365,7 +365,7 @@ function copyPrd(){
 	 	}
 	 	
 	 	//선택삭제
-	 	function prdDelete()
+		function prdDelete()
 	 	{
 			var selvalue = document.getElementsByName("select_chkbox")
 			
@@ -401,6 +401,7 @@ function copyPrd(){
 	 		}
 	 	}
 	 	
+	 	
      
       </script>
       <form name="listForm" method="get">
@@ -409,10 +410,7 @@ function copyPrd(){
       	<thead>
 	       <tr>
 
-	        	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
-
 	          <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
-
 	          <td width="15%">상품명</td>
 	          <td width="5%">납입기간</td>
 	          <td width="10%">보험기간</td>
@@ -449,7 +447,7 @@ else
 
 %>
 		  <tr>
-        	<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
+        	<td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getTerm_name()%>"></td>
           <td width="15%"><%= dto.getTerm_name() %></td>
           <td width="5%"><%= dto.getPaytime() %></td>
           <td width="10%"><%= dto.getInstime()%></td>
