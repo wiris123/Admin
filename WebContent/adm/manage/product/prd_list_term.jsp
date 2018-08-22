@@ -157,22 +157,6 @@
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
 		}
 	}
-
-	// 체크박스 전체선택
-	function selectAll(obj)
-	{
-      var chkObj = document.getElementsByName("select_chkbox");
-      var rowCnt = chkObj.length-1;
-      var check = obj.checked;
-      if(check) 
-      {﻿
-          for (var i=0; i<=rowCnt; i++)
-          {
-             chkObj[i].checked = true; 
-          }
-      }
-	}
-
 </script>
 </head>
 <body>
@@ -352,11 +336,74 @@ function copyPrd(){
         </tr>
        
       </table>
+      <script type="text/javascript">
+	 	// 체크박스 전체선택
+	 	function selectAll(obj)
+	 	{
+	       var chkObj = document.getElementsByName("select_chkbox");
+	       var rowCnt = chkObj.length-1;
+	       var check = obj.checked;
+	       if(check==true) 
+	       {﻿
+	           for (var i=0; i<=rowCnt; i++)
+		       {
+		          chkObj[i].checked = true; 
+		       }
+		       
+	       }
+	       else
+    	   {
+	    	   for (var i=0; i<=rowCnt; i++)
+		       {
+		          chkObj[i].checked = false; 
+		       }
+    	   }	
+	 	}
+	 	
+	 	//선택삭제
+	 	function prdDelete()
+	 	{
+			var selvalue = document.getElementsByName("select_chkbox")
+			
+	 		if(selvalue == false)
+	 		{
+	 			alert("삭제할 상품을 선택하세요.");
+	 			return false;
+	 		}
+	 		else
+	 		{
+	 			if(confirm("선택한 상품을 정말 삭제하시겠습니까?"))
+	 			{
+	 				var name ="";
+ 					for(var i=0; i<=selvalue.length-1; i++)
+	 				{
+	 					if(selvalue[i].checked)
+ 						{
+	 						if(selvalue[i]=='undefined')
+	 						{
+		 						name = selvalue[i].value;	 						
+	 						}
+		 					else
+	 						{
+		 						name = name + '-'+selvalue[i].value;
+	 						}
+		 					
+ 						}						
+	 					
+	 				}
+ 					document.location = "./proc/prd_del_proc.jsp?term_name="+name		
+	 				
+	 			}
+	 		}
+	 	}
+	 	
+     
+      </script>
       <form name="listForm" method="get">
 		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">    	
       	<thead>
 	       <tr>
-	          <td width="5%"><input type="checkbox" name="select_tmp" onClick="selectAll(this)"></td>
+	          <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
 	          <td width="15%">상품명</td>
 	          <td width="5%">납입기간</td>
 	          <td width="10%">보험기간</td>
