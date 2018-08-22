@@ -25,9 +25,22 @@
 	
 			<div id="location">HOME > 게시판관리</div>
 			<div id="S_contents">
-			
-				<%@ include file="bbs_list_free.jsp" %>
-		
+				
+				<jsp:include page="bbs_list_${param.b_id }.jsp" />
+						<!-- 버튼 -->
+						<div style="margin: 10px 0 0;">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td align="right">
+										<a href='bbs_write.jsp?b_id=${param.b_id }' onclick="window.open(this.href,'팝업창','width=800, height=800'); return false;">
+									<img src='../../bbs/skin/bbsBasic/image/btn_write.gif' border='0'></a></td>
+								</tr>
+							</table>
+						</div>
+						<!-- 버튼 끝 -->
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<!-- //Container// -->

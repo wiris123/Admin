@@ -1,5 +1,85 @@
+<%@page import="dto.BoardDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="controller.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%    
+//한글처리
+request.setCharacterEncoding("UTF-8");
+
+
+//커넥션풀로 변경
+BbsDAO dao = new BbsDAO();
+ 
+
+//매개변수 저장을 위한 컬렉션 생성(DAO로 전달)
+Map<String,Object> param = new HashMap<String,Object>();
+
+
+//멀티 게시판 구현[추가]
+String b_id = request.getParameter("b_id")==null ? "free" : request.getParameter("b_id");
+param.put("b_id", b_id);
+
+//문자열 검색 파라미터를 페이지 처리 메소드로 넘겨주기 위한 변수선언
+//String queryStr = "b_id="+ b_id +"&";
+String queryStr;
+
+
+//폼값받기(검색관련)
+/* String searchColumn = 
+	request.getParameter("searchColumn");
+String searchWord = 
+	request.getParameter("searchWord");
+if(searchWord!=null){
+	//입력한 검색어가 있다면 맵에 추가함
+	param.put("Column", searchColumn);
+	param.put("Word", searchWord);
+	
+	//파라미터 추가
+	queryStr = String.format("&searchColumn=%s"
+		+"&searchWord=%s&", searchColumn,
+			searchWord);
+} */
+
+
+//페이지 처리를 위한 로직 시작
+//1.게시판 테이블의 전체 레코드 갯수 구하기
+int totalRecordCount = dao.getTotalRecordCount(param);
+
+//2.web.xml에 설정된 값 가져오기
+int pageSize = 10;
+int blockPage = 5;
+if(b_id.equals("photo")){
+	pageSize += 2; //사진게시판은 12개씩 리스팅되야한다.
+}
+
+//3.전체페이지수 계산하기
+int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);
+
+//4.페이지번호가 없는경우 무조건 1로 설정
+int nowPage = request.getParameter("nowPage")==null? 1 : Integer.parseInt(request.getParameter("nowPage"));
+
+//5.가져올 레코드의 구간을 결정하기 위한 연산
+int start = (nowPage-1)*pageSize + 1;
+int end = nowPage * pageSize;
+
+//6.파라미터 전달을 위해 map에 추가
+param.put("start", start);
+param.put("end", end);
+
+/////게시판 페이지 처리 로직 끝
+
+List<BoardDTO> bbs = dao.selectList(param);
+
+dao.close(); 
+
+String photoLink = "";
+if(b_id.equals("photo")){
+	photoLink="_photo";
+}	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,19 +190,6 @@
 		</form>
 	</div>
 	<!-- 검색 끝 -->
-	<!-- 버튼 -->
-	<div style="margin: 10px 0 0;">
-		<table width="100%" border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<td align="right"><a
-					href='bbs427d.html?ptype=input&amp;mode=insert&amp;code=bbsBasic'><img
-						src='../../bbs/skin/bbsBasic/image/btn_write.gif' border='0'></a></td>
-			</tr>
-		</table>
-	</div>
-	<!-- 버튼 끝 -->
-	</td>
-	</tr>
-	</table>
+
 </body>
 </html>

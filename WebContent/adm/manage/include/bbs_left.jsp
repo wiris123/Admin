@@ -30,17 +30,17 @@
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="list_freeboard.jsp?code=bbsBasic">자유게시판</a></td>
+						href="bbs_list.jsp?b_id=free">자유게시판</a></td>
 				</tr>
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="list_gallery.jsp?code=photoBasic">갤러리</a></td>
+						href="bbs_list.jsp?b_id=photo">갤러리</a></td>
 				</tr>
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="list42fc.jsp?code=answerBasic">응답게시판</a></td>
+						href="bbs_list.jsp?b_id=response">응답게시판</a></td>
 				</tr>
 				<tr>
 					<td height="10"></td>
@@ -51,12 +51,12 @@
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="list7211.jsp?code=qna">질문답변</a></td>
+						href="bbs_list.jsp?b_id=qna">질문답변</a></td>
 				</tr>
 				<!-- <tr>
 						<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 							src="../image/left_s_arrow.gif" align="absmiddle"><a
-							href="liste6ef.jsp?code=faq">자주묻는질문</a></td>
+							href="liste6ef.jsp?b_id=faq">자주묻는질문</a></td>
 					</tr> -->
 			</table>
 		</ul>
