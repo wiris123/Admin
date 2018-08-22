@@ -33,6 +33,14 @@
 	}
 </style>
 
+<<<<<<< HEAD
+=======
+</head>
+<body class="home_body">
+<%@include file="../include/head.jsp" %>
+    
+<script src="../../../../dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
 <script language="javascript">
 
 function inputCheck(frm){
@@ -49,6 +57,7 @@ function inputCheck(frm){
 	}
 		
 }
+<<<<<<< HEAD
 function email_input(em, frm){
 	//선택한 select의 값이 빈값이 아닐때만 동작
 	if(em.value!=""){
@@ -68,8 +77,21 @@ function email_input(em, frm){
 		}
 	}
 } 
-</script>
+=======
 
+
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
+</script>
+<<<<<<< HEAD
+=======
+<div id="location">HOME > 회원관리</div>
+<div id="S_contents">
+	<h3>회원관리<span>회원을 추가합니다.</span></h3>
+<<<<<<< HEAD
+=======
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
+
+<<<<<<< HEAD
 </head>
 
 <body class="home_body">
@@ -100,7 +122,25 @@ function email_input(em, frm){
 									<th>전화번호</th>
 									<td colspan="3">
 										<input type="text" name="mobile1" value="" size="3" class="input">-<input type="text" name="mobile2" value="" size="4" class="input">-<input type="text" name="mobile3" value="" size="4" class="input">
+=======
+	
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
+	<form name="frm" action="member_write_process.jsp" method="post"  onSubmit="return inputCheck(this);">
+	<input type="hidden" name="tmp">
+	<input type="hidden" name="mode" value="insert">
+	<input type="hidden" name="idx" value="">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
+			<tr>
+				<th width="15%">아이디</th>
+				<td width="35%">
+					<input name="id" type="text" value="" class="input" >
+										<button type="button" class="h18 t3 color small round black_s" onCLick="idCheck()">중복체크</button>
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
 									</td>
+<<<<<<< HEAD
 								</tr>
 								<tr>
 									<th>이메일</th>
@@ -195,6 +235,92 @@ function email_input(em, frm){
 				</div>
 			</form>
 		</div>
+=======
+				<th width="15%">비밀번호</th>
+				<td width="35%"><input name="pass" type="text" value="" class="input"></td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td><input name="name" type="text" value="" class="input"></td>
+				
+			</tr>
+
+						<tr>
+				<th>전화번호</th>
+				<td colspan="3">
+										<input type="text" name="mobile" value="" size="5" class="input">
+				</td>
+			</tr>
+			
+						<tr>
+				<th>이메일</th>
+				<td colspan="3">
+					<input name="email" type="text" value="" size="40" class="input">
+				</td>
+			</tr>
+			<tr>
+    
+    <th>생일 </th>
+    <td><input name="birth" type="text">년
+	<select name="월">
+	   <option value="1">1</option>
+	   <option value="2">2</option>
+	   <option value="3">3</option>
+	   <option value="4">4</option>
+	   <option value="5">5</option>
+	   <option value="6">6</option>
+	   <option value="7">7</option>
+	   <option value="8">8</option>
+           <option value="9">9</option>
+	   <option value="10">10</option>
+	   <option value="11">11</option>
+	   <option value="12">12</option>	
+        </select>월
+	<select name="일">
+	   <option value="1">1</option>
+	   <option value="2">2</option>
+	   <option value="3">3</option>
+	   <option value="4">4</option>
+	   <option value="5">5</option>
+	   <option value="6">6</option>
+	   <option value="7">7</option>
+	   <option value="8">8</option>
+	   <option value="9">9</option>
+	   <option value="10">10</option>
+	   <option value="11">11</option>
+	   <option value="12">12</option>	
+	   <option value="13">13</option>
+	   <option value="14">14</option>
+	   <option value="15">15</option>
+	   <option value="16">16</option>
+	   <option value="17">17</option>
+	   <option value="18">18</option>
+	   <option value="19">19</option>
+	   <option value="20">20</option>
+	   <option value="21">21</option>
+	   <option value="22">22</option>
+	   <option value="23">23</option>
+	   <option value="24">24</option>
+	   <option value="25">25</option>
+	   <option value="26">26</option>
+	   <option value="27">27</option>
+	   <option value="28">28</option>
+	   <option value="29">29</option>
+	   <option value="30">30</option>
+	   <option value="31">31</option>
+        </select>일
+   </td>
+</tr>
+			</table>
+			
+		</td>
+	</tr>
+	</table>
+
+	<div class="center top10">
+		<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
+		<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='member_list.jsp';">목록</button>
+>>>>>>> branch '333' of https://github.com/wiris123/Admin
 	</div>
 	
 	
