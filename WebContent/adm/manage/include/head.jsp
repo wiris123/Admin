@@ -103,8 +103,8 @@
 
 			<li><a href="../product/prd_list.jsp" onFocus="this.blur();"><span>상품관리</span></a>
 				<ul class="category">
-					<li><a href="../product/prd_list.jsp">상품목록</a></li>
-					<li><a href="../product/prd_input.jsp">상품등록</a></li>
+					<li><a href="../product/prd_list_term.jsp">상품목록</a></li>
+					<li><a href="../product/prd_input_term.jsp">상품등록</a></li>
 				</ul> 
 			</li>
 
