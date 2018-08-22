@@ -343,7 +343,7 @@ function copyPrd(){
       <script type="text/javascript">
 	 	// 체크박스 전체선택
 	 	function selectAll(obj)
-	 	{
+	 	{ 
 	       var chkObj = document.getElementsByName("select_chkbox");
 	       var rowCnt = chkObj.length-1;
 	       var check = obj.checked;
@@ -408,12 +408,7 @@ function copyPrd(){
 		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">    	
 
       	<thead>
-<<<<<<< HEAD
 	       <tr>
-=======
-	       <tr>
-
->>>>>>> branch '333' of https://github.com/wiris123/Admin.git
 	          <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
 	          <td width="15%">상품명</td>
 	          <td width="5%">납입기간</td>
@@ -451,11 +446,7 @@ else
 
 %>
 		  <tr>
-<<<<<<< HEAD
-        	<td width="5%"><input type="checkbox" name="select_tmp" value="<%=dto.getTerm_name()%>"></td>
-=======
         	<td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getTerm_name()%>"></td>
->>>>>>> branch '333' of https://github.com/wiris123/Admin.git
           <td width="15%"><%= dto.getTerm_name() %></td>
           <td width="5%"><%= dto.getPaytime() %></td>
           <td width="10%"><%= dto.getInstime()%></td>

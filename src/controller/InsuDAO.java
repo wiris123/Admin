@@ -96,6 +96,44 @@ public class InsuDAO
 		return affected;	
 	}
 	
+	public int deleteAnnu(String ann_name) {
+		int affected = 0;
+		try {
+			String query = "delete from annu_insu where ann_name=?";
+			
+			psmt = con.prepareStatement(query);			
+			psmt.setString(1, ann_name);
+			 
+			affected = psmt.executeUpdate();
+		}
+		
+		catch(Exception e) {
+			System.out.println("delete_board중 예외발생");
+			e.printStackTrace();
+		}
+		System.out.println("ann_name"+ann_name);
+		return affected;	
+	}
+	
+	public int deleteProp(String prop_name) {
+		int affected = 0;
+		try {
+			String query = "delete from prop_insu where prop_name=?";
+			
+			psmt = con.prepareStatement(query);			
+			psmt.setString(1, prop_name);
+			 
+			affected = psmt.executeUpdate();
+		}
+		
+		catch(Exception e) {
+			System.out.println("delete_board중 예외발생");
+			e.printStackTrace();
+		}
+		System.out.println("prop_name"+prop_name);
+		return affected;	
+	}
+	
 	public List<TermDTO> selectList(Map<String,Object> map){
 			
 			//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
