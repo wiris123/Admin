@@ -8,7 +8,9 @@ public class CounselDTO {
 	private String name;
 	private String mobile;
 	private Date regidate;
+	private String email;
 	private String contents;
+	private String flag;
 	
 	//기본 생성자
 	public CounselDTO() {
@@ -16,17 +18,38 @@ public class CounselDTO {
 	}
 	
 	//인자 생성자
-	public CounselDTO(String idx, String name, String mobile, Date regidate, String contents) {
+	
+	public String getIdx() {
+		return idx;
+	}
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public CounselDTO(String idx, String name, String mobile, Date regidate, String email, String contents,
+			String flag) {
 		super();
 		this.idx = idx;
 		this.name = name;
 		this.mobile = mobile;
 		this.regidate = regidate;
+		this.email = email;
 		this.contents = contents;
+		this.flag = flag;
 	}
-	public String getIdx() {
-		return idx;
+
+	public String getFlag() {
+		return flag;
 	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
 	public void setIdx(String idx) {
 		this.idx = idx;
 	}

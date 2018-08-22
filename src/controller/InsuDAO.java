@@ -77,6 +77,24 @@ public class InsuDAO
 		
 	}
 	
+	public int deleteTerm(String term_name) {
+		int affected = 0;
+		try {
+			String query = "delete from term_insu where term_name=?";
+			
+			psmt = con.prepareStatement(query);			
+			psmt.setString(1, term_name);
+			 
+			affected = psmt.executeUpdate();
+		}
+		
+		catch(Exception e) {
+			System.out.println("delete_board중 예외발생");
+			e.printStackTrace();
+		}
+		System.out.println("term_name"+term_name);
+		return affected;	
+	}
 	
 	public List<TermDTO> selectList(Map<String,Object> map){
 			
