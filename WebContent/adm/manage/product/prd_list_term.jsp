@@ -409,7 +409,6 @@ function copyPrd(){
 
       	<thead>
 	       <tr>
-
 	          <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
 	          <td width="15%">상품명</td>
 	          <td width="5%">납입기간</td>

@@ -95,72 +95,64 @@ dao.close();
 </style>
 <script>
 //체크박스 전체선택
-function selectAll(){
-
-   var i;
-   for(i=0;i<document.forms.length;i++){
-      if(document.forms[i].prdcode != null){
-         if(document.forms[i].select_checkbox){
-            document.forms[i].select_checkbox.checked = true;
-         }
-      }
+	function selectAll(obj) //obj = 전체선택 체크박스
+	{
+   var chkObj = document.getElementsByName("select_tmp");//개별체크박스 이름으로 가져오기
+   var rowCnt = chkObj.length-1;
+   var check = obj.checked;
+   if(check==true) 
+   {﻿
+       for (var i=0; i<=rowCnt; i++)
+       {
+          chkObj[i].checked = true; 
+       }
+       
    }
-   return;
-}
-
-// 체크박스 선택해제
-function selectCancel(){
-   var i;
-   for(i=0;i<document.forms.length;i++){
-      if(document.forms[i].select_checkbox){
-         if(document.forms[i].prdcode != null){
-            document.forms[i].select_checkbox.checked = false;
-         }
-      }
-   }
-   return;
-}
-
-// 체크박스선택 반전
-function selectReverse(form){
-
-   if(form.select_tmp.checked){
-      selectAll();
-   }else{
-      selectCancel();
-   }
-}
-
-// 체크박스 선택리스트
-function selectValue(){
-   var i;
-   var selvalue = "";
-   for(i=0;i<document.forms.length;i++){
-      if(document.forms[i].prdcode != null){
-         if(document.forms[i].select_checkbox){
-            if(document.forms[i].select_checkbox.checked)
-               selvalue = selvalue + document.forms[i].prdcode.value + "|";
-            }
-         }
-   }
-   return selvalue;
-}
-
-//선택회원 삭제
-function prdDelete(){
-
-   selvalue = selectValue();
-
-   if(selvalue == ""){
-      alert("삭제할 상품을 선택하세요.");
-      return false;
-   }else{
-      if(confirm("선택한 상품을 정말 삭제하시겠습니까?")){
-         document.location = "prd_save9d86.html?mode=delete&amp;selvalue=" + selvalue;
-      }
-   }
-
-}
+   else
+   {
+	   for (var i=0; i<=rowCnt; i++)
+       {
+          chkObj[i].checked = false; 
+       }
+   }	
+	}
+	
+	//선택삭제
+function prdDelete()
+	{
+	var selvalue = document.getElementsById("select_tm")
+	
+		if(selvalue.checked == null)
+		{
+			alert("삭제할 상품을 선택하세요.");
+			return false;
+		}
+		else
+		{
+			if(confirm("선택한 상품을 정말 삭제하시겠습니까?"))
+			{
+				var name ="";
+				for(var i=0; i<=selvalue.length-1; i++)
+				{
+					if(selvalue[i].checked)
+					{
+						if(selvalue[i]=='undefined')
+						{
+ 						name = selvalue[i].value;	 						
+						}
+ 					else
+						{
+ 						name = name + '-'+selvalue[i].value;
+						}
+ 					
+					}						
+					
+				}
+				document.location = "member_del_proc.jsp?id="+name		
+				
+			}
+		}
+	}
 </script>
 </head>
 <body class="home_body">
@@ -196,7 +188,7 @@ function prdDelete(){
 			<tr>
 				<td align="right">
 					<button type="button" class="h22 t4 small icon gray" onClick="document.location='member_write.jsp';"><span class="icon_plus"></span>회원등록</button>
-					<button type="button" class="h22 t4 small icon gray" onClick="prdDelete(this)"><span class="icon_plus"></span>회원삭제</button>
+					<button type="button" class="h22 t4 small icon gray" onClick="prdDelete()"><span class="icon_plus"></span>회원삭제</button>
 				</td>
 			</tr>
 		</table>
@@ -204,7 +196,7 @@ function prdDelete(){
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2" >
 	        	<thead> 
 	        		<tr class="success">
-						<td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this)"/></td>
+						<td width="5%"><input type="checkbox" name="select_tmp" id="select_tm"  onClick="selectAll(this)"/></td>
 						<td width="5%">번호</td>
 						<td>아이디</td>
 						<td width="15%">패스워드</td>
@@ -236,7 +228,7 @@ function prdDelete(){
 					%>
 		
 						<tr>
-							<td><input type="checkbox" name="select_tmp" value="<%=dto.getId()%>" onClick="selectReverse(this)"/></td>
+							<td><input type="checkbox" name="select_tmp"  id="select_tm" value="<%=dto.getId()%>"/></td>
 							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=vNum %></a></td>
 							<td class="text-left"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getId() %></a></td>
 							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getPass() %></a></td>

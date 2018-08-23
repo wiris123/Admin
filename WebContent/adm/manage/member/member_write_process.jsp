@@ -22,12 +22,12 @@ MemberDAO dao = new MemberDAO();
 int af = dao.memberRegist(dto);
 if(af==1){
 	
-	JavascriptUtil.jsAlertLocation("성공", 
+	JavascriptUtil.jsAlertLocation("입력되었습니다", 
 			"../member/member_list.jsp", out);
 }
 else{
 	//out.println("실패");
-	JavascriptUtil.jsAlertBack("실패", out);
+	JavascriptUtil.jsAlertBack("에러 발생", out);
 }
 
 
