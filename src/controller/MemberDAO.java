@@ -173,13 +173,14 @@ public class MemberDAO {
 		return totalCount;
 	}
 	
-	public int delete(String id) {
+	public int delete(String id,String reason) {
 		int affected = 0;
 		try {
 			String query = "DELETE FROM member WHERE id=?";
 			
 			psmt = con.prepareStatement(query);			
-			psmt.setString(1, id);;
+			psmt.setString(1, id);
+			psmt.setString(2, "삭제");
 			
 			affected = psmt.executeUpdate();
 		}

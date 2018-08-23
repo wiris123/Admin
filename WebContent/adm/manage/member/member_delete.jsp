@@ -13,17 +13,17 @@
 
 request.setCharacterEncoding("UTF-8");
 
-Map<String,Object> param = new HashMap<String,Object>();
+
 String id = request.getParameter("id");
 String nowPage = request.getParameter("nowPage");
 String reason = request.getParameter("reason");
-param.put("id", id);
+
 
 MemberDAO dao = new MemberDAO();
 MemberDTO dto = new MemberDTO();
 OutMemDTO dto1 = new OutMemDTO(id,reason,null);
 int af = dao.memberRegist2(dto1);
-int affected  = dao.delete(param);
+int affected  = dao.delete(id);
 
 if(affected==1 && af==1)
 {

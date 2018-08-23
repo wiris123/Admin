@@ -15,12 +15,19 @@ public class OutMemDTO {
 	}
 	
 	//인자 생성자
+	
 	public OutMemDTO(String id, String reason, Date regidate) {
 		super();
 		this.id = id;
 		this.reason = reason;
 		this.regidate = regidate;
 	}
+	public OutMemDTO(String id, String reason) {
+		super();
+		this.id = id;
+		this.reason = reason;
+	}
+
 	public String getId() {
 		return id;
 	}
