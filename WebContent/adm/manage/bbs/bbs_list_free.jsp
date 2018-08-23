@@ -91,10 +91,12 @@ if(b_id.equals("photo")){
 	<link href="../../bbs/skin/bbsBasic/style.css" rel="stylesheet"
 		type="text/css">
 	<h3 style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px; font-family: '돋움', 'Dotum', Helvetica;">자유게시판</h3>
+	<form name=freefrm>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0"
 		style="border-top: 1px solid #333;">
 		<tr style="background: #f7f7f7;">
-			<th width="8%" height="38">번호</th>
+			<th width="2%"><input type="checkbox" name="select_all" onClick="selectAll(this.form, this)"></td>
+			<th width="6%" height="38">번호</th>
 			<th width="*">제목</th>
 			<th width="12%">작성자</th>
 			<th width="12%">작성일</th>
@@ -105,23 +107,34 @@ if(b_id.equals("photo")){
 		<tr>
 			<td colspan="10" height="1" bgcolor="#d7d7d7"></td>
 		</tr>
-
+		<%
+		if(bbs.isEmpty()){
+			//컬렉션에 저장된 데이터가 없는경우
+		%>
+			<tr>
+			   <td colspan="5" align="center">
+			      등록된 게시물이 없습니다^^*
+			   </td>
+			</tr>
+		<%
+		}else{ 
+		for(BoardDTO dto : bbs){ %>
 		<!-- 리스트 반복 -->
 		<tr style="">
-			<td align="center" height="38">2</td>
+			<td align="center" width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getNum()%>"></td>
+			<td align="center" height="38"><%=dto.getNum() %></td>
 			<td align="left" style="padding-left: 10px; word-break: break-all;"><a
-				href='bbs_contents.jsp?ptype=view&amp;idx=5275&amp;page=1&amp;code=bbsBasic'>[카테고리1]
-					게시물 테스트 입니다. 게시물 테스트 입니다. ...</a> (1)</td>
-			<td align="center">홈페이지</td>
-			<td align="center">2016/04/11</td>
-			<td align="center">8</td>
+				href='bbs_contents.jsp?ptype=view&amp;idx=5275&amp;page=1&amp;code=bbsBasic'><%=dto.getTitle() %></a> <!-- 댓글란 --></td>
+			<td align="center"><%=dto.getName() %></td>
+			<td align="center"><%=dto.getRegidate() %></td>
+			<td align="center"><%=dto.getViewcnt() %></td>
 			<td align="center">0</td>
 		</tr>
 		<tr>
 			<td colspan="10" height="1" bgcolor="#d7d7d7"></td>
 		</tr>
 		<!-- 리스트 반복 끝 -->
-
+		<%}} %>
 	</table>
 	<!-- 게시물 끝 -->
 	<!-- 페이지 번호 -->
@@ -160,7 +173,7 @@ if(b_id.equals("photo")){
 		</tr>
 	</table>
 	<!-- 페이지 번호끝 -->
-
+	</form>
 	<!-- 검색 -->
 	<div class="AWbbs_f_search">
 		<form name="sfrm"

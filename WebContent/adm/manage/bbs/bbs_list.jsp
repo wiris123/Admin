@@ -18,8 +18,8 @@
 		<div class="nav_handle_left">
 			<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
 		</div>
-
-
+	
+		<script Language="JavaScript" src="../select.js"></script>
 		<%@include file="../include/bbs_left.jsp"%>
 		<div id="Container">
 	
@@ -31,6 +31,9 @@
 						<div style="margin: 10px 0 0;">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0">
 								<tr>
+									<td width="33%">
+         								<button type="button" class="h22 t4 small icon gray" onClick="selDelete();"><span class="icon_plus"></span>선택삭제</button>
+         							</td>
 									<td align="right">
 										<a href='bbs_write.jsp?b_id=${param.b_id }' onclick="window.open(this.href,'팝업창','width=800, height=800'); return false;">
 									<img src='../../bbs/skin/bbsBasic/image/btn_write.gif' border='0'></a></td>

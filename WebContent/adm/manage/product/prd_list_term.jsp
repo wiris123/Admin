@@ -369,7 +369,7 @@ function copyPrd(){
 	 	{
 			var selvalue = document.getElementsByName("select_chkbox")
 			
-	 		if(selvalue == false)
+	 		if(selvalue.checked == null)
 	 		{
 	 			alert("삭제할 상품을 선택하세요.");
 	 			return false;
