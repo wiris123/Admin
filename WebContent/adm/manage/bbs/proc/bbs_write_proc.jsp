@@ -14,7 +14,6 @@
 	String regidate = request.getParameter("regidate");
 	SimpleDateFormat dt = new SimpleDateFormat("yy/mm/dd");
 	Date date = dt.parse(regidate);
-	
 	BoardDTO dto = new BoardDTO();
 	dto.setB_id(b_id);
 	dto.setId(id);

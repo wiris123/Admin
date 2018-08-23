@@ -194,7 +194,7 @@ dao.close();
 	 			alert("삭제할 상품을 선택하세요.");
 	 			return false;
 	 		}
-	 		else
+	 		else 
 	 		{
 	 			if(confirm("선택한 상품을 정말 삭제하시겠습니까?"))
 	 			{

@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -64,9 +65,68 @@ public class BbsDAO {
 	}
 	
 	public List<BoardDTO> selectList(Map<String,Object> param){
+		BoardDTO dto;
 		List<BoardDTO> list=new Vector<BoardDTO>();
-		
+		String query = "select * from (select e.*, rownum from (select * from multiboard where b_id=?) e)";
+		try {
+			String b_id = (String)param.get("b_id");
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, b_id);
+			System.out.println(query+b_id);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				System.out.println("드러왔다"+rs.getString("num"));
+				dto = new BoardDTO();
+				dto.setNum(rs.getString("NUM"));
+				dto.setName(rs.getString("NAME"));
+				dto.setTitle(rs.getString("TITLE"));
+				dto.setRegidate(rs.getDate("REGIDATE"));
+				dto.setViewcnt(rs.getString("VIEWCNT"));
+				
+				list.add(dto);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 	
+	public int write(BoardDTO dto) {
+		int affected=-1;
+		String query = "insert into multiboard values(board_seq.nextval, '짐배', ?, ?, ?, sysdate, 0, null, ?, null)";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getTitle());
+			psmt.setString(3, dto.getContents());
+			psmt.setString(4, dto.getB_id());
+			affected = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return affected;
+	}
+	
+	//삭제용 메소드
+	public int delete(String term_name) {
+		int affected = 0;
+		try {
+			String query = "delete from multiboard where num=?";
+			
+			psmt = con.prepareStatement(query);			
+			psmt.setString(1, term_name);
+			 
+			affected = psmt.executeUpdate();
+		}
+		
+		catch(Exception e) {
+			System.out.println("delete_board중 예외발생");
+			e.printStackTrace();
+		}
+		System.out.println("term_name"+term_name);
+		return affected;	
+	}
 }

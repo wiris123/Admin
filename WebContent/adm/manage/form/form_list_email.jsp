@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="controller.CounselDAO"%>
+<%@page import="controller.CounselDAO"%> 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -115,7 +115,7 @@ dao.close();
 		<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
 	</div>
 	
-	<%@include file="../include/common_form.jsp" %>
+	<%@include file="../include/common_form.jsp " %>
 	
     <div id="left_area">
 	<%@include file="../include/form_left.jsp"%>
@@ -124,7 +124,7 @@ dao.close();
 <div id="location">HOME > <%= path_str %></div>
 <div id="S_contents">
 <h3><%= path_str %><span>작성된 <%= path_str %>을 관리 합니다.</span></h3>		
-
+ 
 <form action="http://demohome.anywiz.co.kr/adm/manage/form/form_list.php">
 <input type="hidden" name="flag" value="<%=flag %>" />
 <input type="hidden" name="nowPage" value="1" />

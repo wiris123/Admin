@@ -8,7 +8,6 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	String id = request.getParameter("id");
-	String reason = request.getParameter("reason");
 	
 	String[] sp_name =id.split("-");
 	MemberDAO dao = new MemberDAO();
@@ -17,8 +16,7 @@
 	for(int i=1; i<sp_name.length; i++)
 	{
 		
-		aff = dao.delete(sp_name[i]);
-		aff = dao.memberRegist2(sp_name[i],reason);
+		aff = dao.delete(id);
 		
 	}
 	dao.close();
