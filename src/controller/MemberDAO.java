@@ -179,7 +179,7 @@ public class MemberDAO {
 			String query = "DELETE FROM member WHERE id=?";
 			
 			psmt = con.prepareStatement(query);			
-			psmt.setString(1, id);;
+			psmt.setString(1, id);
 			
 			affected = psmt.executeUpdate();
 		}
