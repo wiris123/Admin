@@ -9,7 +9,7 @@
 <%
 //한글처리
    request.setCharacterEncoding("UTF-8");
-
+ 
    //커넥션풀로 변경
    InsuDAO dao = new InsuDAO();   
    
