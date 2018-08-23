@@ -325,7 +325,7 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 		return dto ;
 	}
 	
-	public int memberRegist2(OutMemDTO dto) {
+	public int memberRegist2(String id, String reason) {
 		//적용된 행의 갯수확인을 위한 변수
 		int affected = 0;
 		try {
@@ -333,8 +333,8 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 
 			psmt = con.prepareStatement(query);
 			
-			psmt.setString(1, dto.getId());
-			psmt.setString(2, "삭제");
+			psmt.setString(1, id);
+			psmt.setString(2, "삭제"); //reason
 			
 			
 			affected = psmt.executeUpdate();
