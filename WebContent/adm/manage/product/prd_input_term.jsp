@@ -84,38 +84,11 @@
 	</div><!-- //left_area// -->
 
 	<div id="Container">
-<<<<<<< HEAD
-    
-<script language="JavaScript" type="text/javascript">
-
-	function formChk(f){
-		if(f.term_name.value==""){
-			alert("상품명을 입력하세요");
-			f.term_name.focus();
-			return false;
-		}
-		
-		if(f.monthpay.value==""){
-			alert("계산식을 입력하세요");
-			f.monthpay.focus();
-			return false;
-		}
-	}
-		
-</script>
-
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="setClass01();setCategory();prdlayCheck();lodingComplete();prdFocus();">
-=======
->>>>>>> refs/remotes/origin/underwearRun
-
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
 	
 	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
-<!--  enctype="multipart/form-data" return inputCheck(this);-->
-<<<<<<< HEAD
-	<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
-=======
+
 <script>
 /* 월 납입액을 계산하는 ajax */
 function premPlus(rp)
@@ -149,9 +122,17 @@ function premPlus(rp)
 	});
 }
 
+function formChk(f){
+	if(f.term_name.value==""){
+		alert("상품명을 입력하세요");
+		f.term_name.focus();
+		return false;
+	}
+	
+}
+
 </script>
-	<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="">
->>>>>>> refs/remotes/origin/underwearRun
+<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
 <!-- 	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
 	<input type="hidden" name="relidx" value=""> -->
@@ -166,11 +147,7 @@ function premPlus(rp)
 	<tr>
 		<th>보험종류</th>
 		<td colspan="3">
-<<<<<<< HEAD
 			<input name="instype" type="text" value="2" size="1" class="input" readonly="readonly" style="border: 0">
-=======
-			<input name="prdnum" type="text" value="2" size="30" class="input" readonly>
->>>>>>> refs/remotes/origin/underwearRun
 		</td>
 	</tr>
 	<tr>
@@ -205,11 +182,7 @@ function premPlus(rp)
 	<tr>
 		<th>위험할증률</th>
 		<td colspan="3">
-<<<<<<< HEAD
-			<input type="number" name="rprem" min="0" max="10" value="0" size="2"/>
-=======
 			<input type="text" name="rprem" id="rp" placeholder="1~10까지의 정수숫자"/>
->>>>>>> refs/remotes/origin/underwearRun
 	</td>
 	</tr>
 	<tr>
@@ -234,10 +207,7 @@ function premPlus(rp)
 			<input type="file" name="attfile"/>
 	</td>
 	</tr>
-<<<<<<< HEAD
-=======
 </table>
->>>>>>> refs/remotes/origin/underwearRun
 	<tr>
 		<th height="25" >상품간단설명</th>
 		<td colspan="3">
@@ -245,9 +215,6 @@ function premPlus(rp)
 		</td>
 	</tr>
 </table>
- 
-	</table>
-
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
 	<tr>
 		<td align="center">

@@ -76,7 +76,54 @@
 		}
 	}
 
-	
+	function formChk(f){
+		if(f.prop_name.value==""){
+			alert("상품명을 입력하세요");
+			f.prop_name.focus();
+			return false;
+		}
+		if(f.monthpay.value==""){
+			alert("월납입액을 입력하세요");
+			f.monthpay.focus();
+			return false;
+		}
+		if(f.hosp.value==""){
+			alert("질병입원보장을 입력하세요");
+			f.hosp.focus();
+			return false;
+		}
+		if(f.gohosp.value==""){
+			alert("질병통원보장을 입력하세요");
+			f.gohosp.focus();
+			return false;
+		}
+		
+		if(f.sanghosp.value==""){
+			alert("상해입원보장을 입력하세요");
+			f.sanghosp.focus();
+			return false;
+		}
+		if(f.sgohosp.value==""){
+			alert("상해통원보장을 입력하세요");
+			f.sgohosp.focus();
+			return false;
+		}
+		if(f.chbedosu.value==""){
+			alert("비급여도수를 입력하세요");
+			f.chbedosu.focus();
+			return false;
+		}
+		if(f.chbeinje.value==""){
+			alert("체외충격파를 입력하세요");
+			f.chbeinje.focus();
+			return false;
+		}
+		if(f.chbemri.value==""){
+			alert("자기공명진단을 입력하세요");
+			f.chbemri.focus();
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
@@ -311,54 +358,7 @@ function prdFocus(){
 }
 
 //-->
-	function formChk(f){
-		if(f.prop_name.value==""){
-			alert("상품명을 입력하세요");
-			f.prop_name.focus();
-			return false;
-		}
-		if(f.monthpay.value==""){
-			alert("월납입액을 입력하세요");
-			f.monthpay.focus();
-			return false;
-		}
-		if(f.hosp.value==""){
-			alert("질병입원보장을 입력하세요");
-			f.hosp.focus();
-			return false;
-		}
-		if(f.gohosp.value==""){
-			alert("질병통원보장을 입력하세요");
-			f.gohosp.focus();
-			return false;
-		}
-		
-		if(f.sanghosp.value==""){
-			alert("상해입원보장을 입력하세요");
-			f.sanghosp.focus();
-			return false;
-		}
-		if(f.sgohosp.value==""){
-			alert("상해통원보장을 입력하세요");
-			f.sgohosp.focus();
-			return false;
-		}
-		if(f.chbedosu.value==""){
-			alert("비급여도수를 입력하세요");
-			f.chbedosu.focus();
-			return false;
-		}
-		if(f.chbeinje.value==""){
-			alert("체외충격파를 입력하세요");
-			f.chbeinje.focus();
-			return false;
-		}
-		if(f.chbemri.value==""){
-			alert("자기공명진단을 입력하세요");
-			f.chbemri.focus();
-			return false;
-		}
-	}
+
 </script>
 
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="setClass01();setCategory();prdlayCheck();lodingComplete();prdFocus();">

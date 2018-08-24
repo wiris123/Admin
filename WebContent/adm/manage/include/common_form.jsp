@@ -3,7 +3,8 @@
 <%
 String path_str="";
 String page_flag = "";
-switch(flag){
+switch(flag)
+{
 case "f":
 	path_str = "통합상담관리";
 	page_flag = "list_";
