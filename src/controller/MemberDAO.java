@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -476,7 +477,7 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 			psmt.setString(2, dto.getName());
 			psmt.setString(3, dto.getId());
 			psmt.setString(4, dto.getMobile());
-			psmt.setDate(5, dto.getRegidate());
+			
 			psmt.setString(6, dto.getContents());
 			
 				
