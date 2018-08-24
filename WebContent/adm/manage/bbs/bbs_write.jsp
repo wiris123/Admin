@@ -40,21 +40,17 @@ history.go(-1);
 								frm.name.focus();
 								return false;
 							}
-							if (frm.passwd != null && frm.passwd.value == "") {
-								alert("비밀번호를 입력하세요.");
-								frm.passwd.focus();
-								return false;
-							}
-							if (frm.subject.value == "") {
+
+							if (frm.title.value == "") {
 								alert("제목을 입력하세요.");
-								frm.subject.focus();
+								frm.title.focus();
 								return false;
 							}
 							try {
 								content.outputBodyHTML();
 							} catch (e) {
 							}
-							if (frm.content.value == "") {
+							if (frm.contents.value == "") {
 								alert("내용을 입력하세요.");
 								return false;
 							}
