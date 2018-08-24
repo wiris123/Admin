@@ -254,7 +254,7 @@
 	 	{
 			var selvalue = document.getElementsByName("select_chkbox")
 			
-	 		if(selvalue == false)
+	 		if(selvalue.checked == false && selvalue.value==null )
 	 		{
 	 			alert("삭제할 상품을 선택하세요.");
 	 			return false;
@@ -301,7 +301,7 @@
          <form>
          <thead>
         <tr>
-           <td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
+           <td width="5%"><input type="checkbox" name="select_tmp" onClick="selectAll(this)"></td>
           <td width="15%">상품명</td>
           <td width=15%>연금게시일</td>
           <td width="10%">연금납부연한</td>

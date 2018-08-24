@@ -62,8 +62,6 @@
 		$('#Container_wrap').removeClass('left_close'); 
 
 	 }
-
-
 	});
 
 	function leftBtn() {
@@ -76,7 +74,6 @@
 		}
 	}
 
-	
 </script>
 </head>
 <body>
@@ -94,7 +91,7 @@
 	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
 <!--  enctype="multipart/form-data" return inputCheck(this);-->
 <script>
-
+/* 월 납입액을 계산하는 ajax */
 function premPlus(rp)
 {
 	$(function()
@@ -232,7 +229,7 @@ function premPlus(rp)
 	<tr>
 		<th>월 납입액</th>
 		<td colspan="3">
-			<span id="mp"><input type="text" /></span>
+			<span id="mp"><input type="text" placeholder="사망보험금까지 선택하면 자동으로 계산"/></span>
 	</td>
 	</tr>
 	<tr>
@@ -241,9 +238,7 @@ function premPlus(rp)
 			<input type="file" name="attfile"/>
 	</td>
 	</tr>
-
 </table>
-
 	<tr>
 		<th height="25" >상품간단설명</th>
 		<td colspan="3">
