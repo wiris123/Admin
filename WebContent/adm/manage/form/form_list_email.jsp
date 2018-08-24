@@ -200,24 +200,58 @@ dao.close();
   <% 	}
 	}%>
   </table>
-  </form>
 
 
+<div align="left">
 <table width="100%"border="0" cellpadding="0" cellspacing="0" class="top5">
-  <tr>
-    <td width="20%"><input type="hidden" value="<%=page_flag%>" id="page_flag"/>
-    <button type="button" class="h22 t4 small icon gray" onClick="formDelete();"><span class="icon_plus"></span>선택삭제</button>
+<tr>
+	<td width="20%">
+    	<input type="hidden" value="<%=page_flag%>" id="page_flag"/>
+    	<button type="button" class="h22 t4 small icon gray" onClick="formDelete();">
+    		<span class="icon_plus"></span>선택삭제
+    	</button>
+   
+    	<input type="hidden" value="<%=page_flag%>" id="page_flag"/>
+    	<button type="button" class="h22 t4 small icon gray" onClick="location.href='form_email_write.jsp'">
+    		<span class="icon_plus"></span>글쓰기
+    	</button>
     </td>
-    <td width="20%"><input type="hidden" value="<%=page_flag%>" id="page_flag"/>
-    <button type="button" class="h22 t4 small icon gray" onClick="location.href='form_email_write.jsp'"><span class="icon_plus"></span>글쓰기</button>
-    </td>
-    <td width="33%">
-    	<table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
-  </tr>
+    </table>
+</div>
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+	<tr>
+		<td align='center'>
+		<table border='0' cellspacing='0' cellpadding='0'>        
+			<tr>
+				<td width='22' height='50'>
+					<a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='>
+						<img src='../image/btn_prev2.gif' align='absmiddle' border=0'>
+					</a>
+				</td>
+				<td width='22'>
+					<a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='>
+						<img src='../image/btn_prev.gif' align='absmiddle' border=0'>
+					</a>
+				</td>
+				<td align='center'>&nbsp; <b>1</b> /&nbsp; </td>          
+				<td width='22' align='right'>
+					<a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='>
+						<img src='../image/btn_next.gif' align='absmiddle' border='0'>
+					</a>
+				</td>
+				<td width='22' align='right'>
+					<a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='>
+						<img src='../image/btn_next2.gif' align='absmiddle' border='0'>
+					</a>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
 </table>
 </div>
 </div>
-
+</div>
 <div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
 </body>
 </html>
