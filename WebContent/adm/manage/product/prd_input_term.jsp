@@ -73,6 +73,66 @@
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
 		}
 	}
+	/* 월 납입액을 계산하는 ajax */
+	function premPlus(rp)
+	{
+		$(function()
+		{
+			$.ajax
+			({
+				url:"rprem.jsp",
+				type : "get",
+				data : 
+				{
+					paytime : $('#payt').val(),
+					instime : $('#inst').val(),
+					rprem : $('#rp').val(),
+					death : $('#death').val()
+				},
+				dataType : "html",
+				contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
+				success:function(responseData)
+				{
+					alert("성공인데 시벌아 = "+responseData);
+					$('#mp').html(responseData);		
+				},
+				error:function(errorData){
+					alert("오류발생 : "+errorData.status+":"+errorData.statusText);
+				}
+
+			});	
+
+		});
+	}
+
+	//form 유효성 검사
+	function formChk(f){
+		if(f.term_name.value==""){
+			alert("상품명을 입력하세요");
+			f.term_name.focus();
+			return false;
+		}
+		if(f.paytime.value==""){
+			alert("납입기간을 선택하세요");
+			f.paytime.focus();
+			return false;
+		}
+		if(f.instime.value==""){
+			alert("보험기간을 선택하세요");
+			f.instime.focus();
+			return false;
+		}
+		if(f.rprem.value==""){ 
+			alert("위험할증률을 선택하세요");
+			f.rprem.focus();
+			return false;
+		}
+		if(f.deathben.value==""){ 
+			alert("사망보험금을 선택하세요");
+			f.deathben.focus();
+			return false;
+		}
+	}
 
 </script>
 </head>
@@ -82,41 +142,17 @@
 	<!-- 레프트메뉴 -->
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
-
 	<div id="Container">
-<div id="location">HOME > 상품관리</div>
-<div id="S_contents">
+	<div id="location">HOME > 상품관리</div>
+	<div id="S_contents">
 	
-	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
+		<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
+		<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
 
-<script>
-/* 월 납입액을 계산하는 ajax */
-function premPlus(rp)
-{
-	$(function()
-	{
-		$.ajax
-		({
-			url:"rprem.jsp",
-			type : "get",
-			data : 
-			{
-				paytime : $('#payt').val(),
-				instime : $('#inst').val(),
-				rprem : $('#rp').val(),
-				death : $('#death').val()
-			},
-			dataType : "html",
-			contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
-			success:function(responseData)
-			{
-				alert("성공인데 시벌아 = "+responseData);
-				$('#mp').html(responseData);		
-			},
-			error:function(errorData){
-				alert("오류발생 : "+errorData.status+":"+errorData.statusText);
-			}
-
+<<<<<<< HEAD
+		<input type="hidden" name="instype" value="2"> 
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
+=======
 		});	
 
 	});
@@ -153,7 +189,7 @@ function formChk(f){
 	<tr>
 		<th>납입기간</th>
 		<td colspan="3">
-			<select name="paytime" id="payt" value="">
+			<select name="paytime" id="payt" value="" onChange="premPlus();">
 				<option value="10">10년납</option>
 				<option value="20">20년납</option>
 				<option value="40">60세납</option>
@@ -165,16 +201,101 @@ function formChk(f){
 		<th>보험기간</th>
 		<td colspan="3">
 			<table border="0" cellspacing="0" cellpadding="0">
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 			<tr>
+<<<<<<< HEAD
+				<th>상품명</th>
+				<td colspan="3">
+					<input name="term_name" type="text" value="" size="30" class="input">&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<th>보험종류</th>
+				<td colspan="3">
+					<input name="instype" type="text" value="2" size="1" class="input" readonly="readonly" style="border: 0">
+				</td>
+			</tr>
+			<tr>
+				<th>납입기간</th>
+				<td colspan="3">
+					<select name="paytime" id="payt" value="">
+						<option value="">==선택==</option>
+						<option value="10">10년납</option>
+						<option value="20">20년납</option>
+						<option value="40">60세납</option>
+						<option value="45">65세납</option>
+=======
 				<td colspan="2">
-					<select name="instime" id="inst" value="">
+					<select name="instime" id="inst" value="" onChange="premPlus();">
 						<option value="10">10년만기</option>
 						<option value="20">20년만기</option>
 						<option value="40">60세까지</option>
 						<option value="50">70세까지</option>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 					</select>
 				</td>
 			</tr>
+<<<<<<< HEAD
+			<tr>
+				<th>보험기간</th>
+				<td colspan="3">
+					<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td colspan="2">
+							<select name="instime" id="inst" value="">
+								<option value="">==선택==</option>
+								<option value="10">10년만기</option>
+								<option value="20">20년만기</option>
+								<option value="40">60세까지</option>
+								<option value="50">70세까지</option>
+							</select>
+						</td>
+					</tr>
+					
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<th>위험할증률</th>
+				<td colspan="3">
+					<select name="rprem" id="">
+						<option value="">==선택==</option>
+						<%for(int i=0; i<=10; i++){ %>
+						<option value="<%=i%>"><%=i %></option>
+						<%} %>	
+					</select>
+			</td>
+			</tr>
+			<tr>
+				<th>사망보험금</th>
+				<td colspan="3">
+					<select name="deathben" id="death" onChange="premPlus(this);">
+						<option value="">==선택==</option>
+						<option value="15000000">1억5천</option>
+						<option value="10000000">1억</option>
+						<option value="5000000">5천</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>월 납입액</th>
+				<td colspan="3">
+					<span id="mp"><input type="text" size="40" placeholder="사망보험금까지 선택하면 자동으로 계산" style="border: 0"/></span>
+			</td>
+			</tr>
+			<tr>
+				<th>첨부파일</th>
+				<td colspan="3">
+					<input type="file" name="attfile"/>
+			</td>
+			</tr>
+			<tr>
+				<th height="25" >상품간단설명</th>
+				<td colspan="3">
+					<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
+				</td>
+			</tr>
+=======
 			
 			</table>
 		</td>
@@ -182,13 +303,13 @@ function formChk(f){
 	<tr>
 		<th>위험할증률</th>
 		<td colspan="3">
-			<input type="text" name="rprem" id="rp" placeholder="1~10까지의 정수숫자"/>
+			<input type="number" name="rprem" id="rp" placeholder="1~10까지의 정수숫자" onKeyup="premPlus();"/>
 	</td>
 	</tr>
 	<tr>
 		<th>사망보험금</th>
 		<td colspan="3">
-			<select name="deathben" id="death" onChange="premPlus(this);">
+			<select name="deathben" id="death" onChange="premPlus();">
 				<option value="15000000">1억5천</option>
 				<option value="10000000">1억</option>
 				<option value="5000000">5천</option>
@@ -222,14 +343,22 @@ function formChk(f){
 			<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_term.jsp';">목록</button>
 		</td>
 	</tr>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 	</table>
-</form>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
+		<tr>
+			<td align="center">
+				<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
+				<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_term.jsp';">목록</button>
+			</td>
+		</tr>
+	</table>
+	</form>
+	<!-- </div> -->
+	</div><!-- //Container// -->
+	</div><!-- //Container_wrap// -->
 
-	</div>
-</div><!-- //Container// -->
-</div><!-- //Container_wrap// -->
-
-<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+	<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
 </body>
 
 <!-- Mirrored from demohome.anywiz.co.kr/adm/manage/product/prd_input.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:11:59 GMT -->

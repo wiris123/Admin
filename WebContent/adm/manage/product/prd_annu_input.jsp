@@ -25,58 +25,88 @@
 	}
 </style>
 <script>
-	$(function() {
-		$( "#datepicker1" ).datepicker({
-			dateFormat: 'yy-mm-dd',
-				//yearSuffix: '년',
-				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-				monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-				changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
-				changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
-				showMonthAfterYear: true // 년월 셀렉트 박스 위치 변경
-				//altField: "#date", // 타겟 필드
-				//minDate: '-0d', // 오늘 이전 날짜는 선택 못함
-				
-		});
+$(function() {
+	$( "#datepicker1" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+			//yearSuffix: '년',
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+			changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+			showMonthAfterYear: true // 년월 셀렉트 박스 위치 변경
+			//altField: "#date", // 타겟 필드
+			//minDate: '-0d', // 오늘 이전 날짜는 선택 못함
+			
 	});
-	$(function() {
-		$( "#datepicker2" ).datepicker({
-			dateFormat: 'yy-mm-dd',
-				//yearSuffix: '년',
-				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-				monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-				changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
-				changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
-				showMonthAfterYear: true // 년월 셀렉트 박스 위치 변경
-				//altField: "#date", // 타겟 필드
-				//minDate: '-0d', // 오늘 이전 날짜는 선택 못함
-				
-		});
+});
+$(function() {
+	$( "#datepicker2" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+			//yearSuffix: '년',
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+			changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+			showMonthAfterYear: true // 년월 셀렉트 박스 위치 변경
+			//altField: "#date", // 타겟 필드
+			//minDate: '-0d', // 오늘 이전 날짜는 선택 못함
+			
 	});
+});
 
-	$(document).ready(function(){
+$(document).ready(function(){
 
-	 if($.cookie("left_quick") == "close"){
-		$('#Container_wrap').addClass('left_close'); 
-	 }else{
-		$('#Container_wrap').removeClass('left_close'); 
+ if($.cookie("left_quick") == "close"){
+	$('#Container_wrap').addClass('left_close'); 
+ }else{
+	$('#Container_wrap').removeClass('left_close'); 
 
-	 }
+ }
 
 
-	});
+});
 
-	function leftBtn() {
-		$('#Container_wrap').toggleClass('left_close');   
-		if ($('#Container_wrap').hasClass('left_close')) {
-			$.cookie('left_quick', 'close', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });
-		}
-		else {
-			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
-		}
+function leftBtn() {
+	$('#Container_wrap').toggleClass('left_close');   
+	if ($('#Container_wrap').hasClass('left_close')) {
+		$.cookie('left_quick', 'close', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });
 	}
+	else {
+		$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
+	}
+}
 
+//form 유효성 검사
+function formChk(f){
+	if(f.ann_name.value==""){
+		alert("상품명을 입력하세요");
+		f.ann_name.focus();
+		return false;
+	}
+	if(f.instart.value==""){
+		alert("연금게시일을 입력하세요");
+		f.instart.focus();
+		return false;
+	}
+	if(f.paytime.value==""){
+		alert("연금납부연한을 입력하세요");
+		f.paytime.focus();
+		return false;
+	}
+	if(f.payment.value==""){
+		alert("월납입액을 입력하세요");
+		f.payment.focus();
+		return false;
+	}
+	if(f.rprem.value==""){ 
+		alert("위험할증률을 선택하세요");
+		f.rprem.focus();
+		return false;
+	}
 	
+	
+}
+
 </script>
 </head>
 <body>
@@ -86,35 +116,6 @@
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
 	<div id="Container">
-<script language="JavaScript" type="text/javascript">
-	function formChk(f){
-		if(f.ann_name.value==""){
-			alert("상품명을 입력하세요");
-			f.ann_name.focus();
-			return false;
-		}
-		if(f.instart.value==""){
-			alert("연금게시일을 입력하세요");
-			f.instart.focus();
-			return false;
-		}
-		if(f.paytime.value==""){
-			alert("연금납부연한을 입력하세요");
-			f.paytime.focus();
-			return false;
-		}
-		if(f.payment.value==""){
-			alert("월납입액을 입력하세요");
-			f.payment.focus();
-			return false;
-		}
-		if(f.monthann.value==""){
-			alert("매월 연금 수령액을 입력하세요");
-			f.monthann.focus();
-			return false;
-		}
-	}
-</script>
 
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="setClass01();setCategory();prdlayCheck();lodingComplete();prdFocus();">
 
@@ -133,7 +134,7 @@
 	<tr>
 		<th>상품명</th>
 		<td colspan="3">
-			<input name="ann_name" type="text" value="" size="60" class="input">&nbsp;
+			<input name="ann_name" type="text" value="" size="30" class="input">&nbsp;
 		</td>
 	</tr>
 	<tr>
@@ -157,23 +158,34 @@
 	<tr>
 		<th>월 납입액</th>
 		<td colspan="3">
-			<input type="text" name="payment" placeholder="계산식" />
+			<input type="number" min="10" max="40" value="10" name="payment" />
+			<b style="font-size: 10; color: #D5D5D5">납입액은 10만원부터 40만원 까지 가능합니다.</b>
 	</td>
 	</tr>
 	<tr>
 		<th>위험할증률</th>
 		<td colspan="3">
-			<input type="number" value="0" min="0" max="10" name="rprem"  />
+			<select name="rprem" id="">
+				<option value="">==선택==</option>
+				<%for(int i=0; i<=10; i++){ %>
+				<option value="<%=i%>"><%=i %></option>
+				<%} %>	
+			</select>
 	</td>
 	<tr>
 		<th>보장수익률</th>
 		<td colspan="3">
-			<input type="number" value="0" min="0" max="10" name="interest" />
+			<select name="interest" id="">
+				<option value="">==선택==</option>
+				<%for(int i=0; i<=10; i++){ %>
+				<option value="<%=i%>"><%=i %></option>
+				<%} %>	
+			</select>
 	</td>
 	<tr>
 		<th>매월 연금수령액</th>
 		<td colspan="3">
-			<input type="text" name="monthann" value="" />
+			<input type="text" name="monthann" value="" placeholder="자동으로 계산" style="border: 0"/>
 	</td>
 	<tr>
 		<th>계약일자</th>
@@ -183,69 +195,28 @@
 	<tr>
 		<th>계약상태</th>
 		<td colspan="3">
-			<select name="submit" id="">
-				<option value="Y">Y</option>
-				<option value="N">N</option>
-				<option value="E">E</option>
-			</select>
+			<input type="radio" value="Y" name="submit" checked="checked"/> Y &nbsp;&nbsp;&nbsp;
+			<input type="radio" value="N" name="submit"/> N &nbsp;&nbsp;&nbsp;
+			<input type="radio" value="E" name="submit"/> E
 		</td>
 	</tr>
-	
-			<!-- <tr>
-				<td>1.</td>
-				<td><input name="info_name1" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value1" type="text" value="" size="20" class="input"></td>
-				<td width="60" align="right">6.</td>
-				<td><input name="info_name6" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value6" type="text" value="" size="20" class="input"></td>
-			</tr>
+<<<<<<< HEAD
+		<tr>
+=======
 			<tr>
-				<td>2.</td>
-				<td><input name="info_name2" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value2" type="text" value="" size="20" class="input"></td>
-				<td align="right">7.</td>
-				<td><input name="info_name7" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value7" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>3.</td>
-				<td><input name="info_name3" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value3" type="text" value="" size="20" class="input"></td>
-				<td align="right">8.</td>
-				<td><input name="info_name8" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value8" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>4.</td>
-				<td><input name="info_name4" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value4" type="text" value="" size="20" class="input"></td>
-				<td align="right">9.</td>
-				<td><input name="info_name9" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value9" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>5.</td>
-				<td><input name="info_name5" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value5" type="text" value="" size="20" class="input"></td>
-				<td align="right">10.</td>
-				<td><input name="info_name10" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value10" type="text" value="" size="20" class="input"></td>
-			</tr> -->
-			<tr>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 		<th>첨부파일</th>
 		<td colspan="3">
 			<input type="file" name="attfile"/>
 	</td>
 	</tr>
-			
 			</table>
 		</td>
+<<<<<<< HEAD
 	</tr>
-	
-	
 </table>
-
-
+=======
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 	<br/>
 	<tr>
 		<th height="25" >상품간단설명</th>
