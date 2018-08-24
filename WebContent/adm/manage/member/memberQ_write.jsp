@@ -34,6 +34,18 @@
 </style>
 <script>
 
+function writeValidate(f)
+{
+	 oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD",[]);
+	 try{
+		 f.submit();
+	 }
+	 catch(e){
+	 
+	 }
+}
+
+
 function mValidate(fn){
 	//아이디검증
 	if(fn.id.value==""){
@@ -108,8 +120,8 @@ function email_input(em, frm){
 
 <div id="location">HOME > 회원관리</div>
 <div id="S_contents">
-	<h3>회원관리<span>회원을 추가합니다.</span></h3>
-		<form name="frm" action="member_write_process.jsp" method="post"  onSubmit="return mValidate(this);">
+	<h3>상담회원관리<span>회원을 추가합니다.</span></h3>
+		<form name="frm" action="memberQ_write_process.jsp" method="post"  onSubmit="return mValidate(this);">
 			<table width="100%" >
 				<tr>
 					<td>
@@ -118,14 +130,11 @@ function email_input(em, frm){
 								<th width="15%">아이디</th>
 								<td width="35%"><input name="id" type="text" value="" class="input"></td>
 							</tr>
-							<tr>	
-								<th width="15%">비밀번호</th>
-								<td width="35%"><input name="pass" type="password" value="" class="input" ><span>* 4자 이상 12자 이내의 영문/숫자 조합</span></td>
-							</tr>
 							<tr>
 								<th>이름</th>
 								<td><input name="name" type="text" value="" class="input"></td>
 							</tr>
+							
 							<tr>
 								<th>전화번호</th>
 								<td colspan="3">
@@ -134,86 +143,25 @@ function email_input(em, frm){
 								</td>
 
 							</tr>
+							
 							<tr>
-								<th>이메일</th>
-								<td> 
-									<input type="text" name="email1"  value="" /> @ 
-									<input type="text" name="email2"  value="" readonly />
-										<select name="last_email_check2" onChange="email_input(this,this.form);" class="pass" id="last_email_check2" >
-											<option selected="" value="">선택해주세요</option>
-											<option value="1" >직접입력</option>
-											<option value="dreamwiz.com" >dreamwiz.com</option>
-											<option value="empal.com" >empal.com</option>
-											<option value="empas.com" >empas.com</option>
-											<option value="freechal.com" >freechal.com</option>
-											<option value="hanafos.com" >hanafos.com</option>
-											<option value="hanmail.net" >hanmail.net</option>
-											<option value="hotmail.com" >hotmail.com</option>
-											<option value="intizen.com" >intizen.com</option>
-											<option value="korea.com" >korea.com</option>
-											<option value="kornet.net" >kornet.net</option>
-											<option value="msn.co.kr" >msn.co.kr</option>
-											<option value="nate.com" >nate.com</option>
-											<option value="naver.com" >naver.com</option>
-											<option value="netian.com" >netian.com</option>
-											<option value="orgio.co.kr" >orgio.co.kr</option>
-											<option value="paran.com" >paran.com</option>
-											<option value="sayclub.com" >sayclub.com</option>
-											<option value="yahoo.co.kr" >yahoo.co.kr</option>
-											<option value="yahoo.com" >yahoo.com</option>
-										</select>
-								</td>
-							</tr>
-							<tr>
-				    			<th>생일 </th>
-							    <td><input name="birth1" type="text">년
-								    <select name="birth2">
-									   <option value="1">1</option>
-									   <option value="2">2</option>
-									   <option value="3">3</option>
-									   <option value="4">4</option>
-									   <option value="5">5</option>
-									   <option value="6">6</option>
-									   <option value="7">7</option>
-									   <option value="8">8</option>
-								       <option value="9">9</option>
-									   <option value="10">10</option>
-									   <option value="11">11</option>
-									   <option value="12">12</option>	
-									</select>월
-									<select name="birth3">
-									   <option value="1">1</option>
-									   <option value="2">2</option>
-									   <option value="3">3</option>
-									   <option value="4">4</option>
-									   <option value="5">5</option>
-									   <option value="6">6</option>
-									   <option value="7">7</option>
-									   <option value="8">8</option>
-									   <option value="9">9</option>
-									   <option value="10">10</option>
-									   <option value="11">11</option>
-									   <option value="12">12</option>	
-									   <option value="13">13</option>
-									   <option value="14">14</option>
-									   <option value="15">15</option>
-									   <option value="16">16</option>
-									   <option value="17">17</option>
-									   <option value="18">18</option>
-									   <option value="19">19</option>
-									   <option value="20">20</option>
-									   <option value="21">21</option>
-									   <option value="22">22</option>
-									   <option value="23">23</option>
-									   <option value="24">24</option>
-									   <option value="25">25</option>
-									   <option value="26">26</option>
-									   <option value="27">27</option>
-									   <option value="28">28</option>
-									   <option value="29">29</option>
-									   <option value="30">30</option>
-									   <option value="31">31</option>
-									</select>일
+								<th class="text-center" style="vertical-align:middle;">내용</th>
+								<td>
+								<script type="text/javascript" src="./se2/workspace/js/service/HuskyEZCreator.js" charset="utf-8"></script>  
+		
+									<textarea name="contents" id="contents" rows="10" cols="300" style='width:100%;'>글내용</textarea>
+		
+									<script type="text/javascript">
+										var oEditors = [];
+										nhn.husky.EZCreator.createInIFrame({
+										oAppRef: oEditors,
+										elPlaceHolder: "contents",
+										sSkinURI: "./se2/workspace/SmartEditor2Skin.html",
+										
+										fCreator: "createSEditor2"	
+										});
+										
+									</script> 
 								</td>
 							</tr>
 						</table>
