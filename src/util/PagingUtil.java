@@ -21,7 +21,7 @@ public class PagingUtil {
 		*/
 		int intTemp = 
 			(((nowPage-1) / blockPage) * blockPage) + 1;
-		
+		 
 		//3.처음페이지 바로가기 & 이전페이지블럭 바로가기
 		if(intTemp != 1) {
 			//첫번째 페이지 블럭에서는 출력되지 않음
@@ -150,23 +150,20 @@ public class PagingUtil {
 		String pagingStr="";
 		
 		//1.전체페이지 구하기
-		int totalPage =
-			(int)(Math.ceil(((double)totalRecordCount/pageSize)));
+		int totalPage = (int)(Math.ceil(((double)totalRecordCount/pageSize)));
 		
 		//현재페이지를 통해 이전 페이지블럭에 해당하는 페이지를 구함
-		int intTemp = 
-			((nowPage-1) / blockPage) * blockPage + 1;
-		
-		
-				//처음페이지 & 이전페이지를 위한 로직
+		int intTemp = ((nowPage-1) / blockPage) * blockPage + 1;
+
+		//처음페이지 & 이전페이지를 위한 로직
 		if(intTemp != 1){
-			pagingStr += "<li>"
+			pagingStr += "<td width='22' height='50'>" 
 					+"<a href='"+page+"nowPage=1'>"
-					+"<span class='glyphicon glyphicon-fast-backward'></span></a></li>";
+					+"<img src='../../bbs/skin/photoBasic/image/btn_prev2.gif' align='absmiddle' border=0'></a></td>";
 			//pagingStr += "&nbsp;";
-			pagingStr += "<li>"
+			pagingStr += "<td width='22'>"
 					+"<a href='"+page+"nowPage="+(intTemp-blockPage)+"'>"
-					+"<span class='glyphicon glyphicon-step-backward'></span></a></li>";
+					+"<img src='../../bbs/skin/photoBasic/image/btn_prev.gif' align='absmiddle' border=0'></a></td>";
 		}
 		
 		//페이지표시 제어를 위한 변수
@@ -178,11 +175,11 @@ public class PagingUtil {
 			//현제페이지인 경우
 			if(intTemp==nowPage){
 				pagingStr
-					+="<li class='active'><a href='#'>"+intTemp+"</a></li>";
+					+="<td align='center'><a href='#'><b>"+intTemp+"</b></a></li>";
 			}
 			else{
 				pagingStr
-					+="<li><a href='"+page+"nowPage="+intTemp+"'>"+intTemp+"</a></li>";
+					+="<td align='center'><a href='"+page+"nowPage="+intTemp+"'>"+intTemp+"</a></td>";
 			}
 		
 			intTemp = intTemp + 1;
@@ -191,11 +188,11 @@ public class PagingUtil {
 		
 		//다음 및 마지막 페이지를 위한 로직
 		if(intTemp <= totalPage){
-			pagingStr+="<li><a href='"+page+"nowPage="+intTemp+"'>"
-				+ "<span class='glyphicon glyphicon-step-forward'></span></a></li>";		
+			pagingStr+="<td width='22' align='right'><a href='"+page+"nowPage="+intTemp+"'>"
+				+ "<img src='../../bbs/skin/photoBasic/image/btn_next.gif' align='absmiddle' border='0'></a></td>";		
 			//pagingStr+="&nbsp;";		
-			pagingStr+="<li><a href='"+page+"nowPage="+totalPage+"'>"
-				+ "<span class='glyphicon glyphicon-fast-forward'></span></a></li>";
+			pagingStr+="<td width='22' align='right'><a href='"+page+"nowPage="+totalPage+"'>"
+				+ "<img src='../../bbs/skin/photoBasic/image/btn_next2.gif' align='absmiddle' border=0'></a></td>";
 		}
 		
 		return pagingStr;

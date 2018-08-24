@@ -3,24 +3,25 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-
+	String b_id = request.getParameter("b_id");
 	String term_name = request.getParameter("prop_name");
 	String[] sp_name = term_name.split("-");
 	
 	BbsDAO dao = new BbsDAO();
 	int aff=0;
-	for(int i=1; i<sp_name.length; i++)
+	/* for(int i=0; i<sp_name.length; i++)
 	{
-		//aff = dao.deleteTerm(sp_name[i]);
-	}
+		aff = dao.delete(sp_name[i]);
+	} */
+	aff = dao.delete2(sp_name);
 	dao.close();
 	
-	if(aff==1)
+	if(aff!=0)
 	{
 %>
 <script>
 alert("삭제완료")
-location.href="../prd_list_term.jsp"
+location.href="../bbs_list.jsp?b_id=<%=b_id%>"
 </script>
 <% } 
 	else

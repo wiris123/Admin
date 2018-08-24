@@ -19,7 +19,7 @@
 			<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
 		</div>
 	
-		<script Language="JavaScript" src="../select.js"></script>
+		<script Language="JavaScript" src="./select.js"></script>
 		<%@include file="../include/bbs_left.jsp"%>
 		<div id="Container">
 	

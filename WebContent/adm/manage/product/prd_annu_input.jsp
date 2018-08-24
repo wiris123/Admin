@@ -85,238 +85,9 @@
 	<!-- 레프트메뉴 -->
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
-
 	<div id="Container">
-    
-<script language="JavaScript" type="text/javascript">
-<!--
-var loding = false;
-var prd_class = new Array();
-
-	prd_class[0] = new Array();
-	prd_class[0][0] = "100";
-	prd_class[0][1] = "상품분류1";
-	prd_class[0][2] = "0";
-	prd_class[0][3] = "1";
-
-	
-	prd_class[1] = new Array();
-	prd_class[1][0] = "100100";
-	prd_class[1][1] = "2차분류1";
-	prd_class[1][2] = "100";
-	prd_class[1][3] = "2";
-
-	
-	prd_class[2] = new Array();
-	prd_class[2][0] = "100100100";
-	prd_class[2][1] = "3차분류1";
-	prd_class[2][2] = "100100";
-	prd_class[2][3] = "3";
-
-	
-	prd_class[3] = new Array();
-	prd_class[3][0] = "100101";
-	prd_class[3][1] = "2차분류2";
-	prd_class[3][2] = "100";
-	prd_class[3][3] = "2";
-
-	
-	prd_class[4] = new Array();
-	prd_class[4][0] = "101";
-	prd_class[4][1] = "상품분류2";
-	prd_class[4][2] = "0";
-	prd_class[4][3] = "1";
-
-	
-	prd_class[5] = new Array();
-	prd_class[5][0] = "102";
-	prd_class[5][1] = "상품분류3";
-	prd_class[5][2] = "0";
-	prd_class[5][3] = "1";
-
-	var tno = 6;
-
-function setClass01(){
-
-	var arrayClass = eval("document.frm.class01");
-	var arrayClass1 = eval("document.frm.class02");
-	var arrayClass2 = eval("document.frm.class03");
-
-	arrayClass.options[0] = new Option(":: 대분류 ::","");
-	arrayClass1.options[0] = new Option(":: 중분류 ::","");
-	arrayClass2.options[0] = new Option(":: 소분류 ::","");
-
-	for(no=0,sno=1 ; no < tno ; no++){
-		if(prd_class[no][3]=='1'){
-			arrayClass.options[sno] = new Option(prd_class[no][1],prd_class[no][0]);
-			sno++;
-		}
-	}
-}
-
-function changeClass01(){
-
-	var arrayClass = eval("document.frm.class01");
-	var arrayClass1 = eval("document.frm.class02");
-	var arrayClass2 = eval("document.frm.class03");
-
-	var selidx = arrayClass.selectedIndex;
-	var selvalue = arrayClass.options[selidx].value;
-
-	arrayClass1.options.length=0;
-	arrayClass2.options.length=0;
-	arrayClass1.options[0] = new Option(":: 중분류 ::","");
-	arrayClass2.options[0] = new Option(":: 소분류 ::","");
-
-	for(no=0,sno=1 ; no < tno ; no++){
-		if(prd_class[no][3]=='2' && prd_class[no][2]==selvalue){
-			arrayClass1.options[sno] = new Option(prd_class[no][1],prd_class[no][0]);
-			sno++;
-		}
-	}
-
-}
-
-function changeClass02(){
-
-	var arrayClass1 = eval("document.frm.class02");
-	var arrayClass2 = eval("document.frm.class03");
-
-	var selidx = arrayClass1.selectedIndex;
-	var selvalue = arrayClass1.options[selidx].value;
-
-	arrayClass2.options.length=0;
-	arrayClass2.options[0] = new Option(":: 소분류 ::","");
-
-	for(no=0,sno=1 ; no < tno ; no++){
-		if(prd_class[no][3]=='3' && prd_class[no][2]==selvalue){
-			arrayClass2.options[sno] = new Option(prd_class[no][1],prd_class[no][0]);
-			sno++;
-		}
-	}
-
-}
-
-function changeClass03(){
-}
-
-// 상품카테고리 설정
-function setCategory(){
-
-	var arrayClass01 = eval("document.frm.class01");
-	var arrayClass02 = eval("document.frm.class02");
-	var arrayClass03 = eval("document.frm.class03");
-
-	for(no=1; no < arrayClass01.length; no++){
-		if(arrayClass01.options[no].value == ''){
-			arrayClass01.options[no].selected = true;
-			changeClass01();
-		}
-	}
-
-	for(no=1; no < arrayClass02.length; no++){
-		if(arrayClass02.options[no].value == ''){
-			arrayClass02.options[no].selected = true;
-			changeClass02();
-		}
-	}
-
-	for(no=1; no < arrayClass03.length; no++){
-		if(arrayClass03.options[no].value == '')
-			arrayClass03.options[no].selected = true;
-	}
-
-}
-
-function inputCheck(frm){
-
-	if(loding == false){
-		alert("상품정보를 가져오고 있습니다. 잠시후 재시도 하세요");
-		return false;
-	}
-	if(frm.prdname.value == ""){
-		alert("상품명을 입력하세요");
-		frm.prdname.focus();
-		return false;
-	}
-	content.outputBodyHTML();
-}
-
-//해당 이미지를 삭제한다.
-function deleteImage(prdcode, prdimg, imgpath){
-	if(imgpath == ""){
-		alert("삭제할 이미지가 없습니다.");
-		return;
-	}
-	else{
-		if(confirm("이미지를 삭제하시겠습니까?"))
-			document.location = "prd_savee9e3.html?mode=delete_image&amp;prdcode="+prdcode+"&prdimg="+prdimg+"&imgpath="+imgpath;
-	}
-	return;
-}
-
-function prdlayCheck(){
-	}
-
-function lodingComplete(){
-	loding = true;
-}
-
-function prdCategory(){
-	var url = "prd_catlist44fd.html?prdcode=";
-	window.open(url, "prdCategory", "height=330, width=560, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, left=150, top=100");
-}
-
-function prdIcon(){
-	var url = "prd_icon.html";
-	window.open(url, "prdIcon", "height=250, width=450, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, left=150, top=100");
-}
-
-function setImgsize(){
-	var url = "prd_imgsize.html";
-	window.open(url, "setImgsize", "height=250, width=300, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, left=150, top=100");
-}
-
-//상품이동
-function movePrd(){
-
-	selvalue = "";
-
-	if(selvalue == ""){
-		alert("이동할 상품을 선택하세요.");
-		return false;
-	}
-	else{
-		var uri = "prd_move1b1b.html?selvalue=" + selvalue;
-		window.open(uri,"movePrd","width=300,height=150");
-	}
-}
-
-// 상품복사
-function copyPrd(){
-	selvalue = "";
-
-	if(selvalue == ""){
-		alert("복사할 상품을 선택하세요.");
-		return false;
-	}
-	else{
-		var uri = "prd_copy1b1b.html?selvalue=" + selvalue;
-		window.open(uri,"copyPrd","width=300,height=150,resizable=yes");
-	}
-}
-
-function prdFocus(){
-	frm.prdname.focus();
-}
-
-//-->
-</script>
-
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="setClass01();setCategory();prdlayCheck();lodingComplete();prdFocus();">
-
-<div id="location">HOME > 상품관리</div>
-<div id="S_contents">
+		<div id="location">HOME > 상품관리</div>
+		<div id="S_contents">
 	
 	<h3>상품관리<span> 연금보험 관리페이지입니다.</span></h3>
 
@@ -339,9 +110,9 @@ function prdFocus(){
 		</td>
 	</tr>
 	<tr>
-		<th>연금게시일</th>
+		<th>연금개시일</th>
 		<td colspan="3">
-			<input name="instart" type="text" value="" size="50" class="input">
+			<input name="instart" id="datepicker1" type="text" value="" size="50" class="input">
 		</td>
 	</tr>
 	<tr>
@@ -374,7 +145,7 @@ function prdFocus(){
 	<tr>
 		<th>계약일자</th>
 		<td colspan="3">
-			<input type="text" name="regidate" value="" />
+			<input type="text" name="regidate" id="datepicker1" value="" />
 	</td>
 	<tr>
 		<th>계약상태</th>

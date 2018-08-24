@@ -215,7 +215,7 @@ public class InsuDAO
 
 			String query = "INSERT INTO annu_insu "
 
-				+ " (ann_name,instype,instart,paytime,payment,rprem,interest,monthann,regidate, submit, attfile) "
+				+ " (ann_name,instype,instart,paytime,payment,rprem,interest,monthann,regidate,submit, attfile) "
 
 				+ " VALUES"
 
@@ -228,7 +228,8 @@ public class InsuDAO
 			psmt.setString(2, dto.getInstype());
 
 			psmt.setString(3, dto.getInstart());
-
+			System.out.println(dto.getInstart().toString());
+		
 			psmt.setString(4, dto.getPaytime());
 
 			psmt.setString(5, dto.getPayment());

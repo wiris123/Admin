@@ -20,6 +20,9 @@ function selectAll(obj, topcheckbox) {
 // 선택삭제
 function selDelete() {
 	var selvalue = document.getElementsByName("select_chkbox")
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var b_id = url.searchParams.get("b_id");
 	var name=null;
 	//한번 for문으로 훑어서 체크된값이 있다면 name 에 저장
 	for (var i = 0; i <= selvalue.length - 1; i++) {
@@ -37,7 +40,7 @@ function selDelete() {
 	else 
 	{
 		if (confirm("선택한 상품을 정말 삭제하시겠습니까?")) {
-			document.location = "./proc/bbs_del_proc.jsp?prop_name=" + name
+			document.location = "./proc/bbs_del_proc.jsp?prop_name=" +name+"&b_id="+b_id
 		}
 	}
 }
