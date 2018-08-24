@@ -17,7 +17,7 @@ String email = request.getParameter("email1")+"@"+request.getParameter("email2")
 String mobile = request.getParameter("mobile1")+"-"+request.getParameter("mobile2")+"-"+request.getParameter("mobile3");
 String birth = request.getParameter("birth1")+request.getParameter("birth2")+request.getParameter("birth3");
 
-CounselMemDTO dto = new CounselMemDTO;
+CounselMemDTO dto = new CounselMemDTO();
 
 MemberDAO dao = new MemberDAO();
 int af = dao.memberQRegist(dto);
