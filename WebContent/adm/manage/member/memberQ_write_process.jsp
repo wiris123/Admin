@@ -10,12 +10,12 @@
 
 request.setCharacterEncoding("UTF-8");
 
-String id = request.getParameter("id");
-String pass = request.getParameter("pass");
+String idx = request.getParameter("idx");
 String name = request.getParameter("name");
-String email = request.getParameter("email1")+"@"+request.getParameter("email2") ;
+String id = request.getParameter("id");
 String mobile = request.getParameter("mobile1")+"-"+request.getParameter("mobile2")+"-"+request.getParameter("mobile3");
-String birth = request.getParameter("birth1")+request.getParameter("birth2")+request.getParameter("birth3");
+String regidate = request.getParameter("regidate");
+String contents = request.getParameter("contents");
 
 CounselMemDTO dto = new CounselMemDTO();
 
