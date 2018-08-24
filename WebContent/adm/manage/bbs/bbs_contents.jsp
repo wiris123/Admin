@@ -1,5 +1,16 @@
+<%@page import="dto.BoardDTO"%>
+<%@page import="controller.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+BbsDAO dao = new BbsDAO();
+
+BoardDTO dto = new BoardDTO();
+String num = request.getParameter("num").toString();
+dto = dao.contents(num);
+System.out.println("들어온이름은"+dto.getName());
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,10 +41,10 @@
 							<link href="../../bbs/skin/bbsBasic/style.css" rel="stylesheet" type="text/css">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0" class="AWbbs_view_table border">
 								<tr>
-									<th colspan="2">제목</th>
+									<th colspan="2"><%=dto.getTitle() %></th>
 								</tr>
 								<tr>
-									<td height="40">작성자 : 홈페이지(test@test.com) 작성일 : 2016-04-11 14:08 조회수 : 17</td>
+									<td height="40">작성자 : <%=dto.getName() %>(이메일) 작성일 : <%=dto.getRegidate() %> 조회수 : <%=dto.getViewcnt() %></td>
 									<td align="right">추천:0</td>
 								</tr>
 
@@ -41,7 +52,7 @@
 									<td colspan="2" height="40">파일첨부 :</td>
 								</tr>
 								<tr>
-									<td colspan="2" style="padding: 20px 0;">게시물 테스트 입니다.</td>
+									<td colspan="2" style="padding: 20px 0;"><%=dto.getContents() %></td>
 								</tr>
 
 							</table>

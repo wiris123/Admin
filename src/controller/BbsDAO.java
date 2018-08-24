@@ -49,7 +49,7 @@ public class BbsDAO {
 	
 	public int getTotalRecordCount(Map<String,Object> param) {
 		int totalCount=-1;
-		String query = "select count(*) from multiboard where 1=1 ";
+		String query = "select count(*) from multiboard where 1=1 and b_id=? ";
 		if (param.get("Word") != null) {
 			if (param.get("Column").equals("both")) {
 				query += " and " + "title LIKE '%" + param.get("Word") + "%' " + " OR " + " contents LIKE '%"
@@ -60,6 +60,7 @@ public class BbsDAO {
 		}
 		try {
 			psmt = con.prepareStatement(query);
+			psmt.setString(1, param.get("b_id").toString());
 			rs=psmt.executeQuery();
 			if(rs.next()) {
 				totalCount=rs.getInt(1);
@@ -72,7 +73,9 @@ public class BbsDAO {
 		return totalCount;
 	}
 	
+	//게시판리스트가져오기
 	public List<BoardDTO> selectList(Map<String,Object> param){
+		System.out.println("게시판리스트가져오기중");
 		BoardDTO dto;
 		List<BoardDTO> list=new Vector<BoardDTO>();
 		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM multiboard WHERE 1=1 and b_id=?";
@@ -112,8 +115,9 @@ public class BbsDAO {
 		}
 		return list;
 	}
-	
+	//게시판글쓰기
 	public int write(BoardDTO dto) {
+		System.out.println("게시판글쓰기중");
 		int affected=-1;
 		String query = "insert into multiboard values(board_seq.nextval, '짐배', ?, ?, ?, sysdate, 0, null, ?, null)";
 		try {
@@ -130,7 +134,9 @@ public class BbsDAO {
 		
 		return affected;
 	}
+	//게시판글지우기
 	public int delete2(String[] num) {
+		System.out.println("게시판글지우기중");
 		int affected = 0;
 		System.out.println(num.length);
 		try {
@@ -171,5 +177,28 @@ public class BbsDAO {
 		}
 		System.out.println("term_name"+num);
 		return affected;	
+	}
+	
+	//내용을 가져올 메소드
+	public BoardDTO contents(String num) {
+		System.out.println("내용가져오는중");
+		BoardDTO dto = new BoardDTO();
+		try {
+			String querty = "select * from multiboard where num = ?";
+			psmt = con.prepareStatement(querty);
+			psmt.setString(1, num);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				dto.setName(rs.getString("name"));
+				dto.setRegidate(rs.getDate("regidate"));
+				dto.setContents(rs.getString("contents"));
+				dto.setTitle(rs.getString("title"));
+				dto.setViewcnt(rs.getString("viewcnt"));
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 }
