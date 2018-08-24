@@ -85,8 +85,8 @@
 	<!-- 레프트메뉴 -->
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
-
 	<div id="Container">
+<<<<<<< HEAD
     
 <script language="JavaScript" type="text/javascript">
 	function formChk(f){
@@ -123,6 +123,10 @@
 
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
+=======
+		<div id="location">HOME > 상품관리</div>
+		<div id="S_contents">
+>>>>>>> refs/remotes/origin/underwearRun
 	
 	<h3>상품관리<span> 연금보험 관리페이지입니다.</span></h3>
 
@@ -145,9 +149,13 @@
 		</td>
 	</tr>
 	<tr>
-		<th>연금게시일</th>
+		<th>연금개시일</th>
 		<td colspan="3">
+<<<<<<< HEAD
 			<input name="instart" type="date" value="" size="50" class="input">
+=======
+			<input name="instart" id="datepicker1" type="text" value="" size="50" class="input">
+>>>>>>> refs/remotes/origin/underwearRun
 		</td>
 	</tr>
 	<tr>
@@ -180,7 +188,7 @@
 	<tr>
 		<th>계약일자</th>
 		<td colspan="3">
-			<input type="text" name="regidate" value="" />
+			<input type="text" name="regidate" id="datepicker1" value="" />
 	</td>
 	<tr>
 		<th>계약상태</th>

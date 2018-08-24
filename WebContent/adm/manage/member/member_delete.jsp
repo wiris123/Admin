@@ -23,7 +23,7 @@ MemberDAO dao = new MemberDAO();
 MemberDTO dto = new MemberDTO();
 OutMemDTO dto1 = new OutMemDTO(id,reason,null);
 int af = dao.memberRegist2(dto1);
-int affected  = dao.delete(param);
+int affected  = dao.delete(param); 
 
 if(affected==1 && af==1)
 { 

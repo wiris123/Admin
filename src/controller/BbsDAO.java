@@ -67,11 +67,24 @@ public class BbsDAO {
 	public List<BoardDTO> selectList(Map<String,Object> param){
 		BoardDTO dto;
 		List<BoardDTO> list=new Vector<BoardDTO>();
-		String query = "select * from (select e.*, rownum from (select * from multiboard where b_id=?) e)";
+		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM multiboard WHERE 1=1 and b_id=?";
+		System.out.println(param.get("Word"));
+		System.out.println("컬럼은:"+param.get("Column"));
+		if (param.get("Word") != null) {
+			if (param.get("Column").equals("both")) {
+				query += " and " + "title LIKE '%" + param.get("Word") + "%' " + " OR " + " contents LIKE '%"
+						+ param.get("Word") + "%' ";
+			} else {
+				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
+			}
+		}
+		query += ") e) where rNum BETWEEN ? AND ?";
 		try {
 			String b_id = (String)param.get("b_id");
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, b_id);
+			psmt.setString(1, param.get("b_id").toString());
+			psmt.setString(2, param.get("start").toString());
+			psmt.setString(3, param.get("end").toString());
 			System.out.println(query+b_id);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
@@ -109,15 +122,37 @@ public class BbsDAO {
 		
 		return affected;
 	}
-	
+	public int delete2(String[] num) {
+		int affected = 0;
+		System.out.println(num.length);
+		try {
+			String query = "delete from multiboard where num in (?";
+			for(int i=1;i<num.length;i++) {
+				query+=",?";
+			}
+			query += ")";
+			psmt = con.prepareStatement(query);		
+			for(int i=0;i<num.length;i++) {
+				psmt.setString(i+1, num[i]);
+			}
+			
+			System.out.println(query); 
+			affected = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("delete_board중 예외발생");
+			e.printStackTrace();
+		}
+		return affected;
+	}
 	//삭제용 메소드
-	public int delete(String term_name) {
+	public int delete(String num) {
 		int affected = 0;
 		try {
 			String query = "delete from multiboard where num=?";
 			
 			psmt = con.prepareStatement(query);			
-			psmt.setString(1, term_name);
+			psmt.setString(1, num);
 			 
 			affected = psmt.executeUpdate();
 		}
@@ -126,7 +161,7 @@ public class BbsDAO {
 			System.out.println("delete_board중 예외발생");
 			e.printStackTrace();
 		}
-		System.out.println("term_name"+term_name);
+		System.out.println("term_name"+num);
 		return affected;	
 	}
 }

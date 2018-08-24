@@ -62,8 +62,6 @@
 		$('#Container_wrap').removeClass('left_close'); 
 
 	 }
-
-
 	});
 
 	function leftBtn() {
@@ -76,7 +74,6 @@
 		}
 	}
 
-	
 </script>
 </head>
 <body>
@@ -87,6 +84,7 @@
 	</div><!-- //left_area// -->
 
 	<div id="Container">
+<<<<<<< HEAD
     
 <script language="JavaScript" type="text/javascript">
 
@@ -107,13 +105,53 @@
 </script>
 
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="setClass01();setCategory();prdlayCheck();lodingComplete();prdFocus();">
+=======
+>>>>>>> refs/remotes/origin/underwearRun
 
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
 	
 	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
 <!--  enctype="multipart/form-data" return inputCheck(this);-->
+<<<<<<< HEAD
 	<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
+=======
+<script>
+/* 월 납입액을 계산하는 ajax */
+function premPlus(rp)
+{
+	$(function()
+	{
+		$.ajax
+		({
+			url:"rprem.jsp",
+			type : "get",
+			data : 
+			{
+				paytime : $('#payt').val(),
+				instime : $('#inst').val(),
+				rprem : $('#rp').val(),
+				death : $('#death').val()
+			},
+			dataType : "html",
+			contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
+			success:function(responseData)
+			{
+				alert("성공인데 시벌아 = "+responseData);
+				$('#mp').html(responseData);		
+			},
+			error:function(errorData){
+				alert("오류발생 : "+errorData.status+":"+errorData.statusText);
+			}
+
+		});	
+
+	});
+}
+
+</script>
+	<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="">
+>>>>>>> refs/remotes/origin/underwearRun
 <!-- 	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
 	<input type="hidden" name="relidx" value=""> -->
@@ -128,17 +166,21 @@
 	<tr>
 		<th>보험종류</th>
 		<td colspan="3">
+<<<<<<< HEAD
 			<input name="instype" type="text" value="2" size="1" class="input" readonly="readonly" style="border: 0">
+=======
+			<input name="prdnum" type="text" value="2" size="30" class="input" readonly>
+>>>>>>> refs/remotes/origin/underwearRun
 		</td>
 	</tr>
 	<tr>
 		<th>납입기간</th>
 		<td colspan="3">
-			<select name="paytime" id="">
+			<select name="paytime" id="payt" value="">
 				<option value="10">10년납</option>
 				<option value="20">20년납</option>
-				<option value="60">60세납</option>
-				<option value="65">65세납</option>
+				<option value="40">60세납</option>
+				<option value="45">65세납</option>
 			</select>
 		</td>
 	</tr>
@@ -148,11 +190,11 @@
 			<table border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td colspan="2">
-					<select name="instime" id="">
+					<select name="instime" id="inst" value="">
 						<option value="10">10년만기</option>
 						<option value="20">20년만기</option>
-						<option value="60">60세까지</option>
-						<option value="70">70세까지</option>
+						<option value="40">60세까지</option>
+						<option value="50">70세까지</option>
 					</select>
 				</td>
 			</tr>
@@ -163,13 +205,17 @@
 	<tr>
 		<th>위험할증률</th>
 		<td colspan="3">
+<<<<<<< HEAD
 			<input type="number" name="rprem" min="0" max="10" value="0" size="2"/>
+=======
+			<input type="text" name="rprem" id="rp" placeholder="1~10까지의 정수숫자"/>
+>>>>>>> refs/remotes/origin/underwearRun
 	</td>
 	</tr>
 	<tr>
 		<th>사망보험금</th>
 		<td colspan="3">
-			<select name="deathben" id="">
+			<select name="deathben" id="death" onChange="premPlus(this);">
 				<option value="15000000">1억5천</option>
 				<option value="10000000">1억</option>
 				<option value="5000000">5천</option>
@@ -179,7 +225,7 @@
 	<tr>
 		<th>월 납입액</th>
 		<td colspan="3">
-			<input type="text" name="monthpay" placeholder="계산식" />
+			<span id="mp"><input type="text" placeholder="사망보험금까지 선택하면 자동으로 계산"/></span>
 	</td>
 	</tr>
 	<tr>
@@ -188,6 +234,10 @@
 			<input type="file" name="attfile"/>
 	</td>
 	</tr>
+<<<<<<< HEAD
+=======
+</table>
+>>>>>>> refs/remotes/origin/underwearRun
 	<tr>
 		<th height="25" >상품간단설명</th>
 		<td colspan="3">
