@@ -10,14 +10,14 @@ public class CounselMemDTO {
 	private String mobile;
 	private Date regidate;
 	private String contents;
-	
+	private String flag;
 	//기본 생성자
 	public CounselMemDTO() {
 		super();
 	}
 	
 	//인자 생성자
-	public CounselMemDTO(String idx, String name, String id, String mobile, Date regidate, String contents) {
+	public CounselMemDTO(String idx, String name, String id, String mobile, Date regidate, String contents,String flag) {
 		super();
 		this.idx = idx;
 		this.name = name;
@@ -25,9 +25,17 @@ public class CounselMemDTO {
 		this.mobile = mobile;
 		this.regidate = regidate;
 		this.contents = contents;
+		this.flag = flag;
 	}
 	public String getIdx() {
 		return idx;
+	}
+	
+	public void setflag(String flag) {
+		this.flag = flag;
+	}
+	public String getflag() {
+		return flag;
 	}
 	public void setIdx(String idx) {
 		this.idx = idx;

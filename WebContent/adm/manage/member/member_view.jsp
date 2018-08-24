@@ -109,7 +109,7 @@ dao.close();
 	</table>
 
 	<div class="center top10">
-		<button style="border:0" type="submit" class="b h28 t5 color blue_big">삭제</button>&nbsp;
+		
 		<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='member_list.jsp';">목록</button>
 	</div>
 	</form>

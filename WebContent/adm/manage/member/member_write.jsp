@@ -46,6 +46,21 @@ function mValidate(fn){
 		fn.name.focus();
 		return false;
 	}
+	if(fn.pass.value==""){
+		alert("패스워드을 4자 이상 12자 이내의 영문/숫자 조합으로 입력해주세요");
+		fn.pass.focus();
+		return false;
+	}
+	if(fn.email1.value==""){
+		alert("이메일을 입력해주세요");
+		fn.email1.focus();
+		return false;
+	}
+	if(fn.birth1.value==""){
+		alert("'생년일월' 을 입력해주세요");
+		fn.birth1.focus();
+		return false;
+	}
 	
 	var frmArray = ["pass","mobile1","mobile2","mobile3"];
 	var txtArray = ["패스워드","전화번호1","전화번호2","전화번호3"];
@@ -94,18 +109,18 @@ function email_input(em, frm){
 <div id="location">HOME > 회원관리</div>
 <div id="S_contents">
 	<h3>회원관리<span>회원을 추가합니다.</span></h3>
-		<form name="frm" action="member_write_process.jsp" method="post"  onSubmit="return inputCheck(this);">
+		<form name="frm" action="member_write_process.jsp" method="post"  onSubmit="return mValidate(this);">
 			<table width="100%" >
 				<tr>
 					<td>
 						<table class="table_basic">
 							<tr>
 								<th width="15%">아이디</th>
-								<td width="35%"><input name="id" type="text" value="" class="input" onSubmit="return mValidate(this);"></td>
+								<td width="35%"><input name="id" type="text" value="" class="input"></td>
 							</tr>
 							<tr>	
 								<th width="15%">비밀번호</th>
-								<td width="35%"><input name="pass" type="password" value="" class="input" onSubmit="return mValidate(this);"></td>
+								<td width="35%"><input name="pass" type="password" value="" class="input" ><span>* 4자 이상 12자 이내의 영문/숫자 조합</span></td>
 							</tr>
 							<tr>
 								<th>이름</th>
@@ -114,7 +129,7 @@ function email_input(em, frm){
 							<tr>
 								<th>전화번호</th>
 								<td colspan="3">
-									<input type="text" name="mobile1" value="" size="3" class="input" onSubmit="return mValidate(this);">-<input type="text" name="mobile2" value="" size="4" class="input" onSubmit="return mValidate(this);">-<input type="text" name="mobile3" value="" size="4" class="input" onSubmit="return mValidate(this);">
+									<input type="text" name="mobile1" value="" size="3" class="input" >-<input type="text" name="mobile2" value="" size="4" class="input">-<input type="text" name="mobile3" value="" size="4" class="input">
 
 								</td>
 

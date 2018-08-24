@@ -12,26 +12,35 @@ request.setCharacterEncoding("UTF-8");
 
 MemberDAO dao = new MemberDAO();
 
+//매개변수 저장을 위한 컬렉션 생성(DAO로 전달)
 Map<String,Object> param = new HashMap<String,Object>();
 
+//문자열 검색 파라미터를 페이지 처리 메소드로
+//넘겨주기 위한 변수선언
 String queryStr = "";
 
-String searchColumn = 
-request.getParameter("searchColumn");
-String searchWord = 
-request.getParameter("searchWord");
-if(searchWord!=null){
-//입력한 검색어가 있다면 맵에 추가함
-param.put("Column", searchColumn);
-param.put("Word", searchWord);
 
-//파라미터 추가
-queryStr = String.format("searchColumn=%s"
-	+"&searchWord=%s&", searchColumn,
-		searchWord);
+//폼값받기(검색관련)
+String searchColumn = 
+	request.getParameter("searchColumn");
+String searchWord = 
+	request.getParameter("searchWord");
+if(searchWord!=null){
+	//입력한 검색어가 있다면 맵에 추가함
+	param.put("Column", searchColumn);
+	param.put("Word", searchWord);
+	
+	//파라미터 추가
+	queryStr = String.format("searchColumn=%s"
+		+"&searchWord=%s&", searchColumn,
+			searchWord);
 }
 
-int totalRecordCount = dao.getTotalRecordCount(param); 
+
+//페이지 처리를 위한 로직 시작
+//1.게시판 테이블의 전체 레코드 갯수 구하기
+int totalRecordCount = 
+	dao.getTotalRecordCount(param); 
 
 //2.web.xml에 설정된 값 가져오기
 int pageSize = Integer.parseInt(
@@ -39,14 +48,15 @@ int pageSize = Integer.parseInt(
 int blockPage = Integer.parseInt(
 	application.getInitParameter("BLOCK_PAGE"));
 
+//3.전체페이지수 계산하기
 int totalPage = 
 (int)Math.ceil((double)totalRecordCount/pageSize);
 
 //4.페이지번호가 없는경우 무조건 1로 설정
 int nowPage = 
-  request.getParameter("nowPage")==null
-  ? 1 : 
-  Integer.parseInt(request.getParameter("nowPage"));
+request.getParameter("nowPage")==null
+? 1 : 
+Integer.parseInt(request.getParameter("nowPage"));
 
 //5.가져올 레코드의 구간을 결정하기 위한 연산
 int start = (nowPage-1)*pageSize + 1;
@@ -56,10 +66,6 @@ int end = nowPage * pageSize;
 param.put("start", start);
 param.put("end", end);
 
-String pagingImg = PagingUtil.pagingImgServlet(
-		totalRecordCount,pageSize,
-		blockPage, nowPage, 
-		"member_List.jsp?"+queryStr);
 
 List<MemberDTO> bbs = dao.selectList(param);
 
@@ -93,67 +99,6 @@ dao.close();
 		COLOR: blue; 
 	}
 </style>
-<script>
-//체크박스 전체선택
-	function selectAll(obj) //obj = 전체선택 체크박스
-	{
-   var chkObj = document.getElementsByName("select_tmp");//개별체크박스 이름으로 가져오기
-   var rowCnt = chkObj.length-1;
-   var check = obj.checked;
-   if(check==true) 
-   {﻿
-       for (var i=0; i<=rowCnt; i++)
-       {
-          chkObj[i].checked = true; 
-       }
-       
-   }
-   else
-   {
-	   for (var i=0; i<=rowCnt; i++)
-       {
-          chkObj[i].checked = false; 
-       }
-   }	
-	}
-	
-	//선택삭제
-function prdDelete()
-	{
-	var selvalue = document.getElementsById("select_tm")
-	
-		if(selvalue.checked == null)
-		{
-			alert("삭제할 상품을 선택하세요.");
-			return false;
-		}
-		else
-		{
-			if(confirm("선택한 상품을 정말 삭제하시겠습니까?"))
-			{
-				var name ="";
-				for(var i=0; i<=selvalue.length-1; i++)
-				{
-					if(selvalue[i].checked)
-					{
-						if(selvalue[i]=='undefined')
-						{
- 						name = selvalue[i].value;	 						
-						}
- 					else
-						{
- 						name = name + '-'+selvalue[i].value;
-						}
- 					
-					}						
-					
-				}
-				document.location = "member_del_proc.jsp?id="+name		
-				
-			}
-		}
-	}
-</script>
 </head>
 <body class="home_body">
 
@@ -164,7 +109,53 @@ function prdDelete()
 </div>
 
 <div id="Container">
+<script>
+//체크박스 전체선택
+function selectAll(obj) {
+  	var chkObj = document.getElementsByName("select_chkbox");
+  	var rowCnt = chkObj.length - 1;
+  	// 대가리에 노드를 체크로 전환시
+  	if (topcheckbox.checked == true) {
+  		// 전부 선택으로 바꿔줌
+  		for (var i = 0; i <= rowCnt; i++) {
+  			chkObj[i].checked = true;
+  		}
+  		// 체크 해제시
+  	} else {
+  		// 전부 체크 해제
+  		for (var i = 0; i <= rowCnt; i++) {
+  			chkObj[i].checked = false;
+  		}
+  	}
+  }
 
+  // 선택삭제
+  function prdDelete() {
+  	var selvalue = document.getElementsByName("select_chkbox")
+  	var name=null;
+  	//한번 for문으로 훑어서 체크된값이 있다면 name 에 저장
+  	for (var i = 0; i <= selvalue.length - 1; i++) {
+  		if (selvalue[i].checked) {
+  			if(name==null) name= '-' + selvalue[i].value;
+  			else name +=  '-' + selvalue[i].value;
+  		}
+  	}
+  	//없었다면
+  	if (name == null) {
+  		alert("삭제할 상품을 선택하세요.");
+  		return false;
+  	} 
+  	//있다면 다시한번 삭제할것인지 확인
+  	else 
+  	{
+  		if (confirm("선택한 상품을 정말 삭제하시겠습니까?")) {
+  			document.location = "member_del_proc.jsp?id=" + name
+  		}
+  	}
+  }
+
+	</script>
+	
 <div id="location">HOME > 회원관리</div>
 	<div id="S_contents">
 	<h3>회원관리<span>회원을  관리합니다.</span></h3>	 
@@ -184,6 +175,8 @@ function prdDelete()
 		       </tr>
 	       </table>
 		</form>
+		
+		<form>
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
 			<tr>
 				<td align="right">
@@ -192,11 +185,10 @@ function prdDelete()
 				</td>
 			</tr>
 		</table>
-		<form>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2" >
 	        	<thead> 
 	        		<tr class="success">
-						<td width="5%"><input type="checkbox" name="select_tmp" id="select_tm"  onClick="selectAll(this)"/></td>
+						<td width="5%"><input type="checkbox" name="select_tmp"   onClick="selectAll(this)"/></td>
 						<td width="5%">번호</td>
 						<td>아이디</td>
 						<td width="15%">패스워드</td>
@@ -228,7 +220,7 @@ function prdDelete()
 					%>
 		
 						<tr>
-							<td><input type="checkbox" name="select_tmp"  id="select_tm" value="<%=dto.getId()%>"/></td>
+							<td><input type="checkbox" name="select_chkbox" value="<%=dto.getId()%>"/></td>
 							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=vNum %></a></td>
 							<td class="text-left"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getId() %></a></td>
 							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getPass() %></a></td>
@@ -249,7 +241,7 @@ function prdDelete()
 	      
 		<div class="row text-center" style="text-align:center">
 			<ul class="pagination">
-				<%=pagingImg %>
+				<%=PagingUtil.pagingImg(totalRecordCount,pageSize,blockPage,nowPage,"member_list.jsp?"+queryStr) %>
 			</ul>	
 		</div>
 	</div>

@@ -1,3 +1,4 @@
+<%@page import="util.JavascriptUtil"%>
 <%@page import="dto.OutMemDTO"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -10,23 +11,30 @@
 	
 	String id = request.getParameter("id");
 	String reason = request.getParameter("reason");
+
 	String[] sp_name =id.split("-");
 	MemberDAO dao = new MemberDAO();
-	OutMemDTO dto1 = new OutMemDTO(id,reason,null);
+	
 	int aff=0;
+	int aff1 =0;
 	for(int i=1; i<sp_name.length; i++)
 	{
-		aff = dao.memberRegist2(dto1);
-		aff = dao.delete(id, reason);
+
+		aff1 = dao.memberRegist2(sp_name[i],reason);
+		aff = dao.delete(sp_name[i]);
+
 		
 	}
 	dao.close();
 	
-	if(aff==1)
-	{
-%>
-<script>
-alert("삭제완료")
-location.href="member_list.jsp"
-</script>
-<% } %>
+	if(aff1==1 && aff==1)
+	{	
+		JavascriptUtil.jsAlertLocation("삭제되었습니다", 
+				"member_list.jsp", out);	
+	}
+	else{
+		out.println(JavascriptUtil.jsAlertBack("삭제실패하였습니다"));
+		
+	}
+	
+%>	

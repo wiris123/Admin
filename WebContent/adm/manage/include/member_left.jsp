@@ -49,11 +49,11 @@
 			<li class="">
 				<a href="member_list.jsp">회원목록</a>
 			</li>
-			<!-- <li>
-				<a href="level_list.html">회원등급</a>
-			</li> -->
 		 	<li>
 				<a href="out_list.jsp">탈퇴회원</a>
+			</li>
+			<li>
+				<a href="memberQ_list.jsp">회원상담목록</a>
 			</li>
 			
 		</ul>
