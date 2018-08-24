@@ -49,7 +49,11 @@ public class BbsDAO {
 	
 	public int getTotalRecordCount(Map<String,Object> param) {
 		int totalCount=-1;
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> refs/remotes/origin/underwearRun
 		String query = "select count(*) from multiboard where 1=1 and b_id=? ";
 		if (param.get("Word") != null) {
 			if (param.get("Column").equals("both")) {
@@ -58,7 +62,13 @@ public class BbsDAO {
 			} else {
 				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
 			}
+<<<<<<< HEAD
 		}
+=======
+		}
+
+
+>>>>>>> refs/remotes/origin/underwearRun
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, param.get("b_id").toString());
