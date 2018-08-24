@@ -21,7 +21,7 @@
 %>
 <script>
 alert("삭제완료")
-location.href="../bbs_list.jsp?b_id=<%=b_id%>"
+location.href="../bbs_list.jsp?b_id=<%=b_id%>&nowPage=1"
 </script>
 <% } 
 	else
