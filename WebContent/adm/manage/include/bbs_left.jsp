@@ -30,17 +30,17 @@
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="bbs_list.jsp?b_id=free">자유게시판</a></td>
+						href="bbs_list.jsp?b_id=free&nowPage=">자유게시판</a></td>
 				</tr>
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="bbs_list.jsp?b_id=photo">갤러리</a></td>
+						href="bbs_list.jsp?b_id=photo&nowPage=">갤러리</a></td>
 				</tr>
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="bbs_list.jsp?b_id=response">응답게시판</a></td>
+						href="bbs_list.jsp?b_id=response&nowPage=">응답게시판</a></td>
 				</tr>
 				<tr>
 					<td height="10"></td>
@@ -51,7 +51,7 @@
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="bbs_list.jsp?b_id=qna">질문답변</a></td>
+						href="bbs_list.jsp?b_id=qna&nowPage=">질문답변</a></td>
 				</tr>
 				<!-- <tr>
 						<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img

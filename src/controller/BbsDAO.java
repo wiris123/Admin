@@ -49,7 +49,15 @@ public class BbsDAO {
 	
 	public int getTotalRecordCount(Map<String,Object> param) {
 		int totalCount=-1;
-		String query = "select count(*) from multiboard";
+		String query = "select count(*) from multiboard where 1=1 ";
+		if (param.get("Word") != null) {
+			if (param.get("Column").equals("both")) {
+				query += " and " + "title LIKE '%" + param.get("Word") + "%' " + " OR " + " contents LIKE '%"
+						+ param.get("Word") + "%' ";
+			} else {
+				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
+			}
+		}
 		try {
 			psmt = con.prepareStatement(query);
 			rs=psmt.executeQuery();

@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>자유게시판</title>
+<script src="../js/sidemenu.js"></script>
 </head>
 <body class="home_body">
 	<%@include file="../include/head.jsp"%>
