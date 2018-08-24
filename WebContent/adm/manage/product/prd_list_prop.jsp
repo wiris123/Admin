@@ -228,6 +228,7 @@
 	 	       var chkObj = document.getElementsByName("select_chkbox");
 	 	       var rowCnt = chkObj.length-1;
 	 	       var check = obj.checked;
+	 	       
 	 	       if(check==true) 
 	 	       {﻿
 	 	           for (var i=0; i<=rowCnt; i++)
@@ -250,7 +251,7 @@
 	 	 	{
 	 			var selvalue = document.getElementsByName("select_chkbox")
 	 			
-	 	 		if(selvalue == false)
+	 	 		if(selvalue == null)
 	 	 		{
 	 	 			alert("삭제할 상품을 선택하세요.");
 	 	 			return false;
@@ -271,20 +272,17 @@
 	 		 					else
 	 	 						{
 	 		 						name = name + '-'+selvalue[i].value;
-	 	 						}
-	 		 					
-	  						}						
-	 	 					
+	 	 						}	 		 					
+	  						}							 	 					
 	 	 				}
-	  					document.location = "./proc/prd_del_prop.jsp?prop_name="+name		
-	 	 				
+	  					document.location = "./proc/prd_del_prop.jsp?prop_name="+name			 	 				
 	 	 			}
 	 	 		}
 	 	 	}
          </script>
          <thead>
         <tr>
-           <td width="5%"><input type="checkbox" name="select_all" onClick="selectReverse(this.form)"></td>
+           <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this)"></td>
           <td width="10%">상품명</td>
           <td width=10%>보험기간</td>
           <td width="10%">월납입액</td>
