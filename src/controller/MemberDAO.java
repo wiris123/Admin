@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -11,8 +12,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
+import dto.CounselMemDTO;
 import dto.MemberDTO;
 import dto.OutMemDTO;
+
 
 
 
@@ -179,7 +183,7 @@ public class MemberDAO {
 			String query = "DELETE FROM member WHERE id=?";
 			
 			psmt = con.prepareStatement(query);			
-			psmt.setString(1, id);;
+			psmt.setString(1, id);
 			
 			affected = psmt.executeUpdate();
 		}
@@ -261,17 +265,35 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 		List<OutMemDTO> bbs = new Vector<OutMemDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
-		String query = "SELECT * FROM with_member "
-				+ " WHERE 1=1 "
-				+ " ORDER BY id DESC";
-				
+		String query = "SELECT with_member.*,rownum FROM with_member where ";
 		
+		if(map.get("Word")!=null) 
+		{
+			if(map.get("Column").equals("both")) 
+			{
+				query +=""
+				  + "title LIKE '%"+ map.get("Word") +"%' "
+				  +" OR "
+				  +" content LIKE '%"+ map.get("Word") +"%' "
+			  		+ "and ";
+			}
+			else {
+				query +=""+ map.get("Column") +" "
+				  +" LIKE '%"+ map.get("Word") +"%' "
+			  		+ " and ";
+				
+			}			
+		}
+		query +="rownum BETWEEN ? AND ?"
+			    +" ORDER BY rownum desc ";
 		System.out.println("쿼리문:"+ query);			
 			
 		try {
 			//3.prepare객체생성 및 실행
 			psmt = con.prepareStatement(query);
-						
+
+			psmt.setString(1, map.get("start").toString());
+			psmt.setString(2, map.get("end").toString());			
 			
 			//4.쿼리실행후 결과셋 돌려받음
 			rs = psmt.executeQuery();
@@ -325,7 +347,7 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 		return dto ;
 	}
 	
-	public int memberRegist2(OutMemDTO dto) {
+	public int memberRegist2(String id, String reason) {
 		//적용된 행의 갯수확인을 위한 변수
 		int affected = 0;
 		try {
@@ -333,9 +355,132 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 
 			psmt = con.prepareStatement(query);
 			
-			psmt.setString(1, dto.getId());
-			psmt.setString(2, "삭제");
+			psmt.setString(1, id);
+			psmt.setString(2, "삭제"); //reason
 			
+			
+			affected = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("insert중 예외발생");
+			e.printStackTrace();
+		}
+		
+		return affected;
+	}	
+	
+	public List<CounselMemDTO> selectListQ(Map<String,Object> map){
+		
+		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
+		List<CounselMemDTO> bbs = new Vector<CounselMemDTO>();
+		
+		//2.게시물 전체를 가져오기 위한 쿼리작성
+		String query = "SELECT member_q.*,rownum FROM member_q where ";
+		
+		if(map.get("Word")!=null) 
+		{
+			if(map.get("Column").equals("both")) 
+			{
+				query +=""
+				  + "title LIKE '%"+ map.get("Word") +"%' "
+				  +" OR "
+				  +" content LIKE '%"+ map.get("Word") +"%' "
+			  		+ "and ";
+			}
+			else {
+				query +=""+ map.get("Column") +" "
+				  +" LIKE '%"+ map.get("Word") +"%' "
+			  		+ " and ";
+				
+			}			
+		}
+		query +="rownum BETWEEN ? AND ?"
+			    +" ORDER BY rownum desc ";
+		System.out.println("쿼리문:"+ query);			
+			
+		try {
+			//3.prepare객체생성 및 실행
+			psmt = con.prepareStatement(query);
+
+			psmt.setString(1, map.get("start").toString());
+			psmt.setString(2, map.get("end").toString());			
+			
+			//4.쿼리실행후 결과셋 돌려받음
+			rs = psmt.executeQuery();
+			
+			//5.결과셋의 갯수만큼 반복
+			while(rs.next()) {
+				
+				//6.결과셋을 하나씩 DTO객체에 저장
+				CounselMemDTO dto = new CounselMemDTO();
+				
+				dto.setIdx(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setId(rs.getString(3));
+				dto.setMobile(rs.getString(4));
+				dto.setRegidate(rs.getDate(5));
+				dto.setContents(rs.getString(6));
+				
+				bbs.add(dto);
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Select시 예외발생");
+			e.printStackTrace();
+		}
+		
+		return bbs;
+	}
+	
+	public CounselMemDTO selectViewQ(String idx) {
+		
+		CounselMemDTO dto = new CounselMemDTO();
+		
+		String query = "SELECT * FROM member_q WHERE idx=?";		
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				
+				dto.setIdx(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setId(rs.getString(3));
+				dto.setMobile(rs.getString(4));
+				dto.setRegidate(rs.getDate(5));
+				dto.setContents(rs.getString(6));
+				
+				
+			}
+			System.out.println("상세보기");
+			
+		}
+		catch(Exception e) {
+			System.out.println("상세보기시 예외발생");
+			e.printStackTrace();
+		}				
+				
+		return dto;
+	}
+	
+	public int memberQRegist(CounselMemDTO dto) {
+		//적용된 행의 갯수확인을 위한 변수
+		int affected = 0;
+		try {
+			String query = "INSERT INTO member_q ( idx,name,id,mobile,regidate,contents) VALUES ( ?, ?, ?, ? ,sysdate, ? )";
+
+			psmt = con.prepareStatement(query);
+			
+			psmt.setString(1, dto.getIdx());
+			psmt.setString(2, dto.getName());
+			psmt.setString(3, dto.getId());
+			psmt.setString(4, dto.getMobile());
+			
+			psmt.setString(6, dto.getContents());
+			
+				
 			
 			affected = psmt.executeUpdate();
 		}

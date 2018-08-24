@@ -26,7 +26,7 @@ int af = dao.memberRegist2(dto1);
 int affected  = dao.delete(param); 
 
 if(affected==1 && af==1)
-{
+{ 
 	
 	JavascriptUtil.jsAlertLocation("삭제되었습니다", 
 			"member_list.jsp", out);

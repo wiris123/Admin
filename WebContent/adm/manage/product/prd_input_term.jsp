@@ -73,6 +73,66 @@
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
 		}
 	}
+	/* 월 납입액을 계산하는 ajax */
+	function premPlus(rp)
+	{
+		$(function()
+		{
+			$.ajax
+			({
+				url:"rprem.jsp",
+				type : "get",
+				data : 
+				{
+					paytime : $('#payt').val(),
+					instime : $('#inst').val(),
+					rprem : $('#rp').val(),
+					death : $('#death').val()
+				},
+				dataType : "html",
+				contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
+				success:function(responseData)
+				{
+					alert("성공인데 시벌아 = "+responseData);
+					$('#mp').html(responseData);		
+				},
+				error:function(errorData){
+					alert("오류발생 : "+errorData.status+":"+errorData.statusText);
+				}
+
+			});	
+
+		});
+	}
+
+	//form 유효성 검사
+	function formChk(f){
+		if(f.term_name.value==""){
+			alert("상품명을 입력하세요");
+			f.term_name.focus();
+			return false;
+		}
+		if(f.paytime.value==""){
+			alert("납입기간을 선택하세요");
+			f.paytime.focus();
+			return false;
+		}
+		if(f.instime.value==""){
+			alert("보험기간을 선택하세요");
+			f.instime.focus();
+			return false;
+		}
+		if(f.rprem.value==""){ 
+			alert("위험할증률을 선택하세요");
+			f.rprem.focus();
+			return false;
+		}
+		if(f.deathben.value==""){ 
+			alert("사망보험금을 선택하세요");
+			f.deathben.focus();
+			return false;
+		}
+	}
 
 </script>
 </head>
@@ -82,49 +142,18 @@
 	<!-- 레프트메뉴 -->
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
-
 	<div id="Container">
-
-<div id="location">HOME > 상품관리</div>
-<div id="S_contents">
+	<div id="location">HOME > 상품관리</div>
+	<div id="S_contents">
 	
-	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
-<!--  enctype="multipart/form-data" return inputCheck(this);-->
-<script>
-/* 월 납입액을 계산하는 ajax */
-function premPlus(rp)
-{
-	$(function()
-	{
-		$.ajax
-		({
-			url:"rprem.jsp",
-			type : "get",
-			data : 
-			{
-				paytime : $('#payt').val(),
-				instime : $('#inst').val(),
-				rprem : $('#rp').val(),
-				death : $('#death').val()
-			},
-			dataType : "html",
-			contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
-			success:function(responseData)
-			{
-				alert("성공인데 시벌아 = "+responseData);
-				$('#mp').html(responseData);		
-			},
-			error:function(errorData){
-				alert("오류발생 : "+errorData.status+":"+errorData.statusText);
-			}
+		<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
+		<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
 
-		});	
-
-	});
-}
+		<input type="hidden" name="instype" value="2"> 
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 
 </script>
-	<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="">
+<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
 <!-- 	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
 	<input type="hidden" name="relidx" value=""> -->
@@ -133,19 +162,20 @@ function premPlus(rp)
 	<tr>
 		<th>상품명</th>
 		<td colspan="3">
-			<input name="term_name" type="text" value="" size="60" class="input">&nbsp;
+			<input name="term_name" type="text" value="" size="30" class="input">&nbsp;
 		</td>
 	</tr>
 	<tr>
 		<th>보험종류</th>
 		<td colspan="3">
-			<input name="prdnum" type="text" value="2" size="30" class="input" readonly>
+			<input name="instype" type="text" value="2" size="1" class="input" readonly="readonly" style="border: 0">
 		</td>
 	</tr>
 	<tr>
 		<th>납입기간</th>
 		<td colspan="3">
-			<select name="paytime" id="payt" value="">
+			<select name="paytime" id="payt" value="" onChange="premPlus();">
+				<option value="">==선택==</option>
 				<option value="10">10년납</option>
 				<option value="20">20년납</option>
 				<option value="40">60세납</option>
@@ -154,143 +184,81 @@ function premPlus(rp)
 		</td>
 	</tr>
 	<tr>
+	<tr>
 		<th>보험기간</th>
 		<td colspan="3">
-			<table border="0" cellspacing="5" cellpadding="0">
-			<tr>
-				<td colspan="2">
-					<select name="instime" id="inst" value="">
-						<option value="10">10년만기</option>
-						<option value="20">20년만기</option>
-						<option value="40">60세까지</option>
-						<option value="50">70세까지</option>
-					</select>
-				</td>
-			</tr>
-			<!-- <tr>
-				<td>1.</td>
-				<td><input name="info_name1" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value1" type="text" value="" size="20" class="input"></td>
-				<td width="60" align="right">6.</td>
-				<td><input name="info_name6" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value6" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>2.</td>
-				<td><input name="info_name2" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value2" type="text" value="" size="20" class="input"></td>
-				<td align="right">7.</td>
-				<td><input name="info_name7" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value7" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>3.</td>
-				<td><input name="info_name3" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value3" type="text" value="" size="20" class="input"></td>
-				<td align="right">8.</td>
-				<td><input name="info_name8" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value8" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>4.</td>
-				<td><input name="info_name4" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value4" type="text" value="" size="20" class="input"></td>
-				<td align="right">9.</td>
-				<td><input name="info_name9" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value9" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>5.</td>
-				<td><input name="info_name5" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value5" type="text" value="" size="20" class="input"></td>
-				<td align="right">10.</td>
-				<td><input name="info_name10" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value10" type="text" value="" size="20" class="input"></td>
-			</tr> -->
-			</table>
-		</td>
-	</tr>
+	<table border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<th>위험할증률</th>
-		<td colspan="3">
-			<input type="text" name="rprem" id="rp" placeholder="1~10까지의 정수숫자"/>
-	</td>
-	</tr>
-	<tr>
-		<th>사망보험금</th>
-		<td colspan="3">
-			<select name="deathben" id="death" onChange="premPlus(this);">
-				<option value="15000000">1억5천</option>
-				<option value="10000000">1억</option>
-				<option value="5000000">5천</option>
+		<td colspan="2">
+			<select name="instime" id="inst" value="">
+				<option value="">==선택==</option>
+				<option value="10">10년만기</option>
+				<option value="20">20년만기</option>
+				<option value="40">60세까지</option>
+				<option value="50">70세까지</option>
 			</select>
 		</td>
 	</tr>
-	<tr>
-		<th>월 납입액</th>
-		<td colspan="3">
-			<span id="mp"><input type="text" placeholder="사망보험금까지 선택하면 자동으로 계산"/></span>
-	</td>
-	</tr>
-	<tr>
-		<th>첨부파일</th>
-		<td colspan="3">
-			<input type="file" name="attfile"/>
-	</td>
-	</tr>
-</table>
-	<tr>
-		<th height="25" >상품간단설명</th>
-		<td colspan="3">
-			<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
-		</td>
-	</tr>
-<!-- 	<tr>
-		<th height="25" >상품상세정보</th>
-		<td colspan="3">
 			
+			</table>
+				</td>
+			</tr>
+			<tr>
+				<th>위험할증률</th>
+				<td colspan="3">
+					<select name="rprem" id="">
+						<option value="">==선택==</option>
+						<%for(int i=0; i<=10; i++){ %>
+						<option value="<%=i%>"><%=i %></option>
+						<%} %>	
+					</select>
+			</td>
+			</tr>
+			<tr>
+				<th>사망보험금</th>
+				<td colspan="3">
+					<select name="deathben" id="death" onChange="premPlus(this);">
+						<option value="">==선택==</option>
+						<option value="15000000">1억5천</option>
+						<option value="10000000">1억</option>
+						<option value="5000000">5천</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>월 납입액</th>
+				<td colspan="3">
+					<span id="mp"><input type="text" size="40" placeholder="사망보험금까지 선택하면 자동으로 계산" style="border: 0"/></span>
+			</td>
+			</tr>
+			<tr>
+				<th>첨부파일</th>
+				<td colspan="3">
+					<input type="file" name="attfile"/>
+			</td>
+			</tr>
+			<tr>
+				<th height="25" >상품간단설명</th>
+				<td colspan="3">
+					<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
+				</td>
+			</tr>
 
-// ---------------------------------------------------------------------------------
-// outputBodyHTML 메서드를 호출하면 TEXTAREA 'fm_post' 폼 값에
-// 에디터에서 입력한 내용이 자동으로 입력됩니다.
-//
-// outputBodyHTML:  BODY 태그 안쪽 내용을 가져옵니다.
-// outputHTML:      HTML 문서 모두를 가져옵니다.
-// outputBodyText:  BODY 태그 안쪽의 HTML 태그를 제외한 텍스트만을 가져옵니다.
-// inputLength:     입력한 텍스트 문자 수를 리턴합니다.
-// contentsLength:  BODY 태그 안쪽의 HTML 태그를 포함한 모든 문자 수를 리턴합니다.
-// contentsLengthAll: HTML 문서의 모든 문자 수를 리턴합니다.
-
-
-<script type="text/javascript" src="../../webedit/cheditor.js"></script>
-<textarea id="content" name="content"></textarea>
-에디터를 화면에 출력합니다.
-<script type="text/javascript">
-var content = new cheditor();             							// 에디터 개체를 생성합니다.
-content.config.editorHeight = '300px';    // 에디터 세로폭입니다.
-content.config.editorWidth = '100%';       	// 에디터 가로폭입니다.
-content.inputForm = 'content';           				// textarea의 ID 이름입니다.
-content.run();                            							// 에디터를 실행합니다.
-</script>		</td>
-	</tr>
- -->
 	</table>
-
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
-	<tr>
-		<td align="center">
-			<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
-			<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_term.jsp';">목록</button>
-		</td>
-	</tr>
+		<tr>
+			<td align="center">
+				<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
+				<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_term.jsp';">목록</button>
+			</td>
+		</tr>
 	</table>
 	</form>
+	<!-- </div> -->
+	</div><!-- //Container// -->
+	</div><!-- //Container_wrap// -->
 
-	</div>
-</div><!-- //Container// -->
-</div><!-- //Container_wrap// -->
-
-<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+	<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
 </body>
 
 <!-- Mirrored from demohome.anywiz.co.kr/adm/manage/product/prd_input.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:11:59 GMT -->

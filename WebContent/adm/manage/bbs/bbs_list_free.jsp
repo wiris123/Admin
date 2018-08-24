@@ -8,7 +8,6 @@
 <%
 	//한글처리
 	request.setCharacterEncoding("UTF-8");
-
 	//커넥션풀로 변경
 	BbsDAO dao = new BbsDAO();
 
@@ -16,28 +15,24 @@
 	Map<String, Object> param = new HashMap<String, Object>();
 
 	//멀티 게시판 구현[추가]
-	String b_id = request.getParameter("b_id") == null ? "free" : request.getParameter("b_id");
+
+	String b_id = (request.getParameter("b_id") == "") ? "free" : request.getParameter("b_id");
 	param.put("b_id", b_id);
 
 	//문자열 검색 파라미터를 페이지 처리 메소드로 넘겨주기 위한 변수선언
-	String queryStr = "b_id="+ b_id +"&";
-	
+	String queryStr = "b_id=" + b_id + "&";
 
 	//폼값받기(검색관련)
-	String searchColumn = 
-		request.getParameter("searchColumn");
-	String searchWord = 
-		request.getParameter("searchWord");
-	if(searchWord!=null){
+	String searchColumn = request.getParameter("searchColumn");
+	String searchWord = request.getParameter("searchWord");
+	if (searchWord != null) {
 		//입력한 검색어가 있다면 맵에 추가함
 		param.put("Column", searchColumn);
 		param.put("Word", searchWord);
-		
+
 		//파라미터 추가
-		queryStr += String.format("&searchColumn=%s"
-			+"&searchWord=%s&", searchColumn,
-				searchWord);
-	} 
+		queryStr += String.format("&searchColumn=%s" + "&searchWord=%s&", searchColumn, searchWord);
+	}
 
 	//페이지 처리를 위한 로직 시작
 	//1.게시판 테이블의 전체 레코드 갯수 구하기
@@ -54,7 +49,7 @@
 	int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
 
 	//4.페이지번호가 없는경우 무조건 1로 설정
-	int nowPage = request.getParameter("nowPage") == null ? 1
+	int nowPage = (request.getParameter("nowPage") == "") ? 1
 			: Integer.parseInt(request.getParameter("nowPage"));
 
 	//5.가져올 레코드의 구간을 결정하기 위한 연산
@@ -76,7 +71,10 @@
 		photoLink = "_photo";
 	}
 
-	String pagingImg = PagingUtil.pagingImgServlet(totalRecordCount, pageSize, blockPage, nowPage,"../bbs/bbs_list.jsp?" + queryStr); 
+	String url = request.getRequestURI() + "?";
+
+	String pagingImg = PagingUtil.pagingImgServlet(totalRecordCount, pageSize, blockPage, nowPage,
+			url + queryStr);
 %>
 <!DOCTYPE html>
 <html>
@@ -91,8 +89,7 @@
 	<form name=freefrm>
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-top: 1px solid #333;">
 			<tr style="background: #f7f7f7;">
-				<th width="2%"><input type="checkbox" name="select_all" onClick="selectAll(this.form, this)">
-				</td>
+				<th width="2%"><input type="checkbox" name="select_all" onClick="selectAll(this.form, this)"></th>
 				<th width="6%" height="38">번호</th>
 				<th width="*">제목</th>
 				<th width="12%">작성자</th>
@@ -124,7 +121,7 @@
 				<td align="center" height="38"><%=totalRecordCount - (((nowPage - 1) * pageSize) + i++)%></td>
 
 				<td align="left" style="padding-left: 10px; word-break: break-all;">
-					<a href='bbs_contents.jsp?ptype=view&amp;idx=5275&amp;page=1&amp;code=bbsBasic'><%=dto.getTitle()%></a>
+					<a href='bbs_contents.jsp?b_id=${param.b_id }&amp;num=<%=dto.getNum() %>&amp;nowPage=${param.nowPage }'><%=dto.getTitle()%></a>
 					<!-- 댓글란 -->
 				</td>
 				<td align="center"><%=dto.getName()%></td>
@@ -144,29 +141,30 @@
 		<!-- 게시물 끝 -->
 		<!-- 페이지 번호 -->
 		<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td height="50" align="center" class="Paging_Num">
-							<table width='100%' border='0' cellspacing='0' cellpadding='0'>
-								<tr>
-									<td align='center'>
-										<table border='0' cellspacing='0' cellpadding='0'>
-											<tr>
-												<%=pagingImg %>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
+			<tr>
+				<td height="50" align="center" class="Paging_Num">
+					<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+						<tr>
+							<td align='center'>
+								<table border='0' cellspacing='0' cellpadding='0'>
+									<tr>
+										<%=pagingImg%>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
 		</table>
 		<!-- 페이지 번호끝 -->
 	</form>
 	<!-- 검색 -->
 	<div class="AWbbs_f_search">
-		<form name="searchfrm" >
+		<form name="searchfrm">
 			<table width="0%" border="0" cellpadding="0" cellspacing="0" align="center">
 				<input type="hidden" name="b_id" value="free">
+				<input type="hidden" name="nowPage" value="">
 				<tr>
 					<td>
 						<select name="searchColumn" style="height: 28px;">
@@ -190,6 +188,21 @@
 		</form>
 	</div>
 	<!-- 검색 끝 -->
-
+	<!-- 버튼 -->
+	<div style="margin: 10px 0 0;">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="33%">
+					<button type="button" class="h22 t4 small icon gray" onClick="selDelete();">
+						<span class="icon_plus"></span>선택삭제
+					</button>
+				</td>
+				<td align="right">
+					<a href='bbs_write.jsp?b_id=${param.b_id }' onclick="window.open(this.href,'팝업창','width=800, height=800'); return false;"> <img src='../../bbs/skin/bbsBasic/image/btn_write.gif' border='0'></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- 버튼 끝 -->
 </body>
 </html>

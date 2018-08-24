@@ -1,3 +1,4 @@
+<%@page import="dto.CounselMemDTO"%>
 <%@page import="dto.MemberDTO"%>
 <%@page import="util.PagingUtil"%>
 <%@page import="java.util.List"%>
@@ -8,6 +9,7 @@
 
     pageEncoding="UTF-8"%>
 <%
+
 request.setCharacterEncoding("UTF-8");
 
 MemberDAO dao = new MemberDAO();
@@ -66,8 +68,7 @@ int end = nowPage * pageSize;
 param.put("start", start);
 param.put("end", end);
 
-
-List<MemberDTO> bbs = dao.selectList(param);
+List<CounselMemDTO> bbs = dao.selectListQ(param);
 
 dao.close();
 %>
@@ -158,7 +159,7 @@ function selectAll(obj) {
 	
 <div id="location">HOME > 회원관리</div>
 	<div id="S_contents">
-	<h3>회원관리<span>회원을  관리합니다.</span></h3>	 
+	<h3>회원상담목록<span>상담목록을 조회 관리합니다.</span></h3>	
 		<form name="form-inline">
 		<input type="hidden" name="nowPage" value="1" />
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
@@ -168,6 +169,8 @@ function selectAll(obj) {
 						<select name="searchColumn" class="form-control">
 		         			<option value="name">고객명</option>
 		         			<option value="id">아이디</option>
+		         			<option value="mobile">전화번호</option>
+		         			
 		     			</select>
 						<input type="text" name="searchWord" value="" class="form-control">
 							<button type="submit" style="height:22px" class="b h28 t5 color blue_big">검색</button>
@@ -180,8 +183,8 @@ function selectAll(obj) {
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
 			<tr>
 				<td align="right">
-					<button type="button" class="h22 t4 small icon gray" onClick="document.location='member_write.jsp';"><span class="icon_plus"></span>회원등록</button>
-					<button type="button" class="h22 t4 small icon gray" onClick="prdDelete()"><span class="icon_plus"></span>회원삭제</button>
+					<button type="button" class="h22 t4 small icon gray" onClick="document.location='memberQ_write.jsp';"><span class="icon_plus"></span>등록</button>
+					<button type="button" class="h22 t4 small icon gray" onClick="prdDelete()"><span class="icon_plus"></span>삭제</button>
 				</td>
 			</tr>
 		</table>
@@ -190,13 +193,11 @@ function selectAll(obj) {
 	        		<tr class="success">
 						<td width="5%"><input type="checkbox" name="select_tmp"   onClick="selectAll(this)"/></td>
 						<td width="5%">번호</td>
-						<td>아이디</td>
-						<td width="15%">패스워드</td>
-						<td width="15%">이름</td>
-						<td width="15%">이메일</td>
-						<td width="5%">전화번호</td>
-						<td width="10%">생일</td>
-						<td width="10%">가입일</td>
+						<td width="15%">아이디</td>
+						<td width="5%">고객명</td>
+						<td width="15%">전화번호</td>
+						<td width="10%">등록일</td>
+						<td width="15%">상담 내용</td>
 					</tr>
 				</thead> 
 				<tbody> 
@@ -214,21 +215,19 @@ function selectAll(obj) {
 					{
 						int vNum = 0;
 						int countNum = 0;
-						for(MemberDTO dto : bbs){
+						for(CounselMemDTO dto : bbs){
 			
 							vNum = totalRecordCount - (((nowPage-1)*pageSize)+countNum++);
 					%>
 		
 						<tr>
 							<td><input type="checkbox" name="select_chkbox" value="<%=dto.getId()%>"/></td>
-							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=vNum %></a></td>
-							<td class="text-left"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getId() %></a></td>
-							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getPass() %></a></td>
-							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getName() %></a></td>
-							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getEmail() %></a></td>
-							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getMobile() %></a></td>
-							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getBirth() %></a></td>
-							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getRegidate() %></a></td>
+							<td class="text-center"><a href="memberQ_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getIdx() %></a></td>
+							<td class="text-left"><a href="memberQ_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getId() %></a></td>
+							<td class="text-center"><a href="memberQ_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getName() %></a></td>
+							<td class="text-center"><a href="memberQ_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getMobile() %></a></td>
+							<td class="text-center"><a href="memberQ_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getRegidate() %></a></td>
+							<td class="text-center"><a href="memberQ_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getContents() %></a></td>
 						</tr>
 		
 					<%
@@ -241,7 +240,7 @@ function selectAll(obj) {
 	      
 		<div class="row text-center" style="text-align:center">
 			<ul class="pagination">
-				<%=PagingUtil.pagingImg(totalRecordCount,pageSize,blockPage,nowPage,"member_list.jsp?"+queryStr) %>
+				<%=PagingUtil.pagingImg(totalRecordCount,pageSize,blockPage,nowPage,"memberQ_list.jsp?"+queryStr) %>
 			</ul>	
 		</div>
 	</div>
