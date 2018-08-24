@@ -311,6 +311,54 @@ function prdFocus(){
 }
 
 //-->
+	function formChk(f){
+		if(f.prop_name.value==""){
+			alert("상품명을 입력하세요");
+			f.prop_name.focus();
+			return false;
+		}
+		if(f.monthpay.value==""){
+			alert("월납입액을 입력하세요");
+			f.monthpay.focus();
+			return false;
+		}
+		if(f.hosp.value==""){
+			alert("질병입원보장을 입력하세요");
+			f.hosp.focus();
+			return false;
+		}
+		if(f.gohosp.value==""){
+			alert("질병통원보장을 입력하세요");
+			f.gohosp.focus();
+			return false;
+		}
+		
+		if(f.sanghosp.value==""){
+			alert("상해입원보장을 입력하세요");
+			f.sanghosp.focus();
+			return false;
+		}
+		if(f.sgohosp.value==""){
+			alert("상해통원보장을 입력하세요");
+			f.sgohosp.focus();
+			return false;
+		}
+		if(f.chbedosu.value==""){
+			alert("비급여도수를 입력하세요");
+			f.chbedosu.focus();
+			return false;
+		}
+		if(f.chbeinje.value==""){
+			alert("체외충격파를 입력하세요");
+			f.chbeinje.focus();
+			return false;
+		}
+		if(f.chbemri.value==""){
+			alert("자기공명진단을 입력하세요");
+			f.chbemri.focus();
+			return false;
+		}
+	}
 </script>
 
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="setClass01();setCategory();prdlayCheck();lodingComplete();prdFocus();">
@@ -320,7 +368,7 @@ function prdFocus(){
 	
 	<h3>상품관리<span> 실손보험 관리페이지입니다.</span></h3>
 
-	<form name="propfrm" action="./proc/input_prop.jsp" method="post" onSubmit="">
+	<form name="propfrm" action="./proc/input_prop.jsp" method="post" onSubmit="return formChk(this)">
 	<!-- <input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">
 	<input type="hidden" name="relidx" value=""> -->
@@ -335,13 +383,13 @@ function prdFocus(){
 	<tr>
 		<th>보험종류</th>
 		<td colspan="3">
-			<input name="instype" type="text" value="" size="30" class="input">
+			<input name="instype" type="text" value="3"  class="input" readonly="readonly" style="border: 0">
 		</td>
 	</tr>
 	<tr>
 		<th>보험기간</th>
 		<td colspan="3">
-			<table border="0" cellspacing="5" cellpadding="0">
+			<table border="0" cellspacing="0" cellpadding="0">
 				<td colspan="2">
 					<select name="instime" id="">
 						<option value="10">10년만기</option>

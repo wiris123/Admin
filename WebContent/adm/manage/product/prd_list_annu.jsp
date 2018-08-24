@@ -226,65 +226,50 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
          <form>
          <script type="text/javascript">
-         	//체크박스 전체선택
-         	function selectAll(obj)
-	 	{ 
-	       var chkObj = document.getElementsByName("select_chkbox");
-	       var rowCnt = chkObj.length-1;
-	       var check = obj.checked;
-	       if(check==true) 
-	       {﻿
-	           for (var i=0; i<=rowCnt; i++)
-		       {
-		          chkObj[i].checked = true; 
-		       }
-		       
-	       }
-	       else
-    	   {
-	    	   for (var i=0; i<=rowCnt; i++)
-		       {
-		          chkObj[i].checked = false; 
-		       }
-    	   }	
-	 	}
-	 	
-	 	//선택삭제
-		function prdDelete()
-	 	{
-			var selvalue = document.getElementsByName("select_chkbox")
-			
-	 		if(selvalue == false)
-	 		{
-	 			alert("삭제할 상품을 선택하세요.");
-	 			return false;
-	 		}
-	 		else
-	 		{
-	 			if(confirm("선택한 상품을 정말 삭제하시겠습니까?"))
-	 			{
-	 				var name ="";
- 					for(var i=0; i<=selvalue.length-1; i++)
-	 				{
-	 					if(selvalue[i].checked)
- 						{
-	 						if(selvalue[i]=='undefined')
-	 						{
-		 						name = selvalue[i].value;	 						
-	 						}
-		 					else
-	 						{
-		 						name = name + '-'+selvalue[i].value;
-	 						}
-		 					
- 						}						
-	 					
-	 				}
- 					document.location = "./proc/prd_del_annu.jsp?ann_name="+name		
-	 				
-	 			}
-	 		}
-	 	}
+       //전체선택
+         function selectAll(obj) {
+         	var chkObj = document.getElementsByName("select_chkbox");
+         	var rowCnt = chkObj.length - 1;
+         	// 대가리에 노드를 체크로 전환시
+         	if (obj.checked == true) {
+         		// 전부 선택으로 바꿔줌
+         		for (var i = 0; i <= rowCnt; i++) {
+         			chkObj[i].checked = true;
+         		}
+         		// 체크 해제시
+         	} else {
+         		// 전부 체크 해제
+         		for (var i = 0; i <= rowCnt; i++) {
+         			chkObj[i].checked = false;
+         		}
+         	}
+         }
+
+         // 선택삭제
+         function prdDelete() {
+         	var selvalue = document.getElementsByName("select_chkbox")
+         	var name= null;
+         	//한번 for문으로 훑어서 체크된값이 있다면 name 에 저장
+         	for (var i = 0; i <= selvalue.length-1; i++) {
+         		if (selvalue[i].checked) {
+         			if(name==null) name='-' + selvalue[i].value;
+         			else name +=  '-' + selvalue[i].value;
+         		}
+         	}
+         	//없었다면
+         	if (name == null) {
+         		alert("삭제할 상품을 선택하세요.");
+         		return false;
+         	} 
+         	
+         	//있다면 다시한번 삭제할것인지 확인
+         	else 
+         	{
+         		if (confirm("선택한 상품을 정말 삭제하시겠습니까?")) {
+         			document.location = "./proc/prd_del_annu.jsp?ann_name=" + name
+         		}
+         	}
+         }
          </script>
          
          <thead>
@@ -301,7 +286,7 @@
          <form>
          <thead>
         <tr>
-           <td width="5%"><input type="checkbox" name="select_tmp" onClick="selectReverse(this.form)"></td>
+           <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this)"></td>
           <td width="15%">상품명</td>
           <td width=15%>연금게시일</td>
           <td width="10%">연금납부연한</td>

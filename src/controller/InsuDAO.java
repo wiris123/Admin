@@ -96,13 +96,13 @@ public class InsuDAO
 		return affected;	
 	}
 	
-	public int deleteAnnu(String annu_name) {
+	public int deleteAnnu(String ann_name) {
 		int affected = 0;
 		try {
-			String query = "delete from annu_insu where annu_name=?";
+			String query = "delete from annu_insu where ann_name=?";
 			
 			psmt = con.prepareStatement(query);			
-			psmt.setString(1, annu_name);
+			psmt.setString(1, ann_name);
 			 
 			affected = psmt.executeUpdate();
 		}
@@ -111,7 +111,7 @@ public class InsuDAO
 			System.out.println("delete_board_ann중 예외발생");
 			e.printStackTrace();
 		}
-		System.out.println("annu_name"+annu_name);
+		System.out.println("ann_name"+ann_name);
 		return affected;	
 	}
 	
