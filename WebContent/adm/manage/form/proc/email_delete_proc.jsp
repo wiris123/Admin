@@ -21,6 +21,6 @@
 %>
 	<script>
 	alert("삭제완료")
-	location.href="../form_list.jsp?flag=f"
+	location.href="../form_list_email.jsp?flag=e"
 	</script>
 <% } %>

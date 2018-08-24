@@ -91,13 +91,13 @@ public class CounselDAO
 		}
 	}
 	
-	public int deleteTerm(String term_name) {
+	public int deleteTerm(String idx) {
 		int affected = 0;
 		try {
-			String query = "delete from booking where term_name=?";
+			String query = "delete from booking where idx=?";
 			
 			psmt = con.prepareStatement(query);			
-			psmt.setString(1, term_name);
+			psmt.setString(1, idx);
 			 
 			affected = psmt.executeUpdate();
 		}
@@ -106,8 +106,67 @@ public class CounselDAO
 			System.out.println("delete_board중 예외발생");
 			e.printStackTrace();
 		}
-		System.out.println("term_name"+term_name);
+		System.out.println("idx"+idx);
 		return affected;	
+	}
+	
+	//게시판 글쓰기 처리
+	public int formWrite(CounselDTO dto) {
+		//적용된 행의 개수 확인을 위한 변수
+		int affected = 0;
+		try {
+			String query = "INSERT INTO booking ( "
+				+ " idx,name,mobile,regidate,email,contents,flag) "
+				+ " VALUES ( "
+				+ " book_seq.NEXTVAL, ?, ?, sysdate, ?, ?, ?)";
+
+			psmt = con.prepareStatement(query);
+			System.out.println(dto.getName()+dto.getMobile()+dto.getEmail()+dto.getContents()+dto.getFlag());
+			
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getMobile());
+			psmt.setString(3, dto.getEmail());
+			psmt.setString(4, dto.getContents());
+			psmt.setString(5, dto.getFlag());
+			
+			affected = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("insert중 예외발생");
+			e.printStackTrace();
+		}
+		
+		return affected;
+	}
+	
+	//게시판 상세보기
+	public CounselDTO selectView(String idx) {
+
+		CounselDTO dto = new CounselDTO();
+		
+		String query = "SELECT * FROM booking WHERE idx=?";		
+		System.out.println(query);
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setIdx(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setMobile(rs.getString(3));
+				dto.setRegidate(rs.getDate(4));
+				dto.setEmail(rs.getString(5));
+				dto.setContents(rs.getString(6));
+				dto.setFlag(rs.getString(7));
+			}
+		}
+		catch(Exception e) {
+			System.out.println("상세보기시 예외발생");
+			e.printStackTrace();
+		}				
+				
+		return dto;
 	}
 
 }

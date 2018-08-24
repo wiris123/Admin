@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="controller.CounselDAO"%> 
+<%@page import="controller.CounselDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -115,7 +115,7 @@ dao.close();
 		<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
 	</div>
 	
-	<%@include file="../include/common_form.jsp " %>
+	<%@include file="../include/common_form.jsp" %>
 	
     <div id="left_area">
 	<%@include file="../include/form_left.jsp"%>
@@ -124,7 +124,7 @@ dao.close();
 <div id="location">HOME > <%= path_str %></div>
 <div id="S_contents">
 <h3><%= path_str %><span>작성된 <%= path_str %>을 관리 합니다.</span></h3>		
- 
+
 <form action="http://demohome.anywiz.co.kr/adm/manage/form/form_list.php">
 <input type="hidden" name="flag" value="<%=flag %>" />
 <input type="hidden" name="nowPage" value="1" />
@@ -154,74 +154,11 @@ dao.close();
     <td>총 등록수 : <b>2</b></td>
   </tr>
 </table>
-<script type="text/javascript">
-	 	// 체크박스 전체선택
-	 	function selectAll(obj)
-	 	{ 
-	       var chkObj = document.getElementsByName("select_chkbox");
-	       var rowCnt = chkObj.length-1;
-	       var check = obj.checked;
-	       if(check==true) 
-	       {﻿
-	           for (var i=0; i<=rowCnt; i++)
-		       {
-		          chkObj[i].checked = true; 
-		       }
-		       
-	       }
-	       else
-    	   {
-	    	   for (var i=0; i<=rowCnt; i++)
-		       {
-		          chkObj[i].checked = false; 
-		       }
-    	   }	
-	 	}
-	 	
-	 	//선택삭제
-		function formDelete()
-	 	{
-			var selvalue = document.getElementsByName("select_chkbox")
-			
-	 		if(selvalue == false)
-	 		{
-	 			alert("삭제할 메일을 선택하세요.");
-	 			return false;
-	 		}
-	 		else
-	 		{
-	 			if(confirm("선택한 메일을 정말 삭제하시겠습니까?"))
-	 			{
-	 				var name ="";
- 					for(var i=0; i<=selvalue.length-1; i++)
-	 				{
-	 					if(selvalue[i].checked)
- 						{
-	 						if(selvalue[i]=='undefined')
-	 						{
-		 						idx = selvalue[i].value;	 						
-	 						}
-		 					else
-	 						{
-		 						idx = idx + '-'+selvalue[i].value;
-	 						}
-		 					
- 						}						
-	 					
-	 				}
- 					document.location = "email_delete_proc.jsp?idx="+idx		
-	 				
-	 			}
-	 		}
-	 	}
-	 	
-	 	
-     
-      </script>
+<script type="text/javascript" src="./select.js"></script>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
 	<thead>
 	<tr>
-		<td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
+		<td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this.form, this);"></td>
 		<td width="5%">번호</td>
 		<td width="10%">이름</td>
 		<td width="10%">모바일</td>
@@ -268,12 +205,14 @@ dao.close();
 
 <table width="100%"border="0" cellpadding="0" cellspacing="0" class="top5">
   <tr>
-    <td width="33%">
+    <td width="20%"><input type="hidden" value="<%=page_flag%>" id="page_flag"/>
     <button type="button" class="h22 t4 small icon gray" onClick="formDelete();"><span class="icon_plus"></span>선택삭제</button>
     </td>
+    <td width="20%"><input type="hidden" value="<%=page_flag%>" id="page_flag"/>
+    <button type="button" class="h22 t4 small icon gray" onClick="location.href='form_email_write.jsp'"><span class="icon_plus"></span>글쓰기</button>
+    </td>
     <td width="33%">
-        <table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=formBasic&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=formBasic&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=formBasic&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=formBasic&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
-    <td width="33%"></td>
+    	<table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
   </tr>
 </table>
 </div>

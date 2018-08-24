@@ -9,7 +9,7 @@
 	String[] sp_name = idx.split("-");
 	
 	CounselDAO dao = new CounselDAO();
-	int aff=0;
+	int aff=0; 
 	for(int i=0; i<sp_name.length; i++)
 	{
 		aff = dao.deleteTerm(sp_name[i]); 
@@ -21,6 +21,6 @@
 %>
 	<script>
 	alert("삭제완료")
-	location.href="../form_list.jsp?flag=f"
+	location.href="../form_list_consult.jsp?flag=c"
 	</script>
 <% } %>
