@@ -93,19 +93,17 @@ function formChk(f){
 		f.paytime.focus();
 		return false;
 	}
-	if(f.monthann.value==""){
-		alert("매월 연금 수령액을 입력하세요");
-		f.monthann.focus();
-		return false;
-	} 
 	if(f.payment.value==""){
 		alert("월납입액을 입력하세요");
 		f.payment.focus();
 		return false;
 	}
-	if(f.payment.value!=""){
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	if(f.rprem.value==""){ 
+		alert("위험할증률을 선택하세요");
+		f.rprem.focus();
+		return false;
 	}
+	
 	
 }
 
@@ -148,7 +146,7 @@ function formChk(f){
 	<tr>
 		<th>연금개시일</th>
 		<td colspan="3">
-			<input name="instart" id="datepicker1_" type="text" value="" size="50" class="input">
+			<input name="instart" id="datepicker1" type="text" value="" size="50" class="input">
 		</td>
 	</tr>
 	<tr>
@@ -187,12 +185,12 @@ function formChk(f){
 	<tr>
 		<th>매월 연금수령액</th>
 		<td colspan="3">
-			<input type="text" name="monthann" value="" />
+			<input type="text" name="monthann" value="" placeholder="자동으로 계산" style="border: 0"/>
 	</td>
 	<tr>
 		<th>계약일자</th>
 		<td colspan="3">
-			<input type="text" name="regidate" id="datepicker1_" value="" />
+			<input type="text" name="regidate" id="datepicker1" value="" />
 	</td>
 	<tr>
 		<th>계약상태</th>
