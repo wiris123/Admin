@@ -149,23 +149,8 @@
 		<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
 		<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
 
-<<<<<<< HEAD
 		<input type="hidden" name="instype" value="2"> 
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
-=======
-		});	
-
-	});
-}
-
-function formChk(f){
-	if(f.term_name.value==""){
-		alert("상품명을 입력하세요");
-		f.term_name.focus();
-		return false;
-	}
-	
-}
 
 </script>
 <form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
@@ -190,6 +175,7 @@ function formChk(f){
 		<th>납입기간</th>
 		<td colspan="3">
 			<select name="paytime" id="payt" value="" onChange="premPlus();">
+				<option value="">==선택==</option>
 				<option value="10">10년납</option>
 				<option value="20">20년납</option>
 				<option value="40">60세납</option>
@@ -198,61 +184,23 @@ function formChk(f){
 		</td>
 	</tr>
 	<tr>
+	<tr>
 		<th>보험기간</th>
 		<td colspan="3">
-			<table border="0" cellspacing="0" cellpadding="0">
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
-			<tr>
-<<<<<<< HEAD
-				<th>상품명</th>
-				<td colspan="3">
-					<input name="term_name" type="text" value="" size="30" class="input">&nbsp;
-				</td>
-			</tr>
-			<tr>
-				<th>보험종류</th>
-				<td colspan="3">
-					<input name="instype" type="text" value="2" size="1" class="input" readonly="readonly" style="border: 0">
-				</td>
-			</tr>
-			<tr>
-				<th>납입기간</th>
-				<td colspan="3">
-					<select name="paytime" id="payt" value="">
-						<option value="">==선택==</option>
-						<option value="10">10년납</option>
-						<option value="20">20년납</option>
-						<option value="40">60세납</option>
-						<option value="45">65세납</option>
-=======
-				<td colspan="2">
-					<select name="instime" id="inst" value="" onChange="premPlus();">
-						<option value="10">10년만기</option>
-						<option value="20">20년만기</option>
-						<option value="40">60세까지</option>
-						<option value="50">70세까지</option>
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
-					</select>
-				</td>
-			</tr>
-<<<<<<< HEAD
-			<tr>
-				<th>보험기간</th>
-				<td colspan="3">
-					<table border="0" cellspacing="0" cellpadding="0">
-					<tr>
-						<td colspan="2">
-							<select name="instime" id="inst" value="">
-								<option value="">==선택==</option>
-								<option value="10">10년만기</option>
-								<option value="20">20년만기</option>
-								<option value="40">60세까지</option>
-								<option value="50">70세까지</option>
-							</select>
-						</td>
-					</tr>
-					
-					</table>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="2">
+			<select name="instime" id="inst" value="">
+				<option value="">==선택==</option>
+				<option value="10">10년만기</option>
+				<option value="20">20년만기</option>
+				<option value="40">60세까지</option>
+				<option value="50">70세까지</option>
+			</select>
+		</td>
+	</tr>
+			
+			</table>
 				</td>
 			</tr>
 			<tr>
@@ -295,55 +243,7 @@ function formChk(f){
 					<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
 				</td>
 			</tr>
-=======
-			
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<th>위험할증률</th>
-		<td colspan="3">
-			<input type="number" name="rprem" id="rp" placeholder="1~10까지의 정수숫자" onKeyup="premPlus();"/>
-	</td>
-	</tr>
-	<tr>
-		<th>사망보험금</th>
-		<td colspan="3">
-			<select name="deathben" id="death" onChange="premPlus();">
-				<option value="15000000">1억5천</option>
-				<option value="10000000">1억</option>
-				<option value="5000000">5천</option>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<th>월 납입액</th>
-		<td colspan="3">
-			<span id="mp"><input type="text" placeholder="사망보험금까지 선택하면 자동으로 계산"/></span>
-	</td>
-	</tr>
-	<tr>
-		<th>첨부파일</th>
-		<td colspan="3">
-			<input type="file" name="attfile"/>
-	</td>
-	</tr>
-</table>
-	<tr>
-		<th height="25" >상품간단설명</th>
-		<td colspan="3">
-			<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
-		</td>
-	</tr>
-</table>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
-	<tr>
-		<td align="center">
-			<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
-			<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_term.jsp';">목록</button>
-		</td>
-	</tr>
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
+
 	</table>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
 		<tr>
