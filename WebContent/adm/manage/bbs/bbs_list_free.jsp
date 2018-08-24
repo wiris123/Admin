@@ -8,7 +8,6 @@
 <%
 	//한글처리
 	request.setCharacterEncoding("UTF-8");
-
 	//커넥션풀로 변경
 	BbsDAO dao = new BbsDAO();
 
@@ -16,7 +15,8 @@
 	Map<String, Object> param = new HashMap<String, Object>();
 
 	//멀티 게시판 구현[추가]
-	String b_id = request.getParameter("b_id") == null ? "free" : request.getParameter("b_id");
+	
+	String b_id = (request.getParameter("b_id")=="")?"free":request.getParameter("b_id");
 	param.put("b_id", b_id);
 
 	//문자열 검색 파라미터를 페이지 처리 메소드로 넘겨주기 위한 변수선언
@@ -54,8 +54,7 @@
 	int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
 
 	//4.페이지번호가 없는경우 무조건 1로 설정
-	int nowPage = request.getParameter("nowPage") == null ? 1
-			: Integer.parseInt(request.getParameter("nowPage"));
+	int nowPage = (request.getParameter("nowPage") =="")?1: Integer.parseInt(request.getParameter("nowPage"));
 
 	//5.가져올 레코드의 구간을 결정하기 위한 연산
 	int start = (nowPage - 1) * pageSize + 1;
@@ -76,7 +75,9 @@
 		photoLink = "_photo";
 	}
 
-	String pagingImg = PagingUtil.pagingImgServlet(totalRecordCount, pageSize, blockPage, nowPage,"../bbs/bbs_list.jsp?" + queryStr); 
+	String url = request.getRequestURI()+"?";
+
+	String pagingImg = PagingUtil.pagingImgServlet(totalRecordCount, pageSize, blockPage, nowPage,url + queryStr); 
 %>
 <!DOCTYPE html>
 <html>
@@ -124,7 +125,7 @@
 				<td align="center" height="38"><%=totalRecordCount - (((nowPage - 1) * pageSize) + i++)%></td>
 
 				<td align="left" style="padding-left: 10px; word-break: break-all;">
-					<a href='bbs_contents.jsp?ptype=view&amp;idx=5275&amp;page=1&amp;code=bbsBasic'><%=dto.getTitle()%></a>
+					<a href='bbs_contents.jsp?b_id=${param.b_id }&amp;num=<%=dto.getNum() %>&amp;nowPage=${param.nowPage }'><%=dto.getTitle()%></a>
 					<!-- 댓글란 -->
 				</td>
 				<td align="center"><%=dto.getName()%></td>
@@ -167,6 +168,7 @@
 		<form name="searchfrm" >
 			<table width="0%" border="0" cellpadding="0" cellspacing="0" align="center">
 				<input type="hidden" name="b_id" value="free">
+				<input type="hidden" name="nowPage" value="">
 				<tr>
 					<td>
 						<select name="searchColumn" style="height: 28px;">

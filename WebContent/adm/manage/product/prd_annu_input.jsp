@@ -200,17 +200,23 @@ function formChk(f){
 			<input type="radio" value="E" name="submit"/> E
 		</td>
 	</tr>
+<<<<<<< HEAD
 		<tr>
+=======
+			<tr>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 		<th>첨부파일</th>
 		<td colspan="3">
 			<input type="file" name="attfile"/>
 	</td>
 	</tr>
-			
 			</table>
 		</td>
+<<<<<<< HEAD
 	</tr>
 </table>
+=======
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 	<br/>
 	<tr>
 		<th height="25" >상품간단설명</th>
