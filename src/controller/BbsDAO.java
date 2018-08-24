@@ -49,6 +49,7 @@ public class BbsDAO {
 	
 	public int getTotalRecordCount(Map<String,Object> param) {
 		int totalCount=-1;
+		
 		String query = "select count(*) from multiboard where 1=1 and b_id=? ";
 		if (param.get("Word") != null) {
 			if (param.get("Column").equals("both")) {

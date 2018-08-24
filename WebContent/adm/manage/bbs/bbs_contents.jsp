@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page import="dto.BoardDTO"%>
 <%@page import="controller.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -11,7 +12,14 @@ String num = request.getParameter("num").toString();
 dto = dao.contents(num);
 System.out.println("들어온이름은"+dto.getName());
 %>
+<<<<<<< Upstream, based on origin/underwearRun
 
+=======
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
+>>>>>>> 3539c77 할꺼야뺴애애액
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +37,12 @@ System.out.println("들어온이름은"+dto.getName());
 					type="text/css">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					class="AWbbs_view_table border">
+<<<<<<< Upstream, based on origin/underwearRun
 					<tr>
+=======
+					<tr>
+<<<<<<< HEAD
+>>>>>>> 3539c77 할꺼야뺴애애액
 						<td style="padding: 0px 10px 10px 10px">
 							<link href="../../bbs/skin/bbsBasic/style.css" rel="stylesheet" type="text/css">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0" class="AWbbs_view_table border">
@@ -40,13 +53,39 @@ System.out.println("들어온이름은"+dto.getName());
 									<td height="40">작성자 : <%=dto.getName() %>(이메일) 작성일 : <%=dto.getRegidate() %> 조회수 : <%=dto.getViewcnt() %></td>
 									<td align="right">추천:0</td>
 								</tr>
+<<<<<<< Upstream, based on origin/underwearRun
 
+=======
+=======
+						<th colspan="2">제목</th>
+					</tr>
+					<tr>
+						<td height="40">작성자 : 홈페이지(test@test.com) 작성일 : 2016-04-11
+							14:08 조회수 : 17</td>
+						<td align="right">추천:0</td>
+					</tr>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
+
+<<<<<<< HEAD
+>>>>>>> 3539c77 할꺼야뺴애애액
 								<tr>
 									<td colspan="2" height="40">파일첨부 :</td>
 								</tr>
 								<tr>
 									<td colspan="2" style="padding: 20px 0;"><%=dto.getContents() %></td>
+<<<<<<< Upstream, based on origin/underwearRun
 								</tr>
+=======
+								</tr>
+=======
+					<tr>
+						<td colspan="2" height="40">파일첨부 :</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="padding: 20px 0;">게시물 테스트 입니다.</td>
+					</tr>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
+>>>>>>> 3539c77 할꺼야뺴애애액
 
 				</table>
 				<div style="margin: 0 0 10px;"></div>
