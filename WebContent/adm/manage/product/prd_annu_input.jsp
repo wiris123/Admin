@@ -190,62 +190,14 @@
 			</select>
 		</td>
 	</tr>
-	
-			<!-- <tr>
-				<td>1.</td>
-				<td><input name="info_name1" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value1" type="text" value="" size="20" class="input"></td>
-				<td width="60" align="right">6.</td>
-				<td><input name="info_name6" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value6" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>2.</td>
-				<td><input name="info_name2" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value2" type="text" value="" size="20" class="input"></td>
-				<td align="right">7.</td>
-				<td><input name="info_name7" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value7" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>3.</td>
-				<td><input name="info_name3" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value3" type="text" value="" size="20" class="input"></td>
-				<td align="right">8.</td>
-				<td><input name="info_name8" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value8" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>4.</td>
-				<td><input name="info_name4" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value4" type="text" value="" size="20" class="input"></td>
-				<td align="right">9.</td>
-				<td><input name="info_name9" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value9" type="text" value="" size="20" class="input"></td>
-			</tr>
-			<tr>
-				<td>5.</td>
-				<td><input name="info_name5" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value5" type="text" value="" size="20" class="input"></td>
-				<td align="right">10.</td>
-				<td><input name="info_name10" type="text" value="" size="15" class="input"></td>
-				<td><input name="info_value10" type="text" value="" size="20" class="input"></td>
-			</tr> -->
 			<tr>
 		<th>첨부파일</th>
 		<td colspan="3">
 			<input type="file" name="attfile"/>
 	</td>
 	</tr>
-			
 			</table>
 		</td>
-	</tr>
-	
-	
-</table>
-
-
 	<br/>
 	<tr>
 		<th height="25" >상품간단설명</th>

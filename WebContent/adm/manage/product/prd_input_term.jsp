@@ -153,7 +153,7 @@ function formChk(f){
 	<tr>
 		<th>납입기간</th>
 		<td colspan="3">
-			<select name="paytime" id="payt" value="">
+			<select name="paytime" id="payt" value="" onChange="premPlus();">
 				<option value="10">10년납</option>
 				<option value="20">20년납</option>
 				<option value="40">60세납</option>
@@ -167,7 +167,7 @@ function formChk(f){
 			<table border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td colspan="2">
-					<select name="instime" id="inst" value="">
+					<select name="instime" id="inst" value="" onChange="premPlus();">
 						<option value="10">10년만기</option>
 						<option value="20">20년만기</option>
 						<option value="40">60세까지</option>
@@ -182,13 +182,13 @@ function formChk(f){
 	<tr>
 		<th>위험할증률</th>
 		<td colspan="3">
-			<input type="text" name="rprem" id="rp" placeholder="1~10까지의 정수숫자"/>
+			<input type="number" name="rprem" id="rp" placeholder="1~10까지의 정수숫자" onKeyup="premPlus();"/>
 	</td>
 	</tr>
 	<tr>
 		<th>사망보험금</th>
 		<td colspan="3">
-			<select name="deathben" id="death" onChange="premPlus(this);">
+			<select name="deathben" id="death" onChange="premPlus();">
 				<option value="15000000">1억5천</option>
 				<option value="10000000">1억</option>
 				<option value="5000000">5천</option>
