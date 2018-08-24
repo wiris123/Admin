@@ -1,16 +1,18 @@
+<%@page import="dto.CounselMemDTO"%>
 <%@page import="dto.MemberDTO"%>
 <%@page import="controller.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
     pageEncoding="UTF-8"%>
-<%
+<% 
 request.setCharacterEncoding("UTF-8");
 
-String id = request.getParameter("id");
+String idx = request.getParameter("idx");
 
 MemberDAO dao = new MemberDAO();
  
-MemberDTO dto = dao.selectView(id);
+CounselMemDTO dto = dao.selectViewQ(idx);
+
 pageContext.setAttribute("dto", dto);
 dao.close();
 
@@ -60,7 +62,7 @@ dao.close();
 
 		
 	
-	<form name="frm" action="member_delete.jsp?id=<%=dto.getId()%>" method="post">
+	<form name="frm" >
 	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="update">
 	<input type="hidden" name="idx" value="109">
@@ -69,25 +71,19 @@ dao.close();
 		<td>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 			<tr>
-				<th width="15%">아이디</th>
+				<th width="15%">번호</th>
 					<td width="35%">
-						${dto.id }
+						${dto.idx }
 					</td>
 			</tr>
 			<tr>
-				<th>패스워드</th>
-				<td>${dto.pass }</td>
-			</tr>
-			<tr>
 				<th>이름</th>
-				<td colspan="3">
-					${dto.name }
-				</td>
+				<td>${dto.name }</td>
 			</tr>
 			<tr>
-				<th>이메일</th>
+				<th>아이디</th>
 				<td colspan="3">
-					${dto.email }
+					${dto.id }
 				</td>
 			</tr>
 			<tr>
@@ -97,9 +93,15 @@ dao.close();
 				</td>
 			</tr>
 			<tr>
-				<th height="25">생일</th>
+				<th>등록일</th>
+				<td colspan="3" colspan="3">
+					${dto.regidate }
+				</td>
+			</tr>
+			<tr>
+				<th height="25">내용</th>
 				<td colspan="3">
-					${dto.birth }
+					${dto.contents }
 				</td>
 			</tr>
 			</table>
@@ -110,7 +112,7 @@ dao.close();
 
 	<div class="center top10">
 		
-		<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='member_list.jsp';">목록</button>
+		<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='memberQ_list.jsp';">목록</button>
 	</div>
 	</form>
 
