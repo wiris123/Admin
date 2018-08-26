@@ -46,7 +46,8 @@ function writeValidate(f)
 }
 
 
-function mValidate(fn){
+function mValidate(fn)
+{
 	//아이디검증
 	if(fn.id.value==""){
 		alert("아이디를 입력해주세요");
