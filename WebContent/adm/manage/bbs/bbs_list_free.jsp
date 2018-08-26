@@ -18,9 +18,14 @@
 
 	String b_id = (request.getParameter("b_id") == "") ? "free" : request.getParameter("b_id");
 	param.put("b_id", b_id);
-
+	String queryStr="";
 	//문자열 검색 파라미터를 페이지 처리 메소드로 넘겨주기 위한 변수선언
-	String queryStr = "b_id=" + b_id + "&";
+	if(request.getParameter("num")==""){
+		queryStr = "b_id=" + b_id + "&";
+	}
+	else{
+		queryStr = "b_id=" + b_id + "&" + "num=" + request.getParameter("num") + "&";
+	}
 
 	//폼값받기(검색관련)
 	String searchColumn = request.getParameter("searchColumn");
@@ -111,12 +116,16 @@
 			<%
 				} else {
 					int i = 0;
+					int vNum = 0;
+					int countNum = 0;
 					for (BoardDTO dto : bbs) {
+						vNum = totalRecordCount - 
+								(((nowPage-1)*pageSize)+countNum++);
 			%>
 			<!-- 리스트 반복 -->
 			<tr style="">
 				<td align="center" width="5%">
-					<input type="checkbox" name="select_chkbox" value="<%=dto.getNum()%>">
+					<input type="checkbox" name="select_chkbox" value="<%=vNum%>">
 				</td>
 				<td align="center" height="38"><%=totalRecordCount - (((nowPage - 1) * pageSize) + i++)%></td>
 
