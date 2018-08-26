@@ -83,6 +83,39 @@
 			return false;
 		}
 	}
+	
+	
+	$(function()
+		{
+			$.ajax
+			({
+				url:"proPrem.jsp",
+				type : "get",
+				data : 
+				{
+					paytime : $('#payt').val(),
+					payment : $('#paym').val,
+					instart : $('#instart').val(),
+					regidate : $('#regidate').val(),
+					rprem : $('#rp').val(),
+					death : $('#death').val()
+				},
+				dataType : "html",
+				contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
+				success:function(responseData)
+				{
+					alert("성공인데 시벌아 = "+responseData);
+					$('#result').html(responseData);		
+				},
+				error:function(errorData){
+					alert("오류발생 : "+errorData.status+":"+errorData.statusText);
+				}
+	
+			});	
+	
+		});
+	}
+	
 </script>
 </head>
 <body>

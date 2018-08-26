@@ -74,7 +74,7 @@
 		}
 	}
 	/* 월 납입액을 계산하는 ajax */
-	function premPlus(rp)
+	function premPlus()
 	{
 		$(function()
 		{
