@@ -28,29 +28,12 @@
 			<div id="S_contents">
 				
 				<jsp:include page="bbs_list_${param.b_id }.jsp" />
-						<!-- 버튼 -->
-						<div style="margin: 10px 0 0;">
-							<table width="100%" border="0" cellpadding="0" cellspacing="0">
-								<tr>
-									<td width="33%">
-         								<button type="button" class="h22 t4 small icon gray" onClick="selDelete();"><span class="icon_plus"></span>선택삭제</button>
-         							</td>
-									<td align="right">
-										<a href='bbs_write.jsp?b_id=${param.b_id }' onclick="window.open(this.href,'팝업창','width=800, height=800'); return false;">
-									<img src='../../bbs/skin/bbsBasic/image/btn_write.gif' border='0'></a></td>
-								</tr>
-							</table>
-						</div>
-						<!-- 버튼 끝 -->
-						</td>
-					</tr>
-				</table>
-			</div>
+						
 		</div>
 		<!-- //Container// -->
 	</div>
 	<!-- //Container_wrap// -->
-
+</div>
 	<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
 </body>
 </html>

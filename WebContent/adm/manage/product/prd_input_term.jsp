@@ -82,6 +82,7 @@
 	<!-- 레프트메뉴 -->
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
+<<<<<<< HEAD
 
 	<div id="Container">
 <div id="location">HOME > 상품관리</div>
@@ -150,7 +151,18 @@ function formChk(f){
 		return false;
 	}
 }
+/* =======
+	<div id="Container">
+	<div id="location">HOME > 상품관리</div>
+	<div id="S_contents">
+	
+		<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
+		<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
 
+		<input type="hidden" name="instype" value="2"> 
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin
+ */
 
 </script>
 <form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
@@ -175,6 +187,7 @@ function formChk(f){
 		<th>납입기간</th>
 		<td colspan="3">
 			<select name="paytime" id="payt" value="" onChange="premPlus();">
+				<option value="">==선택==</option>
 				<option value="10">10년납</option>
 				<option value="20">20년납</option>
 				<option value="40">60세납</option>
@@ -183,12 +196,14 @@ function formChk(f){
 		</td>
 	</tr>
 	<tr>
+	<tr>
 		<th>보험기간</th>
 		<td colspan="3">
 			<table border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td colspan="2">
 					<select name="instime" id="inst" value="" onChange="premPlus();">
+						<option value="">==선택==</option>
 						<option value="10">10년만기</option>
 						<option value="20">20년만기</option>
 						<option value="40">60세까지</option>
@@ -210,6 +225,7 @@ function formChk(f){
 		<th>사망보험금</th>
 		<td colspan="3">
 			<select name="deathben" id="death" onChange="premPlus();">
+				<option value="">==선택==</option>
 				<option value="15000000">1억5천</option>
 				<option value="10000000">1억</option>
 				<option value="5000000">5천</option>
@@ -228,14 +244,14 @@ function formChk(f){
 			<input type="file" name="attfile"/>
 	</td>
 	</tr>
-</table>
-	<tr>
-		<th height="25" >상품간단설명</th>
-		<td colspan="3">
-			<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
-		</td>
-	</tr>
-</table>
+	</table>
+		<tr>
+			<th height="25" >상품간단설명</th>
+			<td colspan="3">
+				<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
+			</td>
+		</tr>
+	</table>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
 	<tr>
 		<td align="center">
@@ -250,7 +266,7 @@ function formChk(f){
 </div><!-- //Container// -->
 </div><!-- //Container_wrap// -->
 
-<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+<div id="Footer">Copyright ⓒ 2018 Insurance SAJO All rights reserved.</div>
 </body>
 
 <!-- Mirrored from demohome.anywiz.co.kr/adm/manage/product/prd_input.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:11:59 GMT -->

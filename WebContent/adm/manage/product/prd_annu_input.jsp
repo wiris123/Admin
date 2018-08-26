@@ -103,8 +103,11 @@ function formChk(f){
 		f.rprem.focus();
 		return false;
 	}
-	
-	
+	if(f.regidate.value==""){ 
+		alert("계약일자를 입력하세요");
+		f.regidate.focus();
+		return false;
+	}
 }
 
 </script>
@@ -146,13 +149,13 @@ function formChk(f){
 	<tr>
 		<th>연금개시일</th>
 		<td colspan="3">
-			<input name="instart" id="datepicker1" type="text" value="" size="50" class="input">
+			<input name="instart" id="datepicker1" type="text" value="" size="30" class="input">
 		</td>
 	</tr>
 	<tr>
 		<th>연금납부연한</th>
 		<td colspan="3">
-			<input name="paytime" type="text" value="" size="50" class="input">
+			<input name="paytime" type="text" value="" size="30" class="input" />
 		</td>
 	</tr>
 	<tr>
@@ -190,7 +193,7 @@ function formChk(f){
 	<tr>
 		<th>계약일자</th>
 		<td colspan="3">
-			<input type="text" name="regidate" id="datepicker1" value="" />
+			<input type="text" size="30" name="regidate" id="datepicker1" value="" />
 	</td>
 	<tr>
 		<th>계약상태</th>
@@ -200,13 +203,24 @@ function formChk(f){
 			<input type="radio" value="E" name="submit"/> E
 		</td>
 	</tr>
+<<<<<<< HEAD
+=======
+		
+	<tr>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin
 		<th>첨부파일</th>
 		<td colspan="3">
 			<input type="file" name="attfile"/>
+<<<<<<< HEAD
 	</td>
 	</tr>
 			</table>
 		</td>
+=======
+		</td>
+	</tr>
+</table>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin
 	<br/>
 	<tr>
 		<th height="25" >상품간단설명</th>
@@ -217,7 +231,7 @@ function formChk(f){
 <!-- 	<tr>
 		<th height="25" >상품상세정보</th>
 		<td colspan="3">
-			
+<ㄹ		
 
 // ---------------------------------------------------------------------------------
 // outputBodyHTML 메서드를 호출하면 TEXTAREA 'fm_post' 폼 값에
