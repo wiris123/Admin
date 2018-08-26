@@ -167,7 +167,9 @@ function selectAll(obj) {
 							<td>삭제</td>			  
         				</tr>
        				</thead> 
-					<tbody>       
+					<tbody> 
+					
+					<!--리스트 보여주기  -->      
 					<%
 					if(bbs.isEmpty()){
 					%>
@@ -186,7 +188,8 @@ function selectAll(obj) {
 			
 							vNum = totalRecordCount - (((nowPage-1)*pageSize)+countNum++);
 					%>
-	
+		
+						<!--리스트 반복  -->
 						<tr>
 							<td><input type="checkbox" name="select_chkbox" value="<%=dto.getId()%>"/></td>
 							<td class="text-center"><%=vNum %></td>
@@ -201,12 +204,14 @@ function selectAll(obj) {
 					}
 					%>  
 		       
+		       
+		       		<!--리스트 반복끝  -->
      				</tbody>
       			</table>
 			</form>
       		<div class="row text-center" style="text-align:center">
 				<ul class="pagination">
-					<%=PagingUtil.pagingImg(totalRecordCount,pageSize,blockPage,nowPage,"member_list.jsp?"+queryStr) %>
+					<%=PagingUtil.pagingImgServlet(totalRecordCount,pageSize,blockPage,nowPage,"out_list.jsp?"+queryStr) %>
 				</ul>	
 			</div>
 	</div>

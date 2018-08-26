@@ -18,8 +18,16 @@ String regidate = request.getParameter("regidate");
 String contents = request.getParameter("contents");
 
 CounselMemDTO dto = new CounselMemDTO();
+dto.setIdx(idx);
+dto.setName(name);
+dto.setId(id);
+dto.setMobile(mobile);
+dto.setContents(contents);
+
 
 MemberDAO dao = new MemberDAO();
+
+/*상담회원을 INSERT하는 함수  */
 int af = dao.memberQRegist(dto);
 if(af==1){
 	
