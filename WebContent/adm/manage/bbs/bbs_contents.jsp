@@ -1,36 +1,52 @@
+<%@page import="dto.BoardDTO"%>
+<%@page import="controller.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	BbsDAO dao = new BbsDAO();
+
+	BoardDTO dto = new BoardDTO();
+	String num = request.getParameter("num").toString();
+	dto = dao.contents(num);
+	System.out.println("들어온이름은" + dto.getName());
+	dao.close();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="../js/sidemenu.js"></script>
 <title>글읽기</title>
 </head>
-<body class="home_body">
-	<%@include file="../include/head.jsp"%>
-	<div id="Container_wrap" class="right_close">
-		<!--
-    class="left_close" 좌측만 닫힘
-    class="right_close" 우측만 닫힘
-    class="left_close right_close" 양쪽 닫힘
-    -->
-		<div class="nav_handle_left">
-			<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
-		</div>
+<body>
+<%@include file="../include/head.jsp"%>
+	<h3 style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px; font-family: '돋움', 'Dotum', Helvetica;">자유게시판</h3>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
+		<tr>
+			<td style="padding: 0px 10px 10px 10px">
+				<link href="../../bbs/skin/bbsBasic/style.css" rel="stylesheet" type="text/css">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="AWbbs_view_table border">
 
-		<script Language="JavaScript" src="./select.js"></script>
-		<%@include file="../include/bbs_left.jsp"%>
-		<div id="Container">
-
-			<div id="location">HOME > 게시판관리</div>
-			<div id="S_contents">
-				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
 					<tr>
+
 						<td style="padding: 0px 10px 10px 10px">
 							<link href="../../bbs/skin/bbsBasic/style.css" rel="stylesheet" type="text/css">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0" class="AWbbs_view_table border">
 								<tr>
-									<th colspan="2">제목</th>
+									<th colspan="2"><%=dto.getTitle()%></th>
+								</tr>
+								<tr>
+									<td height="40">
+										작성자 :
+										<%=dto.getName()%>(이메일) 작성일 :
+										<%=dto.getRegidate()%>
+										조회수 :
+										<%=dto.getViewcnt()%></td>
+									<td align="right">추천:0</td>
+								</tr>
+
+								<th colspan="2">제목</th>
 								</tr>
 								<tr>
 									<td height="40">작성자 : 홈페이지(test@test.com) 작성일 : 2016-04-11 14:08 조회수 : 17</td>
@@ -41,8 +57,17 @@
 									<td colspan="2" height="40">파일첨부 :</td>
 								</tr>
 								<tr>
+									<td colspan="2" style="padding: 20px 0;"><%=dto.getContents()%></td>
+
+								</tr>
+
+								<tr>
+									<td colspan="2" height="40">파일첨부 :</td>
+								</tr>
+								<tr>
 									<td colspan="2" style="padding: 20px 0;">게시물 테스트 입니다.</td>
 								</tr>
+
 
 							</table>
 							<div style="margin: 0 0 10px;"></div>
@@ -109,7 +134,9 @@
 						</td>
 					</tr>
 				</table>
-			</div>
-		</div>
+			</td>
+		</tr>
+	</table>
+
 </body>
 </html>

@@ -46,10 +46,8 @@ String queryStr = "";
 
 
 //폼값받기(검색관련)
-String searchColumn = 
-request.getParameter("searchColumn");
-String searchWord = 
-request.getParameter("searchWord");
+String searchColumn = request.getParameter("searchColumn");
+String searchWord = request.getParameter("searchWord");
 
 
 if(searchWord!=null)
@@ -109,22 +107,22 @@ dao.close();
 <%@include file="../include/head.jsp"%>
 <!-- 레프트 -->
 <div id="Container_wrap" class="right_close">
-    <!--
-    class="left_close" 좌측만 닫힘
-    class="right_close" 우측만 닫힘
-    class="left_close right_close" 양쪽 닫힘
-    -->
-    <div class="nav_handle_left">
-		<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
-	</div>
-	
-	<%@include file="../include/common_form.jsp" %>
-	
-    <div id="left_area">
-		<%@include file="../include/form_left.jsp"%>
-	</div><!-- //left_area// -->
+<!--
+class="left_close" 좌측만 닫힘
+class="right_close" 우측만 닫힘
+class="left_close right_close" 양쪽 닫힘
+-->
+  <div class="nav_handle_left">
+<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
+</div>
 
-	<div id="Container">
+<%@include file="../include/common_form.jsp" %>
+
+<div id="left_area">
+<%@include file="../include/form_left.jsp"%>
+</div><!-- //left_area// -->
+
+<div id="Container">
    
 <div id="location">HOME > <%= path_str %></div>
 <div id="S_contents">
@@ -138,16 +136,18 @@ dao.close();
   	<th width="15%">조건검색</th>
   	<td width="85%">
 		<select name="searchstatus">
-		<option value="">:: 처리상태 :: </option>
-		<option value="대기중" >대기중</option>
-		<option value="처리중" >처리중</option>
-		<option value="처리완료" >처리완료</option>
+			<option value="">:: 처리상태 :: </option>
+			<option value="대기중" >대기중</option>
+			<option value="처리중" >처리중</option>
+			<option value="처리완료" >처리완료</option>
 		</select>
 		<select name="searchopt">
-		<option value="content">작성내용</option>
+			<option value="content">작성내용</option>
 		</select>
 		<input type="text" name="searchkey" value="" class="input">
-		<button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
+		<button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">
+			검색
+		</button>
 	</td>
 </tr>
 </table>
@@ -155,34 +155,35 @@ dao.close();
 <!-- 게시판 -->
 <form>
 <table width="100%" border="0" cellpadding="0" cellspacing="2" class="top10">
-  <tr>
-    <td>총 등록수 : <b>2</b></td>
-  </tr>
+	<tr>
+    	<td>총 등록수 : <b>2</b></td>
+  	</tr>
 </table>
 <script type="text/javascript" src="./select.js"></script>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
 	<thead>
-	<tr>
-		<td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this.form, this);"></td>
-		<td width="5%">번호</td>
-		<td width="10%">이름</td>
-		<td width="10%">모바일</td>
-		<td width="15%">등록일</td>
-		<td width="10%">상담내용</td>
-		<td width="10%">분류</td>
-	</tr>
+		<tr>
+			<td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this.form, this);"></td>
+			<td width="5%">번호</td>
+			<td width="10%">이름</td>
+			<td width="10%">모바일</td>
+			<td width="15%">등록일</td>
+			<td width="10%">상담내용</td>
+			<td width="10%">분류</td>
+		</tr>
 	</thead>
+	
 	<tbody>
-	<% if(bbs.isEmpty())
+		<% if(bbs.isEmpty())
 		{
-	%>
-	<tr>
-		<td colspan="5" align="center">
-			등록된 게시물이 없습니다^^*
-		</td>
-	</tr>
-	<% 	
+		%>
+			<tr>
+				<td colspan="5" align="center">
+				등록된 게시물이 없습니다^^*
+				</td>
+			</tr>
+		<% 	
 		}
 		else
 		{
@@ -191,21 +192,21 @@ dao.close();
 					
 			for(CounselDTO dto : bbs)
 			{//totalRecordCount
-				vNum = 10 - (((nowPage-1)*pageSize)+countNum++);
-	%>
-  <tr>
-  		<td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getIdx() %>"></td>
-   		<td width="5%"><%=dto.getIdx() %></td>
-		<td width="10%"><%=dto.getName() %></td>
-		<td width="10%"><%= dto.getMobile() %></td>
-		<td width="10%"><%= dto.getRegidate() %></td>
-		<td width="30%"><%= dto.getContents() %></td>
-		<td width="5%"><%= dto.getFlag() %></td>
-  </tr>
-  <% 	}
-	}%>
-  </table>
-  </form>
+			vNum = 10 - (((nowPage-1)*pageSize)+countNum++);
+		%>
+		<tr>
+			<td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getIdx() %>"></td>
+			<td width="5%"><%=dto.getIdx() %></td>
+			<td width="10%"><%=dto.getName() %></td>
+			<td width="10%"><%= dto.getMobile() %></td>
+			<td width="10%"><%= dto.getRegidate() %></td>
+			<td width="30%"><%= dto.getContents() %></td>
+			<td width="5%"><%= dto.getFlag() %></td>
+		</tr>
+		<% 	}
+		}%>
+	</table>
+</form>
   
   <!-- <form>
   <input type="hidden" name="idx" value="166">
@@ -224,17 +225,52 @@ dao.close();
 </tbody>
 
 -->
+<div align="left">
 <table width="100%"border="0" cellpadding="0" cellspacing="0" class="top5">
-  <tr>
-    <td width="20%"><input type="hidden" value="<%=page_flag%>" id="page_flag"/>
-    <button type="button" class="h22 t4 small icon gray" onClick="formDelete();"><span class="icon_plus"></span>선택삭제</button>
+<tr>
+	<td width="20%">
+    	<input type="hidden" value="<%=page_flag%>" id="page_flag"/>
+    	<button type="button" class="h22 t4 small icon gray" onClick="formDelete();">
+    		<span class="icon_plus"></span>선택삭제
+    	</button>
+   
+    	<input type="hidden" value="<%=page_flag%>" id="page_flag"/>
+    	<button type="button" class="h22 t4 small icon gray" onClick="location.href='form_list_write.jsp'">
+    		<span class="icon_plus"></span>글쓰기
+    	</button>
     </td>
-    <td width="20%"><input type="hidden" value="<%=page_flag%>" id="page_flag"/>
-    <button type="button" class="h22 t4 small icon gray" onClick="location.href='form_list_write.jsp'"><span class="icon_plus"></span>글쓰기</button>
-    </td>
-    <td width="33%">
-    	<table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
-  </tr>
+    </table>
+</div>
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+	<tr>
+		<td align='center'>
+		<table border='0' cellspacing='0' cellpadding='0'>        
+			<tr>
+				<td width='22' height='50'>
+					<a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='>
+						<img src='../image/btn_prev2.gif' align='absmiddle' border=0'>
+					</a>
+				</td>
+				<td width='22'>
+					<a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='>
+						<img src='../image/btn_prev.gif' align='absmiddle' border=0'>
+					</a>
+				</td>
+				<td align='center'>&nbsp; <b>1</b> /&nbsp; </td>          
+				<td width='22' align='right'>
+					<a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='>
+						<img src='../image/btn_next.gif' align='absmiddle' border='0'>
+					</a>
+				</td>
+				<td width='22' align='right'>
+					<a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='>
+						<img src='../image/btn_next2.gif' align='absmiddle' border='0'>
+					</a>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
 </table>
 
 </div>

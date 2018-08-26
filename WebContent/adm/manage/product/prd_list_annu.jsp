@@ -226,7 +226,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
          <form>
          <script type="text/javascript">
-<<<<<<< HEAD
+
        //전체선택
          function selectAll(obj) {
          	var chkObj = document.getElementsByName("select_chkbox");
@@ -271,7 +271,7 @@
          		}
          	}
          }
-=======
+
          	//체크박스 전체선택
          	function selectAll(obj)
 	 	{ 
@@ -331,7 +331,6 @@
 	 			}
 	 		}
 	 	}
->>>>>>> refs/remotes/origin/underwearRun
          </script>
          
          <thead>
@@ -348,11 +347,8 @@
          <form>
          <thead>
         <tr>
-<<<<<<< HEAD
+
            <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this)"></td>
-=======
-           <td width="5%"><input type="checkbox" name="select_tmp" onClick="selectAll(this)"></td>
->>>>>>> refs/remotes/origin/underwearRun
           <td width="15%">상품명</td>
           <td width=15%>연금게시일</td>
           <td width="10%">연금납부연한</td>
