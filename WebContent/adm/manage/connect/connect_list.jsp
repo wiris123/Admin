@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-
 <html lang="ko">
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,7 +10,6 @@
 <script src="../../js/jquery-1.10.2.js"></script>
 <script src="../../js/jquery-ui.js"></script>
 <script src="../../js/jquery.highchartTable.js"></script>
-<script src="../../js/highcharts.js"></script>
 <script src="../../js/jquery.bpopup.min.js"></script>
 <script src="../../js/jquery.cookie.js"></script>
 <link href="../wiz_style.css" rel="stylesheet" type="text/css"/>
@@ -30,6 +25,7 @@
 	}
 </style>
 <script>
+
 	$(function() {
 		$( "#datepicker1" ).datepicker({
 			dateFormat: 'yy-mm-dd',
@@ -80,288 +76,17 @@
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
 		}
 	}
-
-	
 </script>
 </head>
-<body class="home_body">
-<div id="Header">
-	<h1><a href="../main/main.html" onFocus="this.blur();"><img src="../image/header/logo.png" /></a></h1>
-    <ul id="gnb">
-    	<li class="first"><a target="_blank" href="http://demohome.anywiz.co.kr/" onFocus="this.blur();">내홈페이지</a></li>
-    	<li><a href="../main/main.html" onFocus="this.blur();">관리자홈</a></li>
-    	<li><a href="../../logout.html" onFocus="this.blur();" class="logbtn"><img src="../image/header/logout.gif" /></a></li>
-    </ul>
-    <div id="navi">
-    	<li class="design">
-			          
-		</li>
-						<li>
-			<a href="../basic/site_info.html" onFocus="this.blur();"><span>기본설정</span></a>
-        	<ul class="category">
-				<li>
-					<a href="../basic/site_info.html">사이트정보</a>
-				</li>
-				<li>
-					<a href="../basic/admin_list.html">관리자설정</a>
-				</li>
-				<li>
-					<a href="../basic/popup_list.html">팝업관리</a>
-				</li>
-								<li>
-					<a href="../basic/sms_fill.html">SMS관리</a>
-				</li>
-							</ul>
-		</li>
-                  
-
-				<li>
-			<a href="../bbs/bbs_list.html" onFocus="this.blur();"><span>게시판관리</span></a>          	
-        	<ul class="category">
-        		<li>
-					<a href="../bbs/bbs_list.html">게시판관리</a>
-				</li>
-				<li>
-					<a href="../bbs/bbs_manage_list.html">게시물통합관리</a>
-				</li>
-				<li>
-					<a href="../bbs/bbs_manage_comment.html">코멘트통합관리</a>
-				</li>
-				<li>
-					<a href="../bbs/bbs_connect.html">게시판통계</a>
-				</li>
-			</ul>
-		</li>
-    	
-				<li>
-			<a href="../member/member_list.jsp" onFocus="this.blur();"><span>회원관리</span></a>
-			<ul class="category">
-				<li>
-					<a href="../member/member_list.jsp">회원목록</a>
-				</li>
-
-				<li>
-					<a href="../member/out_list.jsp">탈퇴회원</a>
-				</li>
-
-				<!-- <li>
-					<a href="../member/mail_list.html">메일,SMS설정</a>
-				</li>
-				<li>
-					<a href="../member/mail_test.html">메일발송테스트</a>
-				</li>
-				<li>
-					<a href="../member/mail_send.html">단체메일발송</a>
-				</li>
-
-								<li>
-					<a href="../member/sms_send.html">단체SMS발송</a>
-				</li>
-								<li>
-					<a href="../member/member_analy.html">회원통계</a>
-				</li>
-				<li>
-					<a href="../member/member_config.html">가입약관, 개인정보보호정책</a>
-				</li> -->
-											</ul>
-		</li>    
-		
-       			<li>
-			<a href="../form/form_list.html" onFocus="this.blur();"><span>폼메일관리</span></a>
-        	<ul class="category">
-				<li>
-					<a href="../form/form_list.html">폼메일관리</a>
-				</li>
-				<li class="depth"><a href="#" onFocus="this.blur();">폼메일목록</a>
-					<ul class="category_2depth">
-												<li><a href="../form/form_listc257.html?code=formBasic">폼메일</a></li>
-												<li><a href="../form/form_list4213.html?code=MformBasic">모바일_폼메일</a></li>
-											</ul>
-				</li>
-			</ul>
-		</li>
-        
-	    		<li>
-			<a href="../poll/pollinfo_list.html"><span>설문관리</span></a>
-			<ul class="category">
-				<li>
-					<a href="../poll/pollinfo_list.html">설문관리</a>
-				</li>
-				<li class="depth"><a href="#" onFocus="this.blur();">설문목록</a>
-					<ul class="category_2depth">
-													<li><a href="../poll/poll_list12b9.html?code=poll">설문조사</a></li>
-											</ul>
-				</li>
-
-			</ul>		
-		</li>
-        		
-		        <li>		    
-			<a href="../schedule/sch_list.html"><span>스케쥴관리</span></a>        
-			<ul class="category">
-				<li>
-					<a href="../schedule/sch_list.html">스케쥴관리</a>
-				</li>
-				<li class="depth"><a href="#" onFocus="this.blur();">스케쥴목록</a>
-					<ul class="category_2depth">
-													<li><a href="../schedule/list6b41.html?code=schedule">스케쥴</a></li>
-											</ul>
-				</li>
-
-			</ul>				
-		</li>
-        	
-
-				<li>
-		    
-			<a href="../page/page_list.html"><span>페이지관리</span></a>
-			<ul class="category">
-				<li>
-					<a href="../page/page_list.html">페이지관리</a>
-				</li>
-				<li class="depth"><a href="#" onFocus="this.blur();">페이지목록</a>
-					<ul class="category_2depth">
-									<li><a href="../page/page_input8312.html?mode=update&amp;idx=25">회사소개</a></li>
-									<li><a href="../page/page_input5b7c.html?mode=update&amp;idx=26">인사말</a></li>
-									<li><a href="../page/page_inputac2f.html?mode=update&amp;idx=27">이용약관</a></li>
-									<li><a href="../page/page_input2bac.html?mode=update&amp;idx=28">개인정보취급방침</a></li>
-									</ul>
-				</li>
-			</ul>	
-            
-		</li>
-		
-				<li>    
-			<a href="../banner/banner_list.html"><span>배너관리</span></a></td>
-			<ul class="category">
-				<li>
-					<a href="../banner/banner_list.html">배너관리</a>
-				</li>
-				<li class="depth"><a href="#" onFocus="this.blur();">배너목록</a>
-					<ul class="category_2depth">
-									<li><a href="../banner/liste65e.html?code=customer">고객센터</a></li>
-									</ul>
-				</li>
-			</ul>
-		</li>
-				
-		
-				<li>           
-			<a href="connect_list.jsp" onFocus="this.blur();"><span>접속통계</span></a>
-        	<ul class="category">
-				<li>
-					<a href="connect_list.jsp">접속자분석</a>
-				</li>
-<!-- 
-				<li>
-					<a href="connect_refer.html">접속경로분석</a>
-				</li>
-
-				<li>
-					<a href="connect_keyword.html">검색키워드분석</a>
-				</li>
-				<li>
-					<a href="connect_osbrowser.html">OS/브라우저</a>
-				</li> -->
-			</ul>
-		</li>
-    	
-		<li>           
-			<a href="../product/prd_list.html" onFocus="this.blur();"><span>상품관리</span></a>
-        	<ul class="category">
-				<li>
-					<a href="../product/prd_list.html">상품목록</a>
-				</li>
-
-				<li>
-					<a href="../product/prd_input.html">상품등록</a>
-				</li>
-
-				<li>
-					<a href="../product/prd_cat.html">상품분류</a>
-				</li>
-				
-			</ul>
-		</li>
-    		
-    	
-
-    </div>
-</div>
+<body>
+<!-- 헤드 -->
+<%@include file="../include/head.jsp"%>
 
 <%@include file="../include/connect_left.jsp"%>
-
-<!-- 
-<div id="Container_wrap" class="right_close">
-    
-    class="left_close" 좌측만 닫힘
-    class="right_close" 우측만 닫힘
-    class="left_close right_close" 양쪽 닫힘
-   
-    <div class="nav_handle_left">
-		<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
-	</div>
-
-    <div id="left_area">
-		
-
-
-
-
-
-<h2><img src="../image/header/icon3.png" alt=""> 접속자분석</h2>
-<ul id="Lnb">
-    <li class="on"><a href="connect_list.jsp" onFocus="this.blur();">접속자분석</a>
-        <ul>
-			<li class="">
-				<a href="connect_list.jsp">접속자분석</a>
-			</li>
-
-			<li>
-				<a href="connect_refer.html">접속경로분석</a>
-			</li>
-
-			<li>
-				<a href="connect_keyword.html">검색키워드분석</a>
-			</li>
-			<li>
-				<a href="connect_osbrowser.html">OS/브라우저</a>
-			</li>
-        </ul>
-    </li>
-
-</ul>
-
-
-
-
-
- -->
 
 	</div><!-- //left_area// -->
 
 	<div id="Container">
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script language="javascript">
 <!--
 function delConnect(){
@@ -476,7 +201,7 @@ swfobject.embedSWF("../../flashChart/open-flash-chart.swf", "my_chart11", "100%"
 
 </div>
 </div><!-- //Container// -->
-</div><!-- //Container_wrap// -->
+
 
 <div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
 
