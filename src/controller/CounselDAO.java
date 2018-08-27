@@ -36,51 +36,40 @@ public class CounselDAO
 		}	
 	}
 	
-	
-/*	// 게시판리스트가져오기
-	   public List<BoardDTO> selectList(Map<String, Object> param) {
-	      System.out.println("게시판리스트가져오기중");
-	      BoardDTO dto;
-	      List<BoardDTO> list = new Vector<BoardDTO>();
-	      String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM multiboard WHERE 1=1 and b_id=?";
-	      System.out.println(param.get("Word"));
-	      System.out.println("컬럼은:" + param.get("Column"));
-	      if (param.get("Word") != null) {
-	         if (param.get("Column").equals("both")) {
-	            query += " and " + "title LIKE '%" + param.get("Word") + "%' " + " OR " + " contents LIKE '%"
-	                  + param.get("Word") + "%' ";
-	         } else {
-	            query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
-	         }
-	      }
-	      query += ") e) where rNum BETWEEN ? AND ?";
-	      try {
-	         String b_id = (String) param.get("b_id");
-	         psmt = con.prepareStatement(query);
-	         psmt.setString(1, param.get("b_id").toString());
-	         psmt.setString(2, param.get("start").toString());
-	         psmt.setString(3, param.get("end").toString());
-	         System.out.println(query + b_id);
-	         rs = psmt.executeQuery();
-	         while (rs.next()) {
-	            System.out.println("드러왔다" + rs.getString("num"));
-	            dto = new BoardDTO();
-	            dto.setNum(rs.getString("NUM"));
-	            dto.setName(rs.getString("NAME"));
-	            dto.setTitle(rs.getString("TITLE"));
-	            dto.setRegidate(rs.getDate("REGIDATE"));
-	            dto.setViewcnt(rs.getString("VIEWCNT"));
-
-	            list.add(dto);
-	         }
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	      return list;
-	   }*/
-	
-	
-	
+	//게시물 개수를 카운트하기 위한 메소드
+	public int getTotalRecordCount(Map<String,Object> map) {		
+		int totalCount = 0;
+		
+		String query = "SELECT COUNT(*) FROM booking WHERE 1=1";
+		if(map.get("Word")!=null) 
+		{
+			if(map.get("Column").equals("both")) 
+			{
+				query +=" AND "
+				  +" idx LIKE '%"+ map.get("Word") +"%' "
+				  +" OR "
+				  +" contents LIKE '%"+ map.get("Word") +"%' ";
+			}
+			else {
+				query +=" AND "+ map.get("Column") +" "
+				  +" LIKE '%"+ map.get("Word") +"%' ";
+			}
+		}
+		query += " AND flag=? ";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			
+			//멀티게시판 추가
+			psmt.setString(1, map.get("flag").toString());
+			rs = psmt.executeQuery();
+			rs.next();
+			totalCount = rs.getInt(1);
+		}
+		catch(Exception e) {}
+				
+		return totalCount;
+	}
 	
 	public List<CounselDTO> selectList(Map<String,Object> map){
 		
@@ -88,14 +77,26 @@ public class CounselDAO
 		List<CounselDTO> bbs = new Vector<CounselDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
-		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM booking WHERE 1=1 and flag=? order by idx asc) e ) order by idx desc";		
+		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM booking WHERE 1=1 and flag=?";		
+		
+		if (map.get("Word") != null) {
+	         if (map.get("Column").equals("contents")) {
+	            query += " and " + "contents LIKE '%" + map.get("Word") + "%' ";
+	         } else {
+	            query += " and " + map.get("Column") + " " + " LIKE '%" + map.get("Word") + "%' ";
+	         }
+	      }
+		query += " order by idx desc ) e) WHERE rNum BETWEEN ? AND ? ";
 		
 		
+		System.out.println(query);
 		try {
 			//3.prepare객체생성 및 실행
 			psmt = con.prepareStatement(query);	
 			psmt.setString(1, map.get("flag").toString());
-
+			psmt.setString(2, map.get("start").toString());
+			psmt.setString(3, map.get("end").toString());	
+			
 			//4.쿼리실행후 결과셋 돌려받음
 			rs = psmt.executeQuery();
 
@@ -104,13 +105,13 @@ public class CounselDAO
 			{		
 				//6.결과셋을 하나씩 DTO객체에 저장
 				CounselDTO dto = new CounselDTO();
-				dto.setIdx(rs.getString(8));
-				dto.setName(rs.getString(2));
-				dto.setMobile(rs.getString(3));
-				dto.setRegidate(rs.getDate(4));
-				dto.setEmail(rs.getString(5));
-				dto.setContents(rs.getString(6));
-				dto.setFlag(rs.getString(7));
+				dto.setIdx(rs.getString("idx"));
+				dto.setName(rs.getString("name"));
+				dto.setMobile(rs.getString("mobile"));
+				dto.setRegidate(rs.getDate("regidate"));
+				dto.setEmail(rs.getString("email"));
+				dto.setContents(rs.getString("contents"));
+				dto.setFlag(rs.getString("flag"));
 				
 				//7.DTO객체를 컬렉션에 추가
 				bbs.add(dto);

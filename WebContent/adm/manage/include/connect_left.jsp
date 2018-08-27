@@ -36,29 +36,8 @@
     <div class="nav_handle_left">
 		<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
 	</div>
-
-    <div id="left_area">
-		
-
-
-
-<div id="Container_wrap" class="right_close">
-    
-   <!--  class="left_close" 좌측만 닫힘
-    class="right_close" 우측만 닫힘
-    class="left_close right_close" 양쪽 닫힘
-    -->
-    <div class="nav_handle_left">
-		<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
-	</div>
-
-    <div id="left_area">
-		
-
-
-
-
-
+ <div id="left_area">
+  
 <h2><img src="../image/header/icon3.png" alt=""> 접속자분석</h2>
 <ul id="Lnb">
     <li class="on"><a href="connect_list.jsp" onFocus="this.blur();">접속자분석</a>
@@ -71,7 +50,7 @@
     </li>
 
 </ul>
-
+ 
 
 
 </body>
