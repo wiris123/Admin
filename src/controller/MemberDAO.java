@@ -467,4 +467,27 @@ public class MemberDAO {
 		
 		return affected;	
 	}
+	
+	public int memberRegist2(String id, String reason) {
+		//적용된 행의 갯수확인을 위한 변수
+		int affected = 0;
+		try {
+			String query = "INSERT INTO with_member ( id,reason) VALUES ( ?, ? )";
+
+			psmt = con.prepareStatement(query);
+			
+			psmt.setString(1, id);
+			psmt.setString(2, "삭제"); //reason
+			
+			
+			affected = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("insert중 예외발생");
+			e.printStackTrace();
+		}
+		
+		return affected;
+	}	
+	
 }
