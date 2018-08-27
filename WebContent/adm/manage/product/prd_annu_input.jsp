@@ -77,7 +77,8 @@ function leftBtn() {
 }
 
 //form 유효성 검사
-function formChk(f){
+function formChk(f)
+{
 	if(f.ann_name.value==""){
 		alert("상품명을 입력하세요");
 		f.ann_name.focus();
@@ -110,8 +111,11 @@ function formChk(f){
 	}
 }
 
+
+
+
 $(function()
-	{
+{
 		$.ajax
 		({
 			url:"annuPrem.jsp",
@@ -123,9 +127,8 @@ $(function()
 				instart : $('#instart').val(),
 				regidate : $('#regidate').val(),
 				rprem : $('#rp').val(),
-				death : $('#death').val()
 			},
-			dataType : "html",
+			dataType : "json",
 			contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
 			success:function(responseData)
 			{
@@ -139,9 +142,6 @@ $(function()
 		});	
 
 	});
-}
-
-
 </script>
 </head>
 <body>
@@ -151,9 +151,6 @@ $(function()
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
 	<div id="Container">
-
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="setClass01();setCategory();prdlayCheck();lodingComplete();prdFocus();">
-
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
 		<div id="location">HOME > 상품관리</div>
@@ -235,24 +232,10 @@ $(function()
 			<input type="radio" value="E" name="submit"/> E
 		</td>
 	</tr>
-<<<<<<< HEAD
-=======
-		
-	<tr>
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin
 		<th>첨부파일</th>
 		<td colspan="3">
 			<input type="file" name="attfile"/>
-<<<<<<< HEAD
-	</td>
-	</tr>
-			</table>
 		</td>
-=======
-		</td>
-	</tr>
-</table>
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin
 	<br/>
 	<tr>
 		<th height="25" >상품간단설명</th>

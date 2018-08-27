@@ -168,7 +168,8 @@ function premPlus()
 				paytime : $('#payt').val(),
 				instime : $('#inst').val(),
 				rprem : $('#rp').val(),
-				death : $('#death').val()
+				death : $('#death').val(),
+				birth : $('#birth').val()
 			},
 			dataType : "html",
 			contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
@@ -230,9 +231,9 @@ function formChk(f){
 </script>
 <form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
 <!-- 	<input type="hidden" name="tmp">
-	<input type="hidden" name="mode" value="insert">
-	<input type="hidden" name="relidx" value=""> -->
-	<input type="hidden" name="instype" value="2"> 
+	<input type="hidden" name="mode" value="insert">-->
+	<input type="hidden" id="birth" value="30">
+	<input type="hidden" name="instype" value="2">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 	<tr>
 		<th>상품명</th>
@@ -253,8 +254,8 @@ function formChk(f){
 				<option value="">==선택==</option>
 				<option value="10">10년납</option>
 				<option value="20">20년납</option>
-				<option value="40">60세납</option>
-				<option value="45">65세납</option>
+				<option value="60">60세납</option>
+				<option value="65">65세납</option>
 			</select>
 		</td>
 	</tr>
@@ -269,8 +270,8 @@ function formChk(f){
 						<option value="">==선택==</option>
 						<option value="10">10년만기</option>
 						<option value="20">20년만기</option>
-						<option value="40">60세까지</option>
-						<option value="50">70세까지</option>
+						<option value="60">60세까지</option>
+						<option value="70">70세까지</option>
 					</select>
 				</td>
 			</tr>
@@ -298,7 +299,7 @@ function formChk(f){
 	<tr>
 		<th>월 납입액</th>
 		<td colspan="3">
-			<span id="mp"><input type="text" placeholder="사망보험금까지 선택하면 자동으로 계산"/></span>
+			<span id="mp"><input type="text" name="payment" placeholder="사망보험금까지 선택하면 자동으로 계산"/></span>
 	</td>
 	</tr>
 	<tr>
