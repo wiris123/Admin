@@ -7,11 +7,11 @@
 <% 
 request.setCharacterEncoding("UTF-8");
 
-String idx = request.getParameter("idx");
+String id = request.getParameter("id");
 
 MemberDAO dao = new MemberDAO();
  
-CounselMemDTO dto = dao.selectViewQ(idx);
+CounselMemDTO dto = dao.selectViewQ(id);
 
 pageContext.setAttribute("dto", dto);
 dao.close();

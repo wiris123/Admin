@@ -57,6 +57,7 @@ public class MemberDAO {
 		}
 	}
 	
+	
 	public int memberRegist(MemberDTO dto) {
 		//적용된 행의 갯수확인을 위한 변수
 		int affected = 0;
@@ -82,7 +83,7 @@ public class MemberDAO {
 		
 		return affected;
 	}	
-	
+	//회원목록에 데이터를 리스트 출력하는 함수
 	public List<MemberDTO> selectList(Map<String,Object> map){
 		
 		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
@@ -146,6 +147,7 @@ public class MemberDAO {
 		return bbs;
 	}
 	
+	
 	public int getTotalRecordCount(
 			Map<String,Object> map) {		
 		int totalCount = 0;
@@ -177,6 +179,7 @@ public class MemberDAO {
 		return totalCount;
 	}
 	
+	//회원목록 삭제
 	public int delete(String id) {
 		int affected = 0;
 		try {
@@ -196,6 +199,7 @@ public class MemberDAO {
 		return affected;	
 	}
 	
+	//회원목록테이블에서 상세보기 함수
 	public MemberDTO selectView(String id) {
 		
 		MemberDTO dto = new MemberDTO();
@@ -259,7 +263,8 @@ public class MemberDAO {
 		return totalCount;
 	}
 	
-public List<OutMemDTO> selectList2(Map<String,Object> map){
+	//탈퇴회원 데이터를 리스트 출력하는 함수 
+	public List<OutMemDTO> selectList2(Map<String,Object> map){
 		
 		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
 		List<OutMemDTO> bbs = new Vector<OutMemDTO>();
@@ -319,56 +324,7 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 		return bbs;
 	}
 
-	public OutMemDTO selectView2(String id) {
-	
-		OutMemDTO dto = new OutMemDTO();
-		
-		String query = "SELECT * FROM with_member WHERE id=?";		
-		
-		try {
-			psmt = con.prepareStatement(query);
-			psmt.setString(1, id);
-			
-			rs = psmt.executeQuery();
-			if(rs.next()) {
-				
-				dto.setId(rs.getString(1));
-				dto.setReason(rs.getString("reason"));
-				dto.setRegidate(rs.getDate("regidate"));
-			}
-			System.out.println("상세보기");
-			
-		}
-		catch(Exception e) {
-			System.out.println("상세보기시 예외발생");
-			e.printStackTrace();
-		}				
-				
-		return dto ;
-	}
-	
-	public int memberRegist2(String id, String reason) {
-		//적용된 행의 갯수확인을 위한 변수
-		int affected = 0;
-		try {
-			String query = "INSERT INTO with_member ( id,reason) VALUES ( ?, ? )";
-
-			psmt = con.prepareStatement(query);
-			
-			psmt.setString(1, id);
-			psmt.setString(2, "삭제"); //reason
-			
-			
-			affected = psmt.executeUpdate();
-		}
-		catch(Exception e) {
-			System.out.println("insert중 예외발생");
-			e.printStackTrace();
-		}
-		
-		return affected;
-	}	
-	
+	//상담회원목록에 데이터를 리스트 출력하는 함수
 	public List<CounselMemDTO> selectListQ(Map<String,Object> map){
 		
 		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
@@ -432,15 +388,17 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 		return bbs;
 	}
 	
-	public CounselMemDTO selectViewQ(String idx) {
+	
+	//상담회원데이터 상세보기 함수
+	public CounselMemDTO selectViewQ(String id) {
 		
 		CounselMemDTO dto = new CounselMemDTO();
 		
-		String query = "SELECT * FROM member_q WHERE idx=?";		
+		String query = "SELECT * FROM member_q WHERE id=?";		
 		
 		try {
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, idx);
+			psmt.setString(1, id);
 			
 			rs = psmt.executeQuery();
 			if(rs.next()) {
@@ -465,6 +423,7 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 		return dto;
 	}
 	
+	//상담회원데이터 추가 함수
 	public int memberQRegist(CounselMemDTO dto) {
 		//적용된 행의 갯수확인을 위한 변수
 		int affected = 0;
@@ -477,10 +436,7 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 			psmt.setString(2, dto.getName());
 			psmt.setString(3, dto.getId());
 			psmt.setString(4, dto.getMobile());
-			
-			psmt.setString(6, dto.getContents());
-			
-				
+			psmt.setString(5, dto.getContents());
 			
 			affected = psmt.executeUpdate();
 		}
@@ -491,4 +447,24 @@ public List<OutMemDTO> selectList2(Map<String,Object> map){
 		
 		return affected;
 	}	
+	
+	//상담회원 삭제 함수
+	public int deleteQ(String id) {
+		int affected = 0;
+		try {
+			String query = "DELETE FROM member_q WHERE id=?";
+			
+			psmt = con.prepareStatement(query);			
+			psmt.setString(1, id);
+			
+			affected = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println("delete중 예외발생" );
+			
+			e.printStackTrace();
+		}
+		
+		return affected;	
+	}
 }

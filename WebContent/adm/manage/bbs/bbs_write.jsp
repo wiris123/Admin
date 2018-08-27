@@ -2,6 +2,7 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%
 	DateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
 	Date date = new Date();
@@ -13,19 +14,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글쓰기</title>
 <script language="JavaScript">
-<%if(request.getParameter("b_id")==null){
-%>
+<%if (request.getParameter("b_id") == null) {%>
 alert("잘못된 경로로 접속하셧습니다");
 window.close();
 history.go(-1);
-<%
-}
-%>
+<%}%>
+$(function(){
+	alert("발동!")
+	$("#bbsFrm").submit(function() {
+		if($("#attfile").get(0).files.length==0){
+			$("#bbsFrm").attr("action","./proc/bbs_write_proc.jsp?flag=<%=request.getParameter("flag")%>&filecheck=1")
+		}
+		else{
+	    	$("#bbsFrm").attr("enctype","multipart/form-data")
+	    	$("#bbsFrm").attr("action","./proc/bbs_write_proc.jsp?flag=<%=request.getParameter("flag")%>&filecheck=0")
+		}
+	});
+});
 </script>
 </head>
 <body>
 	<h3 style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px; font-family: '돋움', 'Dotum', Helvetica;">1:1상담</h3>
-	<form name="bbsFrm" action="./proc/bbs_write_proc.jsp" method="post" onSubmit="return bbsCheck(this)">
+	<form name="bbsFrm" id="bbsFrm" action="./proc/bbs_write_proc.jsp" method="post" onSubmit="return bbsCheck(this)">
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
 			<tr>
 				<td style="padding: 0px 10px 10px 10px">
@@ -108,7 +118,7 @@ history.go(-1);
 						<tr>
 							<th>첨부파일1</th>
 							<td colspan="3">
-								<input type="file" name="upfile1" class="input w200" />
+								<input type="file" id="attfile" name="attfile" class="input w200" />
 							</td>
 						</tr>
 					</table>

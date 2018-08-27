@@ -89,7 +89,7 @@ public class BbsDAO {
 				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
 			}
 		}
-		query += ") e) where rNum BETWEEN ? AND ?";
+		query += " ORDER BY num desc ) e) where rNum BETWEEN ? AND ?";
 		try {
 			String b_id = (String) param.get("b_id");
 			psmt = con.prepareStatement(query);
@@ -119,13 +119,15 @@ public class BbsDAO {
 	public int write(BoardDTO dto) {
 		System.out.println("게시판글쓰기중");
 		int affected = -1;
-		String query = "insert into multiboard values(board_seq.nextval, '짐배', ?, ?, ?, sysdate, 0, null, ?, null)";
+		String query = "insert into multiboard values(board_seq.nextval, '짐배', ?, ?, ?, sysdate, 0, ?, ?, null, ?)";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getName());
 			psmt.setString(2, dto.getTitle());
 			psmt.setString(3, dto.getContents());
-			psmt.setString(4, dto.getB_id());
+			psmt.setString(4, dto.getAttfile());
+			psmt.setString(5, dto.getB_id());
+			psmt.setString(6, dto.getAttfileR());
 			affected = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,11 +191,14 @@ public class BbsDAO {
 			psmt.setString(1, num);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
+				dto.setNum(rs.getString("num"));
 				dto.setName(rs.getString("name"));
 				dto.setRegidate(rs.getDate("regidate"));
 				dto.setContents(rs.getString("contents"));
 				dto.setTitle(rs.getString("title"));
 				dto.setViewcnt(rs.getString("viewcnt"));
+				dto.setAttfile(rs.getString("attfile"));
+				dto.setAttfileR(rs.getString("attfileR"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

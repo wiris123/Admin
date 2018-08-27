@@ -33,15 +33,23 @@
 	}
 </style>
 <script>
-
 function writeValidate(f)
 {
-	 oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD",[]);
-	 try{
-		 f.submit();
+	
+	var form1 = f;
+	
+	oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD",[]);
+	 try
+	 {
+		 if(mValidate(form1))
+			{
+			 	form1.submit();
+			}
+		
 	 }
-	 catch(e){
-	 
+	 catch(e)
+	 {
+	 	
 	 }
 }
 
@@ -122,11 +130,15 @@ function email_input(em, frm){
 <div id="location">HOME > 회원관리</div>
 <div id="S_contents">
 	<h3>상담회원관리<span>회원을 추가합니다.</span></h3>
-		<form name="frm" action="memberQ_write_process.jsp" method="post"  onSubmit="return mValidate(this);">
+		<form name="frm" action="memberQ_write_process.jsp" method="post"  onSubmit="writeValidate(this);">
 			<table width="100%" >
 				<tr>
 					<td>
 						<table class="table_basic">
+							<tr>
+								<th>번호</th>
+								<td><input name="idx" type="text" value="" class="input"></td>
+							</tr>
 							<tr>
 								<th width="15%">아이디</th>
 								<td width="35%"><input name="id" type="text" value="" class="input"></td>
@@ -172,7 +184,7 @@ function email_input(em, frm){
 	
 			<div class="center ">
 				<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
-				<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='member_list.jsp';">목록</button>
+				<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='memberQ_list.jsp';">목록</button>
 			</div>
 		</form>
 	</div>

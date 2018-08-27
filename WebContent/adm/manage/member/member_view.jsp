@@ -10,6 +10,7 @@ String id = request.getParameter("id");
 
 MemberDAO dao = new MemberDAO();
  
+
 MemberDTO dto = dao.selectView(id);
 pageContext.setAttribute("dto", dto);
 dao.close();
@@ -56,7 +57,7 @@ dao.close();
 
 <div id="S_contents">
 	
-	<h3>회원관리<span>회원을 합니다.</span></h3>
+	<h3>회원관리</h3>
 
 		
 	

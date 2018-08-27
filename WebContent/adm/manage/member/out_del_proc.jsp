@@ -20,7 +20,7 @@
 	for(int i=1; i<sp_name.length; i++)
 	{
 
-		
+		//id를 조건으로 멤버를 DELETE하는 함수
 		aff = dao.delete(sp_name[i]);
 
 		

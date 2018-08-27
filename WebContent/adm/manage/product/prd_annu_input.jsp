@@ -110,6 +110,38 @@ function formChk(f){
 	}
 }
 
+$(function()
+	{
+		$.ajax
+		({
+			url:"annuPrem.jsp",
+			type : "get",
+			data : 
+			{
+				paytime : $('#payt').val(),
+				payment : $('#paym').val,
+				instart : $('#instart').val(),
+				regidate : $('#regidate').val(),
+				rprem : $('#rp').val(),
+				death : $('#death').val()
+			},
+			dataType : "html",
+			contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
+			success:function(responseData)
+			{
+				alert("성공인데 시벌아 = "+responseData);
+				$('#result').html(responseData);		
+			},
+			error:function(errorData){
+				alert("오류발생 : "+errorData.status+":"+errorData.statusText);
+			}
+
+		});	
+
+	});
+}
+
+
 </script>
 </head>
 <body>
@@ -149,19 +181,19 @@ function formChk(f){
 	<tr>
 		<th>연금개시일</th>
 		<td colspan="3">
-			<input name="instart" id="datepicker1" type="text" value="" size="30" class="input">
+			<input name="instart" id="datepicker1" id="instart" type="text" value="" size="30" class="input">
 		</td>
 	</tr>
 	<tr>
 		<th>연금납부연한</th>
 		<td colspan="3">
-			<input name="paytime" type="text" value="" size="30" class="input" />
+			<input name="paytime" type="text" value="" id="payt" size="30" class="input" />
 		</td>
 	</tr>
 	<tr>
 		<th>월 납입액</th>
 		<td colspan="3">
-			<input type="number" min="10" max="40" value="10" name="payment" />
+			<input type="number" min="10" max="40" value="10" name="payment" id="paym"/>
 			<b style="font-size: 10; color: #D5D5D5">납입액은 10만원부터 40만원 까지 가능합니다.</b>
 	</td>
 	</tr>
@@ -188,12 +220,12 @@ function formChk(f){
 	<tr>
 		<th>매월 연금수령액</th>
 		<td colspan="3">
-			<input type="text" name="monthann" value="" placeholder="자동으로 계산" style="border: 0"/>
+			<span id="result"><input type="text" name="monthann" value="" id="monthp" placeholder="자동으로 계산" style="border: 0"/></span>
 	</td>
 	<tr>
 		<th>계약일자</th>
 		<td colspan="3">
-			<input type="text" size="30" name="regidate" id="datepicker1" value="" />
+			<input type="text" size="30" name="regidate" id="regidate" id="datepicker1" value="" />
 	</td>
 	<tr>
 		<th>계약상태</th>

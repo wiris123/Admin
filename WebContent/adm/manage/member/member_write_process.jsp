@@ -19,6 +19,8 @@ String birth = request.getParameter("birth1")+request.getParameter("birth2")+req
 MemberDTO dto = new MemberDTO(id,pass,name,email,mobile,birth);
 
 MemberDAO dao = new MemberDAO();
+
+//데이터를 회원목록에 insert하는 함수
 int af = dao.memberRegist(dto);
 if(af==1){
 	
