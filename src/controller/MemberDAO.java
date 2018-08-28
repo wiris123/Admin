@@ -17,12 +17,6 @@ import dto.CounselMemDTO;
 import dto.MemberDTO;
 import dto.OutMemDTO;
 
-
-
-
-
-
-
 public class MemberDAO {
 
 	Connection con; //오라클 서버와 연결할때 사용
