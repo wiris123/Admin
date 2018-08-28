@@ -49,9 +49,7 @@
 	int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
 
 	//4.페이지번호가 없는경우 무조건 1로 설정
-	int nowPage = (request.getParameter("nowPage") == "")
-			? 1
-			: Integer.parseInt(request.getParameter("nowPage"));
+	int nowPage = (request.getParameter("nowPage") =="" || request.getParameter("nowPage") == null)? 1: Integer.parseInt(request.getParameter("nowPage"));
 
 	//5.가져올 레코드의 구간을 결정하기 위한 연산
 	int start = (nowPage - 1) * pageSize + 1;

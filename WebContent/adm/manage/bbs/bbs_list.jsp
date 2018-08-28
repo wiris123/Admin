@@ -20,7 +20,7 @@
 			<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
 		</div>
 	
-		<script Language="JavaScript" src="./select.js"></script>
+		<script Language="JavaScript" src="./select.js">	</script>
 		<%@include file="../include/bbs_left.jsp"%>
 		<div id="Container">
 	
@@ -34,6 +34,6 @@
 	</div>
 	<!-- //Container_wrap// -->
 </div>
-	<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+
 </body>
 </html>
