@@ -73,8 +73,7 @@
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
 		}
 	}
-<<<<<<< HEAD
-=======
+	
 	/* 월 납입액을 계산하는 ajax */
 	function premPlus()
 	{
@@ -89,17 +88,18 @@
 					paytime : $('#payt').val(),
 					instime : $('#inst').val(),
 					rprem : $('#rp').val(),
-					death : $('#death').val()
+					death : $('#death').val(),
+					birth : $('#birth').val()
 				},
 				dataType : "html",
 				contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
 				success:function(responseData)
 				{
-					alert("성공인데 시벌아 = "+responseData);
+					/* alert("성공인데 시벌아 = "+responseData); */
 					$('#mp').html(responseData);		
 				},
 				error:function(errorData){
-					alert("오류발생 : "+errorData.status+":"+errorData.statusText);
+					/* alert("오류발생 : "+errorData.status+":"+errorData.statusText); */
 				}
 
 			});	
@@ -135,8 +135,6 @@
 			return false;
 		}
 	}
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin
-
 </script>
 </head>
 <body>
@@ -145,76 +143,14 @@
 	<!-- 레프트메뉴 -->
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
-<<<<<<< HEAD
 
 	<div id="Container">
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
 	
 	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
-
 <script>
-/* 월 납입액을 계산하는 ajax */
-function premPlus()
-{
-	$(function()
-	{
-		$.ajax
-		({
-			url:"rprem.jsp",
-			type : "get",
-			data : 
-			{
-				paytime : $('#payt').val(),
-				instime : $('#inst').val(),
-				rprem : $('#rp').val(),
-				death : $('#death').val(),
-				birth : $('#birth').val()
-			},
-			dataType : "html",
-			contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
-			success:function(responseData)
-			{
-				/* alert("성공인데 시벌아 = "+responseData); */
-				$('#mp').html(responseData);		
-			},
-			error:function(errorData){
-				/* alert("오류발생 : "+errorData.status+":"+errorData.statusText); */
-			}
 
-		});	
-
-	});
-}
-
-//form 유효성 검사
-function formChk(f){
-	if(f.term_name.value==""){
-		alert("상품명을 입력하세요");
-		f.term_name.focus();
-		return false;
-	}
-	if(f.paytime.value==""){
-		alert("납입기간을 선택하세요");
-		f.paytime.focus();
-		return false;
-	}
-	if(f.instime.value==""){
-		alert("보험기간을 선택하세요");
-		f.instime.focus();
-		return false;
-	}
-	if(f.rprem.value==""){ 
-		alert("위험할증률을 선택하세요");
-		f.rprem.focus();
-		return false;
-	}
-	if(f.deathben.value==""){ 
-		alert("사망보험금을 선택하세요");
-		f.deathben.focus();
-		return false;
-	}
-}
 /* =======
 	<div id="Container">
 	<div id="location">HOME > 상품관리</div>

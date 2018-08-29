@@ -9,7 +9,7 @@
 <script src="../../js/jquery-1.10.2.js"></script>
 <script src="../../js/jquery-ui.js"></script>
 <script src="../../js/jquery.highchartTable.js"></script>
-<script src="../../js/highcharts.js"></script>
+<!-- <script src="../../js/highcharts.js"></script> -->
 <script src="../../js/jquery.bpopup.min.js"></script>
 <script src="../../js/jquery.cookie.js"></script>
 <link href="../wiz_style.css" rel="stylesheet" type="text/css"/>
@@ -110,38 +110,39 @@ function formChk(f)
 		return false;
 	}
 }
-
-
-
-
-$(function()
+function premPlus()
 {
-		$.ajax
-		({
-			url:"annuPrem.jsp",
-			type : "get",
-			data : 
-			{
-				paytime : $('#payt').val(),
-				payment : $('#paym').val,
-				instart : $('#instart').val(),
-				regidate : $('#regidate').val(),
-				rprem : $('#rp').val(),
-			},
-			dataType : "json",
-			contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
-			success:function(responseData)
-			{
-				alert("성공인데 시벌아 = "+responseData);
-				$('#result').html(responseData);		
-			},
-			error:function(errorData){
-				alert("오류발생 : "+errorData.status+":"+errorData.statusText);
-			}
+	$(function()
+	{
+			$.ajax
+			({
+				url:"annuPrem.jsp",
+				type : "get",
+				data : 
+				{
+					payment : $('#paym').val(),
+					instart : $('#datepicker1').val(),
+					regidate : $('#datepicker2').val(),
+					interest : $('#inter').val(),
+					rprem : $('#rp').val()
+				},
+				dataType : "json",
+				contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
+				success:function(resp)
+				{
+					/* alert("성공인데 시벌아 = "+resp.result+"and"+resp.payt); */
+					$('#monthp').val(resp.result);		
+					$('#payt').val(resp.payt);
+				},
+				error:function(errorData){
+					/* alert("오류발생 : "+errorData.status+":"+errorData.statusText); */
+				}
+
+			});	
 
 		});	
+}
 
-	});
 </script>
 </head>
 <body>
@@ -172,19 +173,19 @@ $(function()
 	<tr>
 		<th>보험종류</th>
 		<td colspan="3">
-			<input name="instype" type="text" value="1" size="30" class="input" readonly="readonly" style="border: 0">
+			<input name="instype" type="text" value="1" size="30" class="input" style="border: 0"readonly>
 		</td>
 	</tr>
 	<tr>
 		<th>연금개시일</th>
 		<td colspan="3">
-			<input name="instart" id="datepicker1" id="instart" type="text" value="" size="30" class="input">
+			<input name="instart" id="datepicker1" type="text" value="" size="30" class="instart">
 		</td>
 	</tr>
 	<tr>
 		<th>연금납부연한</th>
 		<td colspan="3">
-			<input name="paytime" type="text" value="" id="payt" size="30" class="input" />
+			<input name="paytime" type="text" value="" id="payt" size="30" class="input" readonly/>
 		</td>
 	</tr>
 	<tr>
@@ -197,7 +198,7 @@ $(function()
 	<tr>
 		<th>위험할증률</th>
 		<td colspan="3">
-			<select name="rprem" id="">
+			<select name="rprem" id="rp" value="" onChange="premPlus();">
 				<option value="">==선택==</option>
 				<%for(int i=0; i<=10; i++){ %>
 				<option value="<%=i%>"><%=i %></option>
@@ -207,7 +208,7 @@ $(function()
 	<tr>
 		<th>보장수익률</th>
 		<td colspan="3">
-			<select name="interest" id="">
+			<select name="interest" id="inter" onChange="premPlus();">
 				<option value="">==선택==</option>
 				<%for(int i=0; i<=10; i++){ %>
 				<option value="<%=i%>"><%=i %></option>
@@ -217,12 +218,12 @@ $(function()
 	<tr>
 		<th>매월 연금수령액</th>
 		<td colspan="3">
-			<span id="result"><input type="text" name="monthann" value="" id="monthp" placeholder="자동으로 계산" style="border: 0"/></span>
+			<span id="result"><input type="text" name="monthann" value="" id="monthp" placeholder="자동으로 계산" style="border: 0" readonly/></span>
 	</td>
 	<tr>
 		<th>계약일자</th>
 		<td colspan="3">
-			<input type="text" size="30" name="regidate" id="regidate" id="datepicker1" value="" />
+			<input type="text" size="30" name="regidate" id="datepicker2" value="" class="regidate"/>
 	</td>
 	<tr>
 		<th>계약상태</th>
