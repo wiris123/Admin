@@ -76,7 +76,7 @@
 									<td class="Paging_Num"></td>
 								</tr>
 							</table>
-
+							<!-- 덧글창 시작 -->
 							<div style="background: #f7f7f7; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px;">
 								<form name="comment" action="http://demohome.anywiz.co.kr/adm/manage/bbs/bbs.php?code=bbsBasic&amp;page=1" method="post" onSubmit="return commentCheck(this);">
 									<div>
@@ -113,16 +113,28 @@
 									</div>
 								</form>
 							</div>
+							<!-- 덧글창 끝 -->
+							<script Language="JavaScript">
+							//단일삭제
+							function aDelete() {
+								if (confirm("선택한 상품을 정말 삭제하시겠습니까?")) {
+									document.location = "./proc/bbs_del_proc.jsp?prop_name=${param.num }&b_id=${param.b_id}";
+								}
+								else{
+									return false;
+								}
+							}
+							</script>
 							<table width="100%" border="0" cellpadding="0" cellspacing="0">
 								<tr>
 									<td align="right">
 										&nbsp;&nbsp;
 										<!-- 리스트버튼 -->
-										<a href='bbs7cf3.html?ptype=list&amp;code=bbsBasic'> <img src='../../bbs/skin/bbsBasic/image/btn_list.gif' border='0'></a>&nbsp;
+										<a href='bbs_list.jsp?b_id=${param.b_id }&amp;nowPage=${param.nowPage}'> <img src='../../bbs/skin/bbsBasic/image/btn_list.gif' border='0'></a>&nbsp;
 										<!-- 수정버튼 -->
-										<a href='bbsadbd.html?ptype=input&amp;mode=modify&amp;code=bbsBasic&amp;idx=5279&amp;page=1'> <image src='../../bbs/skin/bbsBasic/image/btn_modify.gif' border='0'></a>&nbsp;
-										<!-- 삭제버튼 -->
-										<a href='bbsf252.html?ptype=passwd&amp;mode=delete&amp;code=bbsBasic&amp;idx=5279&amp;page=1'> <image src='../../bbs/skin/bbsBasic/image/btn_delete.gif' border='0'></a>&nbsp;
+										<a href='./bbs_modify.jsp?b_id=${param.b_id }&nowPage=${param.nowPage }&num=${param.num}' onclick="window.open(this.href,'팝업창','width=1400, height=800'); return false;"> <image src='../../bbs/skin/bbsBasic/image/btn_modify.gif' border='0'></a>&nbsp;
+										<!-- 삭제버튼 -->		
+										<a href='#' onclick="aDelete();"> <image src='../../bbs/skin/bbsBasic/image/btn_delete.gif' border='0'></a>&nbsp;
 								</tr>
 							</table>
 							<table width='100%' height='10'>

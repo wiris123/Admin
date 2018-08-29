@@ -44,3 +44,33 @@ function selDelete() {
 		}
 	}
 }
+
+function bbsCheck(frm) {
+
+	if (frm.name.value == "") {
+		alert("작성자를 입력하세요.");
+		frm.name.focus();
+		return false;
+	}
+
+	if (frm.title.value == "") {
+		alert("제목을 입력하세요.");
+		frm.title.focus();
+		return false;
+	}
+	try {
+		content.outputBodyHTML();
+	} catch (e) {
+	}
+	if (frm.contents.value == "") {
+		alert("내용을 입력하세요.");
+		return false;
+	}
+	if (frm.vcode != undefined
+			&& (hex_md5(frm.vcode.value) != md5_norobot_key)) {
+		alert("자동등록방지코드를 정확히 입력해주세요.");
+		frm.vcode.focus();
+		return false;
+	}
+
+}

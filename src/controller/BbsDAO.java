@@ -106,6 +106,8 @@ public class BbsDAO {
 				dto.setTitle(rs.getString("TITLE"));
 				dto.setRegidate(rs.getDate("REGIDATE"));
 				dto.setViewcnt(rs.getString("VIEWCNT"));
+				dto.setAttfile(rs.getString("ATTFILE"));
+				dto.setAttfileR(rs.getString("ATTFILER"));
 
 				list.add(dto);
 			}
@@ -186,8 +188,8 @@ public class BbsDAO {
 		System.out.println("내용가져오는중");
 		BoardDTO dto = new BoardDTO();
 		try {
-			String querty = "select * from multiboard where num = ?";
-			psmt = con.prepareStatement(querty);
+			String query = "select * from multiboard where num = ?";
+			psmt = con.prepareStatement(query);
 			psmt.setString(1, num);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
@@ -204,5 +206,26 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 		return dto;
+	}
+	
+	//내용 수정용 메소드
+	public int modify(BoardDTO dto) {
+		int affected = 0;
+			String query = "update multiboard set name=?, title=?, contents=?, attfile=?, attfileR=?, regidate=sysdate where num=?";
+			try {
+				System.out.println("업데이트를 위해 들어온 글의 번호"+dto.getNum());
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, dto.getName());
+				psmt.setString(2, dto.getTitle());
+				psmt.setString(3, dto.getContents());
+				psmt.setString(4, dto.getAttfile());
+				psmt.setString(5, dto.getAttfileR());
+				psmt.setString(6, dto.getNum());
+				affected = psmt.executeUpdate();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		return affected;
 	}
 }
