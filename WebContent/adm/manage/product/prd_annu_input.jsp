@@ -110,6 +110,8 @@ function formChk(f)
 		return false;
 	}
 }
+<<<<<<< HEAD
+=======
 function premPlus()
 {
 	$(function()
@@ -143,6 +145,7 @@ function premPlus()
 		});	
 }
 
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 </script>
 </head>
 <body>

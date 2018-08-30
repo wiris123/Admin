@@ -28,11 +28,9 @@
 <body class="home_body">
 	<div id="Header">
 		<h1>
-			<a href="main.jsp" onFocus="this.blur();"><img src="../image/header/logo.png" /></a>
+			<a href="../main/main.jsp" onFocus="this.blur();"><img src="../image/header/logo.png" /></a>
 		</h1>
 		<ul id="gnb">
-			<li class="first"><a target="_blank"
-				href="http://demohome.anywiz.co.kr/" onFocus="this.blur();">내홈페이지</a></li>
 			<li><a href="main.jsp" onFocus="this.blur();">관리자홈</a></li>
 			<li><a href="../../logout.jsp" onFocus="this.blur();"
 				class="logbtn"><img src="../image/header/logout.gif" /></a></li>
@@ -69,7 +67,11 @@
 				<ul class="category">
 					<li><a href="../member/member_list.jsp">회원목록</a></li>
 					<li><a href="../member/out_list.jsp">탈퇴회원</a></li>
+<<<<<<< HEAD
+					<li><a href="../member/memberQ_list.jsp">상담회원목록</a></li>
+=======
 					<li><a href="../member/memberQ_list.jsp">상담 회원 목록</a></li>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 				</ul></li>
 
 			<li><a href="../form/form_list.jsp" onFocus="this.blur();"><span>상담관리</span></a>
@@ -102,13 +104,31 @@
 					<li><a href="../connect/connect_list.jsp">접속자분석</a></li>
 				</ul></li>
 
-			<li><a href="../product/prd_list.jsp" onFocus="this.blur();"><span>상품관리</span></a>
+			<li><a href="#" onFocus="this.blur();"><span>상품관리</span></a>
 				<ul class="category">
-					<li><a href="../product/prd_list_term.jsp">상품목록</a></li>
-					<li><a href="../product/prd_input_term.jsp">상품등록</a></li>
-				</ul> 
+				<li class="depth"><a href="#" onFocus="this.blur();">상품목록</a>
+						 <ul class="category_2depth">
+							<li><a href="../product/prd_list_term.jsp">정기보험</a></li>
+							<li><a href="../product/prd_list_annu.jsp">연금보험</a></li>
+							<li><a href="../product/prd_list_prop.jsp">실손보험</a></li>
+						</ul>
+					</li>
+					<li class="depth"><a href="#" onFocus="this.blur();">상품등록</a>
+						 <ul class="category_2depth">
+							<li><a href="../product/prd_input_term.jsp">정기보험</a></li>
+							<li><a href="../product/prd_annu_input.jsp">연금보험</a></li>
+							<li><a href="../product/prd_prop_input.jsp">실손보험</a></li>
+						</ul>
+					</li>
+					<li class="depth"><a href="#" onFocus="this.blur();">가입현황</a>
+						 <ul class="category_2depth">
+							<li><a href="../product/prd_status_term.jsp">정기보험</a></li>
+							<li><a href="../product/prd_status_input.jsp">연금보험</a></li>
+							<li><a href="../product/prd_status_input.jsp">실손보험</a></li>
+						</ul>
+					</li>  
+				</ul>	
 			</li>
-
 		</div>
 	</div>
 </body>
