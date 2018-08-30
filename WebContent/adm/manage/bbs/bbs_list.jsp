@@ -27,7 +27,7 @@
 			<div id="location">HOME > 게시판관리</div>
 			<div id="S_contents">
 				
-				<jsp:include page="bbs_list_${param.b_id }.jsp" />
+				<jsp:include page="./include/bbs_list_${param.b_id }.jsp" />
 						
 		</div>
 		<!-- //Container// -->

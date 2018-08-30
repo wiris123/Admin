@@ -158,11 +158,11 @@ public class PagingUtil {
 		//처음페이지 & 이전페이지를 위한 로직
 		if(intTemp != 1){
 			pagingStr += "<td width='22' height='50'>" 
-					+"<a href='"+page+"nowPage=1'>"
+					+"<a href='"+page+"nowPage=1#list_top'>"
 					+"<img src='../../bbs/skin/photoBasic/image/btn_prev2.gif' align='absmiddle' border=0'></a></td>";
 			//pagingStr += "&nbsp;";
 			pagingStr += "<td width='22'>"
-					+"<a href='"+page+"nowPage="+(intTemp-blockPage)+"'>"
+					+"<a href='"+page+"nowPage="+(intTemp-blockPage)+"#list_top'>"
 					+"<img src='../../bbs/skin/photoBasic/image/btn_prev.gif' align='absmiddle' border=0'></a></td>";
 		}
 		
@@ -175,11 +175,11 @@ public class PagingUtil {
 			//현제페이지인 경우
 			if(intTemp==nowPage){
 				pagingStr
-					+="<td align='center'><a href='#'><b>"+intTemp+"</b></a></li>";
+					+="<td align='center'><a href='#list_top'><b>"+intTemp+"</b></a></li>";
 			}
 			else{
 				pagingStr
-					+="<td align='center'><a href='"+page+"nowPage="+intTemp+"'>"+intTemp+"</a></td>";
+					+="<td align='center'><a href='"+page+"nowPage="+intTemp+"#list_top'>"+intTemp+"</a></td>";
 			}
 		
 			intTemp = intTemp + 1;
@@ -188,10 +188,10 @@ public class PagingUtil {
 		
 		//다음 및 마지막 페이지를 위한 로직
 		if(intTemp <= totalPage){
-			pagingStr+="<td width='22' align='right'><a href='"+page+"nowPage="+intTemp+"'>"
+			pagingStr+="<td width='22' align='right'><a href='"+page+"nowPage="+intTemp+"#list_top'>"
 				+ "<img src='../../bbs/skin/photoBasic/image/btn_next.gif' align='absmiddle' border='0'></a></td>";		
 			//pagingStr+="&nbsp;";		
-			pagingStr+="<td width='22' align='right'><a href='"+page+"nowPage="+totalPage+"'>"
+			pagingStr+="<td width='22' align='right'><a href='"+page+"nowPage="+totalPage+"#list_top'>"
 				+ "<img src='../../bbs/skin/photoBasic/image/btn_next2.gif' align='absmiddle' border=0'></a></td>";
 		}
 		

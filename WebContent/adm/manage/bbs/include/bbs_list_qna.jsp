@@ -128,6 +128,7 @@
 						</td>
 						<td align="center"><%=dto.getName()%></td>
 						<td align="center"><%=dto.getRegidate()%></td>
+						<td align="center"><%=dto.getViewcnt() %></td>
 					</tr>
 					<tr>
 						<td colspan="10" height="1" bgcolor="#d7d7d7"></td>
