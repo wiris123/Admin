@@ -84,43 +84,38 @@
 		}
 	}
 	
-	function premCal()
-	{
-		$(function()
+	
+	$(function()
 		{
 			$.ajax
 			({
-				url:"propprem.jsp",
+				url:"proPrem.jsp",
 				type : "get",
 				data : 
 				{
-					hosp : $('#hosp').val(),
-					gohosp : $('#gohosp').val(),
-					sanghosp : $('#sanghosp').val(),
-					sgohosp : $('#sgohosp').val(),
-					chbedosu : $('#chbedosu').val(),
-					chbeinje : $('#chbeinje').val(),
-					chbemri : $('#chbemri').val()
+					paytime : $('#payt').val(),
+					payment : $('#paym').val,
+					instart : $('#instart').val(),
+					regidate : $('#regidate').val(),
+					rprem : $('#rp').val(),
+					death : $('#death').val()
 				},
-				dataType : "json",
+				dataType : "html",
 				contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
 				success:function(responseData)
-				{					
-					alert("성공인데 병신"+responseData.result);
-					$('#result').val(responseData.result);
-					$('#rprem').val(responseData.rprem);
-				},
-				error:function(errorData)
 				{
-					/* alert("오류발생 : "+errorData.status+":"+errorData.statusText); */
+					alert("성공인데 시벌아 = "+responseData);
+					$('#result').html(responseData);		
+				},
+				error:function(errorData){
+					alert("오류발생 : "+errorData.status+":"+errorData.statusText);
 				}
 	
 			});	
 	
 		});
-
 	}
-
+	
 </script>
 </head>
 <body>
@@ -133,6 +128,7 @@
 	<div id="Container">
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
+	
 	<h3>상품관리<span> 실손보험 관리페이지입니다.</span></h3>
 
 	<form name="propfrm" action="./proc/input_prop.jsp" method="post" onSubmit="return formChk(this)">
@@ -154,85 +150,73 @@
 			</td>
 		</tr>
 		<tr>
-			<th>위험할증률</th> 
+			<th>보험기간</th>
 			<td colspan="3">
-				<input type="text" value="" name="riskprem" id="rprem" readonly/>
-			</td>	
+				<table border="0" cellspacing="0" cellpadding="0">
+					<td colspan="2">
+						<select name="instime" id="">
+							<option value="10">10년만기</option>
+							<option value="20">20년만기</option>
+							<option value="60">60세까지</option>
+							<option value="70">70세까지</option>
+						</select>
+						</table>
+			</td>
 		</tr>
 		<tr>
 			<th>월 납입액</th> 
 			<td colspan="3">
-				<input type="text" value="" name="monthpay" id="result" readonly/>
+				<input type="number" min="10" max="40" value="10" name="monthpay" />
+				<b style="font-size: 10; color: #D5D5D5">납입액은 10만원부터 40만원 까지 가능합니다.</b>
 			</td>	
 		</tr>
 		<tr>
 			<th>질병입원보장</th>
 			<td colspan="3">
-				<select name="hosp" id="hosp" onChange="premCal();">
-					<option value="">--</option>
-					<option value="0">No</option>
-					<option value="1">YES</option>
-				</select>
+				<input type="radio" name="hosp" checked="checked" value="Y"/> Y &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="hosp" value="N"/> N
 		</td>
 		</tr>
 		<tr>
 			<th>질병통원보장</th>
 			<td colspan="3">
-				<select name="gohosp" id="gohosp">
-					<option value="">--</option>
-					<option value="0">No</option>
-					<option value="1">YES</option>
-				</select>
+				<input type="radio" name="gohosp" checked="checked" value="Y"/> Y &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="gohosp" value="N"/> N
 		</td>
 		</tr>
 		<tr>
 			<th>상해입원보장</th>
 			<td colspan="3">
-				<select name="sanghosp" id="sanghosp">
-					<option value="">--</option>
-					<option value="0">No</option>
-					<option value="2">YES</option>
-				</select>
+				<input type="radio" name="sanghosp" checked="checked" value="Y"/> Y &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="sanghosp" value="N"/> N
 		</td>
 		</tr>
 		<tr>
 			<th>상해통원보장</th>
 			<td colspan="3">
-				<select name="sgohosp" id="sgohosp">
-					<option value="">--</option>
-					<option value="0">No</option>
-					<option value="1">YES</option>
-				</select>
+				<input type="radio" name="sgohosp" checked="checked" value="Y"/> Y &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="sgohosp" value="N"/> N
 		</td>
 		</tr>
 		<tr>
 			<th>비급여도수</th>
 			<td colspan="3">
-				<select name="chbedosu" id="chbedosu">
-					<option value="">--</option>
-					<option value="0">No</option>
-					<option value="2">YES</option>
-				</select>
+				<input type="radio" name="chbedosu"  checked="checked" value="Y"/> Y &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="chedosu" value="N"/> N
 		</td> 
 		</tr>
 		<tr>
 			<th>체외충격파</th>
 			<td colspan="3">
-				<select name="chbeinje" id="chbeinje">
-					<option value="">--</option>
-					<option value="0">No</option>
-					<option value="1">YES</option>
-				</select>
+				<input type="radio" name="chbeinje" checked="checked" value="Y"/> Y &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="chbeinje" value="N"/> N
 		</td>
 		</tr>
 		<tr>
 			<th>자기공명진단</th>
 			<td colspan="3">
-				<select name="chbemri" id="chbemri" onChange="premCal();">
-					<option value="">--</option>
-					<option value="0">No</option>
-					<option value="3">YES</option>
-				</select>
+				<input type="radio" name="chbemri" checked="checked" value="Y"/> Y &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="chbemri"  value="N"/> N
 		</td>
 		</tr>
 		

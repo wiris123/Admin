@@ -5,41 +5,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	int paytime = Integer.parseInt(request.getParameter("paytime"));
 	int payment = Integer.parseInt(request.getParameter("payment"));
 	String instart  = request.getParameter("instart");
 	String regidate = request.getParameter("regidate");
 	int rprem = Integer.parseInt(request.getParameter("rprem"));
-	 
-	
-	double result = 0;
-	
+	int interest =Integer.parseInt(request.getParameter("inter"));
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	Date begin = formatter.parse(instart);
 	Date end = formatter.parse(regidate);
 	
-	long diffDays = (begin.getDate()-end.getDate()) / (24 * 60 * 60 * 1000);
-
+	long diffDays = (end.getTime() - begin.getTime()) / (24 * 60 * 60 * 1000);
+	diffDays = diffDays / 365;
 	
-
-	result = death*Math.pow(1.05,instime)/Math.pow(1.05,instime-paytime);
-	result = (result/100);
-	result = result*(1+(rprem*0.01))/12;
+	//연금보험 계산
+	double result = 0;
+	
+	result = (payment*10000)* Math.pow(1+(interest*0.01), (int)diffDays) / Math.pow(1+(3*0.01) , (int)diffDays);
+	result = result + (result * (interest*0.01*diffDays)) -(result*((rprem*0.01)*diffDays));
 	result = (int)Math.round(result);
-	 
+
 	
-	/*
-		연금보험 계산?
-				result = death/instime+paytime;
-		result = (result* Math.pow(1.03, instime))*(1+(rprem*0.01))/12;
-		result = (int)Math.round(result);
-	*/
-	
-	JSONArray jArr = new JSONArray();
 	JSONObject obj = new JSONObject();
-	String resultStr = "<span id='result'><input type='number' name='payment' value='' readonly/></span>";
-	out.println(resultStr);
-
-
+	obj.put("time", (int)diffDays);
+	obj.put("result", result);
+	
+	response.getWriter().write(obj.toString());
+	
 %>
