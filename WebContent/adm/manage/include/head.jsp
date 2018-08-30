@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="admin_check.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
 		</h1>
 		<ul id="gnb">
 			<li><a href="main.jsp" onFocus="this.blur();">관리자홈</a></li>
-			<li><a href="../../logout.jsp" onFocus="this.blur();"
+			<li><a href="../member/logout.jsp" onFocus="this.blur();"
 				class="logbtn"><img src="../image/header/logout.gif" /></a></li>
 		</ul>
 		<div id="navi">
@@ -67,13 +68,8 @@
 				<ul class="category">
 					<li><a href="../member/member_list.jsp">회원목록</a></li>
 					<li><a href="../member/out_list.jsp">탈퇴회원</a></li>
-<<<<<<< HEAD
 					<li><a href="../member/memberQ_list.jsp">상담회원목록</a></li>
-=======
-					<li><a href="../member/memberQ_list.jsp">상담 회원 목록</a></li>
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 				</ul></li>
-
 			<li><a href="../form/form_list.jsp" onFocus="this.blur();"><span>상담관리</span></a>
 				<ul class="category">		
 					<li><a href="../form/form_list.jsp">통합상담관리</a></li>
@@ -85,7 +81,6 @@
 					</li> 
 				</ul>
 			</li>
-
 			<li><a href="../page/page_list.jsp"><span>페이지관리</span></a>
 				<ul class="category">
 					<li><a href="../page/page_list.jsp">페이지관리</a></li>
