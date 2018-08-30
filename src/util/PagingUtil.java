@@ -49,7 +49,7 @@ public class PagingUtil {
 			}
 			else {
 				pagingStr += "&nbsp;<a href='"+page
-					+"nowPage="+intTemp+"'>"+
+					+"nowPage="+intTemp+1+"'>"+
 					intTemp+"</a>&nbsp;";
 			}
 			intTemp++;

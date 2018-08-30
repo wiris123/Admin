@@ -84,8 +84,7 @@ dao.close();
 <link rel="stylesheet" href="../../css/jquery-ui.css">
 <script src="../../js/jquery-1.10.2.js"></script>
 <script src="../../js/jquery-ui.js"></script>
-<!-- <script src="../../js/jquery.highchartTable.js"></script>
-<script src="../../js/highcharts.js"></script> -->
+<script src="../js/sidemenu.js"></script>
 <script src="../../js/jquery.bpopup.min.js"></script>
 <script src="../../js/jquery.cookie.js"></script>
 <link href="../wiz_style.css" rel="stylesheet" type="text/css"/>
@@ -150,7 +149,7 @@ function selectAll(obj) {
   	else 
   	{
   		if (confirm("선택한 상품을 정말 삭제하시겠습니까?")) {
-  			document.location = "member_del_proc.jsp?id=" + name
+  			document.location = "memberQ_del_proc.jsp?id=" + name
   		}
   	}
   }
@@ -201,6 +200,8 @@ function selectAll(obj) {
 					</tr>
 				</thead> 
 				<tbody> 
+					
+					<!--리스트 보여주기  -->
 					<%
 					if(bbs.isEmpty()){
 					%>
@@ -220,6 +221,7 @@ function selectAll(obj) {
 							vNum = totalRecordCount - (((nowPage-1)*pageSize)+countNum++);
 					%>
 		
+						<!--리스트 반복  -->
 						<tr>
 							<td><input type="checkbox" name="select_chkbox" value="<%=dto.getId()%>"/></td>
 							<td class="text-center"><a href="memberQ_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getIdx() %></a></td>
@@ -233,14 +235,15 @@ function selectAll(obj) {
 					<%
 						}
 					}
-					%>  
+					%> 
+					<!--리스트 반복끝  --> 
 	      		</tbody> 
 			</table>
 		</form>	
 	      
 		<div class="row text-center" style="text-align:center">
 			<ul class="pagination">
-				<%=PagingUtil.pagingImg(totalRecordCount,pageSize,blockPage,nowPage,"memberQ_list.jsp?"+queryStr) %>
+				<%=PagingUtil.pagingImgServlet(totalRecordCount,pageSize,blockPage,nowPage,"memberQ_list.jsp?"+queryStr) %>
 			</ul>	
 		</div>
 	</div>

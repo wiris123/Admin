@@ -13,7 +13,9 @@ public class BoardDTO {
 	private Date regidate;
 	private String viewcnt;
 	private String attfile;
+	private String attfileR;
 	private String b_id;
+	
 	
 	//기본 생성자
 	public BoardDTO() {
@@ -24,7 +26,7 @@ public class BoardDTO {
 	
 	//인자 생성자
 	public BoardDTO(String num, String id, String name, String title, String contents, Date regidate, String viewcnt,
-			String attfile, String b_id) {
+			String attfile, String attfileR, String b_id) {
 		super();
 		this.num = num;
 		this.id = id;
@@ -35,6 +37,19 @@ public class BoardDTO {
 		this.viewcnt = viewcnt;
 		this.attfile = attfile;
 		this.b_id = b_id;
+		this.attfileR = attfileR;
+	}
+
+
+
+	public String getAttfileR() {
+		return attfileR;
+	}
+
+
+
+	public void setAttfileR(String attfileR) {
+		this.attfileR = attfileR;
 	}
 
 

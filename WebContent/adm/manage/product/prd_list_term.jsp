@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="dto.TermDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
@@ -76,7 +77,7 @@
 	될수있기 때문이다.
 	*/
 	List<TermDTO> bbs = dao.selectList(param);
-	
+	DecimalFormat df = new DecimalFormat("#,###");
 	dao.close();
 
 %>    
@@ -317,8 +318,8 @@ else
           <td width="5%"><%= dto.getPaytime() %></td>
           <td width="10%"><%= dto.getInstime()%></td>
           <td width="10%"><%= dto.getRprem() %></td>
-          <td width="15%"><%= dto.getDeathben()%></td>
-          <td width="10%"><%= dto.getMonthpay()%></td>
+          <td width="15%"><%= df.format(Integer.parseInt(dto.getDeathben()))%></td>
+          <td width="10%"><%= df.format(Integer.parseInt(dto.getMonthpay()))%></td>
         </tr>
 
 <% 	} 

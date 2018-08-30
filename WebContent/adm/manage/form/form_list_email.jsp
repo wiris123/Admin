@@ -1,3 +1,4 @@
+<%@page import="util.PagingUtil"%>
 <%@page import="dto.CounselDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
@@ -37,17 +38,13 @@ Map<String,Object> param = new HashMap<String,Object>();
 param.put("flag",flag);
 //문자열 검색 파라미터를 페이지 처리 메소드로
 //넘겨주기 위한 변수선언
-/* String queryStr = "flag="+flag+"&"; */
-
-String queryStr = "";
-
+String queryStr = "flag="+flag+"&"; 
 
 //폼값받기(검색관련)
 String searchColumn = 
 request.getParameter("searchColumn");
 String searchWord = 
 request.getParameter("searchWord");
-
 
 if(searchWord!=null)
 {
@@ -63,7 +60,7 @@ if(searchWord!=null)
 	
 //페이지 처리를 위한 로직 시작
 //1.게시판 테이블의 전체 레코드 갯수 구하기
-/* int totalRecordCount = dao.getTotalRecordCount(param);  */
+int totalRecordCount = dao.getTotalRecordCount(param);
 
 //2.web.xml에 설정된 값 가져오기
 int pageSize = Integer.parseInt(
@@ -71,10 +68,9 @@ int pageSize = Integer.parseInt(
 int blockPage = Integer.parseInt(
 	application.getInitParameter("BLOCK_PAGE"));
 
-/* //3.전체페이지수 계산하기
+//3.전체페이지수 계산하기
 int totalPage = 
-(int)Math.ceil((double)totalRecordCount/pageSize);  */
-
+(int)Math.ceil((double)totalRecordCount/pageSize);
 //4.페이지번호가 없는경우 무조건 1로 설정
 int nowPage = 
   request.getParameter("nowPage")==null? 1 : Integer.parseInt(request.getParameter("nowPage"));
@@ -86,9 +82,6 @@ int end = nowPage * pageSize;
 //6.파라미터 전달을 위해 map에 추가
 param.put("start", start);
 param.put("end", end);
-
-
-
 /////게시판 페이지 처리 로직 끝
 
 /*
@@ -125,24 +118,26 @@ dao.close();
 <div id="S_contents">
 <h3><%= path_str %><span>작성된 <%= path_str %>을 관리 합니다.</span></h3>		
 
-<form action="http://demohome.anywiz.co.kr/adm/manage/form/form_list.php">
+<!-- 검색폼 -->
+<form action="">
 <input type="hidden" name="flag" value="<%=flag %>" />
 <input type="hidden" name="nowPage" value="1" />
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
+
 <tr>
   	<th width="15%">조건검색</th>
   	<td width="85%">
-		<select name="searchstatus">
-		<option value="">:: 처리상태 :: </option>
-		<option value="대기중" >대기중</option>
-		<option value="처리중" >처리중</option>
-		<option value="처리완료" >처리완료</option>
+		<select name="searchColumn">
+			<option value="idx">번호</option>
+			<option value="contents">내용</option>
 		</select>
-		<select name="searchopt">
-		<option value="content">작성내용</option>
-		</select>
-		<input type="text" name="searchkey" value="" class="input">
-		<button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
+		<!-- select name="searchWord">
+			<option value="contents">작성내용</option>
+		</select> -->
+		<input type="text" name="searchWord" value="" class="input">
+		<button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">
+			검색
+		</button>
 	</td>
 </tr>
 </table>
@@ -181,13 +176,10 @@ dao.close();
 			int countNum = 0;
 					
 			for(CounselDTO dto : bbs)
-			{//totalRecordCount
-				vNum = 10 - (((nowPage-1)*pageSize)+countNum++);
-	
+			{
+				vNum = totalRecordCount - 
+				(((nowPage-1)*pageSize)+countNum++);
 	%>
-			
-		
-  <input type="hidden" name="idx" value="167">
   <tr>	
   		<td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getIdx() %>"></td>
    		<td width="5%"><%=dto.getIdx() %></td>
@@ -200,24 +192,64 @@ dao.close();
   <% 	}
 	}%>
   </table>
-  </form>
 
 
+<div align="left">
 <table width="100%"border="0" cellpadding="0" cellspacing="0" class="top5">
-  <tr>
-    <td width="20%"><input type="hidden" value="<%=page_flag%>" id="page_flag"/>
-    <button type="button" class="h22 t4 small icon gray" onClick="formDelete();"><span class="icon_plus"></span>선택삭제</button>
+<tr>
+	<td width="20%">
+    	<input type="hidden" value="<%=page_flag%>" id="page_flag"/>
+    	<button type="button" class="h22 t4 small icon gray" onClick="formDelete();">
+    		<span class="icon_plus"></span>선택삭제
+    	</button>
+   
+    	<input type="hidden" value="<%=page_flag%>" id="page_flag"/>
+    	<button type="button" class="h22 t4 small icon gray" onClick="location.href='form_email_write.jsp'">
+    		<span class="icon_plus"></span>글쓰기
+    	</button>
     </td>
-    <td width="20%"><input type="hidden" value="<%=page_flag%>" id="page_flag"/>
-    <button type="button" class="h22 t4 small icon gray" onClick="location.href='form_email_write.jsp'"><span class="icon_plus"></span>글쓰기</button>
-    </td>
-    <td width="33%">
-    	<table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='form_list.jsp?ptype=&amp;page=1&amp;code=&amp;searchopt=&amp;searchkey=&amp;searchstatus='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
-  </tr>
+    </table>
+</div>
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+	<tr>
+		<td align='center'>
+		<table border='0' cellspacing='0' cellpadding='0'>        
+			<tr>
+				<td width='22' height='50'>
+					<a href='form_list.jsp?flag=<%=flag %>&nowPage=<%=nowPage%>'>
+						<img src='../image/btn_prev2.gif' align='absmiddle' border=0'>
+					</a>
+				</td>
+				<td width='22'>
+					<a href='form_list.jsp?flag=<%=flag %>&nowPage=<%=nowPage-1%>'>
+						<img src='../image/btn_prev.gif' align='absmiddle' border=0'>
+					</a>
+				</td>
+				<td align='center'>
+				<%=PagingUtil.pagingHomepy(totalRecordCount,
+					pageSize, 
+					blockPage,
+					nowPage,
+					"form_list.jsp?"+queryStr) %>
+				</td>          
+				<td width='22' align='right'>
+					<a href='form_list.jsp?flag=<%=flag %>&nowPage=<%=nowPage+1%>'>
+						<img src='../image/btn_next.gif' align='absmiddle' border='0'>
+					</a>
+				</td>
+				<td width='22' align='right'>
+					<a href='form_list.jsp?flag=<%=flag %>&nowPage=<%=nowPage%>'>
+						<img src='../image/btn_next2.gif' align='absmiddle' border='0'>
+					</a>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
 </table>
 </div>
 </div>
-
+</div>
 <div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
 </body>
 </html>

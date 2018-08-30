@@ -73,8 +73,9 @@
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'demohome.anywiz.co.kr', secure: false });			
 		}
 	}
+	
 	/* 월 납입액을 계산하는 ajax */
-	function premPlus(rp)
+	function premPlus()
 	{
 		$(function()
 		{
@@ -87,17 +88,18 @@
 					paytime : $('#payt').val(),
 					instime : $('#inst').val(),
 					rprem : $('#rp').val(),
-					death : $('#death').val()
+					death : $('#death').val(),
+					birth : $('#birth').val()
 				},
 				dataType : "html",
 				contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
 				success:function(responseData)
 				{
-					alert("성공인데 시벌아 = "+responseData);
+					/* alert("성공인데 시벌아 = "+responseData); */
 					$('#mp').html(responseData);		
 				},
 				error:function(errorData){
-					alert("오류발생 : "+errorData.status+":"+errorData.statusText);
+					/* alert("오류발생 : "+errorData.status+":"+errorData.statusText); */
 				}
 
 			});	
@@ -133,7 +135,6 @@
 			return false;
 		}
 	}
-
 </script>
 </head>
 <body>
@@ -142,6 +143,15 @@
 	<!-- 레프트메뉴 -->
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
+
+	<div id="Container">
+<div id="location">HOME > 상품관리</div>
+<div id="S_contents">
+	
+	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
+<script>
+
+/* =======
 	<div id="Container">
 	<div id="location">HOME > 상품관리</div>
 	<div id="S_contents">
@@ -151,13 +161,15 @@
 
 		<input type="hidden" name="instype" value="2"> 
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin
+ */
 
 </script>
 <form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
 <!-- 	<input type="hidden" name="tmp">
-	<input type="hidden" name="mode" value="insert">
-	<input type="hidden" name="relidx" value=""> -->
-	<input type="hidden" name="instype" value="2"> 
+	<input type="hidden" name="mode" value="insert">-->
+	<input type="hidden" id="birth" value="30">
+	<input type="hidden" name="instype" value="2">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 	<tr>
 		<th>상품명</th>
@@ -178,8 +190,8 @@
 				<option value="">==선택==</option>
 				<option value="10">10년납</option>
 				<option value="20">20년납</option>
-				<option value="40">60세납</option>
-				<option value="45">65세납</option>
+				<option value="60">60세납</option>
+				<option value="65">65세납</option>
 			</select>
 		</td>
 	</tr>
@@ -187,78 +199,74 @@
 	<tr>
 		<th>보험기간</th>
 		<td colspan="3">
-	<table border="0" cellspacing="0" cellpadding="0">
+			<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td colspan="2">
+					<select name="instime" id="inst" value="" onChange="premPlus();">
+						<option value="">==선택==</option>
+						<option value="10">10년만기</option>
+						<option value="20">20년만기</option>
+						<option value="60">60세까지</option>
+						<option value="70">70세까지</option>
+					</select>
+				</td>
+			</tr>
+			
+			</table>
+		</td>
+	</tr>
 	<tr>
-		<td colspan="2">
-			<select name="instime" id="inst" value="">
+		<th>위험할증률</th>
+		<td colspan="3">
+			<input type="number" name="rprem" id="rp" placeholder="1~10까지의 정수숫자" onKeyup="premPlus();"/>
+	</td>
+	</tr>
+	<tr>
+		<th>사망보험금</th>
+		<td colspan="3">
+			<select name="deathben" id="death" onChange="premPlus();">
 				<option value="">==선택==</option>
-				<option value="10">10년만기</option>
-				<option value="20">20년만기</option>
-				<option value="40">60세까지</option>
-				<option value="50">70세까지</option>
+				<option value="15000000">1억5천</option>
+				<option value="10000000">1억</option>
+				<option value="5000000">5천</option>
 			</select>
 		</td>
 	</tr>
-			
-			</table>
-				</td>
-			</tr>
-			<tr>
-				<th>위험할증률</th>
-				<td colspan="3">
-					<select name="rprem" id="">
-						<option value="">==선택==</option>
-						<%for(int i=0; i<=10; i++){ %>
-						<option value="<%=i%>"><%=i %></option>
-						<%} %>	
-					</select>
-			</td>
-			</tr>
-			<tr>
-				<th>사망보험금</th>
-				<td colspan="3">
-					<select name="deathben" id="death" onChange="premPlus(this);">
-						<option value="">==선택==</option>
-						<option value="15000000">1억5천</option>
-						<option value="10000000">1억</option>
-						<option value="5000000">5천</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>월 납입액</th>
-				<td colspan="3">
-					<span id="mp"><input type="text" size="40" placeholder="사망보험금까지 선택하면 자동으로 계산" style="border: 0"/></span>
-			</td>
-			</tr>
-			<tr>
-				<th>첨부파일</th>
-				<td colspan="3">
-					<input type="file" name="attfile"/>
-			</td>
-			</tr>
-			<tr>
-				<th height="25" >상품간단설명</th>
-				<td colspan="3">
-					<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
-				</td>
-			</tr>
-
+	<tr>
+		<th>월 납입액</th>
+		<td colspan="3">
+			<span id="mp"><input type="text" name="payment" placeholder="사망보험금까지 선택하면 자동으로 계산"/></span>
+	</td>
+	</tr>
+	<tr>
+		<th>첨부파일</th>
+		<td colspan="3">
+			<input type="file" name="attfile"/>
+	</td>
+	</tr>
 	</table>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
 		<tr>
-			<td align="center">
-				<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
-				<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_term.jsp';">목록</button>
+			<th height="25" >상품간단설명</th>
+			<td colspan="3">
+				<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
 			</td>
 		</tr>
 	</table>
-	</form>
-	<!-- </div> -->
-	</div><!-- //Container// -->
-	</div><!-- //Container_wrap// -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
+	<tr>
+		<td align="center">
+			<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
+			<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_list_term.jsp';">목록</button>
+		</td>
+	</tr>
+	</table>
+</form>
 
-	<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+	</div>
+</div><!-- //Container// -->
+</div><!-- //Container_wrap// -->
+
+<div id="Footer">Copyright ⓒ 2018 Insurance SAJO All rights reserved.</div>
 </body>
 
 <!-- Mirrored from demohome.anywiz.co.kr/adm/manage/product/prd_input.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:11:59 GMT -->

@@ -67,7 +67,11 @@
 				<ul class="category">
 					<li><a href="../member/member_list.jsp">회원목록</a></li>
 					<li><a href="../member/out_list.jsp">탈퇴회원</a></li>
+<<<<<<< HEAD
 					<li><a href="../member/memberQ_list.jsp">상담회원목록</a></li>
+=======
+					<li><a href="../member/memberQ_list.jsp">상담 회원 목록</a></li>
+>>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 				</ul></li>
 
 			<li><a href="../form/form_list.jsp" onFocus="this.blur();"><span>상담관리</span></a>
