@@ -8,7 +8,6 @@ public class PropDTO {
 
 	private String prop_name;
 	private String instype;
-	private String instime;
 	private String monthpay;
 	private Date regidate;
 	private String hosp;
@@ -40,13 +39,12 @@ public class PropDTO {
 		this.attfile = attfile;
 	}
 
-	public PropDTO(String prop_name, String instype, String instime, String monthpay, Date regidate, String hosp,
+	public PropDTO(String prop_name, String instype, String monthpay, Date regidate, String hosp,
 			String gohosp, String sanghosp, String sgohosp, String chbedosu, String chbeinje, String chbemri,
 			String attfile) {
 		super();
 		this.prop_name = prop_name;
 		this.instype = instype;
-		this.instime = instime;
 		this.monthpay = monthpay;
 		this.regidate = regidate;
 		this.hosp = hosp;
@@ -67,12 +65,6 @@ public class PropDTO {
 	}
 	public void setInstype(String instype) {
 		this.instype = instype;
-	}
-	public String getInstime() {
-		return instime;
-	}
-	public void setInstime(String instime) {
-		this.instime = instime;
 	}
 	public String getMonthpay() {
 		return monthpay;
@@ -128,6 +120,5 @@ public class PropDTO {
 	public void setChbemri(String chbemri) {
 		this.chbemri = chbemri;
 	}
-	
 	
 }

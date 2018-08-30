@@ -140,11 +140,31 @@ public class InsuDAO
 			List<TermDTO> bbs = new Vector<TermDTO>();
 			
 			//2.게시물 전체를 가져오기 위한 쿼리작성
-			String query = "select * from term_insu";		
+			String query = "select term_insu.*,rownum from term_insu where ";
+			if(map.get("Word")!=null) {
+		    	  if(map.get("Column").equals("both")) {
+		    		  query +=""
+	    				  + ""+map.get("Column")+" LIKE '%" + map.get("Word") + "%' "
+	    				  + " OR "
+	    				  + " content LIKE '%"+map.get("Word") + "%' "
+	    				  + "and ";
+		    	  }
+		    	  else {
+		    		  query +=""+ map.get("Column") +" "
+	    				  + " LIKE '%"+map.get("Word") +"%' "
+	    				  + " and ";
+		    	  }
+		      }
+		      query +="rownum BETWEEN ? AND ? "
+		    		  + " ORDER BY rownum DESC ";
+		      System.out.println("쿼리문 : " + query);
 		
 			try {
 				//3.prepare객체생성 및 실행
 				psmt = con.prepareStatement(query);
+				
+				psmt.setString(1, map.get("start").toString());
+		        psmt.setString(2, map.get("end").toString());
 				
 				//4.쿼리실행후 결과셋 돌려받음
 				rs = psmt.executeQuery();
@@ -183,14 +203,14 @@ public class InsuDAO
 		int affected = 0;
 		try {
 			String query = "INSERT INTO term_insu "
-				+ " (term_name,instype,paytime,instime,rprem,deathben,monthpay,regidate,attfile) "
+				+ " (term_name,instype,instime,paytime,rprem,deathben,monthpay,regidate,attfile) "
 				+ " VALUES"
 				+ " (?,?,?,?,?,?,?,sysdate,?)";
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getTerm_name());
 			psmt.setString(2, dto.getInstype());
-			psmt.setString(3, dto.getPaytime());
-			psmt.setString(4, dto.getInstime());
+			psmt.setString(3, dto.getInstime());
+			psmt.setString(4, dto.getPaytime());
 			psmt.setString(5, dto.getRprem());
 			psmt.setString(6, dto.getDeathben());
 			psmt.setString(7, dto.getMonthpay());
@@ -277,11 +297,11 @@ public class InsuDAO
 
 			String query = "INSERT INTO prop_insu "
 
-				+ " (prop_name, instype, instime, monthpay, regidate, hosp, gohosp, sanghosp, sgohosp, chbedosu, chbeinje, chbemri, attfile) "
+				+ " (prop_name, instype, monthpay, regidate, hosp, gohosp, sanghosp, sgohosp, chbedosu, chbeinje, chbemri, attfile) "
 
 				+ " VALUES"
 
-				+ " (?, ?, ?, ?, sysdate, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (?, ?, ?, sysdate, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			psmt = con.prepareStatement(query);
 
@@ -289,25 +309,23 @@ public class InsuDAO
 
 			psmt.setString(2, dto.getInstype());
 
-			psmt.setString(3, dto.getInstime());
+			psmt.setString(3, dto.getMonthpay());
 
-			psmt.setString(4, dto.getMonthpay());
+			psmt.setString(4, dto.getHosp());
 
-			psmt.setString(5, dto.getHosp());
+			psmt.setString(5, dto.getGohosp());
 
-			psmt.setString(6, dto.getGohosp());
+			psmt.setString(6, dto.getSanghosp());
 
-			psmt.setString(7, dto.getSanghosp());
+			psmt.setString(7, dto.getSgohosp());
 
-			psmt.setString(8, dto.getSgohosp());
+			psmt.setString(8, dto.getChbedosu());
 
-			psmt.setString(9, dto.getChbedosu());
+			psmt.setString(9, dto.getChbeinje());
 
-			psmt.setString(10, dto.getChbeinje());
+			psmt.setString(10, dto.getChbemri());
 
-			psmt.setString(11, dto.getChbemri());
-
-			psmt.setString(12, dto.getAttfile());
+			psmt.setString(11, dto.getAttfile());
 
 			affected = psmt.executeUpdate();
 
@@ -346,6 +364,7 @@ public class InsuDAO
 			psmt.setString(7, dto.getContstat());
 			
 			affected = psmt.executeUpdate();
+			System.out.println(query);
 			
 		}
 		catch(Exception e) {
@@ -362,7 +381,7 @@ public class InsuDAO
 		List<MyTermDTO> bbs = new Vector<MyTermDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
-		String query = "select member_term.*,rownum from member_term_my";
+		String query = "select member_term_my.*,rownum from member_term_my where ";
 		
 		if(map.get("Word")!=null) {
 	    	  if(map.get("Column").equals("both")) {
@@ -529,17 +548,16 @@ public class InsuDAO
 		            
 		            dto.setProp_name(rs.getString(1));
 		            dto.setInstype(rs.getString(2));
-		            dto.setInstime(rs.getString(3));
-		            dto.setMonthpay(rs.getString(4));
-		            dto.setRegidate(rs.getDate(5));
-		            dto.setHosp(rs.getString(6));
-		            dto.setGohosp(rs.getString(7));
-		            dto.setSanghosp(rs.getString(8));
-		            dto.setSgohosp(rs.getString(9));
-		            dto.setChbedosu(rs.getString(10));
-		            dto.setChbeinje(rs.getString(11));
-		            dto.setChbemri(rs.getString(12));
-		            dto.setAttfile(rs.getString(13));
+		            dto.setMonthpay(rs.getString(3));
+		            dto.setRegidate(rs.getDate(4));
+		            dto.setHosp(rs.getString(5));
+		            dto.setGohosp(rs.getString(6));
+		            dto.setSanghosp(rs.getString(7));
+		            dto.setSgohosp(rs.getString(8));
+		            dto.setChbedosu(rs.getString(9));
+		            dto.setChbeinje(rs.getString(10));
+		            dto.setChbemri(rs.getString(11));
+		            dto.setAttfile(rs.getString(12));
 		            
 		            
 		            //7.DTO객체를 컬렉션에 추가

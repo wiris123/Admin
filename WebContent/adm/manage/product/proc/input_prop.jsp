@@ -11,7 +11,6 @@ request.setCharacterEncoding("UTF-8");
 //폼값받기
 String prop_name = request.getParameter("prop_name");
 String instype = request.getParameter("instype");
-String instime = request.getParameter("instime");
 String monthpay= request.getParameter("monthpay");
 String hosp = request.getParameter("hosp");
 String gohosp = request.getParameter("gohosp");
@@ -27,7 +26,6 @@ String attfile = request.getParameter("attfile");
 PropDTO dto = new PropDTO();
 dto.setProp_name(prop_name);
 dto.setInstype(instype);
-dto.setInstime(instime);
 dto.setMonthpay(monthpay);
 dto.setHosp(hosp);
 dto.setGohosp(gohosp);

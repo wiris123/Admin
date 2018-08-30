@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="dto.AnnuDTO"%>
 <%@page import="dto.TermDTO"%>
 <%@page import="java.util.List"%>
@@ -77,7 +78,7 @@
    될수있기 때문이다.
    */
    List<AnnuDTO> bbs = dao.selectList1(param);
-   
+   DecimalFormat df = new DecimalFormat("#,###");
    dao.close();
 
 %>    
@@ -194,25 +195,18 @@
          </select>
          <input type="text" name="searchWord" value="" class="input"> 
          <button type="submit" "height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
-         <!-- <script language="javascript">
-         searchopt = document.searchForm.searchopt;
-         for(ii=0; ii<searchopt.length; ii++){
-           if(searchopt.options[ii].value == "")
-             searchopt.options[ii].selected = true;
-         }
-         </script> -->
       </td>
       </tr>
       </table>
       </form>
-            <!-- <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
         <tr>
-          <td>총 상품수 : <b>1</b> , 검색 상품수 : <b>1</b></td>
+          
           <td align="right">
-            <button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_annu_input.jsp';"><span class="icon_plus"></span>상품등록</button>
+				<button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_annu_input.jsp';"><span class="icon_plus"></span>상품등록</button>
           </td>
         </tr>
-      </table> -->
+      </table>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
          <form>
          <script type="text/javascript">
@@ -381,10 +375,10 @@ else
           <td width="15%"><%= dto.getAnn_name() %></td>
           <td width="15%"><%= dto.getInstart() %></td>
           <td width="10%"><%= dto.getPaytime()%></td>
-          <td width="10%"><%= dto.getPayment() %></td>
+          <td width="10%"><%= df.format(Integer.parseInt(dto.getPayment())) %></td>
           <td width="10%"><%= dto.getRprem()%></td>
           <td width="10%"><%= dto.getInterest()%></td>
-          <td width="15%"><%= dto.getMonthann()%></td>
+          <td width="15%"><%= df.format(Integer.parseInt(dto.getMonthann()))%></td>
         </tr>
 
 <%    } 
@@ -396,8 +390,6 @@ else
 <tr>
 <td width="33%">
 <button type="button" class="h22 t4 small icon gray" onClick="prdDelete();"><span class="icon_plus"></span>선택삭제</button>
-<button type="button" class="h22 t4 small icon gray" onClick="movePrd();"><span class="icon_plus"></span>상품이동</button>
-<button type="button" class="h22 t4 small icon gray" onClick="copyPrd();"><span class="icon_plus"></span>상품복사</button>
 </td>
 <td width="33%">    <table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
 <td width="33%" align="right"></td>

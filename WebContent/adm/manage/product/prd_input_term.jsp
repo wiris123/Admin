@@ -149,22 +149,7 @@
 <div id="S_contents">
 	
 	<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
-<script>
 
-/* =======
-	<div id="Container">
-	<div id="location">HOME > 상품관리</div>
-	<div id="S_contents">
-	
-		<h3>상품관리<span> 정기보험 관리페이지입니다.</span></h3>
-		<form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
-
-		<input type="hidden" name="instype" value="2"> 
-		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin
- */
-
-</script>
 <form name="termfrm" action="./proc/input_term.jsp" method="post" onSubmit="return formChk(this)">
 <!-- 	<input type="hidden" name="tmp">
 	<input type="hidden" name="mode" value="insert">-->

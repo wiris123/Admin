@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="dto.PropDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
@@ -76,7 +77,7 @@
    될수있기 때문이다.
    */
    List<PropDTO> bbs = dao.selectList2(param);
-   
+   DecimalFormat df = new DecimalFormat("#,###");
    dao.close();
 
 %>        
@@ -175,49 +176,37 @@
 <h3>상품관리<span>상품 검색/추가/수정/삭제 관리합니다.</span></h3>   
 
       <form name="searchForm" method="get">
-      <input type="hidden" name="nowPage" value=""1>
+      <input type="hidden" name="nowPage" value="1">
       <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
       <tr>
       <th>조건검색</th>
-      <td width="85%">
-         <select name="searchColumn" class="select">
-         <option value="">:: 대분류 ::
-         <option value='100'>상품분류1<option value='101'>상품분류2<option value='102'>상품분류3         </select>
-         <select name="dep2_code" onChange="catChange(this.form,'2');" class="select">
-         <option value=''> :: 중분류 ::
-                  </select>
-         <select name="dep3_code" onChange="catChange(this.form,'3');" class="select">
-         <option value=''> :: 소분류 ::
-                  </select>
-         <input type="checkbox" name="recom" value="Y" >추천상품
-      </td>
-      </tr>
-      <tr>
-      <th>조건검색</th>
       <td>
-         <select name="searchopt" class="select">
-         <option value="prdnum" >상품코드
-         <option value="prdname" >상품명
+         <select name="searchColumn" class="select">
+         <option value="prop_name" >상품명
+         <option value="monthpay" >월납입액
+         <option value="hosp" >질병입원보장
+         <option value="gohosp" >질병통원보장
+         <option value="sanghosp" >상해입원보장
+         <option value="sgohosp" >상해통원보장
+         <option value="chbedosu" >비급여도수
+         <option value="chbeinje" >체외충격파
+         <option value="chbemri" >자기공명진단
          </select>
-         <input type="text" name="searchkey" value="" class="input"> <button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
-         <script language="javascript">
-         searchopt = document.searchForm.searchopt;
-         for(ii=0; ii<searchopt.length; ii++){
-           if(searchopt.options[ii].value == "")
-             searchopt.options[ii].selected = true;
-         }
-         </script>
+         <input type="text" name="searchWord" value="" class="input"> 
+         <button type="submit" "height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
       </td>
       </tr>
       </table>
       </form>
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
         <tr>
-          <td>총 상품수 : <b>1</b> , 검색 상품수 : <b>1</b></td>
+          
           <td align="right">
-            <button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_prop_input.jsp';"><span class="icon_plus"></span>상품등록</button>
+				<button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_prop_input.jsp';"><span class="icon_plus"></span>상품등록</button>
           </td>
         </tr>
+      </table>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
       </table>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
          <form>
@@ -321,7 +310,7 @@
 	 	 						}	 		 					
 	  						}							 	 					
 	 	 				}
-	  					document.location = "./proc/prd_del_prop.jsp?prop_name="+name			 	 				
+	  					document.location = "./proc/prd_del_prop.jsp?prop_name="+name;			 	 				
 	 	 			}
 	 	 		}
 	 	 	}
@@ -331,7 +320,6 @@
         <tr>
            <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this)"></td>
           <td width="10%">상품명</td>
-          <td width=10%>보험기간</td>
           <td width="10%">월납입액</td>
           <td width="10%">질병입원보장</td>
           <td width="10%">질병통원보장</td>
@@ -372,8 +360,7 @@ else
         <tr>
            <td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getProp_name()%>"></td>
           <td width="10%"><%= dto.getProp_name() %></td>
-          <td width="10%"><%= dto.getInstime() %></td>
-          <td width="10%"><%= dto.getMonthpay()%></td>
+          <td width="10%"><%= df.format(Integer.parseInt(dto.getMonthpay()))%></td>
           <td width="10%"><%= dto.getHosp() %></td>
           <td width="10%"><%= dto.getGohosp()%></td>
           <td width="10%"><%= dto.getSanghosp()%></td>
@@ -392,8 +379,6 @@ else
          <tr>
          <td width="33%">
          <button type="button" class="h22 t4 small icon gray" onClick="prdDelete();"><span class="icon_plus"></span>선택삭제</button>
-         <button type="button" class="h22 t4 small icon gray" onClick="movePrd();"><span class="icon_plus"></span>상품이동</button>
-         <button type="button" class="h22 t4 small icon gray" onClick="copyPrd();"><span class="icon_plus"></span>상품복사</button>
          </td>
          <td width="33%">    <table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
          <td width="33%" align="right"></td>

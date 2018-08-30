@@ -175,53 +175,34 @@
 <div id="S_contents">
 <h3>상품관리<span>상품 검색/추가/수정/삭제 관리합니다.</span></h3>	
 
-	   <form name="searchForm" action="http://demohome.anywiz.co.kr/adm/manage/product/prd_list.php" method="get">
+	   <form name="searchForm" method="get">
       <input type="hidden" name="page" value="">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
-		<tr>
-		<th width="15%">상품분류</th>
-		<td width="85%">
-			<select name="dep_code" onChange="catChange(this.form,'1');">
-			<option value=''>:: 대분류 ::
-			<option value='100'>상품분류1<option value='101'>상품분류2<option value='102'>상품분류3			</select>
-			<select name="dep2_code" onChange="catChange(this.form,'2');" class="select">
-			<option value=''> :: 중분류 ::
-						</select>
-			<select name="dep3_code" onChange="catChange(this.form,'3');" class="select">
-			<option value=''> :: 소분류 ::
-						</select>
-			<input type="checkbox" name="recom" value="Y" >추천상품
-		</td>
-		</tr>
-		<tr>
-		<th>조건검색</th>
-		<td>
-			<select name="searchopt" class="select">
-			<option value="prdnum" >상품코드
-			<option value="prdname" >상품명
-			</select>
-			<input type="text" name="searchkey" value="" class="input"> <button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
-			<script language="javascript">
-			searchopt = document.searchForm.searchopt;
-			for(ii=0; ii<searchopt.length; ii++){
-			  if(searchopt.options[ii].value == "")
-			    searchopt.options[ii].selected = true;
-			}
-			</script>
-		</td>
-		</tr>
-		</table>
+      <tr>
+      <th>조건검색</th>
+      <td>
+         <select name="searchColumn" class="select">
+         <option value="term_name" >상품명
+         <option value="paytime" >납입기간
+         <option value="instime" >보험기간
+         <option value="rprem" >위험할증률
+         <option value="deathben" >사망보험금
+         <option value="monthpay" >월납입액
+         </select>
+         <input type="text" name="searchWord" value="" class="input"> 
+         <button type="submit" "height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
+      </td>
+      </tr>
+      </table>
 		</form>
-		      <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
+		  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
         <tr>
-          <td>총 상품수 : <b>1</b> , 검색 상품수 : <b>1</b></td>
+          
           <td align="right">
 				<button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_input_term.jsp';"><span class="icon_plus"></span>상품등록</button>
           </td>
         </tr>
-       
       </table>
-
 		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
       	<form>
 
@@ -331,8 +312,6 @@ else
 			<tr>
 			<td width="33%">
 			<button type="button" class="h22 t4 small icon gray" onClick="prdDelete();"><span class="icon_plus"></span>선택삭제</button>
-			<button type="button" class="h22 t4 small icon gray" onClick="movePrd();"><span class="icon_plus"></span>상품이동</button>
-			<button type="button" class="h22 t4 small icon gray" onClick="copyPrd();"><span class="icon_plus"></span>상품복사</button>
 			</td>
 			<td width="33%">    <table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
 			<td width="33%" align="right"></td>
