@@ -170,8 +170,6 @@
 
 <script language="JavaScript" type="text/javascript">
 
-
-
 </script>
 
 <div id="location">HOME > 상품관리</div>
@@ -180,34 +178,41 @@
 
       <form name="searchForm" method="get">
       <input type="hidden" name="nowPage" value="1">
+      
       <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
       <tr>
       <th>조건검색</th>
       <td>
-         <select name="searchopt" class="select">
-         <option value="prdnum" >상품명
-         <option value="prdname" >
+         <select name="searchColumn" class="select">
+         <option value="ann_name" >상품명
+         <option value="instart" >연금게시일
+         <option value="paytime" >연금납부연한
+         <option value="payment" >월납입액
+         <option value="rprem" >위험할증률
+         <option value="interest" >보장수익률
+         <option value="monthann" >매월 연금수령액
          </select>
-         <input type="text" name="searchkey" value="" class="input"> <button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
-         <script language="javascript">
+         <input type="text" name="searchWord" value="" class="input"> 
+         <button type="submit" "height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
+         <!-- <script language="javascript">
          searchopt = document.searchForm.searchopt;
          for(ii=0; ii<searchopt.length; ii++){
            if(searchopt.options[ii].value == "")
              searchopt.options[ii].selected = true;
          }
-         </script>
+         </script> -->
       </td>
       </tr>
       </table>
       </form>
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
+            <!-- <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top10">
         <tr>
           <td>총 상품수 : <b>1</b> , 검색 상품수 : <b>1</b></td>
           <td align="right">
             <button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_annu_input.jsp';"><span class="icon_plus"></span>상품등록</button>
           </td>
         </tr>
-      </table>
+      </table> -->
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
          <form>
          <script type="text/javascript">
