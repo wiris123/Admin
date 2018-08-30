@@ -178,30 +178,15 @@
 <div id="S_contents">
 <h3>상품관리<span>상품 검색/추가/수정/삭제 관리합니다.</span></h3>	
 
-      <form name="searchForm" action="http://demohome.anywiz.co.kr/adm/manage/product/prd_list.php" method="get">
-      <input type="hidden" name="page" value="">
+      <form name="searchForm" method="get">
+      <input type="hidden" name="nowPage" value="1">
       <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
-      <tr>
-      <th width="15%">상품분류</th>
-      <td width="85%">
-         <select name="dep_code" onChange="catChange(this.form,'1');">
-         <option value=''>:: 대분류 ::
-         <option value='100'>상품분류1<option value='101'>상품분류2<option value='102'>상품분류3         </select>
-         <select name="dep2_code" onChange="catChange(this.form,'2');" class="select">
-         <option value=''> :: 중분류 ::
-                  </select>
-         <select name="dep3_code" onChange="catChange(this.form,'3');" class="select">
-         <option value=''> :: 소분류 ::
-                  </select>
-         <input type="checkbox" name="recom" value="Y" >추천상품
-      </td>
-      </tr>
       <tr>
       <th>조건검색</th>
       <td>
          <select name="searchopt" class="select">
-         <option value="prdnum" >상품코드
-         <option value="prdname" >상품명
+         <option value="prdnum" >상품명
+         <option value="prdname" >
          </select>
          <input type="text" name="searchkey" value="" class="input"> <button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
          <script language="javascript">
