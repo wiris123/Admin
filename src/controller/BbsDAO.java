@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -13,6 +14,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.BoardDTO;
+import dto.CommDTO;
 
 public class BbsDAO {
 	Connection con; // 오라클 서버와 연결할때 사용
@@ -211,21 +213,88 @@ public class BbsDAO {
 	//내용 수정용 메소드
 	public int modify(BoardDTO dto) {
 		int affected = 0;
-			String query = "update multiboard set name=?, title=?, contents=?, attfile=?, attfileR=?, regidate=sysdate where num=?";
+			String query = "update multiboard set name=?, title=?, contents=?";
+			if(dto.getAttfile()!=null && dto.getAttfileR()!=null) {
+				query += ", attfile=?, attfileR=?";
+			}
+			query += ", regidate=sysdate where num=?";
+			
 			try {
 				System.out.println("업데이트를 위해 들어온 글의 번호"+dto.getNum());
 				psmt = con.prepareStatement(query);
 				psmt.setString(1, dto.getName());
 				psmt.setString(2, dto.getTitle());
 				psmt.setString(3, dto.getContents());
-				psmt.setString(4, dto.getAttfile());
-				psmt.setString(5, dto.getAttfileR());
-				psmt.setString(6, dto.getNum());
+				//파일이 새로 들어온 경우에는 수정을 해야하지만 그렇지 않은 경우에는 현재의 파일을 유지해야한다.
+				if(dto.getAttfile()!=null && dto.getAttfileR()!=null) {
+					psmt.setString(4, dto.getAttfile());
+					psmt.setString(5, dto.getAttfileR());
+					psmt.setString(6, dto.getNum());
+				}
 				affected = psmt.executeUpdate();
 			}
 			catch(Exception e) {
 				e.printStackTrace();
 			}
+		return affected;
+	}
+	
+	//댓글을 가져오기 위한 비즈니스 로직
+	public List<CommDTO> commentList(String num) {
+		CommDTO dto;
+		List<CommDTO> list = new Vector<CommDTO>();
+		String query = "SELECT * FROM board_comm where board_idx = ? order by com_idx desc";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, num);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				dto = new CommDTO();
+				dto.setCom_name(rs.getString("com_name"));				
+				dto.setCom_regidate(rs.getDate("com_regidate"));
+				dto.setCom_content(rs.getString("com_content"));
+				dto.setCom_idx(rs.getString("com_idx"));
+				
+				list.add(dto);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	//댓글을 쓰는 비즈니스로직
+	public int writeComment(CommDTO dto)
+	{
+		int affected = 0;
+		String query = "INSERT INTO board_comm VALUES(comm_seq.nextval, ?, sysdate, ?, ?)";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getCom_name());
+			psmt.setString(2, dto.getCom_content());
+			psmt.setString(3, dto.getBoard_idx());
+			affected = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return affected;
+	}
+	
+	//댓글을 지우는 로직
+	public int comdel(String com_idx)
+	{
+		int affected = 0;
+		String query = "DELETE FROM board_comm where com_idx=?";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, com_idx);
+			affected = psmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return affected;
 	}
 }

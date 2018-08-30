@@ -108,7 +108,7 @@
 	opener.parent.location.reload();
 	window.close();
 <%} else {%>
-	alert("글쓰기중 문제가 발생하였습니다.");
+	alert("수정중 문제가 발생하였습니다.");
 	opener.parent.location.reload();
 	window.close();
 <%}%>
