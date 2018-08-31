@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-
+	String mode = request.getParameter("mode");
 	String num = request.getParameter("num");
 	
 	String[] sp_name = num.split("-");
@@ -12,7 +12,7 @@
 	int aff=0;
 	for(int i=1; i<sp_name.length; i++)
 	{
-		aff = dao.deleteStatus(sp_name[i]);
+		aff = dao.deleteStatus(sp_name[i],mode);
 	}
 	dao.close();
 	

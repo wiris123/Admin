@@ -1,21 +1,22 @@
 package dto;
 
-public class MyTermDTO {
-
-	private	String num;
-	private	String id;
-	private	String insname;
-	private	String insnum;
-	private	String remainpay;
-	private	String paidprem;
-	private	String prem;
-	private	String contstat;
+public class MyStatusDTO 
+{
+	private	String	num;
+	private	String	id;
+	private	String	insname;
+	private	String	insnum;
+	private	String	remainpay;
+	private	String	paidprem;
+	private	String	prem;
+	private	String	contstat;
 	
-	public MyTermDTO() {
-		super();
+	public MyStatusDTO() 
+	{
+	
 	}
 
-	public MyTermDTO(String num, String id, String insname, String insnum, String remainpay, String paidprem,
+	public MyStatusDTO(String num, String id, String insname, String insnum, String remainpay, String paidprem,
 			String prem, String contstat) {
 		super();
 		this.num = num;
@@ -93,6 +94,4 @@ public class MyTermDTO {
 	}
 	
 	
-	
-
 }

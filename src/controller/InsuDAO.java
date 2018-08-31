@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.AnnuDTO;
-import dto.MyTermDTO;
+import dto.MyStatusDTO;
 import dto.PropDTO;
 import dto.TermDTO;
 
@@ -345,16 +345,17 @@ public class InsuDAO
 
 		}
 	
-	public int insertStatusWrite(MyTermDTO dto) {
+	public int insertStatusWrite(MyStatusDTO dto, String mode) {
 		//적용된 행의 갯수확인을 위한 변수
 		int affected = 0;
 		try { 
-			String query = "INSERT INTO member_term_my "
+			String query = "INSERT INTO member_"+mode+"_my "
 				+ " (num,id,insname,insnum,remainpay,paidprem,prem,contstat) "
 				+ " VALUES "
-				+ " (member_status_my_seq.NEXTVAL,?,?,?,?,?,?,?)";
-			psmt = con.prepareStatement(query);
+				+ " ("+mode+"_my_seq.NEXTVAL,?,?,?,?,?,?,?)";
 			
+			psmt = con.prepareStatement(query);
+			System.out.println(query);
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getInsname());
 			psmt.setString(3, dto.getInsnum());
@@ -364,7 +365,7 @@ public class InsuDAO
 			psmt.setString(7, dto.getContstat());
 			
 			affected = psmt.executeUpdate();
-			System.out.println(query);
+
 			
 		}
 		catch(Exception e) {
@@ -375,13 +376,13 @@ public class InsuDAO
 		
 		return affected;
 	}
-	public List<MyTermDTO> selectStatusList(Map<String,Object> map){
+	public List<MyStatusDTO> selectStatusList(Map<String,Object> map){
 		
 		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
-		List<MyTermDTO> bbs = new Vector<MyTermDTO>();
+		List<MyStatusDTO> bbs = new Vector<MyStatusDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
-		String query = "select member_term_my.*,rownum from member_term_my where ";
+		String query = "select member_"+map.get("mode")+"_my.*,rownum from member_"+map.get("mode")+"_my where ";
 		
 		if(map.get("Word")!=null) {
 	    	  if(map.get("Column").equals("both")) {
@@ -415,7 +416,7 @@ public class InsuDAO
 			while(rs.next()) {
 				
 				//6.결과셋을 하나씩 DTO객체에 저장
-				MyTermDTO dto = new MyTermDTO();
+				MyStatusDTO dto = new MyStatusDTO();
 				
 				dto.setNum(rs.getString(1));
 				dto.setId(rs.getString(2));
@@ -572,10 +573,10 @@ public class InsuDAO
 		      return bbs;
 		   }
 		
-		public int deleteStatus(String num) {
+		public int deleteStatus(String num, String mode) {
 			int affected = 0;
 			try {
-				String query = "delete from member_term_my where num=?";
+				String query = "delete from member_"+mode+"_my where num=?";
 				
 				psmt = con.prepareStatement(query);			
 				psmt.setString(1, num);
@@ -589,6 +590,8 @@ public class InsuDAO
 			System.out.println("num"+num);
 			return affected;	
 		}
+		
+		
 		public void close() {
 			try {
 				if(rs!=null) rs.close();

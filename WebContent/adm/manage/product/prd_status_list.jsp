@@ -1,5 +1,5 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="dto.MyTermDTO"%>
+<%@page import="dto.MyStatusDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -10,12 +10,15 @@
 //한글처리
 	request.setCharacterEncoding("UTF-8");
 
+	String mode = request.getParameter("mode");
+	
 	//커넥션풀로 변경
 	InsuDAO dao = new InsuDAO();	
 	
 	//매개변수 저장을 위한 컬렉션                                                                                                      생성(DAO로 전달)
 	Map<String,Object> param = new HashMap<String,Object>();
 	
+	param.put("mode",mode);
 	//문자열 검색 파라미터를 페이지 처리 메소드로
 	//넘겨주기 위한 변수선언
 	String queryStr = "";
@@ -66,7 +69,7 @@
 	//6.파라미터 전달을 위해 map에 추가
 	param.put("start", start);
 	param.put("end", end);
-
+	
 	
 	/////게시판 페이지 처리 로직 끝
 	
@@ -76,7 +79,7 @@
 	순서를 보장하지 않기때문에 게시판 목록을 구현할때 문제가 
 	될수있기 때문이다.
 	*/
-	List<MyTermDTO> bbs = dao.selectStatusList(param);
+	List<MyStatusDTO> bbs = dao.selectStatusList(param);
 	DecimalFormat df = new DecimalFormat("#,###");
 	dao.close();
 
@@ -181,6 +184,8 @@
     function prdDelete() {
     	var selvalue = document.getElementsByName("select_chkbox")
     	var name= null;
+    	var mode = document.getElementById("mode");
+    	
     	//한번 for문으로 훑어서 체크된값이 있다면 name 에 저장
     	for (var i = 0; i <= selvalue.length-1; i++) {
     		if (selvalue[i].checked) {
@@ -199,7 +204,7 @@
     	{
     		if (confirm("선택한 상품을 정말 삭제하시겠습니까?")) 
     		{
-    			document.location = "./proc/prd_del_status.jsp?num="+ name;
+    			document.location = "./proc/prd_del_status.jsp?mode="+mode+"&num="+name;
     		}
     	}
     }
@@ -212,10 +217,7 @@
 	<!-- 레프트메뉴 -->
 	<%@include file = "../include/product_left.jsp" %>
 	</div><!-- //left_area// -->
-
 	<div id="Container">
-
-
 <div id="location">HOME > 상품관리</div>
 <div id="S_contents">
 <h3>상품관리<span>상품 검색/추가/수정/삭제 관리합니다.</span></h3>	
@@ -245,14 +247,14 @@
         <tr>
           
           <td align="right">
-				<button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_status_write.jsp';"><span class="icon_plus"></span>상품등록</button>
+				<button type="button" class="h22 t4 small icon gray" onClick="document.location='prd_status_write.jsp?mode=<%=mode %>';"><span class="icon_plus"></span>상품등록</button>
           </td>
         </tr>
       </table>
 		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">
       <form name="listForm" method="get">
 		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">    	
-
+				<input type="hid den" id="mode" value="<%=mode %>" />
       	<thead>
 	       <tr>
 	          <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
@@ -285,7 +287,7 @@ else
 	int vNum = 0;
 	int countNum = 0;
 			
-	for(MyTermDTO dto : bbs)
+	for(MyStatusDTO dto : bbs)
 	{
 		//게시물의 번호를 순서대로 출력하기위한
 		//가상번호 생성(게시물의 갯수를 기준)
@@ -313,7 +315,6 @@ else
 			<tr>
 			<td width="33%">
 			<button type="button" class="h22 t4 small icon gray" onclick="prdDelete();"><span class="icon_plus"></span>선택삭제</button>
-
 			</td>
 			<td width="33%">    <table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td align='center'>      <table border='0' cellspacing='0' cellpadding='0'>        <tr>          <td width='22' height='50'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_prev2.gif' align='absmiddle' border=0'></a></td>          <td width='22'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_prev.gif' align='absmiddle' border=0'></a></td>          <td align='center'>&nbsp; <b>1</b> /           &nbsp; </td>          <td width='22' align='right'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_next.gif' align='absmiddle' border='0'></a></td>          <td width='22' align='right'><a href='prd_list607e.html?ptype=&amp;page=1&amp;dep_code=&amp;dep2_code=&amp;dep3_code=&amp;searchopt=&amp;searchkey='><img src='../image/btn_next2.gif' align='absmiddle' border='0'></a></td>        </tr>      </table>    </td></tr></table></td>
 			<td width="33%" align="right"></td>

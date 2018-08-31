@@ -32,7 +32,7 @@
 			<a href="../main/main.jsp" onFocus="this.blur();"><img src="../image/header/logo.png" /></a>
 		</h1>
 		<ul id="gnb">
-			<li><a href="main.jsp" onFocus="this.blur();">관리자홈</a></li>
+			<li><a href="../main/main.jsp" onFocus="this.blur();">관리자홈</a></li>
 			<li><a href="../member/logout.jsp" onFocus="this.blur();"
 				class="logbtn"><img src="../image/header/logout.gif" /></a></li>
 		</ul>
@@ -117,9 +117,9 @@
 					</li>
 					<li class="depth"><a href="#" onFocus="this.blur();">가입현황</a>
 						 <ul class="category_2depth">
-							<li><a href="../product/prd_status_term.jsp">정기보험</a></li>
-							<li><a href="../product/prd_status_input.jsp">연금보험</a></li>
-							<li><a href="../product/prd_status_input.jsp">실손보험</a></li>
+							<li><a href="../product/prd_status_list.jsp?mode=term">정기보험</a></li>
+							<li><a href="../product/prd_status_list.jsp?mode=annu">연금보험</a></li>
+							<li><a href="../product/prd_status_list.jsp?mode=prop">실손보험</a></li>
 						</ul>
 					</li>  
 				</ul>	

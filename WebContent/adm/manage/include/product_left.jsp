@@ -84,9 +84,9 @@
 	<li class="on"><a href="form_list.html" onFocus="this.blur();">가입현황</a>
 		<ul>
 					
-			<li><a href="prd_status_term.jsp">정기보험</a></li>
-			<li><a href="prd_status_input.jsp">연금보험</a></li>
-			<li><a href="prd_status_input.jsp">실손보험</a></li>
+			<li><a href="prd_status_list.jsp?mode=term">정기보험</a></li>
+			<li><a href="prd_status_list.jsp?mode=annu">연금보험</a></li>
+			<li><a href="prd_status_list.jsp?mode=prop">실손보험</a></li>
 	    	
 		</ul>
 	</li>

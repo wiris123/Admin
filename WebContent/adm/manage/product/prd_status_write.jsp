@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	String mode = request.getParameter("mode");  
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +77,7 @@
 		}
 	}
 	/* 월 납입액을 계산하는 ajax */
-	function premPlus(rp)
+	/* function premPlus(rp)
 	{
 		$(function()
 		{
@@ -103,7 +106,7 @@
 			});	
 
 		});
-	}
+	} */
 
 	//form 유효성 검사
 	function formChk(f){
@@ -133,7 +136,6 @@
 			return false;
 		}
 	}
-
 </script>
 </head>
 <body>
@@ -145,19 +147,13 @@
 	<div id="Container">
 	<div id="location">HOME > 상품관리</div>
 	<div id="S_contents">
-	
-		<h3>가입현황<span> 가입현황 관리페이지입니다.</span></h3>
-		<form name="termfrm" action="./proc/status.jsp" method="post" onSubmit="return formChk(this)">
-
-		<input type="hidden" name="instype" value="2"> 
+		<h3>가입현황<span> 가입현황 관리페이지입니다.</span></h3> 
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
-
-</script>
 <form name="termfrm" action="./proc/status.jsp" method="post" onSubmit="return formChk(this)">
-<!-- 	<input type="hidden" name="tmp">
-	<input type="hidden" name="mode" value="insert">
+<!-- 	<input type="hidden" name="tmp">	
 	<input type="hidden" name="relidx" value=""> -->
 	<input type="hidden" name="instype" value="2"> 
+	<input type="hidden" name="mode" value="<%=mode%>">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
 		<tr>
 			<th>회원아이디</th>
@@ -208,7 +204,7 @@
 		<tr>
 			<td align="center">
 				<button style="border:0" type="submit" class="b h28 t5 color blue_big">확인</button>&nbsp;
-				<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_status_term.jsp';">목록</button>
+				<button style="border:0" type="button" class="b h28 t5 color gray_big" onClick="document.location='prd_status_list.jsp?=mode="<%=mode %>"';">목록</button>
 			</td>
 		</tr>
 	</table>
