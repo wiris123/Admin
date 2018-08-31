@@ -1,11 +1,12 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="util.PagingUtil"%>
 <%@page import="dto.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="controller.BbsDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	//한글처리
 	request.setCharacterEncoding("UTF-8");
@@ -54,7 +55,8 @@
 	int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
 
 	//4.페이지번호가 없는경우 무조건 1로 설정
-	int nowPage = (request.getParameter("nowPage") == "") ? 1
+	int nowPage = (request.getParameter("nowPage") == "")
+			? 1
 			: Integer.parseInt(request.getParameter("nowPage"));
 
 	//5.가져올 레코드의 구간을 결정하기 위한 연산
@@ -77,32 +79,62 @@
 	}
 
 	String url = request.getRequestURI() + "?";
-
 	String pagingImg = PagingUtil.pagingImgServlet(totalRecordCount, pageSize, blockPage, nowPage,
 			url + queryStr);
+	
+	Enumeration params = request.getParameterNames();
+	String strParam = "";
+	while(params.hasMoreElements()) {
+	    String name = (String)params.nextElement();
+	    String value = request.getParameter(name);
+	    strParam += name + "=" + value + "&";
+	}
+
+	url += strParam;
+	
+	System.out.println(url);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>응답게시판</title>
+<script>
+function proce(f){
+	if(f==0){
+		if(confirm("처리를 완료 하셨습니까?")){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else if(f==1){
+		if(confirm("처리전 상태로 돌아가겠습니까?"))
+			{
+				return true;
+			}
+		else{
+			return false;
+		}
+	}
+}
+</script>
 </head>
 <body>
-	<h3
-		style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px; font-family: '돋움', 'Dotum', Helvetica;">응답게시판</h3>
-	<table width="100%" border="0" cellpadding="0" cellspacing="0"
-		class="top15">
+	<h3 style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px; font-family: '돋움', 'Dotum', Helvetica;">응답게시판</h3>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="top15">
 		<tr>
-			<td style="padding: 0px 10px 10px 10px"><script
-					Language="JavaScript" src="../../js/lib.js"></script>
-				<link href="../../bbs/skin/answerBasic/style.css" rel="stylesheet"
-					type="text/css">
+			<td style="padding: 0px 10px 10px 10px">
+				<script Language="JavaScript" src="../../js/lib.js"></script>
+				<link href="../../bbs/skin/answerBasic/style.css" rel="stylesheet" type="text/css">
 				<!-- 카테고리 -->
-				<div class="category_pd"></div> <!-- 카테고리 끝--> 
+				<div class="category_pd"></div>
+				<!-- 카테고리 끝-->
 				<!-- 게시물 시작 -->
-				<table width="100%" border="0" cellpadding="0" cellspacing="0"
-					style="border-top: 1px solid #333;">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-top: 1px solid #333;">
 					<tr style="background: #f7f7f7;">
+						<th width="2%"><input type="checkbox" name="select_all" onClick="selectAll(this.form, this)"></th>
 						<th width="8%" height="38">번호</th>
 						<th>제목</th>
 						<th width="12%">작성자</th>
@@ -114,25 +146,61 @@
 						<td colspan="10" height="1" bgcolor="#d7d7d7"></td>
 					</tr>
 					<!-- 게시물반복 -->
+					<%
+						if (bbs.isEmpty()) {
+							//컬렉션에 저장된 데이터가 없는경우
+					%>
 					<tr>
+						<td colspan="5" align="center">등록된 게시물이 없습니다^^*</td>
+					</tr>
+					<%
+						} else {
+							int i = 0;
+							for (BoardDTO dto : bbs) {
+					%>
+					<tr>
+						<td align="center" width="5%">
+							<input type="checkbox" name="select_chkbox" value="<%=dto.getNum()%>">
+						</td>
 						<td align="center" height="38">5</td>
-						<td align="left"
-							style="padding-left: 10px; word-break: break-all;"><a
-							href='bbsae78.html?ptype=view&amp;idx=5294&amp;page=1&amp;code=answerBasic'>응답게시판
-								테스트 입니다.</a></td>
-						<td align="center">홈페이지</td>
-						<td align="center">2016-04-12</td>
-						<td align="center"><img
-							src='/Admin/adm/bbs/skin/answerBasic/image/bt_ing.gif'></td>
-						<td align="center">6</td>
+						<td align="left" style="padding-left: 10px; word-break: break-all;">
+							<a href='bbs_contents.jsp?b_id=${param.b_id }&amp;num=<%=dto.getNum() %>&amp;nowPage=${param.nowPage }'><%=dto.getTitle()%></a>
+						</td>
+						<td align="center"><%=dto.getName()%></td>
+						<td align="center"><%=dto.getRegidate()%></td>
+						<td align="center">
+<!-- 응답여부 확인 이미지 전 : bt_ing.gif 후 :  bt_end.gif-->
+							<form action="./proc/bbs_replyck_proc.jsp" onsubmit="return proce(<%=dto.getReply() %>)" method="post">
+								<input type="hidden" name="num" value="<%=dto.getNum()%>"/>
+								<input type="hidden" name="url" value="<%=url %>" />
+								<input type="hidden" name="isChecked" value="<%=dto.getReply()%>" />
+<%
+	if (dto.getReply() == 0) {
+%>
+							
+								<input type="image" src="/Admin/adm/bbs/skin/answerBasic/image/bt_ing.gif" />
+<%
+	} else {
+%>
+								<input type="image" src="/Admin/adm/bbs/skin/answerBasic/image/bt_end.gif" />
+<%
+	}
+%>
+							</form>
+						</td>
+						<td align="center"><%=dto.getViewcnt()%></td>
 					</tr>
 					<tr>
 						<td colspan="10" height="1" bgcolor="#d7d7d7"></td>
 					</tr>
 					<!-- 게시물반복끝 -->
-				</table> 
-				<!-- 게시물 끝 --> 
-				
+				</table>
+				<%
+					}
+					}
+				%>
+				<!-- 게시물 끝 -->
+
 				<!-- 페이지 번호 -->
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
@@ -142,24 +210,7 @@
 									<td align='center'>
 										<table border='0' cellspacing='0' cellpadding='0'>
 											<tr>
-												<td width='22' height='50'><a
-													href='bbs4ef8.html?ptype=&amp;page=1&amp;code=answerBasic'><img
-														src='../../bbs/skin/answerBasic/image/btn_prev2.gif'
-														align='absmiddle' border=0'></a></td>
-												<td width='22'><a
-													href='bbs4ef8.html?ptype=&amp;page=1&amp;code=answerBasic'><img
-														src='../../bbs/skin/answerBasic/image/btn_prev.gif'
-														align='absmiddle' border=0'></a></td>
-												<td align='center'>&nbsp; <b>1</b> / &nbsp;
-												</td>
-												<td width='22' align='right'><a
-													href='bbs4ef8.html?ptype=&amp;page=1&amp;code=answerBasic'><img
-														src='../../bbs/skin/answerBasic/image/btn_next.gif'
-														align='absmiddle' border='0'></a></td>
-												<td width='22' align='right'><a
-													href='bbs4ef8.html?ptype=&amp;page=1&amp;code=answerBasic'><img
-														src='../../bbs/skin/answerBasic/image/btn_next2.gif'
-														align='absmiddle' border='0'></a></td>
+												<%=pagingImg%>
 											</tr>
 										</table>
 									</td>
@@ -167,23 +218,24 @@
 							</table>
 						</td>
 					</tr>
-				</table> <!-- 페이지 번호끝 --> <!-- 검색 -->
+				</table>
+				<!-- 페이지 번호끝 -->
+				<!-- 검색 -->
 				<div class="AWbbs_f_search">
-					<table width="auto" border="0" cellpadding="0" cellspacing="0"
-						style="margin: 0 auto;">
-						<form name="sfrm"
-							action="http://demohome.anywiz.co.kr/adm/manage/bbs/bbs.php">
-							<input type="hidden" name="code" value="answerBasic"> <input
-								type="hidden" name="category" value="">
+					<table width="auto" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+						<form name="sfrm" action="http://demohome.anywiz.co.kr/adm/manage/bbs/bbs.php">
+							<input type="hidden" name="code" value="answerBasic"> <input type="hidden" name="category" value="">
 							<tr>
 								<td style="padding-right: 10px;">Search</td>
-								<td><select name="searchopt" style="height: 28px">
+								<td>
+									<select name="searchopt" style="height: 28px">
 										<option value="subject">제 목</option>
 										<option value="content">내 용</option>
 										<option value="subcon">제목 + 내용</option>
 										<option value="name">작성자</option>
 										<option value="memid">아이디</option>
-								</select> <script language="javascript">
+									</select>
+									<script language="javascript">
 								<!--
 									searchopt = document.sfrm.searchopt;
 									for (ii = 0; ii < searchopt.length; ii++) {
@@ -191,15 +243,36 @@
 											searchopt.options[ii].selected = true;
 									}
 									-->
-								</script></td>
-								<td><input name="searchkey" type="text" value="" /></td>
-								<td><button type="submit">
+								</script>
+								</td>
+								<td>
+									<input name="searchkey" type="text" value="" />
+								</td>
+								<td>
+									<button type="submit">
 										<img src="../../bbs/skin/answerBasic/image/btn_search.gif" />
-									</button></td>
+									</button>
+								</td>
 							</tr>
 						</form>
 					</table>
-				</div> <!-- 검색 끝 -->
-
+				</div>
+				<!-- 검색 끝 -->
+				<!-- 버튼 -->
+				<div style="margin: 10px 0 0;">
+					<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td width="33%">
+								<button type="button" class="h22 t4 small icon gray" onClick="selDelete();">
+									<span class="icon_plus"></span>선택삭제
+								</button>
+							</td>
+							<td align="right">
+								<a href='bbs_write.jsp?b_id=${param.b_id }' onclick="window.open(this.href,'팝업창','width=800, height=800'); return false;"> <img src='../../bbs/skin/bbsBasic/image/btn_write.gif' border='0'></a>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!-- 버튼 끝 -->
 </body>
 </html>

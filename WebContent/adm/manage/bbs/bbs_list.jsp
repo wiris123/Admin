@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>자유게시판</title>
+<title>게시판 관리</title>
 <script src="../js/sidemenu.js"></script>
 </head>
 <body class="home_body">

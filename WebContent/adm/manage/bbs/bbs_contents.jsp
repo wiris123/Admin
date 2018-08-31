@@ -77,7 +77,7 @@
 									<td class="Paging_Num"></td>
 								</tr>
 							</table>
-<%if(request.getParameter("b_id").toString().equals("qna")){ %>
+<%if(request.getParameter("b_id").toString().equals("response")){ %>
 							<!-- 댓글리스트 -->
 							<jsp:include page="./include/bbs_comment.jsp" />
 							<!-- 댓글리스트 끝 -->

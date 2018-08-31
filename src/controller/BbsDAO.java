@@ -13,6 +13,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.sun.org.apache.xerces.internal.parsers.DTDParser;
+
 import dto.BoardDTO;
 import dto.CommDTO;
 
@@ -110,6 +112,7 @@ public class BbsDAO {
 				dto.setViewcnt(rs.getString("VIEWCNT"));
 				dto.setAttfile(rs.getString("ATTFILE"));
 				dto.setAttfileR(rs.getString("ATTFILER"));
+				dto.setReply(rs.getInt("reply"));
 
 				list.add(dto);
 			}
@@ -231,6 +234,9 @@ public class BbsDAO {
 					psmt.setString(5, dto.getAttfileR());
 					psmt.setString(6, dto.getNum());
 				}
+				else {
+					psmt.setString(4, dto.getNum());
+				}
 				affected = psmt.executeUpdate();
 			}
 			catch(Exception e) {
@@ -292,6 +298,30 @@ public class BbsDAO {
 			affected = psmt.executeUpdate();
 		}
 		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return affected;
+	}
+	
+	//처리 완료 여부를 전환하는 비즈니스 로직
+	public int replyck(String num,int isChecked)
+	{
+		int affected = 0;
+		String query = null;
+		if(isChecked==0) 
+		{
+			query = "update multiboard set reply = 1 where num=?";
+		}
+		else if (isChecked==1)
+		{
+			query = "update multiboard set reply = 0 where num=?";
+		}
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, num);
+			affected = psmt.executeUpdate();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

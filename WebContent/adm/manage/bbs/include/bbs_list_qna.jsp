@@ -104,18 +104,18 @@
         -->
 					</tr>
 					<!-- 게시물반복 -->
-					<%
-						if (bbs.isEmpty()) {
-							//컬렉션에 저장된 데이터가 없는경우
-					%>
+<%
+	if (bbs.isEmpty()) {
+		//컬렉션에 저장된 데이터가 없는경우
+%>
 					<tr>
 						<td colspan="5" align="center">등록된 게시물이 없습니다^^*</td>
 					</tr>
-					<%
-						} else {
-							int i = 0;
-							for (BoardDTO dto : bbs) {
-					%>
+<%
+} else {
+	int i = 0;
+	for (BoardDTO dto : bbs) {
+%>
 					<!-- 리스트 반복 -->
 					<tr style="">
 						<td align="center" width="5%">
@@ -134,10 +134,10 @@
 						<td colspan="10" height="1" bgcolor="#d7d7d7"></td>
 					</tr>
 					<!-- 리스트 반복 끝 -->
-					<%
-						}
-						}
-					%>
+<%
+	}
+}
+%>
 					<!-- 게시물반복끝 -->
 					<tr>
 						<td colspan="10" height="1" bgcolor="#d7d7d7"></td>

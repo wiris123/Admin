@@ -15,6 +15,7 @@ public class BoardDTO {
 	private String attfile;
 	private String attfileR;
 	private String b_id;
+	private int reply;
 	
 	
 	//기본 생성자
@@ -26,7 +27,7 @@ public class BoardDTO {
 	
 	//인자 생성자
 	public BoardDTO(String num, String id, String name, String title, String contents, Date regidate, String viewcnt,
-			String attfile, String attfileR, String b_id) {
+			String attfile, String attfileR, String b_id, int reply) {
 		super();
 		this.num = num;
 		this.id = id;
@@ -38,6 +39,19 @@ public class BoardDTO {
 		this.attfile = attfile;
 		this.b_id = b_id;
 		this.attfileR = attfileR;
+		this.reply = reply;
+	}
+
+
+
+	public int getReply() {
+		return reply;
+	}
+
+
+
+	public void setReply(int reply) {
+		this.reply = reply;
 	}
 
 
