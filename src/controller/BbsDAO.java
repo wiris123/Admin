@@ -50,6 +50,33 @@ public class BbsDAO {
 		}
 	}
 
+	// 통합 관리에서 리스트를 가져오기
+	public int getTotalCount(Map<String, Object> param) {
+		int totalCount = -1;
+		String query = "SELECT COUNT(*) FROM multiboard where 1=1 ";
+		if (param.get("Word") != null) {
+			if (param.get("Column").equals("both")) {
+				query += " and " + "title LIKE '%" + param.get("Word") + "%' " + " OR " + " contents LIKE '%"
+						+ param.get("Word") + "%' ";
+			} else {
+				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
+			}
+		}
+		
+		try {
+			psmt = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				totalCount = rs.getInt(1);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return totalCount;
+	}
+
+	// 특정 페이지에서 리스트를 가져오기
 	public int getTotalRecordCount(Map<String, Object> param) {
 
 		int totalCount = -1;
@@ -63,28 +90,65 @@ public class BbsDAO {
 			}
 		}
 
-			try {
-				psmt = con.prepareStatement(query);
-				psmt.setString(1, param.get("b_id").toString());
-				rs = psmt.executeQuery();
-				if (rs.next()) {
-					totalCount = rs.getInt(1);
-				}
-				
-			} catch (Exception e) {
-				e.printStackTrace();
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, param.get("b_id").toString());
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				totalCount = rs.getInt(1);
 			}
-			return totalCount;
-		}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return totalCount;
+	}
+
+	//통합 관리 페이지용
+	public List<BoardDTO> selectTotalList(Map<String, Object> param)
+	{
+		BoardDTO dto;
+		List<BoardDTO> list = new Vector<BoardDTO>();
+		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM multiboard WHERE 1=1";
+		if (param.get("Word") != null) {
+			if (param.get("Column").equals("both")) {
+				query += " and " + "title LIKE '%" + param.get("Word") + "%' " + " OR " + " contents LIKE '%"
+						+ param.get("Word") + "%' ";
+			} else {
+				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
+			}
+		}
+		query += " ORDER BY num desc ) e) where rNum BETWEEN ? AND ?";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, param.get("start").toString());
+			psmt.setString(2, param.get("end").toString());
+			System.out.println("query"+query);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				dto = new BoardDTO();
+				dto.setNum(rs.getString("NUM"));
+				dto.setName(rs.getString("NAME"));
+				dto.setTitle(rs.getString("TITLE"));
+				dto.setRegidate(rs.getDate("REGIDATE"));
+				dto.setViewcnt(rs.getString("VIEWCNT"));
+				dto.setAttfile(rs.getString("ATTFILE"));
+				dto.setAttfileR(rs.getString("ATTFILER"));
+				dto.setReply(rs.getInt("reply"));
+
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	// 게시판리스트가져오기
 	public List<BoardDTO> selectList(Map<String, Object> param) {
-		System.out.println("게시판리스트가져오기중");
 		BoardDTO dto;
 		List<BoardDTO> list = new Vector<BoardDTO>();
 		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM multiboard WHERE 1=1 and b_id=?";
-		System.out.println(param.get("Word"));
-		System.out.println("컬럼은:" + param.get("Column"));
 		if (param.get("Word") != null) {
 			if (param.get("Column").equals("both")) {
 				query += " and " + "title LIKE '%" + param.get("Word") + "%' " + " OR " + " contents LIKE '%"
@@ -212,40 +276,38 @@ public class BbsDAO {
 		}
 		return dto;
 	}
-	
-	//내용 수정용 메소드
+
+	// 내용 수정용 메소드
 	public int modify(BoardDTO dto) {
 		int affected = 0;
-			String query = "update multiboard set name=?, title=?, contents=?";
-			if(dto.getAttfile()!=null && dto.getAttfileR()!=null) {
-				query += ", attfile=?, attfileR=?";
+		String query = "update multiboard set name=?, title=?, contents=?";
+		if (dto.getAttfile() != null && dto.getAttfileR() != null) {
+			query += ", attfile=?, attfileR=?";
+		}
+		query += ", regidate=sysdate where num=?";
+
+		try {
+			System.out.println("업데이트를 위해 들어온 글의 번호" + dto.getNum());
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getTitle());
+			psmt.setString(3, dto.getContents());
+			// 파일이 새로 들어온 경우에는 수정을 해야하지만 그렇지 않은 경우에는 현재의 파일을 유지해야한다.
+			if (dto.getAttfile() != null && dto.getAttfileR() != null) {
+				psmt.setString(4, dto.getAttfile());
+				psmt.setString(5, dto.getAttfileR());
+				psmt.setString(6, dto.getNum());
+			} else {
+				psmt.setString(4, dto.getNum());
 			}
-			query += ", regidate=sysdate where num=?";
-			
-			try {
-				System.out.println("업데이트를 위해 들어온 글의 번호"+dto.getNum());
-				psmt = con.prepareStatement(query);
-				psmt.setString(1, dto.getName());
-				psmt.setString(2, dto.getTitle());
-				psmt.setString(3, dto.getContents());
-				//파일이 새로 들어온 경우에는 수정을 해야하지만 그렇지 않은 경우에는 현재의 파일을 유지해야한다.
-				if(dto.getAttfile()!=null && dto.getAttfileR()!=null) {
-					psmt.setString(4, dto.getAttfile());
-					psmt.setString(5, dto.getAttfileR());
-					psmt.setString(6, dto.getNum());
-				}
-				else {
-					psmt.setString(4, dto.getNum());
-				}
-				affected = psmt.executeUpdate();
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-			}
+			affected = psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return affected;
 	}
-	
-	//댓글을 가져오기 위한 비즈니스 로직
+
+	// 댓글을 가져오기 위한 비즈니스 로직
 	public List<CommDTO> commentList(String num) {
 		CommDTO dto;
 		List<CommDTO> list = new Vector<CommDTO>();
@@ -254,25 +316,23 @@ public class BbsDAO {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, num);
 			rs = psmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				dto = new CommDTO();
-				dto.setCom_name(rs.getString("com_name"));				
+				dto.setCom_name(rs.getString("com_name"));
 				dto.setCom_regidate(rs.getDate("com_regidate"));
 				dto.setCom_content(rs.getString("com_content"));
 				dto.setCom_idx(rs.getString("com_idx"));
-				
+
 				list.add(dto);
 			}
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
-	
-	//댓글을 쓰는 비즈니스로직
-	public int writeComment(CommDTO dto)
-	{
+
+	// 댓글을 쓰는 비즈니스로직
+	public int writeComment(CommDTO dto) {
 		int affected = 0;
 		String query = "INSERT INTO board_comm VALUES(comm_seq.nextval, ?, sysdate, ?, ?)";
 		try {
@@ -286,35 +346,29 @@ public class BbsDAO {
 		}
 		return affected;
 	}
-	
-	//댓글을 지우는 로직
-	public int comdel(String com_idx)
-	{
+
+	// 댓글을 지우는 로직
+	public int comdel(String com_idx) {
 		int affected = 0;
 		String query = "DELETE FROM board_comm where com_idx=?";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, com_idx);
 			affected = psmt.executeUpdate();
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return affected;
 	}
-	
-	//처리 완료 여부를 전환하는 비즈니스 로직
-	public int replyck(String num,int isChecked)
-	{
+
+	// 처리 완료 여부를 전환하는 비즈니스 로직
+	public int replyck(String num, int isChecked) {
 		int affected = 0;
 		String query = null;
-		if(isChecked==0) 
-		{
+		if (isChecked == 0) {
 			query = "update multiboard set reply = 1 where num=?";
-		}
-		else if (isChecked==1)
-		{
+		} else if (isChecked == 1) {
 			query = "update multiboard set reply = 0 where num=?";
 		}
 		try {
@@ -324,7 +378,8 @@ public class BbsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return affected;
 	}
+
 }

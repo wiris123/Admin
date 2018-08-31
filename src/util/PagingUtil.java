@@ -175,11 +175,21 @@ public class PagingUtil {
 			//현제페이지인 경우
 			if(intTemp==nowPage){
 				pagingStr
-					+="<td align='center'><a href='#list_top'><b>"+intTemp+"</b></a></li>";
+					+="<td align='center'><a href='#list_top'><b>"+intTemp+"</b></a>";
+				if(blockCount!=blockPage&&intTemp!=totalPage) 
+				{
+					pagingStr +="/";
+				}
+				pagingStr += "</li>";
 			}
 			else{
 				pagingStr
-					+="<td align='center'><a href='"+page+"nowPage="+intTemp+"#list_top'>"+intTemp+"</a></td>";
+					+="<td align='center'><a href='"+page+"nowPage="+intTemp+"#list_top'>"+intTemp+"</a>";
+				if(blockCount!=blockPage&&intTemp!=totalPage) 
+				{
+					pagingStr +="/";
+				}
+				pagingStr += "</td>";
 			}
 		
 			intTemp = intTemp + 1;

@@ -15,8 +15,8 @@
 			<li class="on"><a href="bbs_manage_list.jsp"
 				onFocus="this.blur();">게시판 관리</a>
 				<ul>
-					<li><a href="bbs_manage_list.jsp">게시물통합관리</a></li>
-					<li><a href="bbs_manage_comment.jsp">코멘트통합관리</a></li>
+					<li><a href="bbs_manage.jsp?b_id=list&nowPage=1">게시물통합관리</a></li>
+					<li><a href="bbs_manage.jsp?b_id=comment">코멘트통합관리</a></li>
 					<li><a href="bbs_connect.jsp">게시판통계</a></li>
 				</ul></li>
 			<li class="on"><a href="#">게시판목록</a></li>
@@ -30,17 +30,12 @@
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="bbs_list.jsp?b_id=free&nowPage=">자유게시판</a></td>
+						href="bbs_list.jsp?b_id=free&nowPage=">공지사항</a></td>
 				</tr>
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="bbs_list.jsp?b_id=photo&nowPage=">갤러리</a></td>
-				</tr>
-				<tr>
-					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
-						src="../image/left_s_arrow.gif" align="absmiddle"><a
-						href="bbs_list.jsp?b_id=response&nowPage=">응답게시판</a></td>
+						href="bbs_list.jsp?b_id=photo&nowPage=">이벤트</a></td>
 				</tr>
 				<tr>
 					<td height="10"></td>
@@ -51,23 +46,15 @@
 				<tr>
 					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
 						src="../image/left_s_arrow.gif" align="absmiddle"><a
+						href="bbs_list.jsp?b_id=response&nowPage=">응답게시판</a></td>
+				</tr>
+				<tr>
+					<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
+						src="../image/left_s_arrow.gif" align="absmiddle"><a
 						href="bbs_list.jsp?b_id=qna&nowPage=">질문답변</a></td>
 				</tr>
-				<!-- <tr>
-						<td height="20" style="padding: 7px 0 0 22px; color: #777777;"><img
-							src="../image/left_s_arrow.gif" align="absmiddle"><a
-							href="liste6ef.jsp?b_id=faq">자주묻는질문</a></td>
-					</tr> -->
 			</table>
 		</ul>
-
-
-
-
-
-
-
-
 
 	</div>
 	<!-- //left_area// -->

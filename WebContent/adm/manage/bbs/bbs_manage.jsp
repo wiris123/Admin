@@ -1,32 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TITLE</title>
+<title>홈페이지 관리자</title>
 </head>
 <body class="home_body">
 	<%@include file="../include/head.jsp"%>
 
-
-
 	<div id="Container_wrap" class="right_close">
-		<!--
-    class="left_close" 좌측만 닫힘
-    class="right_close" 우측만 닫힘
-    class="left_close right_close" 양쪽 닫힘
-    -->
+
 		<div class="nav_handle_left">
 			<a href="#" onFocus="this.blur();" onclick="leftBtn();"></a>
 		</div>
 
 		<%@include file="../include/bbs_left.jsp"%>
 		<div id="Container">
-
-
-
-
+				<jsp:include page="./include/bbs_manage_${param.b_id }.jsp" />
+			
 				<div class="graybox top50">
 					<p class="question">궁금증 해결!</p>
 					<div class="top10 font11 line2 colorgray">
