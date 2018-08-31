@@ -110,8 +110,8 @@ function formChk(f)
 		return false;
 	}
 }
-<<<<<<< HEAD
-=======
+
+
 function premPlus()
 {
 	$(function()
@@ -131,13 +131,13 @@ function premPlus()
 				dataType : "json",
 				contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
 				success:function(resp)
-				{
-					/* alert("성공인데 시벌아 = "+resp.result+"and"+resp.payt); */
+				{	//성공 시 월납입액, 납부연한에 값 입력
+
 					$('#monthp').val(resp.result);		
 					$('#payt').val(resp.payt);
 				},
 				error:function(errorData){
-					/* alert("오류발생 : "+errorData.status+":"+errorData.statusText); */
+					
 				}
 
 			});	
@@ -145,7 +145,6 @@ function premPlus()
 		});	
 }
 
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin.git
 </script>
 </head>
 <body>
@@ -247,35 +246,6 @@ function premPlus()
 			<textarea name="shortexp" rows="5" cols="50" style="width:99%" class="textarea"></textarea>
 		</td>
 	</tr>
-<!-- 	<tr>
-		<th height="25" >상품상세정보</th>
-		<td colspan="3">
-<ㄹ		
-
-// ---------------------------------------------------------------------------------
-// outputBodyHTML 메서드를 호출하면 TEXTAREA 'fm_post' 폼 값에
-// 에디터에서 입력한 내용이 자동으로 입력됩니다.
-//
-// outputBodyHTML:  BODY 태그 안쪽 내용을 가져옵니다.
-// outputHTML:      HTML 문서 모두를 가져옵니다.
-// outputBodyText:  BODY 태그 안쪽의 HTML 태그를 제외한 텍스트만을 가져옵니다.
-// inputLength:     입력한 텍스트 문자 수를 리턴합니다.
-// contentsLength:  BODY 태그 안쪽의 HTML 태그를 포함한 모든 문자 수를 리턴합니다.
-// contentsLengthAll: HTML 문서의 모든 문자 수를 리턴합니다.
-
-
-<script type="text/javascript" src="../../webedit/cheditor.js"></script>
-<textarea id="content" name="content"></textarea>
-에디터를 화면에 출력합니다.
-<script type="text/javascript">
-var content = new cheditor();             							// 에디터 개체를 생성합니다.
-content.config.editorHeight = '300px';    // 에디터 세로폭입니다.
-content.config.editorWidth = '100%';       	// 에디터 가로폭입니다.
-content.inputForm = 'content';           				// textarea의 ID 이름입니다.
-content.run();                            							// 에디터를 실행합니다.
-</script>		</td>
-	</tr>
- -->
 	</table>
 
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="top10">
@@ -287,13 +257,10 @@ content.run();                            							// 에디터를 실행합니다
 	</tr>
 	</table>
 	</form>
-
 	</div>
 </div><!-- //Container// -->
 </div><!-- //Container_wrap// -->
 
 <div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
 </body>
-
-<!-- Mirrored from demohome.anywiz.co.kr/adm/manage/product/prd_input.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 09:11:59 GMT -->
 </html>

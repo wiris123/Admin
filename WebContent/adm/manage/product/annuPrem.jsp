@@ -9,13 +9,13 @@
 	String instart  = request.getParameter("instart");
 	String regidate = request.getParameter("regidate");
 	int rprem = Integer.parseInt(request.getParameter("rprem"));
-	int interest =Integer.parseInt(request.getParameter("inter"));
+	int interest =Integer.parseInt(request.getParameter("interest"));
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	Date begin = formatter.parse(instart);
 	Date end = formatter.parse(regidate);
 	
-	long diffDays = (end.getTime() - begin.getTime()) / (24 * 60 * 60 * 1000);
+	long diffDays = (begin.getTime() - end.getTime()) / (24 * 60 * 60 * 1000);
 	diffDays = diffDays / 365;
 	
 	//연금보험 계산
@@ -27,7 +27,7 @@
 
 	
 	JSONObject obj = new JSONObject();
-	obj.put("time", (int)diffDays);
+	obj.put("payt", (int)diffDays);
 	obj.put("result", result);
 	
 	response.getWriter().write(obj.toString());

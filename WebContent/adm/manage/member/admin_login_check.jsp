@@ -43,11 +43,10 @@ function loginCheck(frm){
 	
 }
 
-
 </script>
 <body>
 	<div class="container">
-	<form action="loginCheck(this);" method="get">
+	<form action="login_process.jsp;" method="get" onsubmit="loginCheck(this);">
 	<table class="table table-bordered">
 		<tr>
 			<td>아이디 : <input type="text" name="id"/>	</td>

@@ -39,6 +39,7 @@ InsuDAO dao = new InsuDAO();
 
 int affected = dao.annu_insertWrite(dto);
 dao.close();
+
 if(affected==1){
 	//글쓰기에 성공했을때...
 	out.println("상품등록완료");
