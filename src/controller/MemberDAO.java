@@ -26,10 +26,7 @@ public class MemberDAO {
 	public MemberDAO() {		
 		try {
 			Context ctx = new InitialContext();
-			DataSource source = 
-			  (DataSource)
-			  ctx.lookup("java:comp/env/jdbc/myoracle");
-			
+			DataSource source = (DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
 			con = source.getConnection();
 			System.out.println("DBCP연결성공");
 		}
@@ -56,7 +53,7 @@ public class MemberDAO {
 		//적용된 행의 갯수확인을 위한 변수
 		int affected = 0;
 		try {
-			String query = "INSERT INTO member ( id,pass,name,mobile,email,birth,regidate) VALUES ( ?, ?, ?, ?, ?, ? ,sysdate)";
+			String query = "INSERT INTO member ( id,pass,name,mobile,email,birth,regidate) VALUES ( ?, ?, ?, ?, ?, to_date(?,'yyyy-MM-dd') ,sysdate)";
 
 			psmt = con.prepareStatement(query);
 			

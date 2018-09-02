@@ -12,7 +12,7 @@
   </context-param>
   <context-param>
   	<param-name>ConnectionURL</param-name>
-  	<param-value>jdbc:oracle:thin:@localhost:1522:orcl</param-value>
+  	<param-value>jdbc:oracle:thin:@localhost:1521:orcl</param-value>
   </context-param>
   
   <!-- 
