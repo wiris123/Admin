@@ -58,7 +58,7 @@
 									<td colspan="2" height="40">
 										파일첨부 :
 										<c:if test="${not empty dto.attfile }">
-											${dto.attfile }&nbsp;<a href="./proc/bbs_down_proc.jsp?filename=${dto.attfileR }&num=${dto.num }&rfilename=${dto.attfile }">[다운로드]
+											${dto.attfile }&nbsp;<a href="./proc/bbs_down_proc.jsp?filename=${dto.attfile }&num=${dto.num }">[다운로드]
 											</a>
 										</c:if>
 										<c:if test="${empty dto.attfile }">

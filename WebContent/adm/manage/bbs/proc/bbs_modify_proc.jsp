@@ -58,9 +58,8 @@
 			//마지막 .을 가져와야 확장자를 딸수 있다.
 			idx = fileName.lastIndexOf(".");
 			//시간을통해 생성한 파일명과 확장자를 합체
-			realFileName = nowTime + fileName.substring(idx, fileName.length());
+
 			oldFile = new File(saveDirectory + oldFile.separator + fileName);
-			newFile = new File(saveDirectory + oldFile.separator + realFileName);
 
 			oldFile.renameTo(newFile);
 			//7.파일 이외의 폼값 받기
@@ -70,7 +69,6 @@
 			contents = mr.getParameter("contents");
 			num = mr.getParameter("num");
 			dto.setAttfile(mr.getOriginalFileName("attfile"));
-			dto.setAttfileR(realFileName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -133,7 +133,6 @@ public class BbsDAO {
 				dto.setRegidate(rs.getDate("REGIDATE"));
 				dto.setViewcnt(rs.getString("VIEWCNT"));
 				dto.setAttfile(rs.getString("ATTFILE"));
-				dto.setAttfileR(rs.getString("ATTFILER"));
 				dto.setReply(rs.getInt("reply"));
 
 				list.add(dto);
@@ -175,7 +174,6 @@ public class BbsDAO {
 				dto.setRegidate(rs.getDate("REGIDATE"));
 				dto.setViewcnt(rs.getString("VIEWCNT"));
 				dto.setAttfile(rs.getString("ATTFILE"));
-				dto.setAttfileR(rs.getString("ATTFILER"));
 				dto.setReply(rs.getInt("reply"));
 
 				list.add(dto);
@@ -190,7 +188,7 @@ public class BbsDAO {
 	public int write(BoardDTO dto) {
 		System.out.println("게시판글쓰기중");
 		int affected = -1;
-		String query = "insert into multiboard values(board_seq.nextval, '짐배', ?, ?, ?, sysdate, 0, ?, ?, null, ?)";
+		String query = "insert into multiboard values(board_seq.nextval, '짐배', ?, ?, ?, sysdate, 0, ?, ?, null)";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getName());
@@ -198,7 +196,6 @@ public class BbsDAO {
 			psmt.setString(3, dto.getContents());
 			psmt.setString(4, dto.getAttfile());
 			psmt.setString(5, dto.getB_id());
-			psmt.setString(6, dto.getAttfileR());
 			affected = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -269,7 +266,6 @@ public class BbsDAO {
 				dto.setTitle(rs.getString("title"));
 				dto.setViewcnt(rs.getString("viewcnt"));
 				dto.setAttfile(rs.getString("attfile"));
-				dto.setAttfileR(rs.getString("attfileR"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -281,8 +277,8 @@ public class BbsDAO {
 	public int modify(BoardDTO dto) {
 		int affected = 0;
 		String query = "update multiboard set name=?, title=?, contents=?";
-		if (dto.getAttfile() != null && dto.getAttfileR() != null) {
-			query += ", attfile=?, attfileR=?";
+		if (dto.getAttfile() != null ) {
+			query += ", attfile=?";
 		}
 		query += ", regidate=sysdate where num=?";
 
@@ -293,9 +289,8 @@ public class BbsDAO {
 			psmt.setString(2, dto.getTitle());
 			psmt.setString(3, dto.getContents());
 			// 파일이 새로 들어온 경우에는 수정을 해야하지만 그렇지 않은 경우에는 현재의 파일을 유지해야한다.
-			if (dto.getAttfile() != null && dto.getAttfileR() != null) {
+			if (dto.getAttfile() != null ) {
 				psmt.setString(4, dto.getAttfile());
-				psmt.setString(5, dto.getAttfileR());
 				psmt.setString(6, dto.getNum());
 			} else {
 				psmt.setString(4, dto.getNum());

@@ -11,7 +11,6 @@
 		//파라미터 받기
 		String fileName = request.getParameter("filename");
 		String num = request.getParameter("num");
-		String rfilename = request.getParameter("rfilename");
 
 		//파일 다운로드 로직 호출
 		try{
@@ -46,7 +45,6 @@
 			
 			if(isIE){//인터넷 익스플로러
 				fileName = URLEncoder.encode(fileName, "UTF-8");
-				rfilename = URLEncoder.encode(rfilename, "UTF-8");
 			}
 			else{//기타 웹브라우져
 			/*
@@ -56,10 +54,9 @@
 				변환한 배열과 charset는 8859_1을 지정함.
 			*/
 				fileName = new String(fileName.getBytes("UTF-8"),"8859_1");
-				rfilename = new String(rfilename.getBytes("UTF-8"),"8859_1");
 			}
 			
-			response.setHeader("Content-Disposition", "attachment;filename="+rfilename+";");
+			response.setHeader("Content-Disposition", "attachment;filename="+fileName+";");
 			
 			/*
 			IO작업을 통해서 서버에 있는 파일을 웹브라우저에 바로 출력
