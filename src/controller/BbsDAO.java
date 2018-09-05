@@ -191,6 +191,7 @@ public class BbsDAO {
 		String query = "insert into multiboard values(board_seq.nextval, '짐배', ?, ?, ?, sysdate, 0, ?, ?, null)";
 		try {
 			psmt = con.prepareStatement(query);
+			System.out.println(dto.getName());
 			psmt.setString(1, dto.getName());
 			psmt.setString(2, dto.getTitle());
 			psmt.setString(3, dto.getContents());
@@ -376,5 +377,24 @@ public class BbsDAO {
 
 		return affected;
 	}
+	//게시물 수 카운트
+	   public int[] listCount() {
+	     int[] b_id = new int[3];
+	      String query = "select count(b_id) from multiboard group by b_id order by b_id";
+	      try {
+	         psmt = con.prepareStatement(query);
+	         rs = psmt.executeQuery();
+	         int i=0;
+	         while(rs.next()) {
+	        	 System.out.println(rs.getInt(1));
+	            b_id[i] = rs.getInt(1);
+	            i++;
+	         }
+	      }
+	      catch(Exception e) {
+	         e.printStackTrace();
+	      }
+	      return b_id;
+	   }
 
 }

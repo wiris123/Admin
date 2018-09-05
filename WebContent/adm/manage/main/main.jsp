@@ -1,11 +1,52 @@
+<%@page import="controller.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	//한글처리
+	request.setCharacterEncoding("UTF-8");
+	int[] list_count;
+	BbsDAO dao = new BbsDAO();
+	list_count = dao.listCount();
+	dao.close();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>홈페이지 관리자</title>
 <link rel="stylesheet" href="../css/jquery-ui.css">
 <link href="../wiz_style.css" rel="stylesheet" type="text/css" />
+<script>	
+	window.onload = function() {
+
+		var chart = new CanvasJS.Chart("chartContainer", {
+			animationEnabled : true,
+			title : {
+				horizontalAlign : "left"
+			},
+			data : [ {
+				type : "doughnut",
+				startAngle : 60,
+				//innerRadius: 60,
+				indexLabelFontSize : 17,
+				indexLabel : "{label} - #percent%",
+				toolTipContent : "<b>{label}:</b> {y} (#percent%)",
+				dataPoints : [ {
+					y :<%=list_count[0]%>, label : "공지사항"
+				}, {
+					y :<%=list_count[1]%>
+	,
+					label : "이벤트"
+				}, {
+					y :<%=list_count[2]%>
+	,
+					label : "질의응답"
+				}, ]
+			} ]
+		});
+		chart.render();
+
+	}
+</script>
 </head>
 <body class="home_body">
 	<!-- 헤드부분 -->
@@ -160,15 +201,15 @@
 												"wmode" : "transparent"
 											});
 						</script>
-						<div id="my_chart1"></div>
+						<div id="chartContainer" style="height: 200px; width: 100%;"></div>
+						<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 						<div style="padding-top: 5px">
 							<font style='padding-left: 15px' color='#01a595'>■</font><font
-								style='color: #797979; font-size: 11px;'>게시글수</font> <font
-								style='padding-left: 15px' color='#FD6E06'>■</font><font
-								style='color: #797979; font-size: 11px;'>코멘트수</font>
+								style='color: #797979; font-size: 11px;'>게시글수 : <%=list_count[0]+list_count[1]+list_count[2] %></font>
 						</div>
+						
 					</div>
-
+					
 				</div>
 				<!-- //graph1// -->
 				<div class="rightcont graph2 top20">

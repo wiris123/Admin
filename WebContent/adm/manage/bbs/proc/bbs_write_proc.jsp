@@ -27,6 +27,7 @@
 	System.out.println(check);
 	//파일이 있을경우
 	if (check == 0) {
+		System.out.println("파일이있네요");
 		//본격적으로 받아봅시당 try문 안쪽은 지역변수이므로 아래쪽에서 에러가 날 가능성이 있으므로 깔끔하게 미리처리
 		MultipartRequest mr = null;
 		StringBuffer inter = new StringBuffer();
@@ -60,7 +61,7 @@
 			//시간을통해 생성한 파일명과 확장자를 합체
 			oldFile = new File(saveDirectory + oldFile.separator + fileName);
 
-
+			System.out.println(mr.getParameter("title"));
 			//7.파일 이외의 폼값 받기
 			b_id = mr.getParameter("b_id");
 			title = mr.getParameter("title");
@@ -87,9 +88,6 @@
 	//추후 로그인후 생성
 	//dto.setId(session.getAttribute("USER_ID").toString());
 	dto.setB_id(b_id);
-
-	//커넥션풀로 변경
-	System.out.println("타이틀" + title);
 
 	int affected = dao.write(dto);
 	dao.close();

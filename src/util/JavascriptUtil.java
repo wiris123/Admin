@@ -1,6 +1,6 @@
 package util;
 
-import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.JspWriter;  
 
 public class JavascriptUtil {
 	

@@ -47,3 +47,6 @@ $(function() {
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'http://localhost:8080', secure: false });			
 		}
 	}
+	
+
+
