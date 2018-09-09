@@ -43,6 +43,23 @@ $(function(){
 			}
 		});
 });
+
+function bbsCheck(fn) {
+	if(fn.name.value == "") {
+		alert("작성자를 입력하세요.");
+    	fn.name.focus();
+    
+    return false;
+	}
+	
+function bbsCheck(fn) {
+	if(fn.title.value == "") {
+		alert("제목을 입력하세요.");
+    	fn.title.focus();
+    
+    return false;
+	}
+}
 </script>
 </head>
 <body>

@@ -23,7 +23,7 @@
 		<div id="Container">
 
 			<script language="JavaScript" type="text/javascript">
-			<!--
+		
 				function inputCheck(frm) {
 
 					if (frm.code.value == "") {
@@ -104,7 +104,7 @@
 									"popGrp",
 									"height=300, width=450, menubar=no, scrollbars=yes, resizable=yes, toolbar=no, status=no, top=100, left=100");
 				}
-			//-->
+		
 			</script>
 
 			<div id="location">HOME > 게시판관리</div>
