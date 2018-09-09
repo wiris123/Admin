@@ -1,10 +1,11 @@
 package controller;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -62,15 +63,14 @@ public class BbsDAO {
 				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
 			}
 		}
-		
+
 		try {
 			psmt = con.prepareStatement(query);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				totalCount = rs.getInt(1);
 			}
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return totalCount;
@@ -104,9 +104,9 @@ public class BbsDAO {
 		return totalCount;
 	}
 
-	//통합 관리 페이지용
-	public List<BoardDTO> selectTotalList(Map<String, Object> param)
-	{
+	// 통합 관리 페이지용
+	public List<BoardDTO> selectTotalList(Map<String, Object> param) {
+		String b_id = null;
 		BoardDTO dto;
 		List<BoardDTO> list = new Vector<BoardDTO>();
 		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM multiboard WHERE 1=1";
@@ -123,9 +123,20 @@ public class BbsDAO {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, param.get("start").toString());
 			psmt.setString(2, param.get("end").toString());
-			System.out.println("query"+query);
+			System.out.println("query" + query);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
+				switch (rs.getString("b_id")) {
+				case "free":
+					b_id = "공지사항";
+					break;
+				case "photo":
+					b_id = "이벤트";
+					break;
+				case "response":
+					b_id = "질의응답";
+					break;
+				}
 				dto = new BoardDTO();
 				dto.setNum(rs.getString("NUM"));
 				dto.setName(rs.getString("NAME"));
@@ -134,6 +145,8 @@ public class BbsDAO {
 				dto.setViewcnt(rs.getString("VIEWCNT"));
 				dto.setAttfile(rs.getString("ATTFILE"));
 				dto.setReply(rs.getInt("reply"));
+				dto.setB_name(b_id);
+				dto.setB_id(rs.getString("b_id"));
 
 				list.add(dto);
 			}
@@ -142,7 +155,7 @@ public class BbsDAO {
 		}
 		return list;
 	}
-	
+
 	// 게시판리스트가져오기
 	public List<BoardDTO> selectList(Map<String, Object> param) {
 		BoardDTO dto;
@@ -278,7 +291,7 @@ public class BbsDAO {
 	public int modify(BoardDTO dto) {
 		int affected = 0;
 		String query = "update multiboard set name=?, title=?, contents=?";
-		if (dto.getAttfile() != null ) {
+		if (dto.getAttfile() != null) {
 			query += ", attfile=?";
 		}
 		query += ", regidate=sysdate where num=?";
@@ -290,7 +303,7 @@ public class BbsDAO {
 			psmt.setString(2, dto.getTitle());
 			psmt.setString(3, dto.getContents());
 			// 파일이 새로 들어온 경우에는 수정을 해야하지만 그렇지 않은 경우에는 현재의 파일을 유지해야한다.
-			if (dto.getAttfile() != null ) {
+			if (dto.getAttfile() != null) {
 				psmt.setString(4, dto.getAttfile());
 				psmt.setString(6, dto.getNum());
 			} else {
@@ -377,24 +390,45 @@ public class BbsDAO {
 
 		return affected;
 	}
-	//게시물 수 카운트
-	   public int[] listCount() {
-	     int[] b_id = new int[3];
-	      String query = "select count(b_id) from multiboard group by b_id order by b_id";
-	      try {
-	         psmt = con.prepareStatement(query);
-	         rs = psmt.executeQuery();
-	         int i=0;
-	         while(rs.next()) {
-	        	 System.out.println(rs.getInt(1));
-	            b_id[i] = rs.getInt(1);
-	            i++;
-	         }
-	      }
-	      catch(Exception e) {
-	         e.printStackTrace();
-	      }
-	      return b_id;
-	   }
 
+	// 게시물 수 카운트
+	public int[] listCount() {
+		int[] b_id = new int[3];
+		String query = "select count(b_id) from multiboard group by b_id order by b_id";
+		try {
+			psmt = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			int i = 0;
+			while (rs.next()) {
+				System.out.println(rs.getInt(1));
+				b_id[i] = rs.getInt(1);
+				i++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return b_id;
+	}
+
+	//오늘 게시물수 카운트
+	public int todayPost() {
+		Date date = new Date();
+		SimpleDateFormat transFormat = new SimpleDateFormat("YY/MM/dd");
+		String today = transFormat.format(date);
+		
+		int count=-1;
+		String query = "select count(*) from multiboard group by to_char(regidate, 'YY/MM/DD') having to_char(regidate, 'YY/MM/DD')=?";
+		try {
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, today);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 }

@@ -28,7 +28,7 @@
 request.setCharacterEncoding("UTF-8");
 
 //멀티게시판 처리를 위한 파라미터 받기 및 경로 설정
-String flag =  request.getParameter("flag")==null ? "e" : request.getParameter("flag");
+String flag =  request.getParameter("flag")==null ? "mail" : request.getParameter("flag");
 
 //커넥션풀로 변경
 CounselDAO dao = new CounselDAO();	

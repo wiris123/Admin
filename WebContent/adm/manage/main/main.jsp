@@ -1,3 +1,7 @@
+<%@page import="dto.BoardDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="controller.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -7,6 +11,14 @@
 	int[] list_count;
 	BbsDAO dao = new BbsDAO();
 	list_count = dao.listCount();
+	
+	//매개변수 저장을 위한 컬렉션 생성(DAO로 전달)
+	Map<String, Object> param = new HashMap<String, Object>();
+	//최신의 5개만 가져오면 된다
+	param.put("start", 1);
+	param.put("end", 5);
+	List<BoardDTO> bbs = dao.selectTotalList(param);
+	int todayPost = dao.todayPost();
 	dao.close();
 %>
 <!DOCTYPE html>
@@ -59,45 +71,25 @@
 					<p class="tit type1">최근게시물</p>
 					<div class="bbs">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<!-- 최근 게시물 반복 시작 -->
+<%
+	for (BoardDTO dto : bbs) {
+%>
 							<tr>
-								<td><a href="../bbs/list8073.html?code=movieBasic">[동영상]
-										동영상 게시판 입니다.</a></td>
-								<td align="right" class="date">2016-06-14</td>
+								<td><a href="../bbs/bbs_contents.jsp?b_id=<%=dto.getB_id() %>&num=<%=dto.getNum() %>&nowPage=">[<%=dto.getB_name() %>]
+										<%=dto.getTitle() %></a></td>
+								<td align="right" class="date"><%=dto.getRegidate() %></td>
 							</tr>
-
-							<tr>
-								<td><a href="../bbs/list8073.html?code=movieBasic">[동영상]
-										동영상 게시판 입니다.</a></td>
-								<td align="right" class="date">2016-06-14</td>
-							</tr>
-
-							<tr>
-								<td><a href="../bbs/list8073.html?code=movieBasic">[동영상]
-										동영상 게시판 입니다.</a></td>
-								<td align="right" class="date">2016-06-14</td>
-							</tr>
-
-							<tr>
-								<td><a href="../bbs/list8073.html?code=movieBasic">[동영상]
-										동영상 게시판 입니다.</a></td>
-								<td align="right" class="date">2016-06-14</td>
-							</tr>
-
-							<tr>
-								<td><a href="../bbs/lista09c.html?code=bbsAgree">[약관동의]
-										약관동의 게시판 입니다.</a></td>
-								<td align="right" class="date">2016-06-14</td>
-							</tr>
-
+<%} %>
 						</table>
 					</div>
 					<div class="bbs_stats">
 						<table width="100%" height="100%" border="0" cellpadding="0"
 							cellspacing="0">
 							<tr>
-								<td class="first"><p>총 게시판수</p> <b>24</b> 개</td>
-								<td><p>총 게시물</p> <b>112</b> 개</td>
-								<td><p>오늘 게시물</p> <b>0</b> 개</td>
+								<td class="first"><p>총 게시판수</p> <b>3</b> 개</td>
+								<td><p>총 게시물</p> <b><%=list_count[0]+list_count[1]+list_count[2] %></b> 개</td>
+								<td><p>오늘 게시물</p> <b><%=todayPost %></b> 개</td>
 								<td><p>오늘 댓글</p> <b>0</b> 개</td>
 							</tr>
 						</table>

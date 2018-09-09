@@ -15,7 +15,7 @@
 	<li class="on"><a href="" onFocus="this.blur();">상담목록</a>
 		<ul>
 			<li><a href="form_list_consult.jsp?flag=c">상담예약</a></li>
-			<li><a href="form_list_email.jsp?flag=e">이메일상담</a></li>
+			<li><a href="form_list_email.jsp?flag=mail">이메일상담</a></li>
 		</ul>
 	</li>
 </ul>

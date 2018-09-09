@@ -5,6 +5,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="controller.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	//한글처리
 	request.setCharacterEncoding("UTF-8");
@@ -135,7 +136,7 @@
 				<tr>
 					<td height="30" align="center"><%=dto.getNum()%></td>
 					<td style="text-align: left;">
-						<a href="javascript:bbsView('5360', 'myBasic');" style="cursor: point"><%=dto.getTitle()%> </a>
+						<a href="./bbs_contents.jsp?b_id=<%=dto.getB_id() %>&num=<%=dto.getNum() %>&nowPage=" style="cursor: point"><b>[<%=dto.getB_name() %>]</b>&nbsp;<%=dto.getTitle()%> </a>
 					</td>
 					<td align="center"><%=dto.getName()%></td>
 					<td align="center"><%=dto.getRegidate()%></td>
