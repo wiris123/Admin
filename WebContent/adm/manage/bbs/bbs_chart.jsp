@@ -1,7 +1,9 @@
 <%@page import="dto.BoardDTO"%>
 <%@page import="controller.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%
+System.out.println(application.getRealPath("/Upload"));
+%>
 <!DOCTYPE html>
 <%
 	//한글처리

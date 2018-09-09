@@ -480,5 +480,68 @@ public class MemberDAO {
 		
 		return affected;
 	}	
-	
+	//오늘 가입자수
+	public int regiToday() {
+		int today=0;
+		try {
+			String query = "select count(to_char(regidate, 'YY-MM-dd')) from member where to_char(regidate, 'YY-MM-dd') = (select to_char(sysdate, 'YY-MM-dd') from dual) ";
+			psmt = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				today = rs.getInt(1);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return today;
+	}
+	//전체가입자수
+	public int regiTotal() {
+		int total=0;
+		try {
+			String query ="select count(*) from member";
+			psmt  = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return total;
+	}
+	//오늘 탈퇴자수
+	public int outToday() {
+		int today=0;
+		try {
+			String query = "select count(to_char(regidate, 'YY-MM-dd')) from WITH_MEMBER where to_char(regidate, 'YY-MM-dd') = (select to_char(sysdate, 'YY-MM-dd') from dual) ";
+			psmt = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				today = rs.getInt(1);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return today;
+	}
+	//전체 탈퇴자수
+	public int outTotal() {
+		int total = 0 ;
+		try {
+			String query = "select count(*) from WITH_MEMBER";
+			psmt = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return total;
+	}
 }

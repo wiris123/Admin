@@ -119,6 +119,7 @@
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list">
 			<thead>
 				<tr>
+					
 					<td width="5%">번호</td>
 					<td>글제목</td>
 					<td width="10%">작성자</td>

@@ -1,3 +1,5 @@
+<%@page import="dto.MemberDTO"%>
+<%@page import="controller.MemberDAO"%>
 <%@page import="dto.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
@@ -9,17 +11,28 @@
 	//한글처리
 	request.setCharacterEncoding("UTF-8");
 	int[] list_count;
-	BbsDAO dao = new BbsDAO();
-	list_count = dao.listCount();
+	BbsDAO listdao = new BbsDAO();
+	MemberDAO memdao = new MemberDAO();
+	//게시판 갯수관련
+	list_count = listdao.listCount();
+	//오늘 가입자수	, 전체 가입자수, 오늘 탈퇴수, 전체 탈퇴수
+	int todayregi = memdao.regiToday();
+	int totalregi = memdao.regiTotal(); 
+	int todayout = memdao.outToday();
+	int totalout = memdao.outTotal(); 
 	
 	//매개변수 저장을 위한 컬렉션 생성(DAO로 전달)
 	Map<String, Object> param = new HashMap<String, Object>();
 	//최신의 5개만 가져오면 된다
 	param.put("start", 1);
 	param.put("end", 5);
-	List<BoardDTO> bbs = dao.selectTotalList(param);
-	int todayPost = dao.todayPost();
-	dao.close();
+	//리스트 가져오기
+	List<BoardDTO> bbs = listdao.selectTotalList(param);
+	int todayPost = listdao.todayPost();
+	//멤버 가져오기
+	List<MemberDTO> membbs = memdao.selectList(param);
+	listdao.close();
+	memdao.close();
 %>
 <!DOCTYPE html>
 <html>
@@ -73,6 +86,7 @@
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<!-- 최근 게시물 반복 시작 -->
 <%
+//없을경우 추가해라 : 네..
 	for (BoardDTO dto : bbs) {
 %>
 							<tr>
@@ -109,57 +123,37 @@
 							src="../image/main/more.gif" /></a>
 					</p>
 
-					<div class="visitor_latest">
+					<div class="visitor_latest">		
 						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<!-- 회원 현황 뿌려주기 -->
+<% 
+//없을경우 추가해라 : 네..
+for(MemberDTO dto : membbs){ %>
 							<tr>
-								<td class="lt">test5</td>
-								<td>김민수</td>
-								<td>일반회원</td>
-								<td>2016-07-27</td>
+								<td class="lt"><%=dto.getId() %></td>
+								<td><%=dto.getName() %></td>
+								<td><%=dto.getEmail() %></td>
+								<td><%=dto.getRegidate() %></td>
 							</tr>
-							<tr>
-								<td class="lt">test2</td>
-								<td>테스트2</td>
-								<td>일반회원</td>
-								<td>2016-05-25</td>
-							</tr>
-							<tr>
-								<td class="lt">test</td>
-								<td>테스트</td>
-								<td>일반회원</td>
-								<td>2016-05-25</td>
-							</tr>
-							<tr>
-								<td class="lt">test3</td>
-								<td>테스트3</td>
-								<td>일반회원</td>
-								<td>2016-04-12</td>
-							</tr>
-
-
-
+<%} %>
 						</table>
 					</div>
 
 					<div class="visitor_stats">
 						<table width="100%" height="100%" border="0" cellpadding="0"
-							cellspacing="0">
+							cellspacing="0" >
 							<tr>
-								<td class="lt">
-									<p>오늘 가입회원</p> <img src="../image/main/blue0.gif"
-									align="absbottom" /> <b>명</b>
+								<td style="text-align:center;">
+									<p style="font-weight:bold;">오늘 가입회원</p><b style="font-size:14px;color:#0066FF"><%=todayregi %></b>&nbsp;명
 								</td>
-								<td>
-									<p>전체 회원수</p> <img src="../image/main/red4.gif"
-									align="absbottom" /> <b>명</b>
+								<td style="text-align:center;">
+									<p style="font-weight:bold;">전체 회원수</p><b style="font-size:14px;color:#0066FF"><%=totalregi %></b>&nbsp;명
 								</td>
-								<td>
-									<p>오늘 탈퇴회원</p> <img src="../image/main/black0.gif"
-									align="absbottom" /> <b>명</b>
+								<td style="text-align:center;">
+									<p style="font-weight:bold;">오늘 탈퇴회원</p> <b style="font-size:14px;color:#CC0033"><%=todayout %></b>&nbsp;명
 								</td>
-								<td>
-									<p>총 탈퇴회원</p> <img src="../image/main/black3.gif"
-									align="absbottom" /> <b>명</b>
+								<td style="text-align:center;">
+									<p style="font-weight:bold;">총 탈퇴회원</p><b style="font-size:14px;color:#CC0033" ><%=totalout %></b>&nbsp;명
 								</td>
 							</tr>
 						</table>

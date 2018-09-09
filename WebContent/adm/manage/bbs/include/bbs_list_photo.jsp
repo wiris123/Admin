@@ -132,7 +132,7 @@
 										<%if(dto.getAttfile()==null){ %>
 											<img src="/Admin/adm/bbs/skin/thumbBasic2/image/noimg.gif" width="140" height="105" border="0" style="border: 1px solid #ddd; padding: 3px; background: #fff;" /></a>
 										<%}else{ %>
-											<img src="/Admin/Upload/<%=dto.getAttfile()%>" width="160" height="125" border="0" style="border: 1px solid #ddd; padding: 3px; background: #fff;" /></a>
+											<img src="/img/<%=dto.getAttfile()%>" width="160" height="125" border="0" style="border: 1px solid #ddd; padding: 3px; background: #fff;" /></a>
 										<%} %>
 									</td>
 								</tr>

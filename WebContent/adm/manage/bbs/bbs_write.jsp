@@ -2,7 +2,6 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%
 	DateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
 	Date date = new Date();
@@ -13,6 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글쓰기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script language="JavaScript">
 <%if (request.getParameter("b_id") == null) {%>
 alert("잘못된 경로로 접속하셧습니다");
@@ -21,46 +21,30 @@ history.go(-1);
 <%}%>
 var b_id = "<%=request.getParameter("b_id")%>";
 $(function(){
-	$("#bbsFrm").submit(function() {
-		if($("#attfile").get(0).files.length==0){
-			$("#bbsFrm").attr("action","./proc/bbs_write_proc.jsp?flag=<%=request.getParameter("flag")%>&filecheck=1")
-		}
-		else{
-			if(b_id=="photo"){
-
-					var ext = $('#attfile').val().split('.').pop().toLowerCase();
-
-					if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
-
-						 alert('gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.');
-
-						 return false;
-
-					}	
+ 	$("#bbsFrm").submit(function() {
+ 		if($("#attfile").get(0).files.length==0){
+ 			$("#bbsFrm").attr("action","./proc/bbs_write_proc.jsp?flag=<%=request.getParameter("b_id")%>&filecheck=1")
+ 		}
+ 		else{
+ 			if(b_id=="photo"){
+ 
+ 					var ext = $('#attfile').val().split('.').pop().toLowerCase();
+ 
+ 					if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+ 
+ 						 alert('gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.');
+ 
+ 						 return false;
+ 
+ 					}	
+ 			}
+ 	    	$("#bbsFrm").attr("enctype","multipart/form-data")
+ 	    	$("#bbsFrm").attr("action","./proc/bbs_write_proc.jsp?flag=<%=request.getParameter("b_id")%>&filecheck=0")
 			}
-	    	$("#bbsFrm").attr("enctype","multipart/form-data")
-	    	$("#bbsFrm").attr("action","./proc/bbs_write_proc.jsp?flag=<%=request.getParameter("flag")%>&filecheck=0")
-			}
-		});
-});
-
-function bbsCheck(fn) {
-	if(fn.name.value == "") {
-		alert("작성자를 입력하세요.");
-    	fn.name.focus();
-    
-    return false;
-	}
-	
-function bbsCheck(fn) {
-	if(fn.title.value == "") {
-		alert("제목을 입력하세요.");
-    	fn.title.focus();
-    
-    return false;
-	}
-}
+						});
+	});
 </script>
+
 </head>
 <body>
 	<h3 style="background: url(../image/sub/h3.gif) left 6px no-repeat; line-height: 1.6; font-size: 16px; font-weight: bold; color: #2f2f2f; padding-left: 16px; font-family: '돋움', 'Dotum', Helvetica;">1:1상담</h3>
@@ -88,10 +72,6 @@ function bbsCheck(fn) {
 							try {
 								content.outputBodyHTML();
 							} catch (e) {
-							}
-							if (frm.contents.value == "") {
-								alert("내용을 입력하세요.");
-								return false;
 							}
 							if (frm.vcode != undefined
 									&& (hex_md5(frm.vcode.value) != md5_norobot_key)) {
@@ -139,8 +119,42 @@ function bbsCheck(fn) {
 						<tr>
 							<td colspan="4" align="center" style="padding: 10px 0;">
 								<div>
-									<script type="text/javascript" src="../../../adm/webedit/cheditor.js"></script>
-									<textarea id="content" name="contents"></textarea>
+									<script type="text/javascript" src="../common/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+									<textarea rows="10" cols="30" id="ir1" name="contents" style="width: 766px; height: 412px;"></textarea>
+									<script type="text/javascript">
+										var oEditors = [];
+										$(function() {
+											nhn.husky.EZCreator
+													.createInIFrame({
+														oAppRef : oEditors,
+														elPlaceHolder : "ir1",
+														//SmartEditor2Skin.html 파일이 존재하는 경로
+														sSkinURI : "../common/se2/SmartEditor2Skin.html",
+														htParams : {
+															// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+															bUseToolbar : true,
+															// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+															bUseVerticalResizer : false,
+															// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+															bUseModeChanger : true,
+															fOnBeforeUnload : function() {
+
+															}
+														},
+														fCreator : "createSEditor2"
+													});
+													//전송버튼 클릭이벤트
+											        $("#savebutton").click(function() {
+											            //id가 smarteditor인 textarea에 에디터에서 대입
+											            oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+											 
+											            // 이부분에 에디터 validation 검증
+											            //폼 submit
+											            $("#bbsFrm").submit();
+											        })
+										});
+									</script>
+
 								</div>
 							</td>
 						</tr>
@@ -155,7 +169,7 @@ function bbsCheck(fn) {
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td align="right">
-									<input type='image' src='../../../adm/bbs/skin/myBasic/image/btn_confirm.gif' border='0'>&nbsp;<img src='../../../adm/bbs/skin/myBasic/image/btn_cancel.gif' border='0' onClick='window.close();' style='cursor: pointer'>
+									<input type='image' id='savebutton' src='../../../adm/bbs/skin/myBasic/image/btn_confirm.gif' border='0'>&nbsp;<img src='../../../adm/bbs/skin/myBasic/image/btn_cancel.gif' border='0' onClick='window.close();' style='cursor: pointer'>
 								</td>
 							</tr>
 						</table>

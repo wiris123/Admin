@@ -53,13 +53,12 @@
 			<li><a href="../bbs/bbs_manage.jsp?b_id=list&nowPage=1" onFocus="this.blur();"><span>게시판관리</span></a>
 				<ul class="category">
 					<li><a href="../bbs/bbs_manage.jsp?b_id=list&nowPage=1">게시물통합관리</a></li>
-					<li><a href="../bbs/bbs_manage.jsp?b_id=comment">코멘트통합관리</a></li>
+					<li><a href="../bbs/bbs_manage.jsp?b_id=comment&nowPage=1">코멘트통합관리</a></li>
 					<li class="depth"><a href="#" onFocus="this.blur();">게시판관리</a>
 						 <ul class="category_2depth">
 							<li><a href="bbs_input.jsp?mode=update&amp;code=bbsBasic&amp;page=1">자유게시판</a></li><!-- 추가 -->
 							<li><a href="bbs_input.jsp?mode=update&amp;code=photoBasic&amp;page=1">갤러리</a></li>
 							<li><a href="bbs_input.jsp?mode=update&amp;code=answerBasic&amp;page=1">응답게시판</a></li>
-							<li><a href="bbs_input3461.html?mode=update&amp;code=qna&amp;page=1">질문답변</a></li>
 						</ul>
 					</li> 
 				</ul></li>

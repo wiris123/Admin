@@ -10,7 +10,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	//파일명 : write_proc.jsp
-
 	//파일이 있을시와 없을시 처리 둘다 필요한 변수,객체를 미리 생성해둔다
 	request.setCharacterEncoding("UTF-8");
 	BbsDAO dao = new BbsDAO();
@@ -23,6 +22,7 @@
 	
 
 	//첨부파일이 없는경우 mr 을 사용해서 데이터를 가져오거나 저장할수가 없다 그러므로 첨부파일이 있는지를 확인하기 위한변수 생성
+	System.out.println("요밑이 병신");
 	int check = Integer.parseInt(request.getParameter("filecheck"));
 	System.out.println(check);
 	//파일이 있을경우
@@ -38,7 +38,7 @@
 		String realFileName = null;
 		try {
 			//파일 받기 처리 실제 경로와 파일 최대 사이즈 정의
-			String saveDirectory = application.getRealPath("/Upload");
+			String saveDirectory = "C:\\Upload";
 			int maxPostSize = 1024 * 5000;
 			//파일 중복값 처리용 클래스
 			FileRenamePolicy policy = new DefaultFileRenamePolicy();
@@ -91,6 +91,7 @@
 
 	int affected = dao.write(dto);
 	dao.close();
+	
 %>
 <script language="JavaScript">
 	

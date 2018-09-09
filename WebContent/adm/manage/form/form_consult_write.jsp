@@ -68,7 +68,7 @@ pageContext.setAttribute("str", str);
 <div id="S_contents">
 <h3><%= path_str %><span>작성된 <%= path_str %>를 합니다.</span></h3>	
 <!-- 검색폼 -->
-<form action="./proc/consult_write_proc.jsp" name="mwriteForm" method="get">
+<form action="./proc/consult_write_proc.jsp" name="mwriteForm" id="mform" method="get">
 	<input type="hidden" name="flag" value="<%=flag %>" />
 	<input type="hidden" name="nowPage" value="1" />
 	<script Language="JavaScript" src="../../../adm/js/md5.js"></script>
@@ -148,9 +148,48 @@ pageContext.setAttribute("str", str);
 		<tr>
 	   		<td colspan="4" align="center" style="padding: 10px 0;">
 	  		<div>
-	      		<script type="text/javascript" src="../../../adm/webedit/cheditor.js"></script>
-	      		<textarea id="content" name="contents"></textarea>
-	   		</div>
+				<script type="text/javascript" src="../common/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+				<textarea rows="10" cols="30" id="ir1" name="contents" style="width: 766px; height: 412px;"></textarea>
+				<script type="text/javascript">
+					var oEditors = [];
+					$(function() {
+						nhn.husky.EZCreator
+								.createInIFrame({
+									oAppRef : oEditors,
+									elPlaceHolder : "ir1",
+									//SmartEditor2Skin.html 파일이 존재하는 경로
+									sSkinURI : "../common/se2/SmartEditor2Skin.html",
+									htParams : {
+										// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+										bUseToolbar : true,
+										// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+										bUseVerticalResizer : false,
+										// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+										bUseModeChanger : true,
+										fOnBeforeUnload : function() {
+
+										}
+									},
+									fCreator : "createSEditor2"
+								});
+						//전송버튼 클릭이벤트
+						$("#savebutton")
+								.click(
+										function() {
+											//id가 smarteditor인 textarea에 에디터에서 대입
+											oEditors.getById["ir1"]
+													.exec(
+															"UPDATE_CONTENTS_FIELD",
+															[]);
+
+											// 이부분에 에디터 validation 검증
+											//폼 submit
+											$("#mform")
+													.submit();
+										})
+					});
+				</script>
+			</div>
 			</td>
 		</tr>
 	</table>
@@ -158,7 +197,7 @@ pageContext.setAttribute("str", str);
 	<table width="100%"border="0" cellpadding="10" cellspacing="0" class="top5">
 		<tr>
 	  		<td width="8%"><input type="hidden" name="" value=""/>
-	   			<button type="submit" class="h22 t4 small icon gray" onClick="">
+	   			<button type="submit" class="h22 t4 small icon gray" id="savebutton" onClick="">
 				<span class="icon_plus"></span>글전송</button>
 					&nbsp;
 				<input type="hidden" value="<%=page_flag%>" id="page_flag"/>

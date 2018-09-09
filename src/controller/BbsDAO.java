@@ -63,7 +63,6 @@ public class BbsDAO {
 				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
 			}
 		}
-
 		try {
 			psmt = con.prepareStatement(query);
 			rs = psmt.executeQuery();
@@ -75,7 +74,33 @@ public class BbsDAO {
 		}
 		return totalCount;
 	}
-
+	
+	//통합 관리에서 코맨트 갯수 가져오기
+	public int getTotalComm(Map<String, Object> param) {
+		int totalCount = -1;
+		String query = "SELECT COUNT(*) FROM BOARD_COMM where 1=1 ";
+		/*if (param.get("Word") != null) {
+			if (param.get("Column").equals("both")) {
+				query += " and " + "title LIKE '%" + param.get("Word") + "%' " + " OR " + " contents LIKE '%"
+						+ param.get("Word") + "%' ";
+			} else {
+				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
+			}
+		}*/
+		try {
+			psmt = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				totalCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return totalCount;
+	}
+	
 	// 특정 페이지에서 리스트를 가져오기
 	public int getTotalRecordCount(Map<String, Object> param) {
 
@@ -142,7 +167,7 @@ public class BbsDAO {
 				dto.setName(rs.getString("NAME"));
 				dto.setTitle(rs.getString("TITLE"));
 				dto.setRegidate(rs.getDate("REGIDATE"));
-				dto.setViewcnt(rs.getString("VIEWCNT"));
+				dto.setViewcnt(rs.getInt("VIEWCNT"));
 				dto.setAttfile(rs.getString("ATTFILE"));
 				dto.setReply(rs.getInt("reply"));
 				dto.setB_name(b_id);
@@ -185,7 +210,7 @@ public class BbsDAO {
 				dto.setName(rs.getString("NAME"));
 				dto.setTitle(rs.getString("TITLE"));
 				dto.setRegidate(rs.getDate("REGIDATE"));
-				dto.setViewcnt(rs.getString("VIEWCNT"));
+				dto.setViewcnt(rs.getInt("VIEWCNT"));
 				dto.setAttfile(rs.getString("ATTFILE"));
 				dto.setReply(rs.getInt("reply"));
 
@@ -273,12 +298,13 @@ public class BbsDAO {
 			psmt.setString(1, num);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
+				incViewcnt(num);
 				dto.setNum(rs.getString("num"));
 				dto.setName(rs.getString("name"));
 				dto.setRegidate(rs.getDate("regidate"));
 				dto.setContents(rs.getString("contents"));
 				dto.setTitle(rs.getString("title"));
-				dto.setViewcnt(rs.getString("viewcnt"));
+				dto.setViewcnt(rs.getInt("viewcnt")+1);
 				dto.setAttfile(rs.getString("attfile"));
 			}
 		} catch (Exception e) {
@@ -286,7 +312,19 @@ public class BbsDAO {
 		}
 		return dto;
 	}
-
+	
+	//조회수 1추가
+	public void incViewcnt(String num) {
+		String query = "Update multiboard set viewcnt = viewcnt +1 where num = ? ";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, num);
+			psmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	// 내용 수정용 메소드
 	public int modify(BoardDTO dto) {
 		int affected = 0;
@@ -315,7 +353,40 @@ public class BbsDAO {
 		}
 		return affected;
 	}
+	// 모든 댓글을 가져오기 위한 비즈니스 로직
+	public List<CommDTO> commentTotalList(Map<String, Object> param) {
+		CommDTO dto;
+		List<CommDTO> list = new Vector<CommDTO>();
+		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM board_comm WHERE 1=1";
+		if (param.get("Word") != null) {
+			if (param.get("Column").equals("both")) {
+				query += " and " + "title LIKE '%" + param.get("Word") + "%' " + " OR " + " contents LIKE '%"
+						+ param.get("Word") + "%' ";
+			} else {
+				query += " and " + param.get("Column") + " " + " LIKE '%" + param.get("Word") + "%' ";
+			}
+		}
+		query += " ORDER BY com_idx desc ) e) where rNum BETWEEN ? AND ?";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, param.get("start").toString());
+			psmt.setString(2, param.get("end").toString());
+			System.out.println("query" + query);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				dto = new CommDTO();
+				dto.setCom_name(rs.getString("com_name"));
+				dto.setCom_regidate(rs.getDate("com_regidate"));
+				dto.setCom_content(rs.getString("com_content"));
+				dto.setCom_idx(rs.getString("com_idx"));
 
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	// 댓글을 가져오기 위한 비즈니스 로직
 	public List<CommDTO> commentList(String num) {
 		CommDTO dto;
@@ -416,7 +487,7 @@ public class BbsDAO {
 		SimpleDateFormat transFormat = new SimpleDateFormat("YY/MM/dd");
 		String today = transFormat.format(date);
 		
-		int count=-1;
+		int count=0;
 		String query = "select count(*) from multiboard group by to_char(regidate, 'YY/MM/DD') having to_char(regidate, 'YY/MM/DD')=?";
 		try {
 			
