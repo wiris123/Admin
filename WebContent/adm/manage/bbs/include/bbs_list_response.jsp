@@ -93,11 +93,12 @@
 	url += strParam;
 	
 	System.out.println(url);
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>응답게시판</title>
 <script>
 function proce(f){
@@ -162,7 +163,7 @@ function proce(f){
 						<td align="center" width="5%">
 							<input type="checkbox" name="select_chkbox" value="<%=dto.getNum()%>">
 						</td>
-						<td align="center" height="38">5</td>
+						<td align="center" height="38"><%=dto.getNum() %></td>
 						<td align="left" style="padding-left: 10px; word-break: break-all;">
 							<a href='bbs_contents.jsp?b_id=${param.b_id }&amp;num=<%=dto.getNum() %>&amp;nowPage=${param.nowPage }'><%=dto.getTitle()%></a>
 						</td>
@@ -190,15 +191,17 @@ function proce(f){
 						</td>
 						<td align="center"><%=dto.getViewcnt()%></td>
 					</tr>
-					<tr>
-						<td colspan="10" height="1" bgcolor="#d7d7d7"></td>
-					</tr>
-					<!-- 게시물반복끝 -->
-				</table>
-				<%
+					<%
 					}
 					}
 				%>
+					<tr>
+						<td colspan="10" height="1" bgcolor="#d7d7d7"></td>
+					</tr>
+					
+					<!-- 게시물반복끝 -->
+				</table>
+				
 				<!-- 게시물 끝 -->
 
 				<!-- 페이지 번호 -->
