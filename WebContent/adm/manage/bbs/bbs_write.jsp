@@ -31,11 +31,8 @@ $(function(){
 					var ext = $('#attfile').val().split('.').pop().toLowerCase();
 
 					if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
-
 						 alert('gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.');
-
 						 return false;
-
 					}	
 			}
 	    	$("#bbsFrm").attr("enctype","multipart/form-data")
