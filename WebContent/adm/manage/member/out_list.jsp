@@ -41,13 +41,11 @@ if(searchWord!=null){
 //페이지 처리를 위한 로직 시작
 //1.게시판 테이블의 전체 레코드 갯수 구하기
 int totalRecordCount = 
-	dao.getTotalRecordCount(param); 
+	dao.getTotalRecordCount2(param); 
 
 //2.web.xml에 설정된 값 가져오기
-int pageSize = Integer.parseInt(
-	application.getInitParameter("PAGE_SIZE"));
-int blockPage = Integer.parseInt(
-	application.getInitParameter("BLOCK_PAGE"));
+int pageSize = 10;
+int blockPage = 5;
 
 //3.전체페이지수 계산하기
 int totalPage = 

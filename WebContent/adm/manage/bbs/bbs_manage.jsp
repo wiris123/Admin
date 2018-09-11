@@ -37,6 +37,6 @@
 	</div>
 	<!-- //Container_wrap// -->
 
-	<div id="Footer">Copyright ⓒ 2016 사이트명 All rights reserved.</div>
+	<div id="Footer">Copyright ⓒ 2016 Insurance & Saving Management  All rights reserved.</div>
 </body>
 </html>
