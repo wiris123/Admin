@@ -11,10 +11,11 @@ public class BoardDTO {
 	private String title;
 	private String contents;
 	private Date regidate;
-	private String viewcnt;
+	private int viewcnt;
 	private String attfile;
 	private String b_id;
 	private int reply;
+	private String b_name;
 	
 	
 	//기본 생성자
@@ -22,10 +23,8 @@ public class BoardDTO {
 		super();
 	}
 
-
-	
 	//인자 생성자
-	public BoardDTO(String num, String id, String name, String title, String contents, Date regidate, String viewcnt,
+	public BoardDTO(String num, String id, String name, String title, String contents, Date regidate, int viewcnt,
 			String attfile, String b_id, int reply) {
 		super();
 		this.num = num;
@@ -124,13 +123,13 @@ public class BoardDTO {
 
 
 
-	public String getViewcnt() {
+	public int getViewcnt() {
 		return viewcnt;
 	}
 
 
 
-	public void setViewcnt(String viewcnt) {
+	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	}
 
@@ -158,6 +157,14 @@ public class BoardDTO {
 		this.b_id = b_id;
 	}
 	
-	
+	public String getB_name() {
+		return b_name;
+	}
+
+
+
+	public void setB_name(String b_name) {
+		this.b_name = b_name;
+	}
 	
 }

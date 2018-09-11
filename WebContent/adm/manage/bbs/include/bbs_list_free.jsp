@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="util.PagingUtil"%>
 <%@page import="dto.BoardDTO"%>
 <%@page import="java.util.List"%>
@@ -6,6 +7,8 @@
 <%@page import="controller.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	
+	
 	//한글처리
 	request.setCharacterEncoding("UTF-8");
 	//커넥션풀로 변경

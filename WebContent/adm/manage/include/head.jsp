@@ -37,7 +37,7 @@
 				class="logbtn"><img src="../image/header/logout.gif" /></a></li>
 		</ul>
 		<div id="navi">
-			<li class="design"><a href="../config/basic_config.jsp"
+			<li class="design"><a href="../main/main.jsp"
 				onFocus="this.blur();"><span>환경설정</span></a></li>
 
 			<!-- <li><a href="../basic/site_info.jsp" onFocus="this.blur();"><span>기본설정</span></a>
@@ -50,16 +50,15 @@
 			</li> -->
 
 
-			<li><a href="../bbs/bbs_manage_list.jsp" onFocus="this.blur();"><span>게시판관리</span></a>
+			<li><a href="../bbs/bbs_manage.jsp?b_id=list&nowPage=1" onFocus="this.blur();"><span>게시판관리</span></a>
 				<ul class="category">
-					<li><a href="../bbs/bbs_manage_list.jsp">게시물통합관리</a></li>
-					<li><a href="../bbs/bbs_manage_comment.jsp">코멘트통합관리</a></li>
+					<li><a href="../bbs/bbs_manage.jsp?b_id=list&nowPage=1">게시물통합관리</a></li>
+					<li><a href="../bbs/bbs_manage.jsp?b_id=comment&nowPage=1">코멘트통합관리</a></li>
 					<li class="depth"><a href="#" onFocus="this.blur();">게시판관리</a>
 						 <ul class="category_2depth">
 							<li><a href="bbs_input.jsp?mode=update&amp;code=bbsBasic&amp;page=1">자유게시판</a></li><!-- 추가 -->
 							<li><a href="bbs_input.jsp?mode=update&amp;code=photoBasic&amp;page=1">갤러리</a></li>
 							<li><a href="bbs_input.jsp?mode=update&amp;code=answerBasic&amp;page=1">응답게시판</a></li>
-							<li><a href="bbs_input3461.html?mode=update&amp;code=qna&amp;page=1">질문답변</a></li>
 						</ul>
 					</li> 
 				</ul></li>
@@ -76,7 +75,7 @@
 					<li class="depth"><a href="#" onFocus="this.blur();">상담목록</a>
 						 <ul class="category_2depth">
 							<li><a href="../form/form_list_consult.jsp?code=formBasic">상담예약</a></li><!-- 추가 -->
-							<li><a href="../form/form_list_email.jsp?code=MformBasic">이메일상담</a></li>
+							<li><a href="../form/form_list_email.jsp??flag=mail">이메일상담</a></li>
 						</ul>
 					</li> 
 				</ul>

@@ -43,21 +43,21 @@ var GB = {
     lineBreakTags: { address: 1, article: 1, aside: 1, dd: 1, div: 1, dt: 1, figcaption: 1, li: 1, p: 1, section: 1 },
     doctype: '<!DOCTYPE html>',
     popupWindow: {
-        ColorPicker :   {tmpl : 'color_picker.html',    width : 420, title : '»ö»ó ¼±ÅÃ'},
-        Embed :         {tmpl : 'media.html',           width : 430, title : '¹Ìµð¾î'},
-        EmotionIcon :   {tmpl : 'icon.html',            width : 300, title : 'Ç¥Á¤ ¾ÆÀÌÄÜ'},
-        FlashMovie :    {tmpl : 'flash.html',           width : 584, title : 'ÇÃ·¡½¬ µ¿¿µ»ó'},
-        GoogleMap :     {tmpl : 'google_map.html',      width : 538, title : '±¸±Û Áöµµ'},
-        ImageUpload :   {tmpl : 'image.html',           width : 700, title : '³» PC »çÁø ³Ö±â'},
-        ImageUrl :      {tmpl : 'image_url.html',       width : 350, title : 'À¥ »çÁø ³Ö±â'},
-        Layout :        {tmpl : 'layout.html',          width : 430, title : '·¹ÀÌ¾Æ¿ô'},
-        Link :          {tmpl : 'link.html',            width : 350, title : 'ÇÏÀÌÆÛ¸µÅ©'},
-        ModifyTable :   {tmpl : 'table_modify.html',    width : 430, title : 'Ç¥ °íÄ¡±â'},
-        Symbol :        {tmpl : 'symbol.html',          width : 450, title : 'Æ¯¼ö ¹®ÀÚ'},
-        Table :         {tmpl : 'table.html',           width : 430, title : 'Ç¥ ¸¸µé±â'}
+        ColorPicker :   {tmpl : 'color_picker.html',    width : 420, title : 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'},
+        Embed :         {tmpl : 'media.html',           width : 430, title : 'ï¿½Ìµï¿½ï¿½'},
+        EmotionIcon :   {tmpl : 'icon.html',            width : 300, title : 'Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'},
+        FlashMovie :    {tmpl : 'flash.html',           width : 584, title : 'ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'},
+        GoogleMap :     {tmpl : 'google_map.html',      width : 538, title : 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'},
+        ImageUpload :   {tmpl : 'image.html',           width : 700, title : 'ï¿½ï¿½ PC ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½'},
+        ImageUrl :      {tmpl : 'image_url.html',       width : 350, title : 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½'},
+        Layout :        {tmpl : 'layout.html',          width : 430, title : 'ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½'},
+        Link :          {tmpl : 'link.html',            width : 350, title : 'ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½Å©'},
+        ModifyTable :   {tmpl : 'table_modify.html',    width : 430, title : 'Ç¥ ï¿½ï¿½Ä¡ï¿½ï¿½'},
+        Symbol :        {tmpl : 'symbol.html',          width : 450, title : 'Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'},
+        Table :         {tmpl : 'table.html',           width : 430, title : 'Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½'}
     },
     fontName: {
-        kr : ['¸¼Àº °íµñ', 'µ¸¿ò', '±¼¸²', '¹ÙÅÁ', '±Ã¼­'],
+        kr : ['ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½Ã¼ï¿½'],
         en : ['Arial', 'Comic Sans MS', 'Courier New', 'Georgia', 'HeadLineA', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana']
     },
     fontStyle: {
@@ -68,28 +68,28 @@ var GB = {
     },
     listStyle: {
         ordered: {
-            decimal: '¼ýÀÚ', 'lower-alpha': '¿µ¹® ¼Ò¹®ÀÚ', 'upper-alpha': '¿µ¹® ´ë¹®ÀÚ', 'lower-roman': '·Î¸¶ ¼Ò¹®ÀÚ', 'upper-roman': '·Î¸¶ ´ë¹®ÀÚ'
+            decimal: 'ï¿½ï¿½ï¿½ï¿½', 'lower-alpha': 'ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¹ï¿½ï¿½ï¿½', 'upper-alpha': 'ï¿½ï¿½ï¿½ï¿½ ï¿½ë¹®ï¿½ï¿½', 'lower-roman': 'ï¿½Î¸ï¿½ ï¿½Ò¹ï¿½ï¿½ï¿½', 'upper-roman': 'ï¿½Î¸ï¿½ ï¿½ë¹®ï¿½ï¿½'
         },
-        unOrdered: {desc: 'µ¿±×¶ó¹Ì', circle: 'ºó ¿ø', square: '»ç°¢Çü'}
+        unOrdered: {desc: 'ï¿½ï¿½ï¿½×¶ï¿½ï¿½', circle: 'ï¿½ï¿½ ï¿½ï¿½', square: 'ï¿½ç°¢ï¿½ï¿½'}
     },
     fontSize: {
         pt: [7, 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36],
         px: [9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72]
     },
     formatBlock: {
-        P: 'ÀÏ¹Ý ÅØ½ºÆ®',
-        H1: 'Á¦¸ñ 1',
-        H2: 'Á¦¸ñ 2',
-        H3: 'Á¦¸ñ 3',
-        H4: 'Á¦¸ñ 4',
-        H5: 'Á¦¸ñ 5',
-        H6: 'Á¦¸ñ 6',
+        P: 'ï¿½Ï¹ï¿½ ï¿½Ø½ï¿½Æ®',
+        H1: 'ï¿½ï¿½ï¿½ï¿½ 1',
+        H2: 'ï¿½ï¿½ï¿½ï¿½ 2',
+        H3: 'ï¿½ï¿½ï¿½ï¿½ 3',
+        H4: 'ï¿½ï¿½ï¿½ï¿½ 4',
+        H5: 'ï¿½ï¿½ï¿½ï¿½ 5',
+        H6: 'ï¿½ï¿½ï¿½ï¿½ 6',
         ADDRESS: 'Address',
         DIV: 'DIV',
         PRE: 'Preformatted (PRE)'
     },
     lineHeight: {
-        'ÇÑ ÁÙ °£°Ý': 1, '1.15': 1.15, '1.5': 1.5, '1.7': 1.7, '1.8': 1.8, 'µÎ ÁÙ °£°Ý': 2
+        'ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½': 1, '1.15': 1.15, '1.5': 1.5, '1.7': 1.7, '1.8': 1.8, 'ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½': 2
     },
     textBlock: [
         ['1px #dedfdf solid','#f7f7f7'],
@@ -431,11 +431,11 @@ function setConfig() {
     var config = {
         allowedOnEvent      : true,
         colorToHex          : true,
-        docTitle            : '³» ¹®¼­',
+        docTitle            : 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',
         editAreaMargin      : '5px 10px',
         editorBgColor       : '#fff',
         editorFontColor     : '#000',
-        editorFontName      : '"¸¼Àº °íµñ", "Malgun Gothic", gulim',
+        editorFontName      : '"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", "Malgun Gothic", gulim',
         editorFontSize      : '12px',
         editorHeight        : '300px',
         editorPath          : null,
@@ -448,21 +448,21 @@ function setConfig() {
         imgCaptionText      : 'margin: 5px 5px; text-align: left; line-height: 17px',
         imgCaptionWrapper   : '',
         imgDefaultAlign     : 'left',   // [left, center, right]
-        imgJpegQuality      : 0.92,     // JPEG »çÁøÀÇ Ä÷¸®Æ¼ °ª, ÃÖ´ë°ª 1
-        imgMaxWidth         : 800,      // »çÁø ÃÖ´ë °¡·Î Å©±â, ÀÌ Å©±â º¸´Ù Å©¸é ¸®»çÀÌÂ¡ Ã³¸®
-        imgResizeMinLimit   : 32,       // »çÁø ¸®»çÀÌÂ¡ÀÇ »ç¿ëÀÚ Á÷Á¢ ÀÔ·Â °ªÀÌ ÀÌ °ª º¸´Ù ÀÛÀ¸¸é, ÀÌ °ªÀ¸·Î ¼³Á¤
-        imgResizeSelected   : 800,      // »çÁø ¸®»çÀÌÂ¡ÀÇ ¼±ÅÃ ÀÔ·Â ÆûÀÇ ±âº» ¼±ÅÃ °ª
-        imgResizeValue      : [120, 240, 320, 640, 800, -1], // -1 = »ç¿ëÀÚ Á÷Á¢ ÀÔ·Â
+        imgJpegQuality      : 0.92,     // JPEG ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½ï¿½, ï¿½Ö´ë°ª 1
+        imgMaxWidth         : 800,      // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½, ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
+        imgResizeMinLimit   : 32,       // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        imgResizeSelected   : 800,      // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+        imgResizeValue      : [120, 240, 320, 640, 800, -1], // -1 = ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
         imgSetAttrAlt       : true,
-        imgSetAttrWidth     : 1,        // -1 = (width="100%"; height="auto"), 0 = ¼³Á¤ ¾ÈÇÔ, 1 = ±âº»°ª
+        imgSetAttrWidth     : 1,        // -1 = (width="100%"; height="auto"), 0 = ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, 1 = ï¿½âº»ï¿½ï¿½
         imgUploadNumber     : 12,
         imgUploadSortName   : false,
-        imgWaterMarkAlpha   : 1,        // ¿öÅÍ¸¶Å© ºÒÅõ¸íµµ (ÃÖ´ë°ª 1)
-        imgWaterMarkUrl     : '',       // ¿öÅÍ¸¶Å© ÀÌ¹ÌÁö URL (¿¹: 'http://udomain.com/cheditor/icons/watermark.png')
+        imgWaterMarkAlpha   : 1,        // ï¿½ï¿½ï¿½Í¸ï¿½Å© ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½Ö´ë°ª 1)
+        imgWaterMarkUrl     : '',       // ï¿½ï¿½ï¿½Í¸ï¿½Å© ï¿½Ì¹ï¿½ï¿½ï¿½ URL (ï¿½ï¿½: 'http://udomain.com/cheditor/icons/watermark.png')
         includeHostname     : true,
         lineHeight          : 1.7,
         linkTarget          : '_blank',
-        makeThumbnail       : false,    // »çÁøÀÇ ½æ³×ÀÏ ÀÌ¹ÌÁö »ý¼º, °¡·Î Å©±â´Â thumbnailWidth °ª, ¼¼·Î´Â ÀÚµ¿ °è»ê
+        makeThumbnail       : false,    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ thumbnailWidth ï¿½ï¿½, ï¿½ï¿½ï¿½Î´ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½
         paragraphCss        : false,    // true = <p style='margin:0'></p>, false = <p></p>
         removeIndent        : false,
         showTagPath         : false,
@@ -470,7 +470,7 @@ function setConfig() {
         tabIndex            : 0,
         thumbnailWidth      : 120,
 
-        // ¹öÆ° »ç¿ë À¯¹«
+        // ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         useSource           : true,
         usePreview          : true,
         usePrint            : true,
@@ -543,7 +543,7 @@ function setConfig() {
             }
         }
         if (config.editorPath === null) {
-            throw 'CHEditor °æ·Î°¡ ¹Ù¸£Áö ¾Ê½À´Ï´Ù.\nmyeditor.config.editorPath¸¦ ¼³Á¤ÇÏ¿© ÁÖ½Ê½Ã¿À.';
+            throw 'CHEditor ï¿½ï¿½Î°ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.\nmyeditor.config.editorPathï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ö½Ê½Ã¿ï¿½.';
         }
     }
 
@@ -587,11 +587,11 @@ function cheditor() {
     GB.browser = this.browser = detechBrowser();
 
     if (this.undefined(document.execCommand)) {
-        alert('ÇöÀç ºê¶ó¿ìÀú¿¡¼­ CHEditor¸¦ ½ÇÇàÇÒ ¼ö ¾ø½À´Ï´Ù.');
+        alert('ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ CHEditorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');
         return null;
     }
     if (this.browser.msie && this.browser.version < 7) {
-        alert('CHEditor´Â Internet Explorer 7 ÀÌÇÏ ¹öÀüÀº Áö¿øÇÏÁö ¾Ê½À´Ï´Ù.');
+        alert('CHEditorï¿½ï¿½ Internet Explorer 7 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.');
         return null;
     }
 
@@ -665,7 +665,7 @@ cheditor.prototype = {
     checkInputForm : function () {
         var textarea = document.getElementById(this.inputForm);
         if (!textarea) {
-            throw 'ID°¡ "' + this.inputForm + '"ÀÎ textarea °³Ã¼¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.';
+            throw 'IDï¿½ï¿½ "' + this.inputForm + '"ï¿½ï¿½ textarea ï¿½ï¿½Ã¼ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.';
         }
         textarea.style.display = 'none';
         this.cheditor.textarea = textarea;
@@ -707,7 +707,7 @@ cheditor.prototype = {
         if (iframeObj.contentWindow) {
             iframeWin = iframeObj.contentWindow;
         } else {
-            throw 'ÇöÀç ºê¶ó¿ìÀú¿¡¼­ ¿¡µðÅÍ¸¦ ½ÇÇàÇÒ ¼ö ¾ø½À´Ï´Ù.';
+            throw 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.';
         }
         return iframeWin;
     },
@@ -1035,7 +1035,7 @@ cheditor.prototype = {
         var self = this,
             httpRequest = null,
             showError = function (msg) {
-                alert(self.templateFile + ' ÆÄÀÏ ·Îµù Áß ¿À·ù°¡ ¹ß»ýÇÏ¿´½À´Ï´Ù.\n¿øÀÎ: ' + msg);
+                alert(self.templateFile + ' ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½: ' + msg);
             },
             templateReady = function () {
                 var event;
@@ -1070,7 +1070,7 @@ cheditor.prototype = {
                 httpRequest.open('GET', self.templatePath, true);
             }
             catch (e) {
-                showError(e + 'Âü°í: ¿¡µðÅÍ¸¦ À¥ ¼­¹ö¿¡¼­ ½ÇÇàÇÏ¿© ÁÖ½Ê½Ã¿À.');
+                showError(e + 'ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ö½Ê½Ã¿ï¿½.');
             }
             httpRequest.send();
         } else if (window.ActiveXObject) {
@@ -1079,7 +1079,7 @@ cheditor.prototype = {
             httpRequest.onreadystatechange = templateReady;
             httpRequest.load(self.templatePath);
         } else {
-            showError('ÇöÀç ºê¶ó¿ìÀú¿¡¼­ ' + self.templateFile + ' ÆÄÀÏÀ» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.');
+            showError('ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ' + self.templateFile + ' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');
         }
     },
 
@@ -1495,7 +1495,7 @@ cheditor.prototype = {
                         }
                     }
                     if (!el) {
-                        span.appendChild(document.createTextNode('½ºÅ¸ÀÏ'));
+                        span.appendChild(document.createTextNode('ï¿½ï¿½Å¸ï¿½ï¿½'));
                         wrapper.replaceChild(span, oldName);
                     }
                     this.unselectionElement(span);
@@ -1717,7 +1717,7 @@ cheditor.prototype = {
                     self.toolbarMouseDownOut(obj, true);
                     break;
                 default :
-                    alert('Áö¿øÇÏÁö ¾Ê´Â ¸í·ÉÀÔ´Ï´Ù.');
+                    alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.');
             }
             self.stopEvent(ev || window.event);
         });
@@ -1776,10 +1776,10 @@ cheditor.prototype = {
             onClickEventHandler = function () {
                 if (self.setFullScreenMode) {
                     this.className = 'cheditor-tb-fullscreen';
-                    this.setAttribute('title', 'ÀüÃ¼ È­¸é');
+                    this.setAttribute('title', 'ï¿½ï¿½Ã¼ È­ï¿½ï¿½');
                 } else {
                     this.className = 'cheditor-tb-fullscreen-actual';
-                    this.setAttribute('title', 'ÀÌÀü Å©±â·Î º¹¿ø');
+                    this.setAttribute('title', 'ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½');
                 }
                 self.fullScreenMode();
             };
@@ -1792,7 +1792,7 @@ cheditor.prototype = {
         if (self.config.useFullScreen === true) {
             fullscreen.appendChild(document.createTextNode('\u00a0'));
             fullscreen.className = 'cheditor-tb-fullscreen';
-            fullscreen.setAttribute('title', 'ÀüÃ¼ È­¸é');
+            fullscreen.setAttribute('title', 'ï¿½ï¿½Ã¼ È­ï¿½ï¿½');
             (function () {
                 fullscreen.onclick = onClickEventHandler;
             })();
@@ -2047,7 +2047,7 @@ cheditor.prototype = {
             container, popupWindow, modalFrame, dragHandle;
 
         if (!(tmpl.getElementsByTagName('Image').item(0).getAttribute('file'))) {
-            throw 'Åø¹Ù ¾ÆÀÌÄÜ ÀÌ¹ÌÁö ÆÄÀÏ ÀÌ¸§ÀÌ Á¤ÀÇµÇÁö ¾Ê¾Ò½À´Ï´Ù.';
+            throw 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.';
         }
 
         tmpDiv.innerHTML = html;
@@ -2535,7 +2535,7 @@ cheditor.prototype = {
                     size = value[i];
                     div = document.createElement('div');
                     label = document.createElement('label');
-                    text = size > 48 ? '°¡' : (size > 28 ? '°¡³ª´Ù' : '°¡³ª´Ù¶ó');
+                    text = size > 48 ? 'ï¿½ï¿½' : (size > 28 ? 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' : 'ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½');
                     size = size + self.config.fontSizeValue;
                     div.id = size;
                     (function () {
@@ -2652,7 +2652,7 @@ cheditor.prototype = {
                     div.style.fontFamily = self.config.editorFontName;
 
                     label = document.createElement('label');
-                    label.appendChild(document.createTextNode('°¡³ª´Ù¶ó ABC'));
+                    label.appendChild(document.createTextNode('ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½ ABC'));
                     div.appendChild(label);
                     wrapper.appendChild(div);
                     outputHtml.appendChild(wrapper);
@@ -4369,8 +4369,8 @@ cheditor.prototype = {
             reset = document.createElement('span'),
             pickerSwitch = document.createElement('span'),
             button = document.createElement('img'),
-            showTooltip = '´õ ¸¹Àº »ö º¸±â',
-            hideTooltip = '°¨Ãß±â',
+            showTooltip = 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',
+            hideTooltip = 'ï¿½ï¿½ï¿½ß±ï¿½',
             i, cell, color = 0, colorPicker, cellBorder,
             onMouseOverEventHandler = function () {
                 colorPicker.fromString(this.id);
@@ -5010,7 +5010,7 @@ cheditor.prototype = {
             }
             this.popupWinLoad(popup);
         } else {
-            alert('»ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.');
+            alert('ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.');
         }
     },
 
@@ -5039,7 +5039,7 @@ cheditor.prototype = {
         }
 
         if (cmd === 'NewDocument') {
-            if (confirm('±Û ³»¿ëÀÌ ¸ðµÎ »ç¶óÁý´Ï´Ù. °è¼ÓÇÏ½Ã°Ú½À´Ï±î?')) {
+            if (confirm('ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?')) {
                 this.doc.body.innerHTML = '';
             }
             this.images = [];
@@ -5051,7 +5051,7 @@ cheditor.prototype = {
         }
 
         if (cmd === 'ClearTag') {
-            if (confirm('¸ðµç HTML ÅÂ±×¸¦ »èÁ¦ÇÕ´Ï´Ù. °è¼ÓÇÏ½Ã°Ú½À´Ï±î?\n(P, DIV, BR ÅÂ±×¿Í ÅØ½ºÆ®´Â »èÁ¦ÇÏÁö ¾Ê½À´Ï´Ù.)')) {
+            if (confirm('ï¿½ï¿½ï¿½ HTML ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?\n(P, DIV, BR ï¿½Â±×¿ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.)')) {
                 content = this.doc.body.innerHTML;
                 this.doc.body.innerHTML = content.replace(/<(\/?)([^>]*)>/g,
                         function (a, b, c) {
@@ -5086,12 +5086,12 @@ cheditor.prototype = {
         if (!GB.browser.msie && (cmd === 'Cut' || cmd === 'Copy' || cmd === 'Paste')) {
             if ((range.execCommand(cmd, false, opt)) !== true) {
                 switch (cmd) {
-                    case 'Cut'  : keyboard = 'x'; command = 'ÀÚ¸£±â'; break;
-                    case 'Copy' : keyboard = 'c'; command = 'º¹»ç'; break;
-                    case 'Paste': keyboard = 'v'; command = 'ºÙÀÌ±â'; break;
+                    case 'Cut'  : keyboard = 'x'; command = 'ï¿½Ú¸ï¿½ï¿½ï¿½'; break;
+                    case 'Copy' : keyboard = 'c'; command = 'ï¿½ï¿½ï¿½ï¿½'; break;
+                    case 'Paste': keyboard = 'v'; command = 'ï¿½ï¿½ï¿½Ì±ï¿½'; break;
                 }
-                alert('»ç¿ëÇÏ°í °è½Å ºê¶ó¿ìÀú´Â º¸¾È »óÀÇ ÀÌÀ¯·Î \'' + command + '\' ¸í·ÉÀ» »ç¿ëÇÏ½Ç ¼ö ¾ø½À´Ï´Ù. \n\n' +
-                'Å°º¸µå ´ÜÃàÅ°¸¦ ÀÌ¿ëÇÏ¿© ÁÖ½Ê½Ã¿À.\n´ÜÃàÅ°: Windows: Ctrl+' + keyboard + ', Mac OS X: Command+' + keyboard);
+                alert('ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ \'' + command + '\' ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. \n\n' +
+                'Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½Ö½Ê½Ã¿ï¿½.\nï¿½ï¿½ï¿½ï¿½Å°: Windows: Ctrl+' + keyboard + ', Mac OS X: Command+' + keyboard);
                 this.editAreaFocus();
 
             }
@@ -5364,7 +5364,7 @@ cheditor.prototype = {
                 }
             }
         } catch (e) {
-            alert(cmd + ': Áö¿øµÇÁö ¾Ê´Â ¸í·ÉÀÔ´Ï´Ù. ' + e.toString());
+            alert(cmd + ': ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ' + e.toString());
         }
 
         this.toolbarUpdate();
@@ -5879,7 +5879,7 @@ cheditor.prototype = {
                 } else if (cmd === 'FontSize' || cmd === 'FontName' || cmd === 'ForeColor' || cmd === 'BackColor') {
                     if (cmd === 'ForeColor' || cmd === 'BackColor') {
                         opt = this.colorConvert(opt, 'hex');
-                    } else if (cmd === 'FontName' && opt === '¸¼Àº °íµñ') {
+                    } else if (cmd === 'FontName' && opt === 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½') {
                         opt += ', "Malgun Gothic"';
                     }
 
@@ -6106,22 +6106,22 @@ cheditor.prototype = {
             figureClassName = 'cheditor-caption',
             figCaptionClassName = 'cheditor-caption-text',
             imageWidthOpt = {
-                orig    : { size: 'normal', desc: '¿øº» Å©±â' },
-                fitpage : { size: '100%',   desc: 'ÆäÀÌÁö Å©±â¿¡ ¸ÂÃã' },
-                px160   : { size: 160,      desc: '½æ³×ÀÏ, 160 ÇÈ¼¿' },
-                px320   : { size: 320,      desc: 'ÀÛÀº Å©±â, 320 ÇÈ¼¿' },
-                px640   : { size: 640,      desc: 'Áß°£ Å©±â, 640 ÇÈ¼¿' },
-                px1024  : { size: 1024,     desc: 'Å©°Ô, 1024 ÇÈ¼¿' },
-                px1600  : { size: 1600,     desc: '¾ÆÁÖ Å©°Ô, 1600 ÇÈ¼¿' }
+                orig    : { size: 'normal', desc: 'ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½' },
+                fitpage : { size: '100%',   desc: 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½' },
+                px160   : { size: 160,      desc: 'ï¿½ï¿½ï¿½ï¿½ï¿½, 160 ï¿½È¼ï¿½' },
+                px320   : { size: 320,      desc: 'ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½, 320 ï¿½È¼ï¿½' },
+                px640   : { size: 640,      desc: 'ï¿½ß°ï¿½ Å©ï¿½ï¿½, 640 ï¿½È¼ï¿½' },
+                px1024  : { size: 1024,     desc: 'Å©ï¿½ï¿½, 1024 ï¿½È¼ï¿½' },
+                px1600  : { size: 1600,     desc: 'ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½, 1600 ï¿½È¼ï¿½' }
             },
-            captionAlignOpt = { left: '¿ÞÂÊ', center: '°¡¿îµ¥', right: '¿À¸¥ÂÊ' },
+            captionAlignOpt = { left: 'ï¿½ï¿½ï¿½ï¿½', center: 'ï¿½ï¿½ï¿½îµ¥', right: 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' },
             imageFloatOpt = {
                 left : {
-                    value : '¿ÞÂÊ',
+                    value : 'ï¿½ï¿½ï¿½ï¿½',
                     input : null
                 },
                 right : {
-                    value : '¿À¸¥ÂÊ',
+                    value : 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
                     input : null
                 }
             },
@@ -6385,7 +6385,7 @@ cheditor.prototype = {
             inputAlt.value = img.getAttribute('alt');
         }
 
-        div.appendChild(document.createTextNode('Å¸ÀÌÆ²:'));
+        div.appendChild(document.createTextNode('Å¸ï¿½ï¿½Æ²:'));
         inputTitle = createInputForm('text', 'inputTitle', '', 'user-input-alt');
         inputTitle.onfocus = function () {
             self.cheditor.modifyState = true;
@@ -6397,7 +6397,7 @@ cheditor.prototype = {
         }
 
         div.appendChild(document.createElement('br'));
-        div.appendChild(document.createTextNode('»çÁø Ä¸¼Ç:'));
+        div.appendChild(document.createTextNode('ï¿½ï¿½ï¿½ï¿½ Ä¸ï¿½ï¿½:'));
 
         inputCaption = createInputForm('text', 'inputCaption', '', 'user-input-caption');
         inputCaption.onfocus = function () {
@@ -6408,7 +6408,7 @@ cheditor.prototype = {
         };
         div.appendChild(inputCaption);
 
-        div.appendChild(document.createTextNode('Ä¸¼Ç ÅØ½ºÆ® Á¤·Ä:'));
+        div.appendChild(document.createTextNode('Ä¸ï¿½ï¿½ ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½:'));
         for (idx in captionAlignOpt) {
             if (captionAlignOpt.hasOwnProperty(idx)) {
                 fmSelectCaptionAlign.options[fmSelectCaptionAlign.options.length] = new Option(captionAlignOpt[idx], idx);
@@ -6880,55 +6880,55 @@ cheditor.prototype = {
                 self.doEditorEvent();
             },
             funcs = {
-                add_cols_after: { icon: 'table_insert_column.png', title: '¿­ »ðÀÔ',
+                add_cols_after: { icon: 'table_insert_column.png', title: 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',
                     func: function () {
                         insertColumn(ctd.cellIndex); tblReflash();
                     }},
-                add_rows_after: { icon: 'table_insert_row.png', title: 'Çà »ðÀÔ',
+                add_rows_after: { icon: 'table_insert_row.png', title: 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',
                     func: function () {
                         insertRow(ctr.rowIndex); tblReflash();
                     }},
-                remove_cols: { icon: 'table_delete_column.png', title: '¿­ »èÁ¦',
+                remove_cols: { icon: 'table_delete_column.png', title: 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',
                     func: function () {
                         deleteColumn(ctd.cellIndex); tblReflash();
                     }},
-                remove_rows: { icon: 'table_delete_row.png', title: 'Çà »èÁ¦',
+                remove_rows: { icon: 'table_delete_row.png', title: 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',
                     func: function () {
                         deleteRow(); tblReflash();
                     }},
                 sp1: { icon: 'dot.gif' },
-                merge_cell_right: { icon: 'table_join_row.png', title: '¿À¸¥ÂÊ ¼¿°ú º´ÇÕ',
+                merge_cell_right: { icon: 'table_join_row.png', title: 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',
                     func: function () {
                         mergeCellRight(); tblReflash();
                     }},
-                merge_cell_down: { icon: 'table_join_column.png', title: '¾Æ·¡ ¼¿°ú º´ÇÕ',
+                merge_cell_down: { icon: 'table_join_column.png', title: 'ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',
                     func: function () {
                         mergeCellDown(); tblReflash();
                     }},
-                split_cell_v: { icon: 'table_split_row.png', title: '¼¿ ¿­·Î ³ª´©±â',
+                split_cell_v: { icon: 'table_split_row.png', title: 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
                     func: function () {
                         splitCellVertical(); tblReflash();
                     }},
-                split_cell_h: { icon: 'table_split_column.png', title: '¼¿ ÇàÀ¸·Î ³ª´©±â',
+                split_cell_h: { icon: 'table_split_column.png', title: 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
                     func: function () {
                         splitCellHorizontal(); tblReflash();
                     }}
             },
             attrFuncs = {
                 setWidth: {
-                    txt: '°¡·ÎÆø',
+                    txt: 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
                     id: 'fm_cell_width',
                     marginRight: '10px',
                     value: ctd.getAttribute('width')
                 },
                 setHeight: {
-                    txt: '¼¼·ÎÆø',
+                    txt: 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
                     id: 'fm_cell_height',
                     marginRight: '10px',
                     value: ctd.getAttribute('height')
                 },
                 setBgcolor: {
-                    txt: '¹è°æ»ö',
+                    txt: 'ï¿½ï¿½ï¿½ï¿½',
                     id: 'fm_cell_bgcolor',
                     marginRight: '2px',
                     value: ctd.getAttribute('bgcolor')
@@ -6972,7 +6972,7 @@ cheditor.prototype = {
         deleteSubmit.src = this.config.iconPath + 'delete_table.png';
         deleteSubmit.style.marginLeft = '22px';
         deleteSubmit.className = 'edit-table-ico';
-        deleteSubmit.setAttribute('title', 'Å×ÀÌºí »èÁ¦');
+        deleteSubmit.setAttribute('title', 'ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½');
         deleteSubmit.onclick = deleteSubmitEventHandler;
         div.appendChild(deleteSubmit);
 

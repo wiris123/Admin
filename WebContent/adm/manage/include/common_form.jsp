@@ -13,7 +13,7 @@
 		path_str = "상담예약";
 		page_flag="consult_";
 		break;
-	case "e":
+	case "mail":
 		path_str = "이메일상담";
 		page_flag ="email_";
 		break;

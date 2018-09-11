@@ -92,8 +92,41 @@ $(function(){
 						<tr>
 							<td colspan="4" align="center" style="padding: 10px 0;">
 								<div>
-									<script type="text/javascript" src="../../../adm/webedit/cheditor.js"></script>
-									<textarea id="content" name="contents">${dto.contents }</textarea>
+									<script type="text/javascript" src="../common/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+									<textarea rows="10" cols="30" id="ir1" name="contents" style="width: 766px; height: 412px;">${dto.contents }</textarea>
+									<script type="text/javascript">
+										var oEditors = [];
+										$(function() {
+											nhn.husky.EZCreator
+													.createInIFrame({
+														oAppRef : oEditors,
+														elPlaceHolder : "ir1",
+														//SmartEditor2Skin.html 파일이 존재하는 경로
+														sSkinURI : "../common/se2/SmartEditor2Skin.html",
+														htParams : {
+															// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+															bUseToolbar : true,
+															// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+															bUseVerticalResizer : false,
+															// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+															bUseModeChanger : true,
+															fOnBeforeUnload : function() {
+
+															}
+														},
+														fCreator : "createSEditor2"
+													});
+													//전송버튼 클릭이벤트
+											        $("#savebutton").click(function() {
+											            //id가 smarteditor인 textarea에 에디터에서 대입
+											            oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+											 
+											            // 이부분에 에디터 validation 검증
+											            //폼 submit
+											            $("#bbsFrm").submit();
+											        })
+										});
+									</script>
 								</div>
 							</td>
 						</tr>
@@ -112,7 +145,7 @@ $(function(){
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td align="right">
-									<input type='image' src='../../../adm/bbs/skin/myBasic/image/btn_confirm.gif' border='0'>&nbsp;<img src='../../../adm/bbs/skin/myBasic/image/btn_cancel.gif' border='0' onClick='window.close();' style='cursor: pointer'>
+									<input type="image" id="savebutton" src='../../../adm/bbs/skin/myBasic/image/btn_confirm.gif' border='0'>&nbsp;<img src='../../../adm/bbs/skin/myBasic/image/btn_cancel.gif' border='0' onClick='window.close();' style='cursor: pointer'>
 								</td>
 							</tr>
 						</table>
