@@ -1,3 +1,5 @@
+<%@page import="dto.VisitorValDTO"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="dto.VisitorDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -11,13 +13,31 @@ ConnectDAO dao = new ConnectDAO();
 //오늘 날짜를 가져오기
 Date date = new Date();
 SimpleDateFormat dt1 = new SimpleDateFormat("YYYY-MM-dd");
-String end = dt1.format(date);
+String today = dt1.format(date);
+String end = (request.getParameter("todate")=="")?today:request.getParameter("todate");
 
-//일주일전 날짜를 가져오기
-java.util.Calendar cal = java.util.Calendar.getInstance();
+//칼렌더를 이용하여서 다양한 날짜 가져오기
+Calendar calw = Calendar.getInstance();
+Calendar calm = Calendar.getInstance();
+Calendar caly =  Calendar.getInstance();
 java.text.DateFormat format = new java.text.SimpleDateFormat("YYYY-MM-dd");
-cal.add(cal.DATE, -7); // 7일(일주일)을 뺀다
-String start = format.format(cal.getTime());
+
+//7일, 한달, 세달, 6개월, 1년 단위를 구한다
+calw.add(calw.DATE, -7); // 7일(일주일)을 뺀다
+String aweak = format.format(calw.getTime());//디비타입에 맞게 형변환후 저장
+calm.add(calm.MONTH, -1); // 한달을 뺀다
+String oneMonth = format.format(calm.getTime()); //한달전 저장
+calm.add(calm.MONTH, -2); // 두달을 더뺀다(총 3달)
+String threeMonth = format.format(calm.getTime());
+calm.add(calm.MONTH, -3); // 세달을 더뺀다(총 6달)
+String sixMonth = format.format(calm.getTime());
+caly.add(caly.YEAR, -1);//1년을 뺸다
+String year = format.format(caly.getTime());
+VisitorValDTO avdto = dao.getTotVisitor();
+
+System.out.println("한달:"+oneMonth+"\n세달:"+threeMonth+"\n여섯달:"+sixMonth);
+
+String start = (request.getParameter("fromdate")=="")?aweak:request.getParameter("fromdate");
 
 List<VisitorDTO> bbs = dao.selectList(start, end);
 dao.close();
@@ -94,6 +114,12 @@ dao.close();
 			$.cookie('left_quick', 'open', { expires: 1, path: '/', domain: 'localhost:8080', secure: false });			
 		}
 	}
+	function chgTerm(term){
+		
+		var f	 =  document.getElementById('frm');
+		f.fromdate.value	= term;
+		f.submit();
+	}
 </script>
 </head>
 <body>
@@ -105,79 +131,33 @@ dao.close();
 	</div><!-- //left_area// -->
 
 	<div id="Container">
-<script language="javascript">
-<!--
-function delConnect(){
-	if(confirm("접속자분석 모든 데이타가 삭제됩니다. 초기화 하시겠습니까?")){
-		document.location = 'connect_savefb35.html?mode=dellist';
-	}
-}
-function chgType(type){
-	var f				= document.frm;
-	var	OH_pdate		= '2018-08-08';
-	var	OH_ndate		= '2018-08-08';
-	var	OD_pdate		= '2018-08-01';
-	var	OD_ndate		= '2018-08-31';
-	var	OM_pdate		= '2018-01-01';
-	var	OM_ndate		= '2018-12-31';
-	var	OY_pdate		= '2013-01-01';
-	var	OY_ndate		= '2023-12-31';
-	var prev_date		= eval(type+'_pdate');
-	var next_date		= eval(type+'_ndate');
-	f.prev_date.value	= prev_date;
-	f.next_date.value	= next_date;
-	f.submit();
-}
-function chgTerm(term){
-	var f				= document.frm;
-	var	TO_pdate		= '2018-08-08';
-	var	D7_pdate		= '2018-08-01';
-	var	M1_pdate		= '2018-07-07';
-	var	M3_pdate		= '2018-05-07';
-	var	M6_pdate		= '2018-02-07';
-	var	Y1_pdate		= '2017-08-07';
-	var prev_date		= eval(term+'_pdate');
-	var next_date		= '2018-08-08';
-	f.prev_date.value	= prev_date;
-	f.next_date.value	= next_date;
-	f.submit();
-}
--->
-</script>
 
  <div id="location">HOME > 접속자분석</div>
 <div id="S_contents">
 <h3>접속자분석<span>접속자를 오늘/시간/일별/월별/년별 로 분석합니다.</span></h3>	
 
-<form name="frm" action="http://demohome.anywiz.co.kr/adm/manage/connect/connect_list.php" method="get">
+<form name="frm" id="frm" action="./connect_list.jsp" method="get">
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="table_basic">
 	<tr>
 		<th width="15%">분석방법</th>
 		<td width="85%">
-			<input type="radio" name="analy_type" value="OD" onClick="chgType(this.value);" class="radio"  checked/> 일별&nbsp;&nbsp;
-			<input type="radio" name="analy_type" value="OM" onClick="chgType(this.value);" class="radio"  /> 월별&nbsp;&nbsp;
-			<input type="radio" name="analy_type" value="OY" onClick="chgType(this.value);" class="radio"  /> 년별
-		</td>
+			<button type="button" class="h22 small t3 gray_s" value="<%=aweak %>" onclick="chgTerm(this.value);">1주일</button>
+			<button type="button" class="h22 small t3 gray_s" value="<%=oneMonth %>" onclick="chgTerm(this.value);">1개월</button>
+			<button type="button" class="h22 small t3 gray_s" value="<%=threeMonth %>" onclick="chgTerm(this.value);">3개월</button>
+			<button type="button" class="h22 small t3 gray_s" value="<%=sixMonth %>" onclick="chgTerm(this.value);">6개월</button>
+			<button type="button" class="h22 small t3 gray_s" value="<%=year %>" onclick="chgTerm(this.value);">1년</button>
+		</td>	
 	</tr>
 	<tr>
 		<th>기간</th>
-		<td>
-			<input class="input w100" type="text" id="datepicker1" name="prev_date" value="2018-08-08" readonly>
+		<td>	
+			<input class="input w100" type="text" id="datepicker1" name="fromdate" value="<%=aweak %>" readonly>
 			<input type="button" class="btn_calendar" id="" disabled/> ~
-			<input class="input w100" type="text" id="datepicker2" name="next_date" value="2018-08-08" readonly>
-			<input type="button" class="btn_calendar" id="" disabled/>
-			
-						<button type="button" class="h22 small t3 gray_s" value="TO" onclick="chgTerm(this.value);">오늘</button>
-			<button type="button" class="h22 small t3 gray_s" value="D7" onclick="chgTerm(this.value);">1주일</button>
-			<button type="button" class="h22 small t3 gray_s" value="M1" onclick="chgTerm(this.value);">1개월</button>
-			<button type="button" class="h22 small t3 gray_s" value="M3" onclick="chgTerm(this.value);">3개월</button>
-			<button type="button" class="h22 small t3 gray_s" value="M6" onclick="chgTerm(this.value);">6개월</button>
-			<button type="button" class="h22 small t3 gray_s" value="Y1" onclick="chgTerm(this.value);">1년</button>
-						
+			<input class="input w100" type="text" id="datepicker2" name="todate" value="<%=today %>" readonly>
+			<input type="button" class="btn_calendar" id="" disabled/>				
 			<button style="height:22px;vertical-align:bottom;" type="submit" class="b h28 t5 color blue_big">검색</button>
 		</td>
-	</tr>
-
+	</tr>	
 </table>
 </form>
 <br />
@@ -219,9 +199,9 @@ chart = new CanvasJS.Chart("chartContainer", {
 <div id="my_chart11"></div><table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic top10">
 	<tr>
 		<th width="25%" height="30">총 접속자 수</th>
-		<td width="25%"><font color=064F92><B>1440</b></font>명</td>
+		<td width="25%"><font color=064F92><B><%=avdto.getTot() %></b></font>명</td>
 		<th width="25%">평균 접속자 수</th>
-		<td width="25%"><font color=064F92><B>1.098</b></font>명</td>
+		<td width="25%"><font color=064F92><B><%=avdto.getAvg()%></b></font>명</td>
 	</tr>
 	<tr>
 		<th height="30">오늘 접속자 수</th>

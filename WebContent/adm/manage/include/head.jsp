@@ -92,10 +92,10 @@
 						</ul></li>
 				</ul></li>
 
-			<li><a href="../connect/connect_list.jsp"
+			<li><a href="../connect/connect_list.jsp?fromdate=&todate="
 				onFocus="this.blur();"><span>접속통계</span></a>
 				<ul class="category">
-					<li><a href="../connect/connect_list.jsp">접속자분석</a></li>
+					<li><a href="../connect/connect_list.jsp?fromdate=&todate=">접속자분석</a></li>
 				</ul></li>
 
 			<li><a href="#" onFocus="this.blur();"><span>상품관리</span></a>
