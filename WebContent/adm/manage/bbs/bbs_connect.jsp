@@ -77,6 +77,6 @@
 	</div>
 	<!-- //Container_wrap// -->
 </div>
-
+<div id="Footer">Copyright ⓒ 2016 Insurance & Saving Management  All rights reserved.</div>
 </body>
 </html>

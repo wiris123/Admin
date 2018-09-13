@@ -43,7 +43,7 @@
     <li class="on"><a href="connect_list.jsp" onFocus="this.blur();">접속자분석</a>
         <ul>
 			<li class="">
-				<a href="connect_list.jsp">접속자분석</a>
+				<a href="connect_list.jsp?fromdate=&todate=">접속자분석</a>
 			</li>
 
         </ul>

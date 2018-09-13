@@ -81,33 +81,22 @@ public class MemberDAO {
 		List<MemberDTO> bbs = new Vector<MemberDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
-		String query = "SELECT member.*,rownum FROM member where ";
-				
-		if(map.get("Word")!=null) 
-		{
-			if(map.get("Column").equals("both")) 
-			{
-				query +=""
-				  + "title LIKE '%"+ map.get("Word") +"%' "
-				  +" OR "
-				  +" content LIKE '%"+ map.get("Word") +"%' "
-			  		+ "and ";
+		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM member WHERE 1=1 ";
+		if (map.get("Word") != null) {
+			if (map.get("Column").equals("both")) {
+				query += " and " + "title LIKE '%" + map.get("Word") + "%' " + " OR " + " contents LIKE '%"
+						+ map.get("Word") + "%' ";
+			} else {
+				query += " and " + map.get("Column") + " " + " LIKE '%" + map.get("Word") + "%' ";
 			}
-			else {
-				query +=""+ map.get("Column") +" "
-				  +" LIKE '%"+ map.get("Word") +"%' "
-			  		+ " and ";
-				
-			}			
 		}
-		query +="rownum BETWEEN ? AND ?"
-			    +" ORDER BY rownum desc ";
+		query += " ORDER BY regidate desc ) e) where rNum BETWEEN ? AND ?";
 		System.out.println("쿼리문:"+ query);			
 			
 		try {
 			//3.prepare객체생성 및 실행
 			psmt = con.prepareStatement(query);
-
+			System.out.println("들오온 숫짜는"+map.get("start").toString());
 			psmt.setString(1, map.get("start").toString());
 			psmt.setString(2, map.get("end").toString());
 			
@@ -138,7 +127,7 @@ public class MemberDAO {
 		return bbs;
 	}
 	
-	
+	//현제 회원수
 	public int getTotalRecordCount(
 			Map<String,Object> map) {		
 		int totalCount = 0;
@@ -169,6 +158,8 @@ public class MemberDAO {
 				
 		return totalCount;
 	}
+	
+	
 	
 	//회원목록 삭제
 	public int delete(String id) {
@@ -261,27 +252,16 @@ public class MemberDAO {
 		List<OutMemDTO> bbs = new Vector<OutMemDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
-		String query = "SELECT with_member.*,rownum FROM with_member where ";
-		
-		if(map.get("Word")!=null) 
-		{
-			if(map.get("Column").equals("both")) 
-			{
-				query +=""
-				  + "title LIKE '%"+ map.get("Word") +"%' "
-				  +" OR "
-				  +" content LIKE '%"+ map.get("Word") +"%' "
-			  		+ "and ";
+		String query = "SELECT * FROM (SELECT e.*, rownum rnum FROM (SELECT * FROM with_member WHERE 1=1 ";
+		if (map.get("Word") != null) {
+			if (map.get("Column").equals("both")) {
+				query += " and " + "title LIKE '%" + map.get("Word") + "%' " + " OR " + " contents LIKE '%"
+						+ map.get("Word") + "%' ";
+			} else {
+				query += " and " + map.get("Column") + " " + " LIKE '%" + map.get("Word") + "%' ";
 			}
-			else {
-				query +=""+ map.get("Column") +" "
-				  +" LIKE '%"+ map.get("Word") +"%' "
-			  		+ " and ";
-				
-			}			
 		}
-		query +="rownum BETWEEN ? AND ?"
-			    +" ORDER BY rownum desc ";
+		query += " ORDER BY regidate desc ) e) where rNum BETWEEN ? AND ?";
 		System.out.println("쿼리문:"+ query);			
 			
 		try {
@@ -463,7 +443,7 @@ public class MemberDAO {
 		//적용된 행의 갯수확인을 위한 변수
 		int affected = 0;
 		try {
-			String query = "INSERT INTO with_member ( id,reason) VALUES ( ?, ? )";
+			String query = "INSERT INTO with_member ( id,reason, regidate) VALUES ( ?, ?, sysdate )";
 
 			psmt = con.prepareStatement(query);
 			

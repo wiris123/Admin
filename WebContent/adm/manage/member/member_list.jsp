@@ -31,9 +31,7 @@ if(searchWord!=null){
 	param.put("Word", searchWord);
 	
 	//파라미터 추가
-	queryStr = String.format("searchColumn=%s"
-		+"&searchWord=%s&", searchColumn,
-			searchWord);
+	queryStr = String.format("searchColumn=%s"+"&searchWord=%s&", searchColumn, searchWord);
 }
 
 
@@ -43,10 +41,8 @@ int totalRecordCount =
 	dao.getTotalRecordCount(param); 
 
 //2.web.xml에 설정된 값 가져오기
-int pageSize = Integer.parseInt(
-	application.getInitParameter("PAGE_SIZE"));
-int blockPage = Integer.parseInt(
-	application.getInitParameter("BLOCK_PAGE"));
+int pageSize = 10;
+int blockPage = 5;
 
 //3.전체페이지수 계산하기
 int totalPage = 
@@ -68,6 +64,8 @@ param.put("end", end);
 
 
 List<MemberDTO> bbs = dao.selectList(param);
+
+String paging = PagingUtil.pagingImgServlet(totalRecordCount,pageSize,blockPage,nowPage,"member_list.jsp?"+queryStr);
 
 dao.close();
 %>
@@ -190,7 +188,6 @@ function selectAll(obj) {
 						<td width="5%"><input type="checkbox" name="select_tmp"   onClick="selectAll(this)"/></td>
 						<td width="5%">번호</td>
 						<td>아이디</td>
-						<td width="15%">패스워드</td>
 						<td width="15%">이름</td>
 						<td width="15%">이메일</td>
 						<td width="5%">전화번호</td>
@@ -224,7 +221,6 @@ function selectAll(obj) {
 							<td><input type="checkbox" name="select_chkbox" value="<%=dto.getId()%>"/></td>
 							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=vNum %></a></td>
 							<td class="text-left"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getId() %></a></td>
-							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getPass() %></a></td>
 							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getName() %></a></td>
 							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getEmail() %></a></td>
 							<td class="text-center"><a href="member_view.jsp?id=<%=dto.getId()%>&nowPage=<%=nowPage %>"><%=dto.getMobile() %></a></td>
@@ -244,7 +240,7 @@ function selectAll(obj) {
 	    <!--페이징 처리  -->
 		<div class="row text-center" style="text-align:center">
 			<ul class="pagination">
-				<%=PagingUtil.pagingImgServlet(totalRecordCount,pageSize,blockPage,nowPage,"member_list.jsp?"+queryStr) %>
+				<%=paging %>
 			</ul>	
 		</div>
 	</div>

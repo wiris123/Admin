@@ -11,10 +11,13 @@ CommDTO dto = new CommDTO();
 String b_id = request.getParameter("b_id");
 int nowPage = (request.getParameter("nowPage") == "") ? 1: Integer.parseInt(request.getParameter("nowPage"));
 String num = request.getParameter("num");
+String content = request.getParameter("com_content");
+content = content.replace("\r\n", "<br>");
 //DB에 입력할 데이터를 dto 에 저장
 dto.setCom_name(request.getParameter("com_name"));
-dto.setCom_content(request.getParameter("com_content"));
+dto.setCom_content(content);
 dto.setBoard_idx(num);
+
 
 BbsDAO dao = new BbsDAO();
 

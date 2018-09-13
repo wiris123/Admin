@@ -229,5 +229,9 @@
 					</table>
 				</div>
 				<!-- 버튼 끝 -->
+				</td>
+				</tr>
+				</table>
+				
 </body>
 </html>
