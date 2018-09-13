@@ -1,3 +1,8 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="controller.ConnectDAO"%>
+<%@page import="dto.VisitorDTO"%>
 <%@page import="dto.MemberDTO"%>
 <%@page import="controller.MemberDAO"%>
 <%@page import="dto.BoardDTO"%>
@@ -33,6 +38,20 @@
 	List<MemberDTO> membbs = memdao.selectList(param);
 	listdao.close();
 	memdao.close();
+	
+	ConnectDAO dao = new ConnectDAO();  
+	//날짜
+	//오늘 날짜를 가져오기
+	Date date = new Date();
+	SimpleDateFormat dt1 = new SimpleDateFormat("YYYY-MM-dd");
+	String end = dt1.format(date);
+	//일주일전 날짜 가져오기
+	Calendar calw =  Calendar.getInstance();
+	java.text.DateFormat format = new java.text.SimpleDateFormat("YYYY-MM-dd");
+	calw.add(calw.DATE, -7); // 7일(일주일)을 뺀다
+	String start = format.format(calw.getTime());
+	List<VisitorDTO> bbs2 = dao.selectList(start, end);
+	dao.close();
 %>
 <!DOCTYPE html>
 <html>
@@ -42,8 +61,33 @@
 <link href="../wiz_style.css" rel="stylesheet" type="text/css" />
 <script>	
 	window.onload = function() {
+		var chart = null;
+		var dataPoints = [];
 
-		var chart = new CanvasJS.Chart("chartContainer", {
+
+		chart = new CanvasJS.Chart("chartContainer", {
+			animationEnabled: true,
+			theme: "light2",
+			title: {
+				text: "접속 통계 차트"
+			},
+			axisY: {
+				title: "",
+				titleFontSize: 24
+			},
+			data: [{
+				type: "column",
+				yValueFormatString: "#,### Units",
+				dataPoints: [
+		 <%for(VisitorDTO dto : bbs2 ){%>
+		 			{ x: new Date(<%=dto.getVisit_date()%>), y: <%=dto.getVal()%> },
+		<%}%>
+				]
+				
+			}]
+		});
+
+		var chart2 = new CanvasJS.Chart("chartContainer2", {
 			animationEnabled : true,
 			title : {
 				horizontalAlign : "left"
@@ -68,7 +112,8 @@
 				}, ]
 			} ]
 		});
-		chart.render();
+		chart.render(); 
+		chart2.render();
 
 	}
 </script>
@@ -187,7 +232,7 @@ for(MemberDTO dto : membbs){ %>
 												"wmode" : "transparent"
 											});
 						</script>
-						<div id="chartContainer" style="height: 200px; width: 100%;"></div>
+						<div id="chartContainer2" style="height: 200px; width: 100%;"></div>
 						<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 						<div style="padding-top: 5px">
 							<font style='padding-left: 15px' color='#01a595'>■</font><font
@@ -208,23 +253,9 @@ for(MemberDTO dto : membbs){ %>
 						<br />
 						<script type="text/javascript" src="../../js/json2.js"></script>
 						<script type="text/javascript" src="../../js/swfobject.js"></script>
-						<script type="text/javascript">
-							swfobject
-									.embedSWF(
-											"../../flashChart/open-flash-chart.swf",
-											"my_chart2",
-											"100%",
-											"250",
-											"9.0.0",
-											"../../flashChart/expressInstall.html",
-											{
-												"data-file" : "/adm/flashChart/chartData.php?chart_param=common|OD|2018-08-01|2018-08-31",
-												"loading" : "로딩중..."
-											}, {
-												"wmode" : "transparent"
-											});
-						</script>
-						<div id="my_chart2"></div>
+
+
+<div id="chartContainer" style="height: 70%; width: 100%;"></div>
 						<div style="padding-top: 5px">
 							<font style='padding-left: 15px' color='#01a595'>■</font><font
 								style='color: #797979; font-size: 11px;'>방문자수</font>

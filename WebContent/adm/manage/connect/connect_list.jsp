@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-ConnectDAO dao = new ConnectDAO(); 
+ConnectDAO dao = new ConnectDAO();  
 
 //오늘 날짜를 가져오기
 Date date = new Date();
@@ -184,7 +184,7 @@ chart = new CanvasJS.Chart("chartContainer", {
 		type: "column",
 		yValueFormatString: "#,### Units",
 		dataPoints: [
- <%for(VisitorDTO dto : bbs){%>
+ <%for(VisitorDTO dto : bbs ){%>
  			{ x: new Date(<%=dto.getVisit_date()%>), y: <%=dto.getVal()%> },
 <%}%>
 		]

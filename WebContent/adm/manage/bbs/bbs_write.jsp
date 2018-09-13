@@ -21,21 +21,7 @@ history.go(-1);
 <%}%>
 var b_id = "<%=request.getParameter("b_id")%>";
 $(function(){
-<<<<<<< HEAD
-	$("#bbsFrm").submit(function() {
-		if($("#attfile").get(0).files.length==0){
-			$("#bbsFrm").attr("action","./proc/bbs_write_proc.jsp?flag=<%=request.getParameter("flag")%>&filecheck=1")
-		}
-		else{
-			if(b_id=="photo"){
 
-					var ext = $('#attfile').val().split('.').pop().toLowerCase();
-
-					if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
-						 alert('gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.');
-						 return false;
-					}	
-=======
  	$("#bbsFrm").submit(function() {
  		if($("#attfile").get(0).files.length==0){
  			$("#bbsFrm").attr("action","./proc/bbs_write_proc.jsp?flag=<%=request.getParameter("b_id")%>&filecheck=1")
@@ -55,10 +41,10 @@ $(function(){
  			}
  	    	$("#bbsFrm").attr("enctype","multipart/form-data")
  	    	$("#bbsFrm").attr("action","./proc/bbs_write_proc.jsp?flag=<%=request.getParameter("b_id")%>&filecheck=0")
->>>>>>> branch 'underwearRun' of https://github.com/wiris123/Admin
+
 			}
-						});
 	});
+});
 </script>
 
 </head>
