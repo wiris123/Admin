@@ -19,6 +19,7 @@ String paidprem = request.getParameter("paidprem");
 String prem = request.getParameter("prem");
 String contstat = request.getParameter("contstat");
 String mode = request.getParameter("mode");
+String death_ins = request.getParameter("death_ins");
 
 //커넥션풀로 dao객체 생성
 InsuDAO dao = new InsuDAO();
@@ -33,6 +34,7 @@ dto.setRemainpay(remainpay);
 dto.setPaidprem(paidprem);
 dto.setPrem(prem);
 dto.setContstat(contstat);
+dto.setDeath_ins(death_ins);
 
 affected = dao.insertStatusWrite(dto,mode);
 

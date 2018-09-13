@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상품등록</title>
+<title>정기보험 상품등록</title>
 <link rel="stylesheet" href="../../css/jquery-ui.css">
 <script src="../../js/jquery-1.10.2.js"></script>
 <script src="../../js/jquery-ui.js"></script>

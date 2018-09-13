@@ -376,12 +376,16 @@ public class InsuDAO
 		
 		return affected;
 	}
+	
+	
+	//가입현황의 리스트를 출력하는 메소드
 	public List<MyStatusDTO> selectStatusList(Map<String,Object> map){
 		
 		//1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 
 		List<MyStatusDTO> bbs = new Vector<MyStatusDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
+		String mode =map.get("mode").toString();
 		String query = "select member_"+map.get("mode")+"_my.*,rownum from member_"+map.get("mode")+"_my where ";
 		
 		if(map.get("Word")!=null) {
@@ -418,15 +422,25 @@ public class InsuDAO
 				//6.결과셋을 하나씩 DTO객체에 저장
 				MyStatusDTO dto = new MyStatusDTO();
 				
-				dto.setNum(rs.getString(1));
-				dto.setId(rs.getString(2));
-				dto.setInsname(rs.getString(3));
-				dto.setInsnum(rs.getString(4));
-				dto.setRemainpay(rs.getString(5));
-				dto.setPaidprem(rs.getString(6));
-				dto.setPrem(rs.getString(7));
-				dto.setContstat(rs.getString(8));
-				
+				dto.setNum(rs.getString("num"));
+				dto.setId(rs.getString("id"));
+				dto.setInsname(rs.getString("insname"));
+				dto.setInsnum(rs.getString("insnum"));
+				dto.setRemainpay(rs.getString("remainpay"));
+				dto.setPaidprem(rs.getString("paidprem"));
+				dto.setPrem(rs.getString("prem"));
+				dto.setContstat(rs.getString("contstat"));
+				if(mode.equals("term"))
+				{
+					dto.setDeath_ins(rs.getString("death_ins"));
+					dto.setRegidate(rs.getDate("regidate"));
+				}
+				else if(mode.equals("annu"))
+				{
+					dto.setMonthann(rs.getString("monthann"));
+					
+				}
+					
 				
 				//7.DTO객체를 컬렉션에 추가
 				bbs.add(dto);
@@ -440,6 +454,8 @@ public class InsuDAO
 		return bbs;
 	}
 	
+	
+		//보험의 정보를 출력
 	   public List<AnnuDTO> selectList1(Map<String,Object> map){
 		      
 		      //1.결과 레코드셋을 담기위한 리스트계열 컬렉션생성 

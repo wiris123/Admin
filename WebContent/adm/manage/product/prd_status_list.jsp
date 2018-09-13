@@ -6,6 +6,7 @@
 <%@page import="controller.InsuDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%
 //한글처리
 	request.setCharacterEncoding("UTF-8");
@@ -208,6 +209,35 @@
     		}
     	}
     }
+    
+ // 선택수정
+    function prdEdit() {
+    	var selvalue = document.getElementsByName("select_chkbox")
+    	var name= null;
+    	var mode = document.getElementById("mode");
+    	
+    	//한번 for문으로 훑어서 체크된값이 있다면 name 에 저장
+    	for (var i = 0; i <= selvalue.length-1; i++) {
+    		if (selvalue[i].checked) {
+    			if(name==null) name='-' + selvalue[i].value;
+    			else name +=  '-' + selvalue[i].value;
+    		}
+    	}
+    	//없었다면
+    	if (name == null) {
+    		alert("삭제할 상품을 선택하세요.");
+    		return false;
+    	} 
+    	
+    	//있다면 다시한번 삭제할것인지 확인
+    	else 
+    	{
+    		if (confirm("선택한 상품을 정말 삭제하시겠습니까?")) 
+    		{
+    			document.location = "./proc/prd_del_status.jsp?mode="+mode+"&num="+name;
+    		}
+    	}
+    }
 	
 </script>
 </head>
@@ -256,17 +286,56 @@
 		      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bbs_basic_list top2">    	
 				<input type="hid den" id="mode" value="<%=mode %>" />
       	<thead>
-	       <tr>
+      	<%if(mode.equals("annu"))
+      		{
+			%>
+			 <tr>
 	          <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
-	          <td width="5%">num</td>
-	          <td width="14.1%">회원아이디</td>
-	          <td width="14.1%">보험이름</td>
-	          <td width="14.1%">보험계약번호</td>
-	          <td width="14.1%">납입한 보험료</td>
-	          <td width="14.1%">최종납입사항</td>
-	          <td width="14.1%">보험료</td>
-	          <td width="5">계약상태</td>
+	          <td width="5%">인덱스NUM</td>
+	          <td width="9%">회원아이디</td>
+	          <td width="9%">보험이름</td>
+	          <td width="9%">보험계약번호</td>
+	          <td width="9%">잔여납입횟수</td>
+	          <td width="9%">최종납입사항</td>
+	          <td width="9%">보험료</td>
+	          <td width="9%">예상연금수령액</td>
+	          <td width="9%">계약상태</td>
 	        </tr>
+	        <% }
+      		else if(mode.equals("term"))
+      		{
+      		%>
+      		<tr>
+	          <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
+	          <td width="5%">인덱스NUM</td>
+	          <td width="9%">회원아이디</td>
+	          <td width="9%">보험이름</td>
+	          <td width="9%">보험계약번호</td>
+	          <td width="9%">잔여납입횟수</td>
+	          <td width="9%">납입한 보험료</td>
+	          <td width="9%">보험료</td>
+	          <td width="9%">계약상태</td>
+	          <td width="9%">사망보험금</td>
+	          <td width="9%">계약일자</td>
+	        </tr>	
+      		<%}
+      		else
+      		{
+      		%>
+      		<tr>
+	          <td width="5%"><input type="checkbox" name="select_all" onClick="selectAll(this);"></td>
+	          <td width="5%">인덱스NUM</td>
+	          <td width="9%">회원아이디</td>
+	          <td width="9%">보험이름</td>
+	          <td width="9%">보험계약번호</td>
+	          <td width="9%">최종납입사항</td>
+	          <td width="9%">납입한 보험료</td>
+	          <td width="9%">보험료</td>
+	          <td width="9%">계약상태</td>
+	          <td width="9%">계약일자</td>
+	          
+	        </tr>	
+      		<%}%>
 		</thead>
 		<tbody>
 				  <%
@@ -297,13 +366,29 @@ else
 		  <tr>
         	<td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getNum()%>"></td>
           <td width="5%"><%=dto.getNum() %></td>
-          <td width="14.1%"><%=dto.getId() %></td>
-          <td width="14.1%"><%=dto.getInsname() %></td>
-          <td width="14.1%"><%=dto.getInsnum() %></td>
-          <td width="14.1%"><%=df.format(Integer.parseInt(dto.getRemainpay()))%></td>
-          <td width="14.1%"><%=dto.getPaidprem()%></td>
-          <td width="14.1%"><%=df.format(Integer.parseInt(dto.getPrem())) %></td>
-          <td width="5%"><%= dto.getContstat()%></td>
+          <td width="9%"><%=dto.getId() %></td>
+          <td width="9%"><%=dto.getInsname() %></td>
+          <td width="9%"><%=dto.getInsnum() %></td>
+          <td width="9%"><%=df.format(Integer.parseInt(dto.getRemainpay()))%></td>
+          <td width="9%"><%=dto.getPaidprem()%></td>
+          <td width="9%"><%=df.format(Integer.parseInt(dto.getPrem())) %></td>
+          
+          <%if(mode.equals("term"))
+             {%>
+             <td width="5%"><%= dto.getContstat()%></td>
+          	  <td width="5%"><%= df.format(Integer.parseInt(dto.getDeath_ins()))%></td>
+          	  <td width="5%"><%= dto.getRegidate()%></td>
+          <%}
+          else if(mode.equals("annu"))
+          	{ %>
+          	<td width="5%"><%= dto.getMonthann()%></td>
+        	 <td width="5%"><%= dto.getContstat()%></td> 
+       	  <%} 
+       	  	else
+       	  	{%>
+       	  	<td width="5%"><%= dto.getContstat()%></td>
+       	  	<td width="5%"><%= dto.getRegidate()%></td> 
+       	  	<%} %>
         </tr>
 
 <% 	} 
