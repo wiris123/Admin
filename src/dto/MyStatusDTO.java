@@ -1,7 +1,10 @@
 package dto;
 
+import java.sql.Date;
+
 public class MyStatusDTO 
-{
+{	
+	//멤버변수
 	private	String	num;
 	private	String	id;
 	private	String	insname;
@@ -10,11 +13,99 @@ public class MyStatusDTO
 	private	String	paidprem;
 	private	String	prem;
 	private	String	contstat;
+	private Date regidate;
+	private String inssort;
+	private String death_ins;
+	private String paytime;
+	private String instart;
+	private String monthann;
 	
-	public MyStatusDTO() 
-	{
 	
+	public String getPaytime() {
+		return paytime;
 	}
+
+	public void setPaytime(String paytime) {
+		this.paytime = paytime;
+	}
+
+	public String getInstart() {
+		return instart;
+	}
+
+	public void setInstart(String instart) {
+		this.instart = instart;
+	}
+
+	public String getMonthann() {
+		return monthann;
+	}
+
+	public void setMonthann(String monthann) {
+		this.monthann = monthann;
+	}
+
+	public MyStatusDTO(String num, String id, String insname, String insnum, String remainpay, String paidprem,
+			String prem, String contstat, Date regidate, String inssort, String death_ins, String paytime,
+			String instart) 
+	{
+		super();
+		this.num = num;
+		this.id = id;
+		this.insname = insname;
+		this.insnum = insnum;
+		this.remainpay = remainpay;
+		this.paidprem = paidprem;
+		this.prem = prem;
+		this.contstat = contstat;
+		this.regidate = regidate;
+		this.inssort = inssort;
+		this.death_ins = death_ins;
+		this.paytime = paytime;
+		this.instart = instart;
+	}
+
+	public MyStatusDTO(String num, String id, String insname, String insnum, String remainpay, String paidprem,
+			String prem, String contstat, Date regidate, String inssort, String death_ins) 
+	{
+		this.num = num;
+		this.id = id;
+		this.insname = insname;
+		this.insnum = insnum;
+		this.remainpay = remainpay;
+		this.paidprem = paidprem;
+		this.prem = prem;
+		this.contstat = contstat;
+		this.regidate = regidate;
+		this.inssort = inssort;
+		this.death_ins = death_ins;
+	}
+
+	public Date getRegidate() {
+		return regidate;
+	}
+
+	public void setRegidate(Date regidate) {
+		this.regidate = regidate;
+	}
+
+	public String getInssort() {
+		return inssort;
+	}
+
+	public void setInssort(String inssort) {
+		this.inssort = inssort;
+	}
+
+	public String getDeath_ins() {
+		return death_ins;
+	}
+
+	public void setDeath_ins(String death_ins) {
+		this.death_ins = death_ins;
+	}
+
+	public MyStatusDTO() {}
 
 	public MyStatusDTO(String num, String id, String insname, String insnum, String remainpay, String paidprem,
 			String prem, String contstat) {
@@ -27,12 +118,25 @@ public class MyStatusDTO
 		this.paidprem = paidprem;
 		this.prem = prem;
 		this.contstat = contstat;
+		
+	}
+
+	public MyStatusDTO(String id, String insname, String insnum, String remainpay, String paidprem, String prem,
+			String contstat) {
+		super();
+		this.id = id;
+		this.insname = insname;
+		this.insnum = insnum;
+		this.remainpay = remainpay;
+		this.paidprem = paidprem;
+		this.prem = prem;
+		this.contstat = contstat;
 	}
 
 	public String getNum() {
 		return num;
 	}
-
+	
 	public void setNum(String num) {
 		this.num = num;
 	}
@@ -92,6 +196,4 @@ public class MyStatusDTO
 	public void setContstat(String contstat) {
 		this.contstat = contstat;
 	}
-	
-	
 }

@@ -215,7 +215,8 @@
          function selectAll(obj) {
          	var chkObj = document.getElementsByName("select_chkbox");
          	var rowCnt = chkObj.length - 1;
-         	// 대가리에 노드를 체크로 전환시
+         	
+         	// 체크박스를 체크로 전환시
          	if (obj.checked == true) {
          		// 전부 선택으로 바꿔줌
          		for (var i = 0; i <= rowCnt; i++) {

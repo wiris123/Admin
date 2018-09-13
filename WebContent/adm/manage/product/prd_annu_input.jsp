@@ -94,6 +94,17 @@ function formChk(f)
 		f.paytime.focus();
 		return false;
 	}
+
+	if(f.instart.value=="" ){
+		alert("연금개시나이를 입력하세요");
+		f.paytime.focus();
+		return false;
+	}
+	if(f.instart.value<=80 || f.instart.value>=50 || !isNumber(f.instart.value)){
+		alert("연금개시나이를 바르게 입력하세요");
+		f.paytime.focus();
+		return false;
+	}
 	if(f.payment.value==""){
 		alert("월납입액을 입력하세요");
 		f.payment.focus();
@@ -123,16 +134,15 @@ function premPlus()
 				data : 
 				{
 					payment : $('#paym').val(),
-					instart : $('#datepicker1').val(),
-					regidate : $('#datepicker2').val(),
 					interest : $('#inter').val(),
-					rprem : $('#rp').val()
+					rprem : $('#rp').val(),
+					paytime : $('#payt').val()
 				},
 				dataType : "json",
 				contentType : "text/html; charset:utf-8",//post타입의 content타입 : application/x-www-form-urlencoded;charset=utf-8
 				success:function(resp)
 				{	//성공 시 월납입액, 납부연한에 값 입력
-
+					alert("resp"+resp);
 					$('#monthp').val(resp.result);		
 					$('#payt').val(resp.payt);
 				},
@@ -178,16 +188,22 @@ function premPlus()
 			<input name="instype" type="text" value="1" size="30" class="input" style="border: 0"readonly>
 		</td>
 	</tr>
-	<tr>
+	<!-- <tr>
 		<th>연금개시일</th>
 		<td colspan="3">
 			<input name="instart" id="datepicker1" type="text" value="" size="30" class="instart">
 		</td>
-	</tr>
+	</tr> -->
 	<tr>
 		<th>연금납부연한</th>
 		<td colspan="3">
-			<input name="paytime" type="text" value="" id="payt" size="30" class="input" readonly/>
+			<input name="paytime" type="text" value="" id="payt" size="30" class="input" maxlength="2"/>
+		</td>
+	</tr>
+	<tr>
+		<th>연금개시나이</th>
+		<td colspan="3">
+			<input name="instart" type="text" value="" id="payt" size="30" class="input" maxlength="2"/>
 		</td>
 	</tr>
 	<tr>
@@ -222,11 +238,11 @@ function premPlus()
 		<td colspan="3">
 			<span id="result"><input type="text" name="monthann" value="" id="monthp" placeholder="자동으로 계산" style="border: 0" readonly/></span>
 	</td>
-	<tr>
+<!-- 	<tr>
 		<th>계약일자</th>
 		<td colspan="3">
 			<input type="text" size="30" name="regidate" id="datepicker2" value="" class="regidate"/>
-	</td>
+	</td> -->
 	<tr>
 		<th>계약상태</th>
 		<td colspan="3">
