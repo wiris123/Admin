@@ -385,7 +385,8 @@ public class InsuDAO
 		List<MyStatusDTO> bbs = new Vector<MyStatusDTO>();
 		
 		//2.게시물 전체를 가져오기 위한 쿼리작성
-		String mode =map.get("mode").toString();
+		
+		
 		String query = "select member_"+map.get("mode")+"_my.*,rownum from member_"+map.get("mode")+"_my where ";
 		
 		if(map.get("Word")!=null) {
@@ -410,6 +411,7 @@ public class InsuDAO
 			//3.prepare객체생성 및 실행
 			psmt = con.prepareStatement(query);
 			
+			String mode = map.get("mode").toString();
 			 psmt.setString(1, map.get("start").toString());
 	         psmt.setString(2, map.get("end").toString());
 			
@@ -606,6 +608,25 @@ public class InsuDAO
 			System.out.println("num"+num);
 			return affected;	
 		}
+		
+		public int editStatus(String num,String mode) {
+			int affected = 0;
+			try {
+				String query = "update member_"+mode+"_my set contstat='Y' where num=?";
+				
+				psmt = con.prepareStatement(query);			
+				psmt.setString(1, num);
+				 
+				affected = psmt.executeUpdate();
+			}
+			catch(Exception e) {
+				System.out.println("edit_status중 예외발생");
+				e.printStackTrace();
+			}
+			
+			return affected;	
+		}
+		
 		
 		
 		public void close() {

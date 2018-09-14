@@ -16,10 +16,10 @@
 	//커넥션풀로 변경
 	InsuDAO dao = new InsuDAO();	
 	
-	//매개변수 저장을 위한 컬렉션                                                                                                      생성(DAO로 전달)
+	//매개변수 저장을 위한 컬렉션   생성(DAO로 전달)
 	Map<String,Object> param = new HashMap<String,Object>();
+	param.put("mode", mode);
 	
-	param.put("mode",mode);
 	//문자열 검색 파라미터를 페이지 처리 메소드로
 	//넘겨주기 위한 변수선언
 	String queryStr = "";
@@ -38,11 +38,12 @@
 		//입력한 검색어가 있다면 맵에 추가함
 		param.put("Column", searchColumn);
 		param.put("Word", searchWord);
+		param.put("mode", mode);
 		
 		//파라미터 추가
 		queryStr += String.format("searchColumn=%s"
-			+"&searchWord=%s&", searchColumn,
-				searchWord);
+			+"&searchWord=%s&mode=%s", searchColumn,
+				searchWord, mode);
 	}
 		
 	//페이지 처리를 위한 로직 시작
@@ -70,7 +71,7 @@
 	//6.파라미터 전달을 위해 map에 추가
 	param.put("start", start);
 	param.put("end", end);
-	
+	param.put("mode", mode);
 	
 	/////게시판 페이지 처리 로직 끝
 	
@@ -253,6 +254,7 @@
 <h3>상품관리<span>상품 검색/추가/수정/삭제 관리합니다.</span></h3>	
 	   <form name="searchForm" method="get">
       <input type="hidden" name="nowPage" value="1">
+      <input type="hidden" name="mode" value="<%=mode %>" />
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_basic">
       <tr>
       <th>조건검색</th>
@@ -363,33 +365,37 @@ else
 		vNum = totalRecordCount - (((nowPage-1)*pageSize)+countNum++);
 
 %>
-		  <tr>
-        	<td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getNum()%>"></td>
-          <td width="5%"><%=dto.getNum() %></td>
-          <td width="9%"><%=dto.getId() %></td>
-          <td width="9%"><%=dto.getInsname() %></td>
-          <td width="9%"><%=dto.getInsnum() %></td>
-          <td width="9%"><%=df.format(Integer.parseInt(dto.getRemainpay()))%></td>
-          <td width="9%"><%=dto.getPaidprem()%></td>
-          <td width="9%"><%=df.format(Integer.parseInt(dto.getPrem())) %></td>
-          
-          <%if(mode.equals("term"))
-             {%>
-             <td width="5%"><%= dto.getContstat()%></td>
-          	  <td width="5%"><%= df.format(Integer.parseInt(dto.getDeath_ins()))%></td>
-          	  <td width="5%"><%= dto.getRegidate()%></td>
-          <%}
-          else if(mode.equals("annu"))
-          	{ %>
-          	<td width="5%"><%= dto.getMonthann()%></td>
-        	 <td width="5%"><%= dto.getContstat()%></td> 
-       	  <%} 
-       	  	else
-       	  	{%>
-       	  	<td width="5%"><%= dto.getContstat()%></td>
-       	  	<td width="5%"><%= dto.getRegidate()%></td> 
-       	  	<%} %>
-        </tr>
+		  <form action="../product/proc/statusEdit.jsp" method="get" name="statusFrm">
+		  <input type="hidden" name="num" value="<%=dto.getNum() %>" />
+		  <input type="hidden" name="mode" value="<%=mode %>" />
+			  <tr>
+	        	<td width="5%"><input type="checkbox" name="select_chkbox" value="<%=dto.getNum()%>"></td>
+	          <td width="5%"><%=dto.getNum() %></td>
+	          <td width="9%"><%=dto.getId() %></td>
+	          <td width="9%"><%=dto.getInsname() %></td>
+	          <td width="9%"><%=dto.getInsnum() %></td>
+	          <td width="9%"><%=df.format(Integer.parseInt(dto.getRemainpay()))%></td>
+	          <td width="9%"><%=dto.getPaidprem()%></td>
+	          <td width="9%"><%=df.format(Integer.parseInt(dto.getPrem())) %></td>
+	          
+	          <%if(mode.equals("term"))
+	             {%>
+	             <td width="5%"><%= dto.getContstat()%> <br /> <button type="submit" class="h22 t4 small icon gray"><span class="icon_plus"></span>계약확인</button></td>
+	          	  <td width="5%"><%= df.format(Integer.parseInt(dto.getDeath_ins()))%></td>
+	          	  <td width="5%"><%= dto.getRegidate()%></td>
+	          <%}
+	          else if(mode.equals("annu"))
+	          	{ %>
+	          	<td width="5%"><%= dto.getMonthann()%></td>
+	        	 <td width="5%"><%= dto.getContstat()%><br /> <button type="submit" class="h22 t4 small icon gray"><span class="icon_plus"></span>계약확인</button></td>
+	       	  <%} 
+	       	  	else
+	       	  	{%>
+	       	  	<td width="5%"><%= dto.getContstat()%><br /> <button type="submit" class="h22 t4 small icon gray"><span class="icon_plus"></span>계약확인</button></td>
+	       	  	<td width="5%"><%= dto.getRegidate()%></td>
+	       	  	<%} %>
+	        </tr>
+        </form>
 
 <% 	} 
 }%>

@@ -21,6 +21,6 @@
 %>
 <script>
 alert("삭제완료")
-location.href="../prd_status_term.jsp"
+location.href="../prd_status_list.jsp?mode="+mode;
 </script>
 <% } %>
