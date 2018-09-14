@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-ConnectDAO dao = new ConnectDAO(); 
+ConnectDAO dao = new ConnectDAO();  
 
 //오늘 날짜를 가져오기
 Date date = new Date();
@@ -33,11 +33,15 @@ calm.add(calm.MONTH, -3); // 세달을 더뺀다(총 6달)
 String sixMonth = format.format(calm.getTime());
 caly.add(caly.YEAR, -1);//1년을 뺸다
 String year = format.format(caly.getTime());
-VisitorValDTO avdto = dao.getTotVisitor();
 
-System.out.println("한달:"+oneMonth+"\n세달:"+threeMonth+"\n여섯달:"+sixMonth);
+//총수와 평균
+VisitorValDTO avdto = dao.getTotVisitor();
+//한달총수와 한달 평균
+VisitorValDTO avMon = dao.monthly();
 
 String start = (request.getParameter("fromdate")=="")?aweak:request.getParameter("fromdate");
+int todayVal = dao.todayVisitor();
+int yesterdayVal = dao.yesterdayVisitor();
 
 List<VisitorDTO> bbs = dao.selectList(start, end);
 dao.close();
@@ -57,7 +61,7 @@ dao.close();
 <script src="../js/canvasjs.min.js"></script>
 <script type="text/javascript" src="../../js/json2.js"></script>
 <script type="text/javascript" src="../../js/swfobject.js"></script>
-<link href="../wiz_style.css" rel="stylesheet" type="text/css"/>
+<link href="	../wiz_style.css" rel="stylesheet" type="text/css"/>
 <script language="JavaScript" src="../../js/default.js"></script>
 <script language="JavaScript" src="../../js/lib.js"></script>
 <style>
@@ -180,8 +184,8 @@ chart = new CanvasJS.Chart("chartContainer", {
 		type: "column",
 		yValueFormatString: "#,### Units",
 		dataPoints: [
-<%for(VisitorDTO dto : bbs){%>
-			{ x: new Date(<%=dto.getVisit_date()%>), y: <%=dto.getVal()%> },
+ <%for(VisitorDTO dto : bbs ){%>
+ 			{ x: new Date(<%=dto.getVisit_date()%>), y: <%=dto.getVal()%> },
 <%}%>
 		]
 		
@@ -205,15 +209,15 @@ chart = new CanvasJS.Chart("chartContainer", {
 	</tr>
 	<tr>
 		<th height="30">오늘 접속자 수</th>
-		<td><font color=064F92><B>56</b></font>명</td>
+		<td><font color=064F92><B><%=todayVal %></b></font>명</td>
 		<th>어제 접속자 수</th>
-		<td><font color=064F92><B>1</b></font>명</td>
+		<td><font color=064F92><B><%=yesterdayVal %></b></font>명</td>
 	</tr>
 	<tr>
 		<th height="30">이번달 접속자 수</th>
-		<td><font color=064F92><B>56</b></font>명</td>
+		<td><font color=064F92><B><%=avMon.getTot() %></b></font>명</td>
 		<th>이번달 평균 접속자 수</th>
-		<td><font color=064F92><B>7</b></font>명</td>
+		<td><font color=064F92><B><%=avMon.getAvg() %></b></font>명</td>
 	</tr>
 </table>
 

@@ -32,12 +32,12 @@
 			<a href="../main/main.jsp" onFocus="this.blur();"><img src="../image/header/logo.png" /></a>
 		</h1>
 		<ul id="gnb">
-			<li><a href="../main/main.jsp" onFocus="this.blur();">관리자홈</a></li>
+			<li><a href="../main/chat.jsp" target="_blank" onFocus="this.blur();">관리자홈</a></li>
 			<li><a href="../member/logout.jsp" onFocus="this.blur();"
 				class="logbtn"><img src="../image/header/logout.gif" /></a></li>
 		</ul>
 		<div id="navi">
-			<li class="design"><a href="../main/main.jsp"
+			<li class="design" ><a href="../main/main.jsp"
 				onFocus="this.blur();"><span>환경설정</span></a></li>
 
 			<!-- <li><a href="../basic/site_info.jsp" onFocus="this.blur();"><span>기본설정</span></a>
@@ -80,17 +80,7 @@
 					</li> 
 				</ul>
 			</li>
-			<li><a href="../page/page_list.jsp"><span>페이지관리</span></a>
-				<ul class="category">
-					<li><a href="../page/page_list.jsp">페이지관리</a></li>
-					<li class="depth"><a href="#" onFocus="this.blur();">페이지목록</a>
-						<ul class="category_2depth">
-							<li><a
-								href="../page/page_input8312.jsp?mode=update&amp;idx=25">페이지추가1</a></li>
-							<li><a
-								href="../page/page_input5b7c.jsp?mode=update&amp;idx=26">페이지추가2</a></li>
-						</ul></li>
-				</ul></li>
+			
 
 			<li><a href="../connect/connect_list.jsp?fromdate=&todate="
 				onFocus="this.blur();"><span>접속통계</span></a>

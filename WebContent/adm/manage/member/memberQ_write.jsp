@@ -160,21 +160,42 @@ function email_input(em, frm){
 							<tr>
 								<th class="text-center" style="vertical-align:middle;">내용</th>
 								<td>
-								<script type="text/javascript" src="./se2/workspace/js/service/HuskyEZCreator.js" charset="utf-8"></script>  
-		
-									<textarea name="contents" id="contents" rows="10" cols="300" style='width:100%;'>글내용</textarea>
-		
+								<script type="text/javascript" src="../common/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+									<textarea rows="10" cols="30" id="cotents" name="contents" style="width: 100%; height: 412px;"></textarea>
 									<script type="text/javascript">
 										var oEditors = [];
-										nhn.husky.EZCreator.createInIFrame({
-										oAppRef: oEditors,
-										elPlaceHolder: "contents",
-										sSkinURI: "./se2/workspace/SmartEditor2Skin.html",
-										
-										fCreator: "createSEditor2"	
+										$(function() {
+											nhn.husky.EZCreator
+													.createInIFrame({
+														oAppRef : oEditors,
+														elPlaceHolder : "cotents",
+														//SmartEditor2Skin.html 파일이 존재하는 경로
+														sSkinURI : "../common/se2/SmartEditor2Skin.html",
+														htParams : {
+															// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+															bUseToolbar : true,
+															// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+															bUseVerticalResizer : false,
+															// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+															bUseModeChanger : true,
+															fOnBeforeUnload : function() {
+
+															}
+														},
+														fCreator : "createSEditor2"
+													});
+													//전송버튼 클릭이벤트
+											        $("#savebutton").click(function() {
+											            //id가 smarteditor인 textarea에 에디터에서 대입
+											            oEditors.getById["cotents"].exec("UPDATE_CONTENTS_FIELD", []);
+											 
+											            // 이부분에 에디터 validation 	검증
+											            //폼 submit
+											            $("#bbsFrm").submit();
+											        })
 										});
-										
-									</script> 
+									</script>
+
 								</td>
 							</tr>
 						</table>
